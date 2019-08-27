@@ -1,0 +1,133 @@
+{
+  "version": 1,
+  "projects": {
+    "lisa": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/lisa",
+      "sourceRoot": "apps/lisa/src",
+      "prefix": "lisa",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/lisa",
+            "index": "apps/lisa/src/index.html",
+            "main": "apps/lisa/src/main.ts",
+            "polyfills": "apps/lisa/src/polyfills.ts",
+            "tsConfig": "apps/lisa/tsconfig.app.json",
+            "aot": false,
+            "assets": ["apps/lisa/src/favicon.ico", "apps/lisa/src/assets"],
+            "styles": ["apps/lisa/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/lisa/src/environments/environment.ts",
+                  "with": "apps/lisa/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "lisa:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "lisa:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "lisa:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/lisa/tsconfig.app.json",
+              "apps/lisa/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/lisa/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/lisa/jest.config.js",
+            "tsConfig": "apps/lisa/tsconfig.spec.json",
+            "setupFile": "apps/lisa/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "lisa-e2e": {
+      "root": "apps/lisa-e2e",
+      "sourceRoot": "apps/lisa-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/lisa-e2e/cypress.json",
+            "tsConfig": "apps/lisa-e2e/tsconfig.e2e.json",
+            "devServerTarget": "lisa:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "lisa:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/lisa-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/lisa-e2e/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    }
+  },
+  "defaultProject": "lisa"
+}
