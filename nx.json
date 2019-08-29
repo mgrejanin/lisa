@@ -13,6 +13,9 @@
     },
     "lisa": {
       "tags": []
+    },
+    "shared-login-feature": {
+      "tags": ["scope:shared", "type:feature"]
     }
   }
 }
