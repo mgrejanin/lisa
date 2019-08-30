@@ -16,7 +16,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@lisa/shared/login/feature": ["libs/shared/login/feature/src/index.ts"]
+      "@lisa/shared/login/feature": ["libs/shared/login/feature/src/index.ts"],
+      "@lisa/shared/login/data-access": [
+        "libs/shared/login/data-access/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

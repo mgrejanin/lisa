@@ -16,6 +16,9 @@
     },
     "shared-login-feature": {
       "tags": ["scope:shared", "type:feature"]
+    },
+    "shared-login-data-access": {
+      "tags": []
     }
   }
 }
