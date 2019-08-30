@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { Route, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { SharedLoginFeatureContainer } from './shared-login-feature.container';
 
 @NgModule({

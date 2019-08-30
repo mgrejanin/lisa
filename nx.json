@@ -19,6 +19,15 @@
     },
     "shared-login-data-access": {
       "tags": []
+    },
+    "shared-home-feature": {
+      "tags": []
+    },
+    "shared-ui-toolbar": {
+      "tags": []
+    },
+    "shared-ui-sidenav": {
+      "tags": []
     }
   }
 }

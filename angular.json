@@ -180,6 +180,99 @@
           "styleext": "scss"
         }
       }
+    },
+    "shared-home-feature": {
+      "projectType": "library",
+      "root": "libs/shared/home/feature",
+      "sourceRoot": "libs/shared/home/feature/src",
+      "prefix": "lisa",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/home/feature/tsconfig.lib.json",
+              "libs/shared/home/feature/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/home/feature/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/home/feature/jest.config.js",
+            "tsConfig": "libs/shared/home/feature/tsconfig.spec.json",
+            "setupFile": "libs/shared/home/feature/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "shared-ui-toolbar": {
+      "projectType": "library",
+      "root": "libs/shared/ui/toolbar",
+      "sourceRoot": "libs/shared/ui/toolbar/src",
+      "prefix": "lisa",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/ui/toolbar/tsconfig.lib.json",
+              "libs/shared/ui/toolbar/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/ui/toolbar/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/ui/toolbar/jest.config.js",
+            "tsConfig": "libs/shared/ui/toolbar/tsconfig.spec.json",
+            "setupFile": "libs/shared/ui/toolbar/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "shared-ui-sidenav": {
+      "projectType": "library",
+      "root": "libs/shared/ui/sidenav",
+      "sourceRoot": "libs/shared/ui/sidenav/src",
+      "prefix": "lisa",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/ui/sidenav/tsconfig.lib.json",
+              "libs/shared/ui/sidenav/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/ui/sidenav/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/ui/sidenav/jest.config.js",
+            "tsConfig": "libs/shared/ui/sidenav/tsconfig.spec.json",
+            "setupFile": "libs/shared/ui/sidenav/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {
