@@ -1,0 +1,12 @@
+<div class="thumbnail-carroussel">
+  <div class="thumbnail-carroussel__container">
+    <div *ngFor="let thumbnail of thumbnails">
+      <div class="thumbnail-carroussel__thumbnail">
+        <img [src]="thumbnail.imgUrl" />
+      </div>
+      <div class="thumbnail-carroussel__label">
+        {{ thumbnail.label }}
+      </div>
+    </div>
+  </div>
+</div>

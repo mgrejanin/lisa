@@ -243,28 +243,62 @@
         }
       }
     },
-    "shared-ui-sidenav": {
+    "shared-home-ui": {
       "projectType": "library",
-      "root": "libs/shared/ui/sidenav",
-      "sourceRoot": "libs/shared/ui/sidenav/src",
+      "root": "libs/shared/home/ui",
+      "sourceRoot": "libs/shared/home/ui/src",
       "prefix": "lisa",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/shared/ui/sidenav/tsconfig.lib.json",
-              "libs/shared/ui/sidenav/tsconfig.spec.json"
+              "libs/shared/home/ui/tsconfig.lib.json",
+              "libs/shared/home/ui/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/shared/ui/sidenav/**"]
+            "exclude": ["**/node_modules/**", "!libs/shared/home/ui/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/shared/ui/sidenav/jest.config.js",
-            "tsConfig": "libs/shared/ui/sidenav/tsconfig.spec.json",
-            "setupFile": "libs/shared/ui/sidenav/src/test-setup.ts"
+            "jestConfig": "libs/shared/home/ui/jest.config.js",
+            "tsConfig": "libs/shared/home/ui/tsconfig.spec.json",
+            "setupFile": "libs/shared/home/ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "shared-ui-thumbnail-carroussel": {
+      "projectType": "library",
+      "root": "libs/shared/ui/thumbnail-carroussel",
+      "sourceRoot": "libs/shared/ui/thumbnail-carroussel/src",
+      "prefix": "lisa",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/ui/thumbnail-carroussel/tsconfig.lib.json",
+              "libs/shared/ui/thumbnail-carroussel/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/ui/thumbnail-carroussel/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/ui/thumbnail-carroussel/jest.config.js",
+            "tsConfig": "libs/shared/ui/thumbnail-carroussel/tsconfig.spec.json",
+            "setupFile": "libs/shared/ui/thumbnail-carroussel/src/test-setup.ts"
           }
         }
       },

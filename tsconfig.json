@@ -22,7 +22,10 @@
       ],
       "@lisa/shared/home/feature": ["libs/shared/home/feature/src/index.ts"],
       "@lisa/shared/ui/toolbar": ["libs/shared/ui/toolbar/src/index.ts"],
-      "@lisa/shared/ui/sidenav": ["libs/shared/ui/sidenav/src/index.ts"]
+      "@lisa/shared/home/ui": ["libs/shared/home/ui/src/index.ts"],
+      "@lisa/shared/ui/thumbnail-carroussel": [
+        "libs/shared/ui/thumbnail-carroussel/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

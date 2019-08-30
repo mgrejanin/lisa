@@ -1,19 +1,19 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SharedHomeFeatureContainer } from './shared-home-feature.container';
+import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import {SharedUiToolbarModule} from '@lisa/shared/ui/toolbar';
+import { SharedHomeUiModule } from '@lisa/shared/home/ui';
+import { SharedHomeFeatureContainer } from './shared-home-feature.container';
 @NgModule({
   declarations: [SharedHomeFeatureContainer],
   imports: [
-    CommonModule, 
-    RouterModule.forChild(
-      [{
+    CommonModule,
+    RouterModule.forChild([
+      {
         path: '',
         component: SharedHomeFeatureContainer
-      }]
-    ),
-    SharedUiToolbarModule
+      }
+    ]),
+    SharedHomeUiModule
   ]
 })
 export class SharedHomeFeatureModule {}

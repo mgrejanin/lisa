@@ -26,7 +26,10 @@
     "shared-ui-toolbar": {
       "tags": []
     },
-    "shared-ui-sidenav": {
+    "shared-home-ui": {
+      "tags": []
+    },
+    "shared-ui-thumbnail-carroussel": {
       "tags": []
     }
   }

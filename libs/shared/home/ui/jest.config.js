@@ -1,7 +1,7 @@
 module.exports = {
-  name: 'shared-ui-sidenav',
+  name: 'shared-home-ui',
   preset: '../../../../jest.config.js',
-  coverageDirectory: '../../../../coverage/libs/shared/ui/sidenav',
+  coverageDirectory: '../../../../coverage/libs/shared/home/ui',
   snapshotSerializers: [
     'jest-preset-angular/AngularSnapshotSerializer.js',
     'jest-preset-angular/HTMLCommentSerializer.js'
