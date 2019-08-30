@@ -1,13 +1,14 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule, MatFormFieldModule, MatInputModule } from '@angular/material';
+import { RouterModule } from '@angular/router';
+import { SharedUiSidenavModule } from "@lisa/shared/ui/sidenav";
 import { SharedUiToolbarComponent } from './shared-ui-toolbar.component';
-import {MatToolbarModule} from '@angular/material';
-import {MatButtonModule} from '@angular/material/button';
-import{SharedUiSidenavModule} from "@lisa/shared/ui/sidenav";
-import {MatIconModule} from '@angular/material/icon';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [SharedUiToolbarComponent],
-  imports: [CommonModule, MatToolbarModule, SharedUiSidenavModule, MatButtonModule, MatIconModule],
+  imports: [FormsModule, ReactiveFormsModule,CommonModule, RouterModule, MatListModule, MatFormFieldModule, MatInputModule,MatToolbarModule, SharedUiSidenavModule, MatButtonModule, MatIconModule, MatSidenavModule],
   exports: [SharedUiToolbarComponent]
 })
 export class SharedUiToolbarModule {}

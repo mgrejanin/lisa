@@ -1,4 +1,5 @@
 import { Component, Input } from "@angular/core";
+import { FormControl } from '@angular/forms';
 
 @Component({
     selector:'lisa-shared-ui-toolbar',
@@ -7,4 +8,6 @@ import { Component, Input } from "@angular/core";
 })
 export class SharedUiToolbarComponent{
     @Input() title:string;
+
+    search = new FormControl();
 }

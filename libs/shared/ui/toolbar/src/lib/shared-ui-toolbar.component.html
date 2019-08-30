@@ -1,15 +1,39 @@
 <div class="container">
-    <div class="toolbar">
-        <mat-toolbar color="primary">
-            <mat-toolbar-row>
-                    <button mat-icon-button>
-                            <mat-icon></mat-icon>
-                          </button>
-                <span>{{title}}</span>
-            </mat-toolbar-row>
-        </mat-toolbar>
-    </div>
-    <div class="sidenav">
-        <lisa-shared-ui-sidenav></lisa-shared-ui-sidenav>
-    </div>
+  <div class="toolbar">
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <button mat-icon-button>
+          <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
+        </button>
+        <form class="example-form">
+            <mat-form-field class="example-full-width" [floatLabel]="floatLabelType">
+              <input matInput placeholder="State" aria-label="State" name="search" [formControl]="search">
+              <!-- <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let state of filteredStates | async" [value]="state.name">
+                  <img class="example-option-img" aria-hidden [src]="state.flag" height="25">
+                  <span>{{state.name}}</span> |
+                  <small>Population: {{state.population}}</small>
+                </mat-option>
+              </mat-autocomplete> -->
+            </mat-form-field>
+          </form>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav>
+      <mat-nav-list>
+        <a mat-list-item [routerLink]="'/accounts'"> <mat-icon class="toolbar__list__icon">account_circle</mat-icon>Meu Perfil</a>
+        <a mat-list-item [routerLink]="'/create-account'"> <mat-icon class="toolbar__list__icon">search</mat-icon>Consultar produtos</a>
+        <a mat-list-item [routerLink]="'/contacts'"> <mat-icon class="toolbar__list__icon">book</mat-icon>Receitas</a>
+        <a mat-list-item [routerLink]="'/create-contact'"> <mat-icon class="toolbar__list__icon">file_copy</mat-icon>Minhas NF's</a>
+        <a mat-list-item [routerLink]="'/activities'"> <mat-icon class="toolbar__list__icon">lock</mat-icon>Alterar Senha</a>
+        <a mat-list-item [routerLink]="'/create-activity'"> <mat-icon class="toolbar__list__icon">exit_to_app</mat-icon>Sair</a>
+        <!-- <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a> -->
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content><div style="height: 88vh;">
+      <router-outlet></router-outlet>
+    </div></mat-sidenav-content>
+  </mat-sidenav-container>
 </div>

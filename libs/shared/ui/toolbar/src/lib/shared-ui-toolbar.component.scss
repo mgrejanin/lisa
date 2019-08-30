@@ -1,0 +1,15 @@
+.toolbar{
+    .mat-toolbar-row{
+        padding-left: 8px;
+
+        .mat-icon-button{
+            margin-right: 8px;
+        }
+    }
+
+    &__list{
+        &__icon{
+            margin-right: 16px;
+        }
+    }
+}
