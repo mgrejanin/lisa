@@ -1,15 +1,17 @@
-import { Component, Input } from '@angular/core';
-import { ThumbnailCarrousselType } from '@lisa/shared/ui/thumbnail-carroussel';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
+import { MarketType } from '@lisa/shared/ui/thumbnail-carroussel';
 
 @Component({
-  selector: 'lisa-shared-home-ui',
+  selector: 'lisa-shared-home-ui-component',
   templateUrl: './shared-home-ui.component.html',
   styleUrls: ['./shared-home-ui.component.scss']
 })
 export class SharedHomeUiComponent {
   @Input() toolbarTitle: string;
 
-  thumbnails: ThumbnailCarrousselType[] = [
+  @Output() nearbyMarketClick = new EventEmitter<MarketType>();
+
+  markets: MarketType[] = [
     {
       label: 'Walmart',
       imgUrl:

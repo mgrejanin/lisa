@@ -1,0 +1,13 @@
+.home {
+  &__market-grid {
+    margin: 8px 0;
+  }
+
+  &__container {
+    background-color: #ffffff;
+
+    > * {
+      background-color: #fafafa;
+    }
+  }
+}

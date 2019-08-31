@@ -307,6 +307,37 @@
           "styleext": "scss"
         }
       }
+    },
+    "shared-ui-market-grid": {
+      "projectType": "library",
+      "root": "libs/shared/ui/market-grid",
+      "sourceRoot": "libs/shared/ui/market-grid/src",
+      "prefix": "lisa",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/ui/market-grid/tsconfig.lib.json",
+              "libs/shared/ui/market-grid/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/ui/market-grid/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/ui/market-grid/jest.config.js",
+            "tsConfig": "libs/shared/ui/market-grid/tsconfig.spec.json",
+            "setupFile": "libs/shared/ui/market-grid/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

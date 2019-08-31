@@ -1,16 +1,16 @@
 <div class="thumbnail-carroussel">
   <mat-list>
-    <h3 mat-subheader>Mercados próximos</h3>
+    <h3 mat-subheader>Próximos daqui</h3>
     <div class="thumbnail-carroussel__list">
-      <mat-list-item *ngFor="let thumbnail of thumbnails">
+      <mat-list-item *ngFor="let market of markets" (click)='nearbyMarketActionClick.emit(market)'>
         <div class="thumbnail-carroussel__thumbnail">
           <img
             class="thumbnail-carroussel__thumbnail__image"
-            [src]="thumbnail.imgUrl"
+            [src]="market.imgUrl"
           />
         </div>
         <div class="thumbnail-carroussel__label mat-caption">
-          {{ thumbnail.label }}
+          {{ market.label }}
         </div>
       </mat-list-item>
     </div>

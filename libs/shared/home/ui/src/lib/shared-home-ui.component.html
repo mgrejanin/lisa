@@ -1,10 +1,15 @@
 <div class="home">
-  <div class="home__toolbar">
-    <lisa-shared-ui-toolbar [title]="toolbarTitle">
-        <div class="home__nearby">
-            <lisa-shared-ui-thumbnail-carrousel [thumbnails]="thumbnails"></lisa-shared-ui-thumbnail-carrousel>
-          </div>
-    </lisa-shared-ui-toolbar>
-  </div>
-  
+  <lisa-shared-ui-toolbar-component [title]="toolbarTitle">
+    <div class="home__container">
+      <div class="home__nearby">
+        <lisa-shared-ui-thumbnail-carrousel-component
+          [markets]="markets"
+          (nearbyMarketActionClick)="nearbyMarketClick.emit($event)"
+        ></lisa-shared-ui-thumbnail-carrousel-component>
+      </div>
+      <div class="home__market-grid">
+        <lisa-shared-ui-market-grid-component></lisa-shared-ui-market-grid-component>
+      </div>
+    </div>
+  </lisa-shared-ui-toolbar-component>
 </div>

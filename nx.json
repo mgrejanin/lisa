@@ -31,6 +31,9 @@
     },
     "shared-ui-thumbnail-carroussel": {
       "tags": []
+    },
+    "shared-ui-market-grid": {
+      "tags": []
     }
   }
 }

@@ -2,7 +2,7 @@ import { Component, Input } from "@angular/core";
 import { FormControl } from '@angular/forms';
 
 @Component({
-    selector:'lisa-shared-ui-toolbar',
+    selector:'lisa-shared-ui-toolbar-component',
     templateUrl: './shared-ui-toolbar.component.html',
     styleUrls: ['./shared-ui-toolbar.component.scss']
 })
