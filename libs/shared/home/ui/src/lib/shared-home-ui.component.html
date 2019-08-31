@@ -1,8 +1,10 @@
 <div class="home">
   <div class="home__toolbar">
-    <lisa-shared-ui-toolbar [title]="toolbarTitle"></lisa-shared-ui-toolbar>
+    <lisa-shared-ui-toolbar [title]="toolbarTitle">
+        <div class="home__nearby">
+            <lisa-shared-ui-thumbnail-carrousel [thumbnails]="thumbnails"></lisa-shared-ui-thumbnail-carrousel>
+          </div>
+    </lisa-shared-ui-toolbar>
   </div>
-  <div class="home__nearby">
-    <lisa-shared-ui-thumbnail-carrousel [thumbnails]="thumbnails"></lisa-shared-ui-thumbnail-carrousel>
-  </div>
+  
 </div>

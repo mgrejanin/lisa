@@ -1,12 +1,18 @@
 <div class="thumbnail-carroussel">
-  <div class="thumbnail-carroussel__container">
-    <div *ngFor="let thumbnail of thumbnails">
-      <div class="thumbnail-carroussel__thumbnail">
-        <img [src]="thumbnail.imgUrl" />
-      </div>
-      <div class="thumbnail-carroussel__label">
-        {{ thumbnail.label }}
-      </div>
+  <mat-list>
+    <h3 mat-subheader>Mercados próximos</h3>
+    <div class="thumbnail-carroussel__list">
+      <mat-list-item *ngFor="let thumbnail of thumbnails">
+        <div class="thumbnail-carroussel__thumbnail">
+          <img
+            class="thumbnail-carroussel__thumbnail__image"
+            [src]="thumbnail.imgUrl"
+          />
+        </div>
+        <div class="thumbnail-carroussel__label mat-caption">
+          {{ thumbnail.label }}
+        </div>
+      </mat-list-item>
     </div>
-  </div>
+  </mat-list>
 </div>

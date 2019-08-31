@@ -1,15 +1,22 @@
-.toolbar{
-    .mat-toolbar-row{
-        padding-left: 8px;
+.toolbar {
+  .mat-toolbar-row {
+    padding-left: 8px;
 
-        .mat-icon-button{
-            margin-right: 8px;
-        }
+    .mat-icon-button {
+      margin-right: 8px;
     }
+  }
 
-    &__list{
-        &__icon{
-            margin-right: 16px;
-        }
+  &__list {
+    &__icon {
+      margin-right: 16px;
     }
+  }
+}
+
+.sidenav {
+  position: fixed;
+  height: 100vh;
+  min-width: 25%;
+  border-right: 1px solid #ccc;
 }
