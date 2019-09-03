@@ -5,6 +5,7 @@ import { SharedHomeUiModule } from '@lisa/shared/home/ui';
 import { SharedHomeFeatureContainer } from './shared-home-feature.container';
 @NgModule({
   declarations: [SharedHomeFeatureContainer],
+  exports: [SharedHomeFeatureContainer],
   imports: [
     CommonModule,
     RouterModule.forChild([

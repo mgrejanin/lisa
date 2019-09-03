@@ -26,7 +26,13 @@
       "@lisa/shared/ui/thumbnail-carroussel": [
         "libs/shared/ui/thumbnail-carroussel/src/index.ts"
       ],
-      "@lisa/shared/ui/market-grid": ["libs/shared/ui/market-grid/src/index.ts"]
+      "@lisa/shared/ui/market-grid": [
+        "libs/shared/ui/market-grid/src/index.ts"
+      ],
+      "@lisa/shared/ui/search": ["libs/shared/ui/search/src/index.ts"],
+      "@lisa/shared/toolbar/feature": [
+        "libs/shared/toolbar/feature/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,0 +1,17 @@
+.market-grid {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__item {
+    margin: 8px;
+    flex: 0 0 33%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  }
+}

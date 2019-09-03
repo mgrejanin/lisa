@@ -338,6 +338,68 @@
           "styleext": "scss"
         }
       }
+    },
+    "shared-ui-search": {
+      "projectType": "library",
+      "root": "libs/shared/ui/search",
+      "sourceRoot": "libs/shared/ui/search/src",
+      "prefix": "lisa",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/ui/search/tsconfig.lib.json",
+              "libs/shared/ui/search/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/ui/search/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/ui/search/jest.config.js",
+            "tsConfig": "libs/shared/ui/search/tsconfig.spec.json",
+            "setupFile": "libs/shared/ui/search/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "shared-toolbar-feature": {
+      "projectType": "library",
+      "root": "libs/shared/toolbar/feature",
+      "sourceRoot": "libs/shared/toolbar/feature/src",
+      "prefix": "lisa",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/toolbar/feature/tsconfig.lib.json",
+              "libs/shared/toolbar/feature/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/toolbar/feature/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/toolbar/feature/jest.config.js",
+            "tsConfig": "libs/shared/toolbar/feature/tsconfig.spec.json",
+            "setupFile": "libs/shared/toolbar/feature/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

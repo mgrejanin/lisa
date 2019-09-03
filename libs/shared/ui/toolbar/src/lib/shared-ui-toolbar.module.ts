@@ -1,17 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatButtonModule,
   MatIconModule,
   MatListModule,
   MatSidenavModule,
-  MatToolbarModule,
-  MatFormFieldModule,
-  MatInputModule
+  MatToolbarModule
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { SharedUiToolbarComponent } from './shared-ui-toolbar.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [SharedUiToolbarComponent],
@@ -21,8 +19,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     RouterModule,
     MatListModule,
-    MatFormFieldModule,
-    MatInputModule,
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
