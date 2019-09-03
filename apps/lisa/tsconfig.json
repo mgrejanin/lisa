@@ -3,5 +3,5 @@
   "compilerOptions": {
     "types": ["node", "jest"]
   },
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "../../node_modules/api-ai-javascript/index.ts"]
 }
