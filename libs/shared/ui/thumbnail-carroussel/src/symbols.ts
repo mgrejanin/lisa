@@ -1,4 +1,4 @@
 export interface MarketType {
-  label: string;
+  name: string;
   imgUrl: string;
 }

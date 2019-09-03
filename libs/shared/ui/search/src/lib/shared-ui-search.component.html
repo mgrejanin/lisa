@@ -1,29 +1,20 @@
 <div class="search">
-  <form class="example-form">
-    <mat-form-field class="example-full-width">
+  <form>
+    <mat-form-field class="search__input">
+      <mat-icon matSuffix>search</mat-icon>
       <input
         matInput
-        placeholder="State"
-        aria-label="State"
-        matAutocomplete="false"
-        [formControl]="stateCtrl"
+        placeholder="Procurar loja..."
+        aria-label="Procurar loja..."
+        [matAutocomplete]="auto"
+        [formControl]="searchCtrl"
         name="state"
       />
-      <!-- <mat-autocomplete #auto="matAutocomplete">
-        <mat-option
-          *ngFor="let state of (filteredStates | async)"
-          [value]="state.name"
-        >
-          <img
-            class="example-option-img"
-            aria-hidden
-            [src]="state.flag"
-            height="25"
-          />
-          <span>{{ state.name }}</span> |
-          <small>Population: {{ state.population }}</small>
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let market of markets" [value]="market.name">
+          <span>{{ market.name }}</span>
         </mat-option>
-      </mat-autocomplete> -->
+      </mat-autocomplete>
     </mat-form-field>
   </form>
 </div>

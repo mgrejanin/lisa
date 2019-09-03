@@ -40,6 +40,9 @@
     },
     "shared-toolbar-feature": {
       "tags": []
+    },
+    "shared-chat": {
+      "tags": []
     }
   }
 }

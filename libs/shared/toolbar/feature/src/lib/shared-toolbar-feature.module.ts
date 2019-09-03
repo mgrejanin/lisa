@@ -2,8 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedToolbarFeatureContainer } from './shared-toolbar-feature.container';
 import { RouterModule } from '@angular/router';
-import { MatListModule, MatToolbarModule, MatButtonModule, MatIconModule, MatSidenavModule } from '@angular/material';
-import { SharedHomeFeatureModule } from '@lisa/shared/home/feature';
+import {
+  MatListModule,
+  MatToolbarModule,
+  MatButtonModule,
+  MatIconModule,
+  MatSidenavModule
+} from '@angular/material';
 import { SharedUiToolbarModule } from '@lisa/shared/ui/toolbar';
 @NgModule({
   declarations: [SharedToolbarFeatureContainer],
@@ -15,7 +20,6 @@ import { SharedUiToolbarModule } from '@lisa/shared/ui/toolbar';
     MatIconModule,
     MatSidenavModule,
     CommonModule,
-    SharedHomeFeatureModule,
     SharedUiToolbarModule,
     RouterModule.forChild([
       {
@@ -23,11 +27,16 @@ import { SharedUiToolbarModule } from '@lisa/shared/ui/toolbar';
         component: SharedToolbarFeatureContainer,
         children: [
           {
-            path: 'home',
+            path: '',
             loadChildren: () =>
               import('@lisa/shared/home/feature').then(
                 m => m.SharedHomeFeatureModule
               )
+          },
+          {
+            path: 'chat',
+            loadChildren: () =>
+              import('@lisa/shared/chat').then(m => m.SharedChatModule)
           }
         ]
       }
