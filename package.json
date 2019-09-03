@@ -39,8 +39,13 @@
     "@angular/platform-browser": "^8.0.0",
     "@angular/platform-browser-dynamic": "^8.0.0",
     "@angular/router": "^8.0.0",
+    "@ngxs-labs/immer-adapter": "^3.0.5",
+    "@ngxs/logger-plugin": "^3.5.1",
+    "@ngxs/router-plugin": "^3.5.1",
+    "@ngxs/store": "^3.5.1",
     "@nrwl/angular": "8.4.12",
     "core-js": "^2.5.4",
+    "immer": "^3.2.0",
     "rxjs": "~6.4.0",
     "zone.js": "^0.9.1"
   },

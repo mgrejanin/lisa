@@ -46,3 +46,9 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
+
+// Endereço de e-mail
+// dialogflow-jnljbj@mimo-5c2a6.iam.gserviceaccount.com
+// IDs de chave
+// a66f2ae05d613238719dd2f9f2a941200b2f1ca5

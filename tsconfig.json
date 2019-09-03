@@ -33,7 +33,10 @@
       "@lisa/shared/toolbar/feature": [
         "libs/shared/toolbar/feature/src/index.ts"
       ],
-      "@lisa/shared/chat": ["libs/shared/chat/src/index.ts"]
+      "@lisa/shared/chat/feature": ["libs/shared/chat/feature/src/index.ts"],
+      "@lisa/shared/chat/data-access": [
+        "libs/shared/chat/data-access/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

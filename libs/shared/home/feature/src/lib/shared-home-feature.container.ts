@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { MarketType } from '@lisa/shared/ui/thumbnail-carroussel';
+import { Store } from '@ngxs/store';
+import { Navigate } from '@ngxs/router-plugin';
 
 @Component({
   selector: 'lisa-shared-home-container',
@@ -9,7 +11,9 @@ import { MarketType } from '@lisa/shared/ui/thumbnail-carroussel';
 export class SharedHomeFeatureContainer {
   title = 'Lisa';
 
+  constructor(private store: Store) {}
+
   nearbyMarketClick(market: MarketType) {
-    console.log({ market });
+    this.store.dispatch(new Navigate(['/chat']));
   }
 }
