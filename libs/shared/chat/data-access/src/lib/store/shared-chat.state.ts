@@ -1,10 +1,9 @@
+import { SharedCoreLoginAction } from '@lisa/shared/core/data-access';
 import { Action, State, StateContext, Store } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
+import { switchMap, tap } from 'rxjs/operators';
 import { ChatRestService } from '../services/shared-chat-rest-service';
 import { ChatTextRequest } from './shared.chat.actions';
-import { SharedCoreLoginAction } from '@lisa/shared/core/data-access';
-import { tap, switchMap } from 'rxjs/operators';
-import { of } from 'rxjs';
 export enum ChatTypeEnum {
   BOT = 'BOT',
   USER = 'USER'
@@ -37,7 +36,11 @@ export class ChatState {
     setState(patch<Partial<ChatStateModel>>({ loading: true }));
     return this.store.dispatch(new SharedCoreLoginAction()).pipe(
       switchMap(res => this.service.textRequest(payload)),
+      tap(res => {
+        // if (res[0].payload) {
+        //   setState(patch({data:}))
+        // }
+      })
     );
-    // ;
   }
 }

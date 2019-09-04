@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { LoginState } from '@lisa/shared/core/data-access';
 import { Store } from '@ngxs/store';
 import { of } from 'rxjs';
-import { switchMap, tap } from 'rxjs/operators';
+import { switchMap, tap, pluck } from 'rxjs/operators';
 
 export interface ChatRequestModel {
   queryInput: {
@@ -17,7 +17,7 @@ export interface ChatRequestModel {
 @Injectable()
 export class ChatRestService {
   private baseUrl =
-    'https://dialogflow.googleapis.com/v2/projects/mimo-5c2a6/agent/sessions/';
+    'https://dialogflow.googleapis.com/v2/projects/lisa-b88ed/agent/sessions/';
   private query: ChatRequestModel = {
     queryInput: {
       text: {
@@ -42,9 +42,6 @@ export class ChatRestService {
   textRequest(text: string) {
     this.query.queryInput.text.text = text;
     return this.getHeaders().pipe(
-      tap(res => {
-        debugger;
-      }),
       switchMap(headers =>
         this.http.post(
           this.baseUrl.concat(
@@ -55,10 +52,7 @@ export class ChatRestService {
           this.query,
           { headers }
         )
-      ),
-      tap(res => {
-        debugger;
-      })
+      )
     );
   }
 }

@@ -2,8 +2,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { auth } from 'firebase/app';
-import { from, of } from 'rxjs';
-import { tap, switchMap, map } from 'rxjs/operators';
+import { from } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { SharedCoreLoginAction } from './shared-core-login.actions';
 
 export interface LoginStateModel {
@@ -30,9 +30,9 @@ export class LoginState {
   @Action(SharedCoreLoginAction)
   sharedCoreLoginService({ setState }: StateContext<LoginStateModel>) {
     setState(patch<Partial<LoginStateModel>>({ loading: true }));
-    return from(
-      this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
-    ).pipe(
+    let provider = new auth.GoogleAuthProvider();
+    provider.addScope('https://www.googleapis.com/auth/dialogflow');
+    return from(this.afAuth.auth.signInWithPopup(provider)).pipe(
       tap(res => setState(patch<LoginStateModel>({ data: res, loading: true })))
     );
   }
