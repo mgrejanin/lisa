@@ -1,7 +1,10 @@
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, State, StateContext, Store } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { ChatRestService } from '../services/shared-chat-rest-service';
 import { ChatTextRequest } from './shared.chat.actions';
+import { SharedCoreLoginAction } from '@lisa/shared/core/data-access';
+import { tap, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 export enum ChatTypeEnum {
   BOT = 'BOT',
   USER = 'USER'
@@ -24,7 +27,7 @@ const defaults: ChatStateModel = {
   defaults
 })
 export class ChatState {
-  constructor(private service: ChatRestService) {}
+  constructor(private store: Store, private service: ChatRestService) {}
 
   @Action(ChatTextRequest)
   chatTextRequest(
@@ -32,6 +35,9 @@ export class ChatState {
     { payload }: ChatTextRequest
   ) {
     setState(patch<Partial<ChatStateModel>>({ loading: true }));
-    this.service.textRequest(payload);
+    return this.store.dispatch(new SharedCoreLoginAction()).pipe(
+      switchMap(res => this.service.textRequest(payload)),
+    );
+    // ;
   }
 }

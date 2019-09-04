@@ -46,6 +46,9 @@
     },
     "shared-chat-data-access": {
       "tags": []
+    },
+    "shared-core-data-access": {
+      "tags": []
     }
   }
 }

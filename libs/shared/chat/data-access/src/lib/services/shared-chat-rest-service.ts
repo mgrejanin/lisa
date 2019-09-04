@@ -1,9 +1,9 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { auth } from 'firebase/app';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { of, from } from 'rxjs';
-import { tap, switchMap } from 'rxjs/operators';
+import { Injectable } from '@angular/core';
+import { LoginState } from '@lisa/shared/core/data-access';
+import { Store } from '@ngxs/store';
+import { of } from 'rxjs';
+import { switchMap, tap } from 'rxjs/operators';
 
 export interface ChatRequestModel {
   queryInput: {
@@ -18,7 +18,6 @@ export interface ChatRequestModel {
 export class ChatRestService {
   private baseUrl =
     'https://dialogflow.googleapis.com/v2/projects/mimo-5c2a6/agent/sessions/';
-  private session: auth.UserCredential;
   private query: ChatRequestModel = {
     queryInput: {
       text: {
@@ -27,55 +26,39 @@ export class ChatRestService {
       }
     }
   } as ChatRequestModel;
-  constructor(private http: HttpClient, private afAuth: AngularFireAuth) {}
+  constructor(private http: HttpClient, private store: Store) {}
 
   getHeaders() {
     return of(
-      // switchMap(() => from(this.session.user.getIdToken())),
-      // tap(() =>
       new HttpHeaders().set(
         'Authorization',
-        `Bearer ${this.session.credential['accessToken']}`
-        // )
+        `Bearer ${
+          this.store.selectSnapshot(LoginState.loginData$).credential['accessToken']
+        }`
       )
     );
   }
 
   textRequest(text: string) {
-    return this.verifySession()
-      .pipe(
-        switchMap(() => this.getHeaders()),
-        // tap(res => {
-        //   debugger;
-        // }),
-        tap(headers => {
-          this.query.queryInput.text.text = text;
-          this.http
-            .post(
-              this.baseUrl.concat(
-                `${this.session.credential['idToken']}:detectIntent`
-              ),
-              this.query,
-              { headers }
-            )
-            .subscribe();
-        })
-      )
-      .subscribe();
-
-    // console.log(this.session.credential.);/;
-  }
-  verifySession() {
-    return from(
-      this.afAuth.auth.signInWithPopup(new auth.GoogleAuthProvider())
-    ).pipe(tap(res => (this.session = res)));
-    // if (!this.session) {
-    //   this.afAuth.auth
-    //     .signInWithPopup(new auth.GoogleAuthProvider())
-    //     .then(res => {
-    //       this.session = res;
-    //     });
-    //   return;
-    // }
+    this.query.queryInput.text.text = text;
+    return this.getHeaders().pipe(
+      tap(res => {
+        debugger;
+      }),
+      switchMap(headers =>
+        this.http.post(
+          this.baseUrl.concat(
+            `${
+              this.store.selectSnapshot(LoginState.loginData$).credential['idToken']
+            }:detectIntent`
+          ),
+          this.query,
+          { headers }
+        )
+      ),
+      tap(res => {
+        debugger;
+      })
+    );
   }
 }
