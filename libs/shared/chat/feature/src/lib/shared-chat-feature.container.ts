@@ -9,6 +9,6 @@ import { ChatTextRequest } from 'libs/shared/chat/data-access/src/lib/store/shar
 export class SharedChatFeatureContainer implements OnInit {
   constructor(private store: Store) {}
   ngOnInit() {
-    this.store.dispatch(new ChatTextRequest('vinho')).subscribe();
+    this.store.dispatch(new ChatTextRequest('fruta')).subscribe();
   }
 }

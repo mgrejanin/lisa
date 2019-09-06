@@ -37,6 +37,13 @@ import { SharedUiToolbarModule } from '@lisa/shared/ui/toolbar';
             path: 'chat',
             loadChildren: () =>
               import('@lisa/shared/chat/feature').then(m => m.SharedChatModule)
+          },
+          {
+            path: 'profile',
+            loadChildren: () =>
+              import('@lisa/shared/profile/feature').then(
+                m => m.SharedProfileFeatureModule
+              )
           }
         ]
       }

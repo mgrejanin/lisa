@@ -39,7 +39,11 @@
       ],
       "@lisa/shared/core/data-access": [
         "libs/shared/core/data-access/src/index.ts"
-      ]
+      ],
+      "@lisa/shared/profile/feature": [
+        "libs/shared/profile/feature/src/index.ts"
+      ],
+      "@lisa/shared/profile/ui": ["libs/shared/profile/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -49,6 +49,12 @@
     },
     "shared-core-data-access": {
       "tags": []
+    },
+    "shared-profile-feature": {
+      "tags": []
+    },
+    "shared-profile-ui": {
+      "tags": []
     }
   }
 }

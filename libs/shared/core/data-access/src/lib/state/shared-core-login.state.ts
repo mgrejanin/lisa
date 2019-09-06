@@ -3,7 +3,7 @@ import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { auth } from 'firebase/app';
 import { from } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, switchMap, isEmpty } from 'rxjs/operators';
 import { SharedCoreLoginAction } from './shared-core-login.actions';
 
 export interface LoginStateModel {
@@ -28,8 +28,17 @@ export class LoginState {
   }
 
   @Action(SharedCoreLoginAction)
-  sharedCoreLoginService({ setState }: StateContext<LoginStateModel>) {
+  sharedCoreLoginService({
+    getState,
+    setState
+  }: StateContext<LoginStateModel>) {
     setState(patch<Partial<LoginStateModel>>({ loading: true }));
+    if (
+      Object.entries(getState().data).length !== 0 &&
+      getState().data.constructor === Object
+    ) {
+      return from(getState().data.user.getIdToken());
+    }
     let provider = new auth.GoogleAuthProvider();
     provider.addScope('https://www.googleapis.com/auth/dialogflow');
     return from(this.afAuth.auth.signInWithPopup(provider)).pipe(

@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from "@angular/core";
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -8,6 +8,8 @@ import { FormControl } from '@angular/forms';
 })
 export class SharedUiToolbarComponent{
     @Input() title:string;
+
+    @Output() navigateToAction = new EventEmitter<string>();
 
     search = new FormControl();
 }
