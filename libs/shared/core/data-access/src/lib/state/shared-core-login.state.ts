@@ -27,6 +27,10 @@ export class LoginState {
     return state.data;
   }
 
+  retrieveSession(){
+    
+  }
+
   @Action(SharedCoreLoginAction)
   sharedCoreLoginService({
     getState,

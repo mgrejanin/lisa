@@ -561,6 +561,37 @@
           "styleext": "scss"
         }
       }
+    },
+    "shared-chat-ui": {
+      "projectType": "library",
+      "root": "libs/shared/chat/ui",
+      "sourceRoot": "libs/shared/chat/ui/src",
+      "prefix": "lisa",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/chat/ui/tsconfig.lib.json",
+              "libs/shared/chat/ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/chat/ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/chat/ui/jest.config.js",
+            "tsConfig": "libs/shared/chat/ui/tsconfig.spec.json",
+            "setupFile": "libs/shared/chat/ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

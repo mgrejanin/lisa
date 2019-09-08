@@ -55,6 +55,9 @@
     },
     "shared-profile-ui": {
       "tags": []
+    },
+    "shared-chat-ui": {
+      "tags": []
     }
   }
 }
