@@ -8,6 +8,8 @@ import { NgxsModule } from '@ngxs/store';
 import { AppComponent } from './app.component';
 import { SharedCoreDataAccessModule } from '@lisa/shared/core/data-access';
 import{NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -26,7 +28,8 @@ import{NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
             m => m.SharedToolbarFeatureModule
           )
       }
-    ])
+    ]),
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent],

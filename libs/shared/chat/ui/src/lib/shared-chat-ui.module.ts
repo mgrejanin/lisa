@@ -8,7 +8,7 @@ import {
 } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatCarouselModule } from '@ngmodule/material-carousel';
+import { NguCarouselModule } from '@ngu/carousel';
 import { SharedChatUiComponent } from './shared-chat-ui.component';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { SharedChatUiComponent } from './shared-chat-ui.component';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    MatCarouselModule
+    NguCarouselModule
   ]
 })
 export class SharedChatUiModule {}

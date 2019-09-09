@@ -4,6 +4,40 @@
 
 export const environment = {
   production: false,
+  show_wines: [
+    {
+      img: 'assets/imgs/vinho1.jpg',
+      desconto: 20,
+      descricao: 'Vinho periquita 750ml',
+    },
+    {
+      img: 'assets/imgs/vinho2.jpg',
+      desconto: 10,
+      descricao: 'Vinho Concha Y Toro 750 ml',
+    },
+    {
+      img: 'assets/imgs/vinho3.jpg',
+      desconto: 15,
+      descricao: 'inho Nacional Pérgola 1 Litro',
+    }
+  ],
+  frutas: [
+    {
+      img: 'assets/imgs/fruta1.jpg',
+      desconto: 20,
+      descricao: 'Maçã',
+    },
+    {
+      img: 'assets/imgs/fruta2.jpg',
+      desconto: 10,
+      descricao: 'Kiwi',
+    },
+    {
+      img: 'assets/imgs/fruta3.jpg',
+      desconto: 15,
+      descricao: 'Carambola',
+    }
+  ],
   firebaseConfig: {
     apiKey: "AIzaSyBqjxFAQ4Xd1mXit64BO3bL95ogd93amgI",
     authDomain: "lisa-b88ed.firebaseapp.com",

@@ -12,32 +12,54 @@
           <div class="text">
             <span *ngIf="!chat.action">{{ chat.message }}</span>
             <div *ngIf="chat.action">
-              <mat-carousel>
-                <mat-carousel-slide>
+              <ngu-carousel
+                #myCarousel
+                [inputs]="carouselTile"
+                [dataSource]="carouselTileItems[chat.action]"
+              >
+                <ngu-tile *nguCarouselDef="let item; let i = index">
                   <mat-card>
                     <mat-card-header>
-                      <mat-card-title>Ofertas de vinho</mat-card-title>
+                      <mat-card-title class="card-title"
+                        >Ofertas de vinho</mat-card-title
+                      >
                     </mat-card-header>
-                    <img
-                      mat-card-image
-                      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-                      alt="Photo of a Shiba Inu"
-                    />
+                    <div class="card-image-container">
+                      <img class="card-image" mat-card-image [src]="item.img" />
+                    </div>
                     <mat-card-content>
-                      <p>
-                        The Shiba Inu is the smallest of the six original and
-                        distinct spitz breeds of dog from Japan. A small, agile
-                        dog that copes very well with mountainous terrain, the
-                        Shiba Inu was originally bred for hunting.
+                      <p class='card-content'>
+                        {{ item.descricao }}
                       </p>
                     </mat-card-content>
                     <mat-card-actions>
-                      <button mat-button>LIKE</button>
-                      <button mat-button>SHARE</button>
+                      <button mat-button>CURTIR</button>
+                      <button mat-button>ATIVAR</button>
                     </mat-card-actions>
+                    <ul class="myPoint" NguCarouselPoißnt>
+                      <li
+                        *ngFor="let j of myCarousel.pointNumbers; let j = index"
+                        [class.active]="j == myCarousel.activePoint"
+                        (click)="myCarousel.moveTo(j)"
+                      ></li>
+                    </ul>
                   </mat-card>
-                </mat-carousel-slide>
-              </mat-carousel>
+                </ngu-tile>
+                <button
+                  NguCarouselPrev
+                  class="leftRs"
+                  [style.opacity]="myCarousel.isFirst ? 0.5 : 1"
+                >
+                  &lt;
+                </button>
+                <button
+                  NguCarouselNext
+                  class="rightRs"
+                  [style.opacity]="myCarousel.isLast ? 0.5 : 1"
+                >
+                  &gt;
+                </button>
+              </ngu-carousel>
             </div>
             <p class="time">{{ chat.date | date: 'HH:mm:ss' }}</p>
           </div>

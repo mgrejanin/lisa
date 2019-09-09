@@ -7,13 +7,12 @@ import { switchMap } from 'rxjs/operators';
 @Component({
   selector: 'lisa-shared-profile-container',
   template:
-    '<lisa-shared-profile-ui-component (doLoginAction)="doLogin($event)"></lisa-shared-profile-ui-component>'
+    '<lisa-shared-profile-ui-component (doLoginAction)="doLogin()"></lisa-shared-profile-ui-component>'
 })
 export class SharedProfileContainer {
   constructor(private store: Store) {}
 
   doLogin() {
-    console.log('doLogin');
     return this.store
       .dispatch(new SharedCoreLoginAction())
       .pipe(switchMap(() => this.store.dispatch(new Navigate([''])))).subscribe();

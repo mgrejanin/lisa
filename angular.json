@@ -21,7 +21,7 @@
             "polyfills": "apps/lisa/src/polyfills.ts",
             "tsConfig": "apps/lisa/tsconfig.app.json",
             "aot": false,
-            "assets": ["apps/lisa/src/favicon.ico", "apps/lisa/src/assets"],
+            "assets": ["apps/lisa/src/favicon.ico", "apps/lisa/src/assets", "apps/lisa/src/manifest.webmanifest"],
             "styles": ["apps/lisa/src/styles.scss"],
             "scripts": []
           },
@@ -48,7 +48,9 @@
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/lisa/ngsw-config.json"
             }
           }
         },

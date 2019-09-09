@@ -5,7 +5,7 @@ import {
   ChatState,
   ChatType
 } from 'libs/shared/chat/data-access/src/lib/store/shared-chat.state';
-import { AddChat } from 'libs/shared/chat/data-access/src/lib/store/shared.chat.actions';
+import { AddChat, ChatTextRequest } from 'libs/shared/chat/data-access/src/lib/store/shared.chat.actions';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,10 +17,11 @@ export class SharedChatFeatureContainer implements OnInit {
   @Select(ChatState.chats$) chats$: Observable<ChatModel>;
 
   constructor(private store: Store) {}
-  
+
   ngOnInit() {
     this.store.dispatch(
       new AddChat({ message: 'Olá, em que posso ajudar?', type: ChatType.BOT })
+      // new ChatTextRequest('vinho')
     );
   }
 
