@@ -1,35 +1,69 @@
-<div class="container">
-  <div class="row align-items-center justify-content-center">
-    <div class="col-lg-8">
-      <ul #scrollMe class="messages">
-        <div *ngFor="let chat of chats">
-          <li
-            class="message appeared"
-            [ngClass]="{
-              left: chat.chatType === 'BOT',
-              right: chat.chatType === 'USER'
-            }"
-          >
-            <div class="text_wrapper">
-              <div class="text">
-                <p class="time">
-                  <!-- ({{chat.chatMessage | date:'HH:mm:ss'}})</p> -->
-                  {{ chat.chatMessage }}
-                </p>
-              </div>
+<div class="chat">
+  <ul #scrollMe class="messages">
+    <div *ngFor="let chat of chats">
+      <li
+        class="message appeared"
+        [ngClass]="{
+          left: chat.type === 'BOT',
+          right: chat.type === 'USER'
+        }"
+      >
+        <div class="text_wrapper">
+          <div class="text">
+            <span *ngIf="!chat.action">{{ chat.message }}</span>
+            <div *ngIf="chat.action">
+              <mat-carousel>
+                <mat-carousel-slide>
+                  <mat-card>
+                    <mat-card-header>
+                      <mat-card-title>Ofertas de vinho</mat-card-title>
+                    </mat-card-header>
+                    <img
+                      mat-card-image
+                      src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+                      alt="Photo of a Shiba Inu"
+                    />
+                    <mat-card-content>
+                      <p>
+                        The Shiba Inu is the smallest of the six original and
+                        distinct spitz breeds of dog from Japan. A small, agile
+                        dog that copes very well with mountainous terrain, the
+                        Shiba Inu was originally bred for hunting.
+                      </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                      <button mat-button>LIKE</button>
+                      <button mat-button>SHARE</button>
+                    </mat-card-actions>
+                  </mat-card>
+                </mat-carousel-slide>
+              </mat-carousel>
             </div>
-          </li>
+            <p class="time">{{ chat.date | date: 'HH:mm:ss' }}</p>
+          </div>
         </div>
-      </ul>
+      </li>
     </div>
-  </div>
+  </ul>
 
-  <div class="row align-items-center justify-content-center">
-    <!-- <div class="col-sm-6">
-        <input type="text" class="form-control " (keyup.enter)="sendMessage()" [(ngModel)]="msg" />
-      </div>
-      <div class="col-sm-2">
-        <button class="btn btn-success sendbtn" (click)="sendMessage()"><i class="far fa-share-square"></i> Enviar</button>
-      </div> -->
+  <div class="footer">
+    <form class="form">
+      <mat-form-field class="text_input">
+        <mat-label>Mensagem</mat-label>
+        <textarea
+          (keyup.enter)="sendMessage()"
+          matInput
+          [formControl]="userMessage"
+          name="userMessage"
+          cdkTextareaAutosize
+          #autosize="cdkTextareaAutosize"
+          cdkAutosizeMinRows="1"
+          cdkAutosizeMaxRows="5"
+        ></textarea>
+      </mat-form-field>
+      <button class="input__icon" mat-icon-button (click)="sendMessage()">
+        <mat-icon matSuffix>send</mat-icon>
+      </button>
+    </form>
   </div>
 </div>

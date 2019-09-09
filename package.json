@@ -40,6 +40,7 @@
     "@angular/platform-browser": "^8.0.0",
     "@angular/platform-browser-dynamic": "^8.0.0",
     "@angular/router": "^8.0.0",
+    "@ngmodule/material-carousel": "^0.5.0",
     "@ngxs-labs/immer-adapter": "^3.0.5",
     "@ngxs/logger-plugin": "^3.5.1",
     "@ngxs/router-plugin": "^3.5.1",

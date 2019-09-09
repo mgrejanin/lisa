@@ -1256,6 +1256,13 @@
     "@types/istanbul-reports" "^1.1.1"
     "@types/yargs" "^13.0.0"
 
+"@ngmodule/material-carousel@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@ngmodule/material-carousel/-/material-carousel-0.5.0.tgz#50fd8924528388b7283cfdf2d76c7facf7199068"
+  integrity sha512-e2QTDmIb7UCdFkR505G3fsrjgBXivg3CCjK2/Rr1UR8LXbwFMiAYZmHarmrxUfIv8Iyx4x3kB0VBljqZInXSVQ==
+  dependencies:
+    tslib "^1.9.0"
+
 "@ngtools/webpack@8.3.2":
   version "8.3.2"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-8.3.2.tgz#e2b60056a57485b44b72fab52aa00327e5f713e8"
