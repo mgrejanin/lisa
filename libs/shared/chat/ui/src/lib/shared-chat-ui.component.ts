@@ -1,21 +1,23 @@
 import {
+  AfterViewInit,
+  ChangeDetectorRef,
   Component,
+  EventEmitter,
   Input,
   Output,
-  EventEmitter,
-  ChangeDetectorRef,
-  OnInit,
-  AfterViewInit
+  ChangeDetectionStrategy
 } from '@angular/core';
-import { ChatModel } from 'libs/shared/chat/data-access/src/lib/store/shared-chat.state';
 import { FormControl } from '@angular/forms';
-import 'hammerjs';
-import { NguCarouselConfig } from '@ngu/carousel';
 import { environment } from '@lisa/shared/core/data-access';
+import { NguCarouselConfig } from '@ngu/carousel';
+import 'hammerjs';
+import { ChatModel } from 'libs/shared/chat/data-access/src/lib/store/shared-chat.state';
+
 @Component({
   selector: 'lisa-shared-chat-ui-component',
   templateUrl: './shared-chat-ui.component.html',
-  styleUrls: ['./shared-chat-ui.component.scss']
+  styleUrls: ['./shared-chat-ui.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SharedChatUiComponent implements AfterViewInit {
   @Input() chats: ChatModel[];

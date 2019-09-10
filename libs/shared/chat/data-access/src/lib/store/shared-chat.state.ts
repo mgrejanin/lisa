@@ -79,6 +79,7 @@ export class ChatState {
             data: append([
               {
                 action: res[0].payload.action,
+                message: res[0].payload.message,
                 type: ChatType.BOT,
                 date: new Date()
               }
