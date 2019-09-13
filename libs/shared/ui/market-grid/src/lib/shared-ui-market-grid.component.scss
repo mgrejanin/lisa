@@ -1,9 +1,10 @@
 .market-grid {
   display: flex;
   flex-wrap: wrap;
-
+  justify-content: center;
+  padding: 8px 0 0;
   &__item {
-    margin: 8px;
+    margin: 4px;
     flex: 0 0 33%;
     display: flex;
     align-items: center;

@@ -58,6 +58,12 @@
     },
     "shared-chat-ui": {
       "tags": []
+    },
+    "shared-invoices-feature": {
+      "tags": []
+    },
+    "shared-invoices-ui": {
+      "tags": []
     }
   }
 }

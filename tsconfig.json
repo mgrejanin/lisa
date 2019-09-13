@@ -44,7 +44,11 @@
         "libs/shared/profile/feature/src/index.ts"
       ],
       "@lisa/shared/profile/ui": ["libs/shared/profile/ui/src/index.ts"],
-      "@lisa/shared/chat/ui": ["libs/shared/chat/ui/src/index.ts"]
+      "@lisa/shared/chat/ui": ["libs/shared/chat/ui/src/index.ts"],
+      "@lisa/shared/invoices/feature": [
+        "libs/shared/invoices/feature/src/index.ts"
+      ],
+      "@lisa/shared/invoices/ui": ["libs/shared/invoices/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

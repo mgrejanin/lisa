@@ -44,6 +44,13 @@ import { SharedUiToolbarModule } from '@lisa/shared/ui/toolbar';
               import('@lisa/shared/profile/feature').then(
                 m => m.SharedProfileFeatureModule
               )
+          },
+          {
+            path: 'invoices',
+            loadChildren: () =>
+              import('@lisa/shared/invoices/feature').then(
+                m => m.SharedInvoicesFeatureModule
+              )
           }
         ]
       }

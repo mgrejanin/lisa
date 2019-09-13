@@ -21,7 +21,11 @@
             "polyfills": "apps/lisa/src/polyfills.ts",
             "tsConfig": "apps/lisa/tsconfig.app.json",
             "aot": false,
-            "assets": ["apps/lisa/src/favicon.ico", "apps/lisa/src/assets", "apps/lisa/src/manifest.webmanifest"],
+            "assets": [
+              "apps/lisa/src/favicon.ico",
+              "apps/lisa/src/assets",
+              "apps/lisa/src/manifest.webmanifest"
+            ],
             "styles": ["apps/lisa/src/styles.scss"],
             "scripts": []
           },
@@ -586,6 +590,71 @@
             "jestConfig": "libs/shared/chat/ui/jest.config.js",
             "tsConfig": "libs/shared/chat/ui/tsconfig.spec.json",
             "setupFile": "libs/shared/chat/ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "shared-invoices-feature": {
+      "projectType": "library",
+      "root": "libs/shared/invoices/feature",
+      "sourceRoot": "libs/shared/invoices/feature/src",
+      "prefix": "lisa",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/invoices/feature/tsconfig.lib.json",
+              "libs/shared/invoices/feature/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/shared/invoices/feature/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/invoices/feature/jest.config.js",
+            "tsConfig": "libs/shared/invoices/feature/tsconfig.spec.json",
+            "setupFile": "libs/shared/invoices/feature/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "shared-invoices-ui": {
+      "projectType": "library",
+      "root": "libs/shared/invoices/ui",
+      "sourceRoot": "libs/shared/invoices/ui/src",
+      "prefix": "lisa",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/invoices/ui/tsconfig.lib.json",
+              "libs/shared/invoices/ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/invoices/ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/invoices/ui/jest.config.js",
+            "tsConfig": "libs/shared/invoices/ui/tsconfig.spec.json",
+            "setupFile": "libs/shared/invoices/ui/src/test-setup.ts"
           }
         }
       },

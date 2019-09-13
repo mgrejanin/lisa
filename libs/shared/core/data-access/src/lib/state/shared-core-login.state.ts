@@ -2,9 +2,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { auth } from 'firebase/app';
-import { from } from 'rxjs';
-import { tap, switchMap, isEmpty } from 'rxjs/operators';
-import { SharedCoreLoginAction } from './shared-core-login.actions';
+import { from, of } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { RetrieveSession, SharedCoreLoginAction } from './shared-core-login.actions';
 
 export interface LoginStateModel {
   data: auth.UserCredential;
@@ -27,8 +27,14 @@ export class LoginState {
     return state.data;
   }
 
-  retrieveSession(){
-    
+  @Action(RetrieveSession)
+  retrieveSession({ dispatch, setState }: StateContext<LoginStateModel>) {
+    const loginData = JSON.parse(window.localStorage.getItem('loginData'));
+    if (loginData != null) {
+      return dispatch(setState(patch<Partial<LoginStateModel>>({ data: loginData })));
+    }
+
+    return of(false);
   }
 
   @Action(SharedCoreLoginAction)

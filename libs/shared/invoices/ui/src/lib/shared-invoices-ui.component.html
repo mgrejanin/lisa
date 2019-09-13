@@ -1,0 +1,27 @@
+<div class="invoices">
+  <div class="invoices__container">
+    <mat-card
+      *ngFor="let invoice of invoices"
+      class="invoices__container__card"
+    >
+      <mat-card-header>
+        <div class="invoices__container__card__header">
+          <p>Número</p>
+          <p>Data de emissão</p>
+          <p>Valor</p>
+        </div>
+      </mat-card-header>
+      <mat-card-content> 
+          <div class="invoices__container__card__content">
+            <p>{{invoice.numero}}</p>
+            <p>{{invoice.dataEmissao | date : 'dd/MM/yyyy'}}</p>
+            <p>{{invoice.valor | currency: 'BRL'}}</p>
+          </div>
+      </mat-card-content>
+      <mat-card-actions class="invoices__container__card__actions">
+            <button mat-button>CURTIR</button>
+            <button mat-button>ATIVAR</button>
+          </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

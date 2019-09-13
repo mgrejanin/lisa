@@ -8,6 +8,7 @@ import { FormControl } from '@angular/forms';
 })
 export class SharedUiToolbarComponent{
     @Input() title:string;
+    @Input() actualRoute:string;
 
     @Output() navigateToAction = new EventEmitter<string>();
 
