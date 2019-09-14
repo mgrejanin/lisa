@@ -1,9 +1,10 @@
-import { SharedCoreLoginAction } from '@lisa/shared/core/data-access';
-import { Action, State, StateContext, Store, Selector } from '@ngxs/store';
-import { patch, insertItem, append } from '@ngxs/store/operators';
-import { switchMap, tap, pluck, finalize } from 'rxjs/operators';
+import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
+import { append, patch } from '@ngxs/store/operators';
+import { of, from } from 'rxjs';
+import { finalize, pluck, tap, switchMap } from 'rxjs/operators';
 import { ChatRestService } from '../services/shared-chat-rest-service';
-import { ChatTextRequest, AddChat } from './shared.chat.actions';
+import { AddChat, ChatTextRequest, CleanChat } from './shared.chat.actions';
+import { SharedCoreLoginAction } from '@lisa/shared/core/data-access';
 export enum ChatType {
   BOT = 'BOT',
   USER = 'USER'
@@ -36,7 +37,10 @@ export class ChatState {
   }
 
   @Action(AddChat)
-  AddChat({ setState, dispatch }: StateContext<ChatStateModel>, { payload }: AddChat) {
+  AddChat(
+    { setState, dispatch }: StateContext<ChatStateModel>,
+    { payload }: AddChat
+  ) {
     setState(
       patch<ChatStateModel>({
         data: append([
@@ -45,7 +49,7 @@ export class ChatState {
       })
     );
 
-    if(payload.type === ChatType.USER){
+    if (payload.type === ChatType.USER) {
       return dispatch(new ChatTextRequest(payload.message));
     }
   }
@@ -89,5 +93,10 @@ export class ChatState {
       }),
       finalize(() => setState(patch<ChatStateModel>({ loading: false })))
     );
+  }
+
+  @Action(CleanChat)
+  cleanChat({ setState }: StateContext<ChatStateModel>) {
+    return of(setState(patch<ChatStateModel>({ data: [] })));
   }
 }

@@ -8,3 +8,7 @@ export class AddChat {
   static readonly type = '[Chat] Add Chat';
   constructor(public payload: { message: string; type: ChatType }) {}
 }
+
+export class CleanChat{
+  static readonly type = '[Chat] Clean Chat';
+}

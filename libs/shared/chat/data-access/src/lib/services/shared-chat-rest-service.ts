@@ -28,31 +28,28 @@ export class ChatRestService {
   } as ChatRequestModel;
   constructor(private http: HttpClient, private store: Store) {}
 
-  getHeaders() {
-    return of(
-      new HttpHeaders().set(
-        'Authorization',
-        `Bearer ${
-          this.store.selectSnapshot(LoginState.loginData$).credential['accessToken']
-        }`
-      )
+  async getHeaders() {
+    return new HttpHeaders().set(
+      'Authorization',
+      `Bearer ${
+        this.store.selectSnapshot(LoginState.credential$)['accessToken']
+      }`
     );
   }
 
-  textRequest(text: string) {
+  async textRequest(text: string) {
     this.query.queryInput.text.text = text;
-    return this.getHeaders().pipe(
-      switchMap(headers =>
-        this.http.post(
-          this.baseUrl.concat(
-            `${
-              this.store.selectSnapshot(LoginState.loginData$).credential['idToken']
-            }:detectIntent`
-          ),
-          this.query,
-          { headers }
-        )
+    const headers = await this.getHeaders();
+    return this.http
+      .post(
+        this.baseUrl.concat(
+          `${await this.store.selectSnapshot(LoginState.credential$)[
+            'idToken'
+          ]}:detectIntent`
+        ),
+        this.query,
+        { headers }
       )
-    );
+      .toPromise();
   }
 }

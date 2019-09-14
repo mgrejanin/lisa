@@ -5,7 +5,10 @@ import {
   ChatState,
   ChatType
 } from 'libs/shared/chat/data-access/src/lib/store/shared-chat.state';
-import { AddChat } from 'libs/shared/chat/data-access/src/lib/store/shared.chat.actions';
+import {
+  AddChat,
+  CleanChat
+} from 'libs/shared/chat/data-access/src/lib/store/shared.chat.actions';
 import { from, Observable, of } from 'rxjs';
 import { concat, tap, take, distinctUntilChanged } from 'rxjs/operators';
 import Speech from 'speak-tts';
@@ -27,18 +30,15 @@ export class SharedChatFeatureContainer implements OnInit {
 
   ngOnInit() {
     const initialMessage = 'Olá, em que posso ajudar?';
-    concat();
     from(this.speech.init({ lang: 'pt-BR' }))
       .pipe(
         take(1),
         tap(() => {
-          this.speakMessage();
-        }),
-        tap(() => {
           this.store
-            .dispatch(
+            .dispatch([
+              new CleanChat(),
               new AddChat({ message: initialMessage, type: ChatType.BOT })
-            )
+            ])
             .pipe(
               tap(() => {
                 this.speakMessage();
