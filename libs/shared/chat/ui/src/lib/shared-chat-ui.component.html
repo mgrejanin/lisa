@@ -20,9 +20,11 @@
                 <ngu-tile *nguCarouselDef="let item; let i = index">
                   <mat-card>
                     <mat-card-header>
-                      <mat-card-title class="card-title"
-                        >Ofertas de vinho</mat-card-title
-                      >
+                      <mat-card-title class="card-title">{{
+                        chat.action == 'show_wines'
+                          ? 'Ofertas de vinho'
+                          : 'Ofertas de frutas'
+                      }}</mat-card-title>
                     </mat-card-header>
                     <div class="card-image-container">
                       <img class="card-image" mat-card-image [src]="item.img" />
@@ -63,7 +65,13 @@
             </div>
             <div class="time__action__container">
               <p class="time">{{ chat.date | date: 'dd/MM/yy HH:mm' }}</p>
-              <button *ngIf="chat.type === 'BOT'" mat-icon-button (click)="speakMessageAction.emit(chat.message)"><mat-icon>hearing</mat-icon></button>
+              <button
+                *ngIf="chat.type === 'BOT'"
+                mat-icon-button
+                (click)="speakMessageAction.emit(chat.message)"
+              >
+                <mat-icon>hearing</mat-icon>
+              </button>
             </div>
           </div>
         </div>

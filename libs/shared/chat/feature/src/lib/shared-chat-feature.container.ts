@@ -18,6 +18,7 @@ import {
 import { from, Observable } from 'rxjs';
 import { take, tap } from 'rxjs/operators';
 import Speech from 'speak-tts';
+import { setTimeout } from 'timers';
 
 @Component({
   selector: 'lisa-shared-chat-container',
@@ -73,8 +74,20 @@ export class SharedChatFeatureContainer implements OnInit, OnDestroy {
   }
 
   sendMessage(message: string) {
-    this.store
+    return this.store
       .dispatch(new AddChat({ message, type: ChatType.USER }))
+      .pipe(tap(() => this.showTimedMessage()))
       .subscribe();
+  }
+
+  showTimedMessage() {
+    setTimeout(() => {
+      return this.store.dispatch(
+        new AddChat({
+          message: 'Posso te ajudar com mais alguma coisa?',
+          type: ChatType.BOT
+        })
+      );
+    }, 10000);
   }
 }
