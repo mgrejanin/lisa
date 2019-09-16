@@ -12,3 +12,11 @@ export class AddChat {
 export class CleanChat{
   static readonly type = '[Chat] Clean Chat';
 }
+
+export class SetChatReceita{
+  static readonly type = '[Chat] setChatReceita'
+}
+
+export class InitChat{
+  static readonly type = '[Chat] set Init Chat'
+}

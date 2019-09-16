@@ -1,17 +1,9 @@
-.invoices__container{
-    padding: 8px;
-    &__card{
-        
-        margin: 4px 0 0 0;
-        &__header , &__content, &__actions{
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            width: 100%;
-        }
-    }
-}
+.invoices{
+    width: 100%;
 
-.mat-card-header-text{
-    margin: 0 !important;
+    &__table{
+        width: inherit;
+
+        .mat-header-cell{}
+    }
 }

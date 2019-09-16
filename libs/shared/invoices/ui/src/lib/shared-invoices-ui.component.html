@@ -1,27 +1,26 @@
 <div class="invoices">
-  <div class="invoices__container">
-    <mat-card
-      *ngFor="let invoice of invoices"
-      class="invoices__container__card"
-    >
-      <mat-card-header>
-        <div class="invoices__container__card__header">
-          <p>Número</p>
-          <p>Data de emissão</p>
-          <p>Valor</p>
-        </div>
-      </mat-card-header>
-      <mat-card-content> 
-          <div class="invoices__container__card__content">
-            <p>{{invoice.numero}}</p>
-            <p>{{invoice.dataEmissao | date : 'dd/MM/yyyy'}}</p>
-            <p>{{invoice.valor | currency: 'BRL'}}</p>
-          </div>
-      </mat-card-content>
-      <mat-card-actions class="invoices__container__card__actions">
-            <button mat-button>CURTIR</button>
-            <button mat-button>ATIVAR</button>
-          </mat-card-actions>
-    </mat-card>
-  </div>
+  <table mat-table [dataSource]="invoices" class="invoices__table">
+    <ng-container matColumnDef="numero">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let element">{{ element.numero }}</td>
+    </ng-container>
+    <ng-container matColumnDef="dataEmissao">
+      <th mat-header-cell *matHeaderCellDef>Dt emissão</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.dataEmissao | date: 'dd/MM/yy' }}
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="valor">
+      <th mat-header-cell *matHeaderCellDef>Valor</th>
+      <td mat-cell *matCellDef="let element">{{ element.valor | currency: 'BRL' : 'symbol' }}</td>
+    </ng-container>
+    <ng-container matColumnDef="download">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" style='text-align: center'>
+          <button mat-icon-button><mat-icon>get_app</mat-icon></button>
+        </td>
+      </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
 </div>

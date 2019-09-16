@@ -1,16 +1,16 @@
 <div class="profile">
   <div class="profile__container">
-    <div class="profile__container--login" *ngIf="!profileData.additionalUserInfo">
+    <div class="profile__container--login" *ngIf="!credential.additionalUserInfo">
       <button mat-raised-button color="primary" (click)="doLoginAction.emit()">
         Fazer login
       </button>
     </div>
-    <div class="profile__container--logged" *ngIf='profileData.additionalUserInfo'>
+    <div class="profile__container--logged" *ngIf='credential.additionalUserInfo'>
       <div class="profile__container__avatar">
-        <img [src]="profileData.additionalUserInfo.profile['picture']">
+        <img [src]="credential.additionalUserInfo.profile['picture']">
       </div>
       <div class="profile__container__name">
-        <p>{{profileData.additionalUserInfo.profile['name']}}
+        <p>{{credential.additionalUserInfo.profile['name']}}
       </div>
     </div>
   </div>

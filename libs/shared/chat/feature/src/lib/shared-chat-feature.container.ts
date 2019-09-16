@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import {
   ChatModel,
@@ -7,19 +12,20 @@ import {
 } from 'libs/shared/chat/data-access/src/lib/store/shared-chat.state';
 import {
   AddChat,
-  CleanChat
+  CleanChat,
+  InitChat
 } from 'libs/shared/chat/data-access/src/lib/store/shared.chat.actions';
-import { from, Observable, of } from 'rxjs';
-import { concat, tap, take, distinctUntilChanged } from 'rxjs/operators';
+import { from, Observable } from 'rxjs';
+import { take, tap } from 'rxjs/operators';
 import Speech from 'speak-tts';
 
 @Component({
   selector: 'lisa-shared-chat-container',
   template:
-    '<lisa-shared-chat-ui-component [chats]="chats$ | async" (sendMessageAction)="sendMessage($event)"></lisa-shared-chat-ui-component>',
+    '<lisa-shared-chat-ui-component [chats]="chats$ | async" (speakMessageAction)="speakMessage($event)" (sendMessageAction)="sendMessage($event)"></lisa-shared-chat-ui-component>',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SharedChatFeatureContainer implements OnInit {
+export class SharedChatFeatureContainer implements OnInit, OnDestroy {
   @Select(ChatState.chats$) chats$: Observable<ChatModel>;
   speech = new Speech();
   constructor(private store: Store) {
@@ -28,53 +34,47 @@ export class SharedChatFeatureContainer implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    this.store.dispatch(new CleanChat());
+  }
+
   ngOnInit() {
-    const initialMessage = 'Olá, em que posso ajudar?';
     from(this.speech.init({ lang: 'pt-BR' }))
       .pipe(
         take(1),
         tap(() => {
           this.store
-            .dispatch([
-              new CleanChat(),
-              new AddChat({ message: initialMessage, type: ChatType.BOT })
-            ])
-            .pipe(
-              tap(() => {
-                this.speakMessage();
-              })
-            )
+            .dispatch([this.store.dispatch(new InitChat())])
             .subscribe();
         })
       )
       .subscribe();
   }
 
-  speakMessage() {
-    of(this.store.selectSnapshot(ChatState.chats$))
-      .pipe(
-        distinctUntilChanged(),
-        tap((res: Array<ChatModel>) => {
-          if (!res.length) {
-            return;
-          }
-          const chat: ChatModel = res[res.length - 1];
-          if (chat.type === ChatType.USER) {
-            return;
-          }
-          this.speech.speak({
-            text: chat.message,
-            queue: true
-          });
-        })
-      )
-      .subscribe();
+  speakMessage(message) {
+    // of(this.store.selectSnapshot(ChatState.chats$))
+    //   .pipe(
+    //     distinctUntilChanged(),
+    //     tap((res: Array<ChatModel>) => {
+    //       if (!res.length) {
+    //         return;
+    //       }
+    //       const chat: ChatModel = res[res.length - 1];
+    //       if (chat.type === ChatType.USER) {
+    //         return;
+    //       }
+    this.speech.speak({
+      text: message,
+      queue: true
+    });
+    //   })
+    // )
+    // .subscribe();
   }
 
   sendMessage(message: string) {
     this.store
-      .dispatch(new AddChat({ message: message, type: ChatType.USER }))
-      .pipe(tap(() => this.speakMessage()))
+      .dispatch(new AddChat({ message, type: ChatType.USER }))
       .subscribe();
   }
 }

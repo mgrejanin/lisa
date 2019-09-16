@@ -1,9 +1,8 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoginState } from '@lisa/shared/core/data-access';
-import { Store } from '@ngxs/store';
-import { of } from 'rxjs';
-import { switchMap, tap, pluck } from 'rxjs/operators';
+import { from } from 'rxjs';
+import { pluck } from 'rxjs/operators';
+declare var ApiAi;
 
 export interface ChatRequestModel {
   queryInput: {
@@ -16,40 +15,29 @@ export interface ChatRequestModel {
 
 @Injectable()
 export class ChatRestService {
-  private baseUrl =
-    'https://dialogflow.googleapis.com/v2/projects/lisa-b88ed/agent/sessions/';
-  private query: ChatRequestModel = {
-    queryInput: {
-      text: {
-        text: '',
-        languageCode: 'pt-br'
-      }
-    }
-  } as ChatRequestModel;
-  constructor(private http: HttpClient, private store: Store) {}
+  private clientToken = 'ce898c74f7ff4568912dc97d342c0d28';
+  readonly client = new ApiAi.ApiAiClient({ accessToken: this.clientToken });
+  // private baseUrl =
+  //   'https://dialogflow.googleapis.com/v2/projects/mimo-5c2a6/agent/sessions/';
+  // private query: ChatRequestModel = {
+  //   queryInput: {
+  //     text: {
+  //       text: '',
+  //       languageCode: 'pt-br'
+  //     }
+  //   }
+  // } as ChatRequestModel;
 
-  async getHeaders() {
+  getHeaders(credential) {
     return new HttpHeaders().set(
       'Authorization',
-      `Bearer ${
-        this.store.selectSnapshot(LoginState.credential$)['accessToken']
-      }`
+      `Bearer ${credential['oauthAccessToken'] || credential['accessToken']}`
     );
   }
 
-  async textRequest(text: string) {
-    this.query.queryInput.text.text = text;
-    const headers = await this.getHeaders();
-    return this.http
-      .post(
-        this.baseUrl.concat(
-          `${await this.store.selectSnapshot(LoginState.credential$)[
-            'idToken'
-          ]}:detectIntent`
-        ),
-        this.query,
-        { headers }
-      )
-      .toPromise();
+  textRequest(text: string) {
+    return from(this.client.textRequest(text)).pipe(
+      pluck('result', 'fulfillment', 'messages')
+    );
   }
 }

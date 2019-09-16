@@ -10,6 +10,28 @@ import { SharedCoreDataAccessModule } from '@lisa/shared/core/data-access';
 import{NgxsLoggerPluginModule} from '@ngxs/logger-plugin';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { NgxUiLoaderModule, NgxUiLoaderRouterModule, NgxUiLoaderConfig, NgxUiLoaderHttpModule, POSITION } from 'ngx-ui-loader';
+
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  bgsColor: '#3f51b5',
+  // bgsOpacity: 0.5,
+  // bgsPosition: POSITION.bottomCenter,
+  // bgsSize: 60,
+  // bgsType: SPINNER.rectangleBounce,
+  fgsColor: '#3f51b5',
+  // fgsPosition: POSITION.centerCenter,
+  // fgsSize: 60,
+  // fgsType: SPINNER.chasingDots,
+  // logoUrl: 'assets/angular.png',
+  pbColor: '#3f51b5',
+  bgsPosition: POSITION.centerCenter,
+  // pbDirection: PB_DIRECTION.leftToRight,
+  // pbThickness: 5,
+  // text: 'Welcome to ngx-ui-loader',
+  // textColor: '#FFFFFF',
+  // textPosition: POSITION.centerCenter
+};
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -29,7 +51,10 @@ import { environment } from '../environments/environment';
           )
       }
     ]),
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    NgxUiLoaderRouterModule,
+    NgxUiLoaderHttpModule
   ],
   providers: [],
   bootstrap: [AppComponent],

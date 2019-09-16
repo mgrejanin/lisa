@@ -15,17 +15,42 @@ export class SharedInvoicesContainer {
     {
       valor: 100,
       dataEmissao: new Date(),
-      numero: '123'
+      numero: '1'
     },
     {
-      valor: 100,
+      valor: 200,
+      dataEmissao: new Date(),
+      numero: '12'
+    },
+    {
+      valor: 400,
       dataEmissao: new Date(),
       numero: '123'
     },
     {
-      valor: 100,
+      valor: 333,
       dataEmissao: new Date(),
-      numero: '123'
+      numero: '125'
+    },
+    {
+      valor: 525.55,
+      dataEmissao: new Date(),
+      numero: '12355'
+    },
+    {
+      valor: 30044,
+      dataEmissao: new Date(),
+      numero: '55554'
+    },
+    {
+      valor: 781,
+      dataEmissao: new Date(),
+      numero: '231'
+    },
+    {
+      valor: 300,
+      dataEmissao: new Date(),
+      numero: '34'
     }
   ];
 }

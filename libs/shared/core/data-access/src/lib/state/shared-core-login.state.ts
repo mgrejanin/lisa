@@ -1,13 +1,10 @@
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
+import { Action, Selector, State, StateContext } from '@ngxs/store';
 import { patch } from '@ngxs/store/operators';
 import { auth, User } from 'firebase/app';
 import { from, of } from 'rxjs';
-import {
-  SetUserInfo,
-  SharedCoreLoginAction
-} from './shared-core-login.actions';
 import { tap } from 'rxjs/operators';
+import { SharedCoreLoginService } from '../service/shared-core-login.service';
+import { Login, SetUserInfo } from './shared-core-login.actions';
 
 export interface LoginStateModel {
   data: User;
@@ -25,7 +22,7 @@ const defaults: LoginStateModel = {
   defaults
 })
 export class LoginState {
-  constructor(private afAuth: AngularFireAuth, private store: Store) {
+  constructor(private service: SharedCoreLoginService) {
     // auth().onAuthStateChanged(user => {
     //   if (user) {
     //     this.store.dispatch(new SetUserInfo(user));
@@ -35,57 +32,56 @@ export class LoginState {
     // });
   }
 
-  @Selector()
-  static loginData$(state: LoginStateModel) {
-    return state.data;
-  }
+  // @Selector()
+  // static loginData$(state: LoginStateModel) {
+  //   return state.data;
+  // }
 
   @Selector()
   static credential$(state: LoginStateModel) {
-    return state.credential.credential;
+    return state.credential;
   }
 
-  verifySession() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return of(user !== null);
-  }
-
-  @Action(SetUserInfo)
-  setUserInfo(
-    { setState }: StateContext<LoginStateModel>,
-    { payload }: SetUserInfo
-  ) {
-    setState(patch<LoginStateModel>({ credential: payload }));
-    localStorage.setItem('user', JSON.stringify(payload));
-    return true;
-  }
-
-  @Action(SharedCoreLoginAction)
-  sharedCoreLoginService({
-    getState,
-    setState,
-    dispatch
-  }: StateContext<LoginStateModel>) {
-    setState(patch<Partial<LoginStateModel>>({ loading: true }));
-    if (
-      Object.entries(getState().credential).length !== 0 &&
-      getState().credential.constructor === Object
-    ) {
-      return from(getState().data.getIdToken());
+  @Action(Login)
+  login({ setState }: StateContext<LoginStateModel>) {
+    const saveUserCredential = JSON.parse(localStorage.getItem('credential'));
+    if (saveUserCredential !== null) {
+      return of(setState(patch({ credential: saveUserCredential })));
     }
-
-    // const user = JSON.parse(localStorage.getItem('user'));
-    // debugger;
-    // if (user !== null) {
-    //   return dispatch(new SetUserInfo(user));
-    // }
-
-    let provider = new auth.GoogleAuthProvider();
-    provider.addScope('https://www.googleapis.com/auth/dialogflow');
-    return from(this.afAuth.auth.signInWithPopup(provider)).pipe(
-      tap(res => {
-        dispatch(new SetUserInfo(res));
+    return from(this.service.googleLogin()).pipe(
+      tap(credential => {
+        setState(patch({ credential }));
+        localStorage.setItem('credential', JSON.stringify(credential));
       })
     );
   }
+
+  // @Action(SharedCoreLoginAction)
+  // sharedCoreLoginService({
+  //   getState,
+  //   setState,
+  //   dispatch
+  // }: StateContext<LoginStateModel>) {
+  //   setState(patch<Partial<LoginStateModel>>({ loading: true }));
+  //   if (
+  //     Object.entries(getState().credential).length !== 0 &&
+  //     getState().credential.constructor === Object
+  //   ) {
+  //     return from(getState().data.getIdToken());
+  //   }
+
+  //   // const user = JSON.parse(localStorage.getItem('user'));
+  //   // debugger;
+  //   // if (user !== null) {
+  //   //   return dispatch(new SetUserInfo(user));
+  //   // }
+
+  //   let provider = new auth.GoogleAuthProvider();
+  //   provider.addScope('https://www.googleapis.com/auth/dialogflow');
+  //   return from(this.afAuth.auth.signInWithPopup(provider)).pipe(
+  //     tap(res => {
+  //       dispatch(new SetUserInfo(res));
+  //     })
+  //   );
+  // }
 }

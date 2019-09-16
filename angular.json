@@ -27,7 +27,7 @@
               "apps/lisa/src/manifest.webmanifest"
             ],
             "styles": ["apps/lisa/src/styles.scss"],
-            "scripts": []
+            "scripts": ["apps/lisa/src/apiAi.js"]
           },
           "configurations": {
             "production": {

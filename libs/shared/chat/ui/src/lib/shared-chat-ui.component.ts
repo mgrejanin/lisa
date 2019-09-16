@@ -1,11 +1,11 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   EventEmitter,
   Input,
-  Output,
-  ChangeDetectionStrategy
+  Output
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { environment } from '@lisa/shared/core/data-access';
@@ -23,6 +23,7 @@ export class SharedChatUiComponent implements AfterViewInit {
   @Input() chats: ChatModel[];
 
   @Output() sendMessageAction = new EventEmitter<string>();
+  @Output() speakMessageAction = new EventEmitter<string>();
 
   userMessage = new FormControl();
 
@@ -45,7 +46,10 @@ export class SharedChatUiComponent implements AfterViewInit {
     easing: 'cubic-bezier(0, 0, 0.2, 1)'
   };
 
-  public carouselTileItems = { show_wines: environment.show_wines };
+  public carouselTileItems = {
+    show_wines: environment.show_wines,
+    frutas: environment.frutas
+  };
 
   sendMessage() {
     if (!this.userMessage.value) {

@@ -7,6 +7,6 @@ import { auth } from 'firebase/app';
   styleUrls: ['./shared-profile-ui.component.scss']
 })
 export class SharedProfileUiComponent {
-  @Input() profileData: auth.UserCredential;
+  @Input() credential: auth.UserCredential;
   @Output() doLoginAction = new EventEmitter();
 }

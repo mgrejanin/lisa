@@ -4,6 +4,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NgxsModule } from '@ngxs/store';
 import { LoginState } from './state/shared-core-login.state';
+import { SharedCoreLoginService } from './service/shared-core-login.service';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { LoginState } from './state/shared-core-login.state';
     }),
     AngularFireAuthModule,
     NgxsModule.forFeature([LoginState])
-  ]
+  ],
+  providers: [SharedCoreLoginService]
 })
 export class SharedCoreDataAccessModule {}

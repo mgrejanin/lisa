@@ -11,6 +11,7 @@ export class SharedUiToolbarComponent{
     @Input() actualRoute:string;
 
     @Output() navigateToAction = new EventEmitter<string>();
+    @Output() setTitleAction = new EventEmitter<string>();
 
     search = new FormControl();
 }
