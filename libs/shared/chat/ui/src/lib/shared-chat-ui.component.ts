@@ -5,13 +5,15 @@ import {
   Component,
   EventEmitter,
   Input,
-  Output
+  Output,
+  Inject
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { environment } from '@lisa/shared/core/data-access';
 import { NguCarouselConfig } from '@ngu/carousel';
 import 'hammerjs';
 import { ChatModel } from 'libs/shared/chat/data-access/src/lib/store/shared-chat.state';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogClose } from '@angular/material';
 
 @Component({
   selector: 'lisa-shared-chat-ui-component',
@@ -27,7 +29,7 @@ export class SharedChatUiComponent implements AfterViewInit {
 
   userMessage = new FormControl();
 
-  constructor(private _cdr: ChangeDetectorRef) {}
+  constructor(private _cdr: ChangeDetectorRef, private dialog: MatDialog) {}
 
   ngAfterViewInit() {
     this._cdr.detectChanges();
@@ -59,4 +61,31 @@ export class SharedChatUiComponent implements AfterViewInit {
     this.sendMessageAction.emit(this.userMessage.value);
     this.userMessage.reset();
   }
+
+  ativarOferta(){
+    const dialogRef = this.dialog.open(ActiveOfferDialog, {
+      width: '250px'
+    })
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log({result})
+    })
+  }
+}
+
+@Component({
+  selector: 'active-offer-dialog',
+  templateUrl: 'active-offer-dialog.html',
+  viewProviders: [MatDialogClose]
+})
+export class ActiveOfferDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<ActiveOfferDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }

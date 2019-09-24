@@ -20,11 +20,18 @@
                 <ngu-tile *nguCarouselDef="let item; let i = index">
                   <mat-card>
                     <mat-card-header>
-                      <mat-card-title class="card-title">{{
-                        chat.action == 'show_wines'
-                          ? 'Ofertas de vinho'
-                          : 'Ofertas de frutas'
-                      }}</mat-card-title>
+                      <mat-card-title class="card-title">
+                        <div>
+                          {{
+                            chat.action == 'show_wines'
+                              ? 'Ofertas de vinho'
+                              : 'Ofertas de frutas'
+                          }}
+                          <p class="card-title-discount">
+                            {{ item.discount }}% de desconto
+                          </p>
+                        </div>
+                      </mat-card-title>
                     </mat-card-header>
                     <div class="card-image-container">
                       <img class="card-image" mat-card-image [src]="item.img" />
@@ -35,8 +42,9 @@
                       </p>
                     </mat-card-content>
                     <mat-card-actions>
-                      <button mat-button>CURTIR</button>
-                      <button mat-button>ATIVAR</button>
+                      <div>
+                        <button mat-button (click)='ativarOferta()'>ATIVAR OFERTA</button>
+                      </div>
                     </mat-card-actions>
                     <ul class="myPoint" NguCarouselPoißnt>
                       <li
@@ -45,22 +53,19 @@
                         (click)="myCarousel.moveTo(j)"
                       ></li>
                     </ul>
+                    <div class='informacao-util'>
+                      <p class='informacao-util-header'>Essa informação foi útil?</p>
+                      <div class='informacao-util-actions'>
+                        <button mat-icon-button>
+                          <mat-icon [ngClass]="{'liked': item.liked === true}" (click)="item.liked = true">thumb_up</mat-icon>
+                        </button>
+                        <button mat-icon-button>
+                          <mat-icon [ngClass]="{'unliked': item.liked === false}" (click)='item.liked = false'>thumb_down</mat-icon>
+                        </button>
+                      </div>
+                    </div>
                   </mat-card>
                 </ngu-tile>
-                <button
-                  NguCarouselPrev
-                  class="leftRs"
-                  [style.opacity]="myCarousel.isFirst ? 0.5 : 1"
-                >
-                  &lt;
-                </button>
-                <button
-                  NguCarouselNext
-                  class="rightRs"
-                  [style.opacity]="myCarousel.isLast ? 0.5 : 1"
-                >
-                  &gt;
-                </button>
               </ngu-carousel>
             </div>
             <div class="time__action__container">

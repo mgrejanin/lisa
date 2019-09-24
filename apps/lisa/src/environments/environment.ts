@@ -6,46 +6,58 @@ export const environment = {
   production: false,
   show_wines: [
     {
+      liked: undefined,
+      discount: 20,
       img: 'assets/imgs/vinho1.jpg',
       desconto: 20,
-      descricao: 'Vinho periquita 750ml',
+      descricao: 'Vinho periquita 750ml'
     },
     {
+      liked: undefined,
+      discount: 15,
       img: 'assets/imgs/vinho2.jpg',
       desconto: 10,
-      descricao: 'Vinho Concha Y Toro 750 ml',
+      descricao: 'Vinho Concha Y Toro 750 ml'
     },
     {
+      liked: undefined,
+      discount: 10,
       img: 'assets/imgs/vinho3.jpg',
       desconto: 15,
-      descricao: 'inho Nacional Pérgola 1 Litro',
+      descricao: 'inho Nacional Pérgola 1 Litro'
     }
   ],
   frutas: [
     {
+      liked: undefined,
+      discount: 15,
       img: 'assets/imgs/fruta1.jpg',
       desconto: 20,
-      descricao: 'Maçã',
+      descricao: 'Maçã'
     },
     {
+      liked: undefined,
+      discount: 20,
       img: 'assets/imgs/fruta2.jpg',
       desconto: 10,
-      descricao: 'Kiwi',
+      descricao: 'Kiwi'
     },
     {
+      liked: undefined,
+      discount: 25,
       img: 'assets/imgs/fruta3.jpg',
       desconto: 15,
-      descricao: 'Carambola',
+      descricao: 'Carambola'
     }
   ],
   firebaseConfig: {
-    apiKey: "AIzaSyBqjxFAQ4Xd1mXit64BO3bL95ogd93amgI",
-    authDomain: "lisa-b88ed.firebaseapp.com",
-    databaseURL: "https://lisa-b88ed.firebaseio.com",
-    projectId: "lisa-b88ed",
-    storageBucket: "",
-    messagingSenderId: "112988805848",
-    appId: "1:112988805848:web:8fd40cba61a3c600"
+    apiKey: 'AIzaSyBqjxFAQ4Xd1mXit64BO3bL95ogd93amgI',
+    authDomain: 'lisa-b88ed.firebaseapp.com',
+    databaseURL: 'https://lisa-b88ed.firebaseio.com',
+    projectId: 'lisa-b88ed',
+    storageBucket: '',
+    messagingSenderId: '112988805848',
+    appId: '1:112988805848:web:8fd40cba61a3c600'
   },
   markets: [
     {
@@ -89,7 +101,6 @@ export const environment = {
  * on performance if an error is thrown.
  */
 // import 'zone.js/dist/zone-error';  // Included with Angular CLI.
-
 
 // Endereço de e-mail
 // dialogflow-jnljbj@mimo-5c2a6.iam.gserviceaccount.com

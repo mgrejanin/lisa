@@ -1,9 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { SharedChatDataAccessModule } from '@lisa/shared/chat/data-access';
+import { SharedChatUiModule } from '@lisa/shared/chat/ui';
 import { SharedChatFeatureContainer } from './shared-chat-feature.container';
-import {SharedChatUiModule} from '@lisa/shared/chat/ui';
-import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [SharedChatFeatureContainer],

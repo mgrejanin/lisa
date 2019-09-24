@@ -3,16 +3,20 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatButtonModule,
+  MatDialogModule,
   MatIconModule,
   MatInputModule
 } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { NguCarouselModule } from '@ngu/carousel';
-import { SharedChatUiComponent } from './shared-chat-ui.component';
+import {
+  ActiveOfferDialog,
+  SharedChatUiComponent
+} from './shared-chat-ui.component';
 
 @NgModule({
-  declarations: [SharedChatUiComponent],
+  declarations: [SharedChatUiComponent, ActiveOfferDialog],
   exports: [SharedChatUiComponent],
   imports: [
     CommonModule,
@@ -23,7 +27,9 @@ import { SharedChatUiComponent } from './shared-chat-ui.component';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
-    NguCarouselModule
-  ]
+    NguCarouselModule,
+    MatDialogModule
+  ],
+  entryComponents: [ActiveOfferDialog]
 })
 export class SharedChatUiModule {}
