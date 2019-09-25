@@ -33,6 +33,7 @@ export class SharedChatUiComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this._cdr.detectChanges();
+    this.showSoundMessage();
   }
 
   public carouselTile: NguCarouselConfig = {
@@ -66,9 +67,11 @@ export class SharedChatUiComponent implements AfterViewInit {
     const dialogRef = this.dialog.open(ActiveOfferDialog, {
       width: '250px'
     })
+  }
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log({result})
+  showSoundMessage(){
+    const dialogRef = this.dialog.open(ShowSoundMessage, {
+      width: '250px'
     })
   }
 }
@@ -87,5 +90,20 @@ export class ActiveOfferDialog {
   onNoClick(): void {
     this.dialogRef.close();
   }
+}
 
+@Component({
+  selector: 'show-sound-message',
+  templateUrl: 'show-sound-message.html',
+  viewProviders: [MatDialogClose]
+})
+export class ShowSoundMessage {
+
+  constructor(
+    public dialogRef: MatDialogRef<ActiveOfferDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 }

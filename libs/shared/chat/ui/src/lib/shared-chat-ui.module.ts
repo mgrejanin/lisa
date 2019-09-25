@@ -12,11 +12,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { NguCarouselModule } from '@ngu/carousel';
 import {
   ActiveOfferDialog,
-  SharedChatUiComponent
+  SharedChatUiComponent,
+  ShowSoundMessage
 } from './shared-chat-ui.component';
 
 @NgModule({
-  declarations: [SharedChatUiComponent, ActiveOfferDialog],
+  declarations: [SharedChatUiComponent, ActiveOfferDialog, ShowSoundMessage],
   exports: [SharedChatUiComponent],
   imports: [
     CommonModule,
@@ -30,6 +31,6 @@ import {
     NguCarouselModule,
     MatDialogModule
   ],
-  entryComponents: [ActiveOfferDialog]
+  entryComponents: [ActiveOfferDialog, ShowSoundMessage]
 })
 export class SharedChatUiModule {}

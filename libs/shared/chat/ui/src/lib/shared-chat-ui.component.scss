@@ -3,6 +3,10 @@
   justify-content: space-between;
   align-items: center;
 }
+.activate-offer-btn {
+  border: 1px solid #69b5ff;
+  color: #69b5ff;
+}
 .chat {
   height: calc(100vh - 56px);
   display: flex;
@@ -65,9 +69,9 @@
 }
 .myPoint {
   li {
-    border-color: blue !important;
+    border-color: #69b5ff !important;
     &.active {
-      background: red !important;
+      background: #69b5ff !important;
     }
   }
 }
@@ -99,7 +103,6 @@
   margin: 0;
   overflow: scroll;
   box-sizing: border-box;
-  text-transform: capitalize;
 
   .message {
     clear: both;
@@ -125,7 +128,6 @@
     &.right {
       .text {
         color: #69b5ff;
-        text-align: right;
       }
       .text_wrapper {
         background-color: #fff;
@@ -145,6 +147,7 @@
   min-width: 100px;
   position: relative;
   box-sizing: border-box;
+  border-radius: 25px;
 }
 
 .messages .message .text_wrapper::after,
@@ -170,11 +173,18 @@
 
 .messages .message .text_wrapper .text {
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+  .text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
 }
 
 .time {
   font-size: 10px;
-  margin: 0;
+  margin: 0 0 0 4px;
+  text-align: right;
 }
 
 input {
@@ -184,12 +194,6 @@ input {
 
 .eu {
   text-align: right;
-}
-
-.sendbtn {
-  width: 100%;
-  border-radius: 10px;
-  text-transform: uppercase;
 }
 
 .bannerStyle div {

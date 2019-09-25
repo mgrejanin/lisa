@@ -10,7 +10,10 @@
       >
         <div class="text_wrapper">
           <div class="text">
-            <span *ngIf="!chat.action">{{ chat.message }}</span>
+            <div class="text" (click)="speakMessageAction.emit(chat.message)">
+              <span *ngIf="!chat.action">{{ chat.message }}</span>
+              <span class="time">{{ chat.date | date: 'HH:mm' }}</span>
+            </div>
             <div *ngIf="chat.action">
               <ngu-carousel
                 #myCarousel
@@ -43,7 +46,13 @@
                     </mat-card-content>
                     <mat-card-actions>
                       <div>
-                        <button mat-button (click)='ativarOferta()'>ATIVAR OFERTA</button>
+                        <button
+                          mat-button
+                          (click)="ativarOferta()"
+                          class="activate-offer-btn"
+                        >
+                          ATIVAR OFERTA
+                        </button>
                       </div>
                     </mat-card-actions>
                     <ul class="myPoint" NguCarouselPoißnt>
@@ -53,14 +62,24 @@
                         (click)="myCarousel.moveTo(j)"
                       ></li>
                     </ul>
-                    <div class='informacao-util'>
-                      <p class='informacao-util-header'>Essa informação foi útil?</p>
-                      <div class='informacao-util-actions'>
+                    <div class="informacao-util">
+                      <p class="informacao-util-header">
+                        Essa informação foi útil?
+                      </p>
+                      <div class="informacao-util-actions">
                         <button mat-icon-button>
-                          <mat-icon [ngClass]="{'liked': item.liked === true}" (click)="item.liked = true">thumb_up</mat-icon>
+                          <mat-icon
+                            [ngClass]="{ liked: item.liked === true }"
+                            (click)="item.liked = true"
+                            >thumb_up</mat-icon
+                          >
                         </button>
                         <button mat-icon-button>
-                          <mat-icon [ngClass]="{'unliked': item.liked === false}" (click)='item.liked = false'>thumb_down</mat-icon>
+                          <mat-icon
+                            [ngClass]="{ unliked: item.liked === false }"
+                            (click)="item.liked = false"
+                            >thumb_down</mat-icon
+                          >
                         </button>
                       </div>
                     </div>
@@ -68,8 +87,8 @@
                 </ngu-tile>
               </ngu-carousel>
             </div>
-            <div class="time__action__container">
-              <p class="time">{{ chat.date | date: 'dd/MM/yy HH:mm' }}</p>
+            <!-- <div class="time__action__container">
+              <p class="time">{{ chat.date | date: 'HH:mm' }}</p>
               <button
                 *ngIf="chat.type === 'BOT'"
                 mat-icon-button
@@ -77,7 +96,7 @@
               >
                 <mat-icon>hearing</mat-icon>
               </button>
-            </div>
+            </div> -->
           </div>
         </div>
       </li>

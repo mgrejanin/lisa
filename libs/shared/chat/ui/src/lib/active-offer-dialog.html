@@ -1,12 +1,18 @@
 <style>
-  [mat-dialog-content]{
+  [mat-dialog-content] {
     font-family: Roboto, 'Helvetica Neue', sans-serif;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
   }
 </style>
 <div mat-dialog-content>
-  <p>Deseja realmente ativar esta oferta?</p>
+  Deseja realmente ativar esta oferta?
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions class="actions">
   <button mat-button (click)="onNoClick()">Não</button>
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Sim</button>
+  <button mat-button [mat-dialog-close]="true">Sim</button>
 </div>
