@@ -5,7 +5,11 @@
         <mat-nav-list>
           <a
             mat-list-item
-            (click)="sidenav.toggle(); navigateToAction.emit('/profile'); setTitleAction.emit('Meu perfil')"
+            (click)="
+              sidenav.toggle();
+              navigateToAction.emit('/profile');
+              setTitleAction.emit('Meu perfil')
+            "
           >
             <mat-icon class="toolbar__list__icon">account_circle</mat-icon>Meu
             Perfil</a
@@ -19,13 +23,21 @@
           </a> -->
           <a
             mat-list-item
-            (click)="sidenav.toggle(); navigateToAction.emit('/chat'); setTitleAction.emit('Chat Lisa')"
+            (click)="
+              sidenav.toggle();
+              navigateToAction.emit('/chat');
+              setTitleAction.emit('Chat Lisa')
+            "
           >
             <mat-icon class="toolbar__list__icon">book</mat-icon>Receitas</a
           >
           <a
             mat-list-item
-            (click)="sidenav.toggle(); navigateToAction.emit('/invoices'); setTitleAction.emit('Minhas Notas fiscais')"
+            (click)="
+              sidenav.toggle();
+              navigateToAction.emit('/invoices');
+              setTitleAction.emit('Minhas Notas fiscais')
+            "
           >
             <mat-icon class="toolbar__list__icon">file_copy</mat-icon>Minhas
             NF's</a
@@ -53,7 +65,10 @@
             <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
           </button>
           <button mat-icon-button *ngIf="actualRoute != '/'">
-            <mat-icon (click)="navigateToAction.emit('/'); setTitleAction.emit('Lisa')">arrow_back</mat-icon>
+            <mat-icon
+              (click)="navigateToAction.emit('/'); setTitleAction.emit('Lisa')"
+              >arrow_back</mat-icon
+            >
           </button>
           <span>{{ title }}</span>
         </mat-toolbar-row>
@@ -61,4 +76,13 @@
       <router-outlet></router-outlet>
     </mat-sidenav-container>
   </div>
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <div class="footer-bar">
+        <mat-icon>phone</mat-icon>
+        <mat-icon>phone</mat-icon>
+        <mat-icon>phone</mat-icon>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
 </div>
