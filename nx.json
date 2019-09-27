@@ -64,6 +64,9 @@
     },
     "shared-invoices-ui": {
       "tags": []
+    },
+    "shared-ui-day-offer": {
+      "tags": []
     }
   }
 }

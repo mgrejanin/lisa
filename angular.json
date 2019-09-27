@@ -663,6 +663,37 @@
           "styleext": "scss"
         }
       }
+    },
+    "shared-ui-day-offer": {
+      "projectType": "library",
+      "root": "libs/shared/ui/day-offer",
+      "sourceRoot": "libs/shared/ui/day-offer/src",
+      "prefix": "lisa",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/shared/ui/day-offer/tsconfig.lib.json",
+              "libs/shared/ui/day-offer/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/shared/ui/day-offer/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/shared/ui/day-offer/jest.config.js",
+            "tsConfig": "libs/shared/ui/day-offer/tsconfig.spec.json",
+            "setupFile": "libs/shared/ui/day-offer/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

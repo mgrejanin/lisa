@@ -48,7 +48,8 @@
       "@lisa/shared/invoices/feature": [
         "libs/shared/invoices/feature/src/index.ts"
       ],
-      "@lisa/shared/invoices/ui": ["libs/shared/invoices/ui/src/index.ts"]
+      "@lisa/shared/invoices/ui": ["libs/shared/invoices/ui/src/index.ts"],
+      "@lisa/shared/ui/day-offer": ["libs/shared/ui/day-offer/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
