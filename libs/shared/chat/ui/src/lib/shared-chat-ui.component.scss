@@ -37,6 +37,9 @@
     }
   }
 }
+.card-content-container {
+  margin-bottom: 4px;
+}
 .card-content {
   text-align: center;
 }
@@ -61,8 +64,8 @@
 }
 .card-title {
   text-align: center;
-  margin-bottom: 16px !important;
   &-discount {
+    margin: 4px 0 0 0;
     font-size: 14px;
     font-weight: 400;
   }
@@ -276,7 +279,7 @@ nav h1 {
 .myPoint {
   list-style-type: none;
   text-align: center;
-  padding: 12px;
+  padding: 0px 12px;
   margin: 0;
   white-space: nowrap;
   overflow: auto;

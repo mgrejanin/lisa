@@ -13,17 +13,17 @@ import { environment } from '../environments/environment';
 import { NgxUiLoaderModule, NgxUiLoaderRouterModule, NgxUiLoaderConfig, NgxUiLoaderHttpModule, POSITION } from 'ngx-ui-loader';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
-  bgsColor: '#3f51b5',
+  bgsColor: '#2196f3',
   // bgsOpacity: 0.5,
   // bgsPosition: POSITION.bottomCenter,
   // bgsSize: 60,
   // bgsType: SPINNER.rectangleBounce,
-  fgsColor: '#3f51b5',
+  fgsColor: '#2196f3',
   // fgsPosition: POSITION.centerCenter,
   // fgsSize: 60,
   // fgsType: SPINNER.chasingDots,
   // logoUrl: 'assets/angular.png',
-  pbColor: '#3f51b5',
+  pbColor: '#2196f3',
   bgsPosition: POSITION.centerCenter,
   // pbDirection: PB_DIRECTION.leftToRight,
   // pbThickness: 5,

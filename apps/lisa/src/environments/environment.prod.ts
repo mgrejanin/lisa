@@ -6,12 +6,12 @@ export const environment = {
   production: true,
   show_wines: [
     {
-      img: 'assets/imgs/vinho1.jpg',
+      img: 'assets/imgs/vinho-periquita.jpg',
       desconto: 20,
       descricao: 'Vinho periquita 750ml',
     },
     {
-      img: 'assets/imgs/vinho2.jpg',
+      img: 'assets/imgs/vinho-concha-y-toro.jpeg',
       desconto: 10,
       descricao: 'Vinho Concha Y Toro 750 ml',
     },

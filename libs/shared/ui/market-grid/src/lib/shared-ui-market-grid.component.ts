@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MarketType } from '@lisa/shared/ui/thumbnail-carroussel';
+import { Store } from '@ngxs/store';
+import { Navigate } from '@ngxs/router-plugin';
 
 @Component({
   selector: 'lisa-shared-ui-market-grid-component',
@@ -8,4 +10,10 @@ import { MarketType } from '@lisa/shared/ui/thumbnail-carroussel';
 })
 export class SharedUiMarketGridComponent {
   @Input() markets: MarketType[];
+
+  constructor(private store: Store) {}
+
+  navigateTo() {
+    this.store.dispatch(new Navigate(['/chat']));
+  }
 }

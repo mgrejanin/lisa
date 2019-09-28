@@ -48,7 +48,7 @@ export class ChatState {
   InitChat({ getState, dispatch }: StateContext<ChatStateModel>) {
     const message = getState().isReceita
       ? 'Olá, quais ingredientes você tem por aí?'
-      : 'Olá, em que posso ajudar?';
+      : 'Olá, meu nome é Liza. Em que posso ajudar?';
     return dispatch(new AddChat({ message, type: ChatType.BOT }));
   }
 

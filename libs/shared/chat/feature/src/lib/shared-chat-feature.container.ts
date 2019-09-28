@@ -54,7 +54,7 @@ export class SharedChatFeatureContainer implements OnInit, OnDestroy {
   speakMessage(message) {
     this.speech.speak({
       text: message,
-      queue: true
+      queue: false
     });
   }
 
@@ -73,6 +73,6 @@ export class SharedChatFeatureContainer implements OnInit, OnDestroy {
           type: ChatType.BOT
         })
       );
-    }, 10000);
+    }, 15000);
   }
 }

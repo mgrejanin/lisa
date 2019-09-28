@@ -1,6 +1,6 @@
 <div class="container">
   <div class="toolbar">
-    <mat-sidenav-container>
+    <!-- <mat-sidenav-container>
       <mat-sidenav #sidenav class="sidenav">
         <mat-nav-list>
           <a
@@ -14,13 +14,6 @@
             <mat-icon class="toolbar__list__icon">account_circle</mat-icon>Meu
             Perfil</a
           >
-          <!-- <a
-            mat-list-item
-            (click)="sidenav.toggle(); navigateToAction.emit('/products')"
-          >
-            <mat-icon class="toolbar__list__icon">search</mat-icon>Consultar
-            produtos
-          </a> -->
           <a
             mat-list-item
             (click)="
@@ -42,21 +35,6 @@
             <mat-icon class="toolbar__list__icon">file_copy</mat-icon>Minhas
             NF's</a
           >
-          <!-- <a
-            mat-list-item
-            (click)="
-              sidenav.toggle(); navigateToAction.emit('/change-password')
-            "
-          >
-            <mat-icon class="toolbar__list__icon">lock</mat-icon>Alterar
-            Senha</a
-          > -->
-          <!-- <a
-            mat-list-item
-            (click)="sidenav.toggle(); navigateToAction.emit('/logout')"
-          >
-            <mat-icon class="toolbar__list__icon">exit_to_app</mat-icon>Sair</a
-          > -->
         </mat-nav-list>
       </mat-sidenav>
       <mat-toolbar color="primary">
@@ -73,15 +51,36 @@
           <span>{{ title }}</span>
         </mat-toolbar-row>
       </mat-toolbar>
-      <router-outlet></router-outlet>
-    </mat-sidenav-container>
+    </mat-sidenav-container> -->
+    <router-outlet></router-outlet>
   </div>
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" class="toolbar__footer">
     <mat-toolbar-row>
       <div class="footer-bar">
-        <mat-icon>phone</mat-icon>
-        <mat-icon>phone</mat-icon>
-        <mat-icon>phone</mat-icon>
+        <button mat-icon-button>
+          <mat-icon
+            (click)="navigateToAction.emit('/'); setTitleAction.emit('Lisa')"
+            >home</mat-icon
+          >
+        </button>
+        <button mat-icon-button>
+          <mat-icon
+            (click)="navigateToAction.emit('/chat'); setTitleAction.emit('Lisa')"
+            >book</mat-icon
+          >
+        </button>
+        <button mat-icon-button>
+          <mat-icon
+            (click)="navigateToAction.emit('/invoices'); setTitleAction.emit('Lisa')"
+            >file_copy</mat-icon
+          >
+        </button>
+        <button mat-icon-button>
+          <mat-icon
+          (click)="navigateToAction.emit('/profile'); setTitleAction.emit('Meu perfil')"
+            >account_circle</mat-icon
+          >
+        </button>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>

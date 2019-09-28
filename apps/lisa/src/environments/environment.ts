@@ -8,14 +8,14 @@ export const environment = {
     {
       liked: undefined,
       discount: 20,
-      img: 'assets/imgs/vinho1.jpg',
+      img: 'assets/imgs/vinho-periquita.jpg',
       desconto: 20,
       descricao: 'Vinho periquita 750ml'
     },
     {
       liked: undefined,
       discount: 15,
-      img: 'assets/imgs/vinho2.jpg',
+      img: 'assets/imgs/vinho-concha-y-toro.jpeg',
       desconto: 10,
       descricao: 'Vinho Concha Y Toro 750 ml'
     },
@@ -24,7 +24,7 @@ export const environment = {
       discount: 10,
       img: 'assets/imgs/vinho3.jpg',
       desconto: 15,
-      descricao: 'inho Nacional Pérgola 1 Litro'
+      descricao: 'Vinho Nacional Pérgola 1 Litro'
     }
   ],
   frutas: [

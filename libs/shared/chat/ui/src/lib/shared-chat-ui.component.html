@@ -12,7 +12,9 @@
           <div class="text">
             <div class="text" (click)="speakMessageAction.emit(chat.message)">
               <span *ngIf="!chat.action">{{ chat.message }}</span>
-              <span class="time">{{ chat.date | date: 'HH:mm' }}</span>
+              <span class="time" *ngIf="!chat.action">{{
+                chat.date | date: 'HH:mm'
+              }}</span>
             </div>
             <div *ngIf="chat.action">
               <ngu-carousel
@@ -39,7 +41,7 @@
                     <div class="card-image-container">
                       <img class="card-image" mat-card-image [src]="item.img" />
                     </div>
-                    <mat-card-content>
+                    <mat-card-content class="card-content-container">
                       <p class="card-content">
                         {{ item.descricao }}
                       </p>
@@ -86,17 +88,15 @@
                   </mat-card>
                 </ngu-tile>
               </ngu-carousel>
-            </div>
-            <!-- <div class="time__action__container">
-              <p class="time">{{ chat.date | date: 'HH:mm' }}</p>
-              <button
-                *ngIf="chat.type === 'BOT'"
-                mat-icon-button
-                (click)="speakMessageAction.emit(chat.message)"
+              <div
+                style="display: flex;
+              flex-direction: row;
+              justify-content: flex-end;
+              padding-right: 8px;font-size: 10px;"
               >
-                <mat-icon>hearing</mat-icon>
-              </button>
-            </div> -->
+                <span class="time-bot">{{ chat.date | date: 'HH:mm' }}</span>
+              </div>
+            </div>
           </div>
         </div>
       </li>
@@ -105,7 +105,7 @@
 
   <div class="footer">
     <form class="form">
-      <mat-form-field class="text_input">
+      <mat-form-field class="text_input" [floatLabel]="'never'">
         <mat-label>Mensagem</mat-label>
         <textarea
           (keyup.enter)="sendMessage()"

@@ -1,7 +1,23 @@
-.search{
-  padding: 8px 16px 0;
+.search {
+  padding: 20px 16px 0;
 
-  &__input{
+  &__input {
     width: 100%;
+  }
+  ::ng-deep {
+    .mat-form-field-underline {
+      display: none;
+    }
+
+    .mat-form-field-flex {
+      border: 1px solid #2196f3;
+      border-radius: 24px;
+      padding: 4px 20px;
+      align-items: center !important;
+    }
+
+    .mat-form-field-infix {
+      border-top: none;
+    }
   }
 }
