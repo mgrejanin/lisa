@@ -1,0 +1,123 @@
+<ng-container *ngIf="isLoading$ | async; else callbackTemplate">
+    <div class="c-accounts-list__loading-wrapper">
+        <mat-spinner class="i-spinner" [diameter]="40"></mat-spinner>
+    </div>
+</ng-container>
+
+<ng-template #callbackTemplate>
+    <ng-container
+        *ngIf="
+            (accountsList$ | async) &&
+            (accountsList$ | async)?.length !== 0 &&
+            (hasBankAccountsListError$ | async) === false
+        "
+    >
+        <ul class="c-accounts-list">
+            <ng-container *ngFor="let account of accountsList$ | async">
+                <li class="c-accounts-list__item" tabindex="0">
+                    <div class="c-account-item-container">
+                        <img
+                            class="c-account-item-container__icon"
+                            [src]="account?.bank?.img_url || 'assets/icons/bank.svg'"
+                            [alt]="'Ícone do banco' + account?.bank?.name"
+                        />
+                        <div class="c-account-item-container__content">
+                            <div class="c-account-item-container__content--data">
+                                <p class="c-account-item__name">
+                                    Conta {{ account?.account }}-{{ account?.account_digit }} <br />
+                                    <span class="c-account-item__name--caption">{{ account?.bank?.name }}</span>
+                                </p>
+                                <ng-container *ngIf="account?.main">
+                                    <small class="c-account-item__badge">Principal</small>
+                                </ng-container>
+                            </div>
+
+                            <ng-container *ngIf="account?.account_error">
+                                <span class="c-account-item-container__content--error">
+                                    <mat-icon class="u-color__danger">error_outline</mat-icon>
+                                    <span>Erro na conta</span>
+                                </span>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <button
+                        mat-icon-button
+                        class="c-accounts-list__item--action"
+                        [matMenuTriggerFor]="accountActionsDropdown"
+                        [matMenuTriggerData]="{ account: account }"
+                        [attr.aria-label]="'Ações da conta bancária ' + account?.account"
+                        tabindex="0"
+                    >
+                        <apollo-icon svg-icon="interface-ellipsis-v" size="md"></apollo-icon>
+                    </button>
+                </li>
+            </ng-container>
+        </ul>
+    </ng-container>
+    <div
+        *ngIf="
+            (isLoading$ | async) === false &&
+            (accountsList$ | async).length === 0 &&
+            (hasBankAccountsListError$ | async) === false
+        "
+        class="c-accounts-list__empty-wrapper a-bounce-in-left"
+    >
+        <img src="/assets/images/feedback-attention.svg" alt="Lista de contas bancárias vazia" />
+        <h3>Cadastre sua conta bancária</h3>
+        <p>
+            A conta bancária é necessária para que o PicPay deposite seus recebíveis e/ou para realização dos seus
+            saques bancários.
+        </p>
+    </div>
+    <div *ngIf="hasBankAccountsListError$ | async" class="c-accounts-list__error-wrapper a-bounce-in-left">
+        <img src="/assets/images/empty_search.svg" alt="Lista de contas bancárias vazia" />
+        <h3>Ops... algo de errado aconteceu!</h3>
+        <p>
+            Não foi possível carregar suas contas, <br />
+            <span class="c-accounts-list__error-wrapper--link" (click)="getAccounts()">tente novamente</span> ou volte
+            mais tarde.
+        </p>
+    </div>
+</ng-template>
+
+<mat-menu #accountActionsDropdown="matMenu" class="o-menu-dropdown">
+    <ng-template matMenuContent let-account="account">
+        <button
+            mat-menu-item
+            (click)="verifyPermissionEditAccount(account, 'onSetAsPrincipalAccount')"
+            [disabled]="account.main || disableItemActions"
+        >
+            <mat-icon>check_circle_outline</mat-icon>
+            <span>Tornar principal</span>
+            <ng-container
+                *ngTemplateOutlet="loadingSpinner; context: { method: 'onSetAsPrincipalAccount' }"
+            ></ng-container>
+        </button>
+        <button
+            mat-menu-item
+            (click)="verifyPermissionEditAccount(account, 'openEditAccount')"
+            [disabled]="disableItemActions"
+        >
+            <mat-icon>edit</mat-icon>
+            <span>Editar conta</span>
+            <ng-container *ngTemplateOutlet="loadingSpinner; context: { method: 'openEditAccount' }"></ng-container>
+        </button>
+        <button
+            mat-menu-item
+            (click)="verifyPermissionEditAccount(account, 'onRemoveAccount')"
+            [disabled]="account.main || disableItemActions"
+        >
+            <mat-icon>highlight_off</mat-icon>
+            <span>Excluir conta</span>
+            <ng-container *ngTemplateOutlet="loadingSpinner; context: { method: 'onRemoveAccount' }"></ng-container>
+        </button>
+        <ng-template #loadingSpinner let-method="method">
+            <seller-panel-loading-spinner
+                class="ml-2"
+                [size]="20"
+                [stroke]="2"
+                *ngIf="actionTypeAccount === method && isLoading$ | async"
+            ></seller-panel-loading-spinner>
+        </ng-template>
+    </ng-template>
+</mat-menu>

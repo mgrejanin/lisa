@@ -1,0 +1,116 @@
+<seller-panel-header (logout)="onLogout()"></seller-panel-header>
+<div class="c-charge o-page">
+    <div class="c-charge__header">
+        <h1 class="c-charge__title">Cobrar</h1>
+        <div class="c-charge__header--actions">
+            <ng-template [ngTemplateOutlet]="chargeValueButton"></ng-template>
+            <ng-template [ngTemplateOutlet]="printQRCodeButton"></ng-template>
+        </div>
+    </div>
+    <div class="c-charge__body">
+        <div class="c-charge__body--section c-charge__body--link">
+            <h3>Enviar cobrança</h3>
+            <p>Cobre seus clientes compartilhando um link para eles pagarem onde estiverem</p>
+            <div class="c-charge__link">
+                <seller-panel-loading-spinner
+                    [size]="25"
+                    [stroke]="2"
+                    *ngIf="isLoading; else chargeLinkTemplate"
+                ></seller-panel-loading-spinner>
+                <ng-template #chargeLinkTemplate>
+                    <span class="u-text-ellipsis">{{ chargeContent?.data.key }}</span>
+                </ng-template>
+                <div class="c-charge__link--btn-copy">
+                    <button
+                        mat-flat-button
+                        class="o-button o-button__link"
+                        [disabled]="isLoading || isLoadFailed"
+                        [cdkCopyToClipboard]="chargeContent?.data.key"
+                        (cdkCopyToClipboardCopied)="onCopyLinkCallback($event)"
+                    >
+                        <mat-icon>content_copy</mat-icon>
+                        Copiar link
+                    </button>
+                </div>
+            </div>
+            <ng-container *ngIf="!isLoading">
+                <p>Compartilhe seu link também nas redes sociais:</p>
+                <div class="c-charge__social">
+                    <ng-container *ngFor="let network of socialNetworks">
+                        <apollo-icon [svgIcon]="network?.icon" size="md" class="o-button c-charge__social--link"></apollo-icon>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </div>
+        <div class="c-charge__body--section c-charge__body--qr-code">
+            <h3>Exibir QR Code</h3>
+            <p>Mostre o QR Code abaixo ao cliente e cobre o pagamento</p>
+            <div class="c-charge__qr-code">
+                <seller-panel-loading-spinner *ngIf="isLoading; else qrCodeTemplate"></seller-panel-loading-spinner>
+                <ng-template #qrCodeTemplate>
+                    <div id="print-section" class="c-charge__qr-code" *ngIf="chargeContent?.data.paymentLink">
+                        <qrcode
+                            [qrdata]="chargeContent?.data.paymentLink"
+                            [width]="200"
+                            [errorCorrectionLevel]="'M'"
+                            [elementType]="'img'"
+                        ></qrcode>
+                    </div>
+                    <ng-container *ngIf="chargeValue">
+                        <p class="c-charge__qr-code--value">{{ chargeValue | currency: 'BRL' }}</p>
+                    </ng-container>
+                </ng-template>
+            </div>
+            <ng-container *ngIf="isMobile$ | async">
+                <ng-template [ngTemplateOutlet]="chargeValueButton"></ng-template>
+            </ng-container>
+        </div>
+        <ng-container *ngIf="isMobile$ | async">
+            <div class="c-charge__body--section c-charge__body--mobile-actions">
+                <button
+                    mat-button
+                    class="o-button"
+                    [disabled]="isLoading || isLoadFailed"
+                    (click)="onShowShareLinksModal()"
+                >
+                    <mat-icon class="mr-2">link</mat-icon>
+                    Enviar link de cobrança
+                </button>
+                <ng-template [ngTemplateOutlet]="printQRCodeButton"></ng-template>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<ng-template #chargeValueButton>
+    <button
+        mat-button
+        class="o-button c-charge__btn-charge-value"
+        [disabled]="isLoading || isLoadFailed"
+        (click)="chargeValue === 0 ? onShowModalChargeValue() : onClearChargeValue()"
+    >
+        <mat-icon class="icon">attach_money</mat-icon>
+        {{ chargeValue === 0 ? 'Definir valor para a cobrança' : 'Limpar valor de cobrança' }}
+    </button>
+</ng-template>
+
+<ng-template #printQRCodeButton>
+    <button
+        mat-button
+        class="o-button c-charge__btn-print-qr-code"
+        [disabled]="isLoading || isLoadFailed"
+        (click)="onHandleDownloadQrCode()"
+    >
+        <seller-panel-loading-spinner
+            class="c-charge__btn-print-qr-code--loading"
+            [size]="25"
+            [stroke]="2"
+            *ngIf="isLoadingPDF; else printContainer"
+        >
+        </seller-panel-loading-spinner>
+        <ng-template #printContainer>
+            <mat-icon class="mr-2">print</mat-icon>
+            Imprimir QR Code
+        </ng-template>
+    </button>
+</ng-template>

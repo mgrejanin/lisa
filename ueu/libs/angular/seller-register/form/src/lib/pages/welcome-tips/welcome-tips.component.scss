@@ -1,0 +1,30 @@
+@use "mixins/breakpoint";
+
+.c-section {
+    &__card {
+        margin-top: theme('spacing.6');
+
+        @include breakpoint.up(small) {
+            border: theme('borderWidth.light') solid theme('colors.grayscale.100');
+            border-radius: theme('borderRadius.medium');
+            padding: theme('spacing.3');
+            margin-top: theme('spacing.none');
+        }
+    }
+
+    &__card-content {
+        display: flex;
+        align-items: center;
+
+        &--company {
+            margin-bottom: theme('spacing.3');
+        }
+    }
+
+    &__card-title {
+        color: theme('colors.black');
+        font-weight: theme('fontWeight.bold');
+        font-size: theme('fontSize.base');
+        margin: 0 0 0 theme('spacing.2');
+    }
+}

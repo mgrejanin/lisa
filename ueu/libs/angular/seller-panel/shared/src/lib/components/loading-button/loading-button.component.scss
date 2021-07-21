@@ -1,0 +1,29 @@
+@import 'libs/ui/styles/src/lib/theming';
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ::ng-deep mat-spinner {
+        height: 16px !important;
+        width: 16px !important;
+
+        &.left {
+            margin-right: 24px;
+        }
+
+        &.right {
+            margin-left: 24px;
+        }
+
+        svg {
+            height: 16px !important;
+            width: 16px !important;
+
+            circle {
+                stroke: $white;
+            }
+        }
+    }
+}

@@ -1,0 +1,137 @@
+@use "mixins/typography";
+@use "mixins/breakpoint";
+
+apollo-grid {
+    padding: 0;
+}
+
+header {
+    &.container {
+        max-width: 1220px;
+    }
+    padding-top: theme('spacing.3');
+    padding-bottom: theme('spacing.3');
+    .logo {
+        color: theme('colors.grayscale.600');
+        font-size: 14px;
+        a {
+            color: theme('colors.grayscale.600');
+
+            svg {
+                fill: theme('colors.primary.400');
+                height: 24px;
+            }
+            span {
+                &:before {
+                    content: '|';
+                    margin: theme('spacing.1');
+                }
+            }
+            &:hover {
+                fill: theme('colors.primary.400');
+            }
+        }
+
+        @include breakpoint.down(small) {
+            margin-left: theme('spacing.2');
+        }
+    }
+
+    .content {
+        align-items: center;
+        display: flex;
+
+        &--list {
+            list-style: none;
+            display: flex;
+            padding-left: 0;
+            margin-bottom: 0;
+            li {
+                & + li {
+                    margin: 0 theme('spacing.1');
+                }
+                a {
+                    @include typography.body(primary, highlight);
+                    display: block;
+                    color: theme('colors.grayscale.700');
+                    padding: 0 theme('spacing.1');
+
+                    &:hover,
+                    &.active {
+                        color: theme('colors.primary.base');
+                    }
+                }
+                &:first-child {
+                    a {
+                        padding-left: 0;
+                    }
+                }
+                &.dropdown {
+                    position: relative;
+                    display: inline-block;
+
+                    .dropdown-content {
+                        display: none;
+                        position: absolute;
+                        min-width: 160px;
+                        z-index: 1;
+                        padding: theme('spacing.1');
+                        background: theme('colors.white');
+                        box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.04), 0px 3px 8px rgba(0, 0, 0, 0.04),
+                            0px 0px 8px rgba(0, 0, 0, 0.04);
+                        border-radius: theme('borderRadius.light');
+
+                        a {
+                            padding: theme('spacing.2') theme('spacing.3');
+                            & + a {
+                                border-top: theme('borderWidth.light') solid theme('colors.grayscale.50');
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        .dropdown-content {
+                            display: block;
+                            white-space: nowrap;
+                        }
+                        .dropdown-menu {
+                            color: theme('colors.primary.base');
+                        }
+                    }
+                    &.active {
+                        .dropdown-menu {
+                            color: theme('colors.primary.base');
+                        }
+                    }
+                }
+            }
+            &-itens {
+                @include breakpoint.down(small) {
+                    display: none;
+                }
+            }
+        }
+        &--actions {
+            justify-content: flex-end;
+        }
+    }
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.c-user-dropdown {
+    &__menu-button {
+        padding: theme('spacing.1') theme('spacing.3');
+        background: transparent;
+        border: none;
+        position: relative;
+        a {
+            color: inherit;
+        }
+    }
+}

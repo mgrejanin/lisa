@@ -1,0 +1,2531 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Picpay - Membership",
+        "description": "API para a aplicação de membership",
+        "version": "1.0.0"
+    },
+    "basePath": "/",
+    "paths": {
+        "/v1/categories": {
+            "post": {
+                "tags": ["Categoria"],
+                "summary": "Cria uma nova categoria para o produtor autenticado",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do produtor dono da categoria",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Categoria",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CategoryCreateBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/definitions/Category"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/categories/{id}": {
+            "get": {
+                "tags": ["Categoria"],
+                "summary": "Retorna os detalhes de um categoria pelo seu id",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do produtor dono da categoria",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do categoria que será retornada",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/definitions/Category"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Categoria"],
+                "summary": "Altualiza os dados de uma categoria para o produtor autenticado",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do produtor dono da categoria",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id da categoria que será alterada",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Categoria",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CategoryUpdateBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/definitions/Category"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Categoria"],
+                "summary": "Deleta uma categoria",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id da categoria que será apagada",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do produtor dono da categoria",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Categoria deletada com sucesso"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/docs/api": {
+            "get": {
+                "tags": ["Documentações"],
+                "summary": "Retorna o JSON da documentação da API",
+                "responses": {
+                    "200": {
+                        "description": "JSON com a documentação Swagger"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/docs/webhooks": {
+            "get": {
+                "tags": ["Documentações"],
+                "summary": "Retorna o JSON da documentação de webhooks",
+                "responses": {
+                    "200": {
+                        "description": "JSON com a documentação Swagger"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/mixpanel/sync_producers": {
+            "post": {
+                "tags": ["Administração"],
+                "summary": "Sincroniza vendedores do Membership para o MixPanel",
+                "responses": {
+                    "200": {
+                        "description": "Todos os vendedores foram sincronizados com sucesso",
+                        "schema": {
+                            "type": "string",
+                            "example": "OK"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/producers_stats": {
+            "get": {
+                "tags": ["Administração"],
+                "summary": "Obter estatísticas detalhadas de todos os vendedores",
+                "parameters": [
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "description": "Token de autorização de chamada",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Estatísticas obtidas com sucesso em formato HTML"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/subscriptions": {
+            "get": {
+                "tags": ["Administração"],
+                "summary": "Listar assinaturas",
+                "parameters": [
+                    {
+                        "name": "id_list",
+                        "in": "query",
+                        "description": "Lista de ids a listar, separados por vírgula",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de assinaturas obtida com sucesso.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "properties": {
+                                    "id": {
+                                        "description": "Id da assinatura",
+                                        "type": "string",
+                                        "example": "1"
+                                    },
+                                    "value": {
+                                        "description": "Valor pago na assinatura",
+                                        "type": "number",
+                                        "example": 0
+                                    },
+                                    "plan_id": {
+                                        "description": "Id do plano assinado",
+                                        "type": "string",
+                                        "example": "5"
+                                    },
+                                    "plan_name": {
+                                        "description": "Nome do plano assinado",
+                                        "type": "string",
+                                        "example": "Lorem Ipsum"
+                                    },
+                                    "category_name": {
+                                        "description": "Nome da categoria do plano assinado",
+                                        "type": "string",
+                                        "example": "Categoria Única"
+                                    },
+                                    "producer_id": {
+                                        "description": "Id do vendedor",
+                                        "type": "string",
+                                        "example": "14"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/plans": {
+            "post": {
+                "tags": ["Plano"],
+                "summary": "Cria um novo plano para o produtor autenticado",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do produtor dono do plano",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Plano",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PlanCreateBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/definitions/Plan"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/plans/{id}": {
+            "get": {
+                "tags": ["Plano"],
+                "summary": "Obtem os dados de um plano",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do plano que será retornado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/definitions/Plan"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Plano"],
+                "summary": "Atualiza os dados de um plano",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do produtor dono do plano",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do plano que será alterado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Plano",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PlanUpdateBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/definitions/Plan"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Plano"],
+                "summary": "Deleta um plano",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do plano que será apagado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do produtor dono do plano",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Corpo da requisição",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PlanDeleteBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Plano deletado com sucesso"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/plans/{id}/update_history": {
+            "get": {
+                "tags": ["Plano"],
+                "summary": "Obtem os dados de um plano com seu histório de atualizações",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do plano que será retornado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subscription_id",
+                        "in": "query",
+                        "description": "Id da assinatura para filtar atualizações. Só serão exibidas atualizações posteriores à data de assinatura.",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Widgets de histórico",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/PlanUpdateHistoryWidget"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/plans/{id}/value": {
+            "patch": {
+                "tags": ["Plano"],
+                "summary": "Atualiza a valor de um plano. Com isso todos os seus assinantes tem seus planos cancelados e são notificados para reassinar",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do produtor dono do plano",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do plano que será alterado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Corpo da requisição",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/PlanUpdateValueBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/definitions/Plan"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/producers/configs": {
+            "get": {
+                "tags": ["Produtor"],
+                "summary": "Listar configurações do vendedor",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Dados obtidos com sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/ProducerConfig"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/producers/stats": {
+            "get": {
+                "tags": ["Produtor", "Estatísticas"],
+                "summary": "Retorna um resumo de estatísticas para o producer autenticado",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do produtor",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Estatísticas do produtor",
+                        "schema": {
+                            "properties": {
+                                "subscriptions": {
+                                    "description": "Retorna um resumo de estatísticas para o producer autenticado",
+                                    "properties": {
+                                        "producer_id": {
+                                            "description": "Id do vendedor",
+                                            "type": "string",
+                                            "example": "14"
+                                        },
+                                        "total": {
+                                            "description": "Quantidade de assinaturas",
+                                            "type": "integer",
+                                            "example": 20
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "plans": {
+                                    "description": "Retorna um resumo de estatísticas para o producer autenticado",
+                                    "properties": {
+                                        "producer_id": {
+                                            "description": "Id do vendedor",
+                                            "type": "string",
+                                            "example": "14"
+                                        },
+                                        "active_plans": {
+                                            "description": "Quantidade de planos ativos",
+                                            "type": "integer",
+                                            "example": 5
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "wallet": {
+                                    "description": "Retorna um resumo de estatísticas para o producer autenticado",
+                                    "properties": {
+                                        "producer_id": {
+                                            "description": "Id do vendedor",
+                                            "type": "string",
+                                            "example": "14"
+                                        },
+                                        "received": {
+                                            "description": "Total recebido",
+                                            "type": "string",
+                                            "example": "353.4"
+                                        },
+                                        "to_receive": {
+                                            "description": "Total a receber",
+                                            "type": "string",
+                                            "example": "100.5"
+                                        },
+                                        "month_expected": {
+                                            "description": "Expectativa do mês",
+                                            "type": "string",
+                                            "example": "453.9"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/producers/{producer_id}/categories": {
+            "get": {
+                "tags": ["Categoria", "Produtor"],
+                "summary": "Retorna a lista de categorias com seus planos",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "producer_id",
+                        "in": "path",
+                        "description": "Id do produtor",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de Categorias",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Category"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/producers/categories": {
+            "get": {
+                "tags": ["Categoria", "Produtor"],
+                "summary": "Retorna a lista de categorias com seus planos",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de Categorias",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Category"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/producers/{id}": {
+            "get": {
+                "tags": ["Produtor"],
+                "summary": "Retorna os detalhes de um produtor",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do produtor que está sendo pesquisado",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/definitions/ProducerAccount"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/producers": {
+            "get": {
+                "tags": ["Produtor"],
+                "summary": "Retorna a lista de produtores ativos",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de produtores",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/ProducerAccount"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/producers/configs/webhooks/verification_key": {
+            "patch": {
+                "tags": ["Produtor"],
+                "summary": "Gerar chave de verificação",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Chave de verificação gerada com sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/ProducerConfig"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/producers/plans/mail": {
+            "post": {
+                "tags": ["Produtor"],
+                "summary": "Disparar e-mails aos assinantes",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Campos disponíveis",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "plan_list": {
+                                    "description": "Lista de Ids dos planos, separados por vírgula, cujos assinantes relacionados receberão o e-mail",
+                                    "type": "string",
+                                    "example": "1,2,3"
+                                },
+                                "title": {
+                                    "description": "Assunto do e-mail",
+                                    "type": "string",
+                                    "example": "Assunto Tal"
+                                },
+                                "body": {
+                                    "description": "Corpo do e-mail",
+                                    "type": "string",
+                                    "example": "Olá pessoal, é com muito prazer que venho falar sobre o assunto tal"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "E-mail disparado com sucesso"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/producers/configs/terms": {
+            "patch": {
+                "tags": ["Produtor"],
+                "summary": "Alterar configuração de termos de uso",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Campos disponíveis",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "terms_of_use_markdown": {
+                                    "description": "Class SetTermsOfUseController",
+                                    "$ref": "#/definitions/ProducerConfig/properties/terms_of_use_markdown"
+                                },
+                                "terms_of_use_active": {
+                                    "description": "Class SetTermsOfUseController",
+                                    "$ref": "#/definitions/ProducerConfig/properties/terms_of_use_active"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Configurações definidas com sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/ProducerConfig"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/producers/configs/webhooks": {
+            "post": {
+                "tags": ["Produtor"],
+                "summary": "Alterar configuração de webhook",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Campos disponíveis",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "webhook_url": {
+                                    "description": "Class SetWebhookController",
+                                    "$ref": "#/definitions/ProducerConfig/properties/webhook_url"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Webhook definido com sucesso",
+                        "schema": {
+                            "$ref": "#/definitions/ProducerConfig"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/producers/subscriptions": {
+            "get": {
+                "tags": ["Produtor"],
+                "summary": "Retorna a lista de assinaturas de um produtor",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "category_id",
+                        "in": "query",
+                        "description": "Filtro pelo Id de uma categoria",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "plan_id",
+                        "in": "query",
+                        "description": "Filtro pelo Id de um plano",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "is_active",
+                        "in": "query",
+                        "description": "Indica se devem vir só os status ativos (true) ou cancelados (false)",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Filtro pelo Status da assinatura",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["active", "cancelled", "payment_delayed", "pending_cancellation", "under_analysis"]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de Assinaturas",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Subscription"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/producers/subscriptions/report": {
+            "get": {
+                "tags": ["Produtor"],
+                "summary": "Retorna um arquivo csv com a lista de assinantes do produtor logado",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Filtro pelo Status da assinatura",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["active", "cancelled", "payment_delayed", "pending_cancellation", "under_analysis"]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Arquivo csv com as assinaturas"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/producers/subscriptions/status_count": {
+            "get": {
+                "tags": ["Produtor"],
+                "summary": "Retorna a lista de assinaturas de um produtor",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "category_id",
+                        "in": "query",
+                        "description": "Filtro pelo Id de uma categoria",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "plan_id",
+                        "in": "query",
+                        "description": "Filtro pelo Id de um plano ou uma lista de Ids separados por ,",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "is_active",
+                        "in": "query",
+                        "description": "Indica se devem vir só os status ativos (true) ou cancelados (false)",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Filtro pelo Status da assinatura",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["active", "cancelled", "payment_delayed", "pending_cancellation", "under_analysis"]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Contagem de assinaturas atendendo aos filtros em cada status",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "status": "active",
+                                    "count": 22
+                                }
+                            ]
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/producers/webhooks/test": {
+            "post": {
+                "tags": ["Produtor"],
+                "summary": "Testar webhook",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Campos disponíveis",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/TestWebhook"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Webhook disparado com sucesso",
+                        "schema": {
+                            "properties": {
+                                "dispatched_events": {
+                                    "description": "Eventos disparados",
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/TestWebhook/properties/dispatch_events"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/subscribers/plans/{plan_id}/subscription": {
+            "post": {
+                "tags": ["Assinante"],
+                "summary": "Assina um usuário em um plano",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id da account do assinante",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "plan_id",
+                        "in": "path",
+                        "description": "Id do plano assinado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Campos disponíveis",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "feed_visibility": {
+                                    "description": "Visibilidade das transações da assinatura",
+                                    "type": "string",
+                                    "example": "public"
+                                },
+                                "total_value": {
+                                    "description": "Valor da assinatura",
+                                    "type": "number",
+                                    "example": 2.5
+                                },
+                                "credit": {
+                                    "description": "Valor da carteiro",
+                                    "type": "number",
+                                    "example": 0
+                                },
+                                "consumer_credit_card_id": {
+                                    "description": "Id do cartão de crédito",
+                                    "type": "string",
+                                    "example": "123"
+                                },
+                                "duplicated": {
+                                    "description": "Indica se é uma possível transação duplicada",
+                                    "type": "boolean",
+                                    "example": 1
+                                },
+                                "address_id": {
+                                    "description": "Id do endereço a vincular",
+                                    "type": "integer",
+                                    "example": 123
+                                },
+                                "comments": {
+                                    "description": "Comentários opcionais",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/definitions/Subscription"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/subscribers/subscriptions/{subscription_id}/address": {
+            "patch": {
+                "tags": ["Assinante"],
+                "summary": "Altera o endereço de uma assinatura",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id da account do assinante",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subscription_id",
+                        "in": "path",
+                        "description": "Id da assinatura",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Campos disponíveis",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "address_id": {
+                                    "description": "Id do novo endereço",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/definitions/Subscription"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/subscribers/subscriptions/{subscription_id}/cancel": {
+            "patch": {
+                "tags": ["Assinante"],
+                "summary": "Agenda o cancelamento da assinatura de um usuário. A mesma fica valida até o fim da vigencia da mensalidade atual",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subscription_id",
+                        "in": "path",
+                        "description": "Id da assinatura que está sendo cancelada",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "refund_policy",
+                        "in": "query",
+                        "description": "Politica de estorno aplicada as assinaturas q serão canceladas (é necessário informar se for o producer cancelando)",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["no_refund", "full_refund", "proportional_refund"]
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Processo concluído com sucesso."
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/subscribers/subscriptions/{subscription_id}/payment": {
+            "post": {
+                "tags": ["Assinante"],
+                "summary": "Realiza o pagamento de uma assinatura em atraso ('payment_delayed')",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id da account do assinante",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subscription_id",
+                        "in": "path",
+                        "description": "Id da assinatura que gerará o pagamento",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Campos disponíveis",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "feed_visibility": {
+                                    "description": "Visibilidade das transações da assinatura",
+                                    "type": "string",
+                                    "example": "public"
+                                },
+                                "total_value": {
+                                    "description": "Valor da assinatura",
+                                    "type": "number",
+                                    "example": 2.5
+                                },
+                                "credit": {
+                                    "description": "Valor da carteira",
+                                    "type": "number",
+                                    "example": 0
+                                },
+                                "consumer_credit_card_id": {
+                                    "description": "Id do cartão de crédito",
+                                    "type": "string",
+                                    "example": "1231231"
+                                },
+                                "duplicated": {
+                                    "description": "Indica se é uma possível transação duplicada",
+                                    "type": "integer",
+                                    "enum": [0, 1],
+                                    "example": 1
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/definitions/Subscription"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/subscribers/subscriptions/{subscription_id}": {
+            "get": {
+                "tags": ["Assinante"],
+                "summary": "Retorna os detalhes de uma assinatura",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id da account do assinante da assinatura",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subscription_id",
+                        "in": "path",
+                        "description": "Id da assinatura que está sendo pesquisada",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/definitions/Subscription"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Assinante"],
+                "summary": "Deleta uma assinatura que já esteja cancelada",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subscription_id",
+                        "in": "path",
+                        "description": "Id da assinatura que está sendo cancelada",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Resposta vazia"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/subscribers/subscriptions/{subscription_id}/plan_last_update_seen": {
+            "patch": {
+                "tags": ["Assinante"],
+                "summary": "Marca qual a última atualização de plano que o usuário visualizou pelo aplicativo.",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id da account do assinante",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subscription_id",
+                        "in": "path",
+                        "description": "Id da assinatura",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content."
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/subscribers/subscriptions/{id}/receipt": {
+            "get": {
+                "tags": ["Assinante"],
+                "summary": "Retorna os detalhes do recibo de uma assinatura",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id da account do assinante da assinatura",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id da assinatura que está sendo pesquisada",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "$ref": "#/definitions/Subscription"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/subscribers/subscriptions/{subscription_id}/resubscribe": {
+            "patch": {
+                "tags": ["Assinante"],
+                "summary": "Reativa uma assinatura cujo cancelamento foi solicitado pelo assinante.",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id da account do assinante",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subscription_id",
+                        "in": "path",
+                        "description": "Id da assinatura",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content."
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/subscribers/subscriptions/{subscription_id}/visibility": {
+            "patch": {
+                "tags": ["Assinante"],
+                "summary": "Altera a visibilidade default da assinatura",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "subscription_id",
+                        "in": "path",
+                        "description": "Id da assinatura que está sendo alterada",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Campos disponíveis",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "visibility": {
+                                    "description": "Visibilidade dos pagamentos feitos na assinatura",
+                                    "type": "string",
+                                    "example": "public"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Visibilidade definida com sucesso"
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        },
+        "/v1/subscribers/subscriptions": {
+            "get": {
+                "tags": ["Assinante"],
+                "summary": "Retorna a lista de assinaturas de um assinante",
+                "parameters": [
+                    {
+                        "name": "account_id",
+                        "in": "header",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "plan_id",
+                        "in": "query",
+                        "description": "Id de um plano a servir de filtro",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "category_id",
+                        "in": "query",
+                        "description": "Id de uma categoria a servir de filtro",
+                        "required": false,
+                        "type": "integer"
+                    },
+                    {
+                        "name": "producer_id",
+                        "in": "query",
+                        "description": "Id de um vendedor a servir de filtro",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "is_active",
+                        "in": "query",
+                        "description": "Indica se devem vir só os status ativos (true) ou cancelados (false)",
+                        "required": false,
+                        "type": "boolean"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "Filtro pelo Status da assinatura",
+                        "required": false,
+                        "type": "string",
+                        "enum": ["active", "cancelled", "payment_delayed", "pending_cancellation", "under_analysis"]
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Lista de Assinaturas",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Subscription"
+                            }
+                        }
+                    },
+                    "default": {
+                        "$ref": "#/definitions/ErrorModel"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "TestWebhook": {
+            "title": "Test Webhook",
+            "description": "Modelo a ser usado em testes de webhook",
+            "properties": {
+                "webhook_url": {
+                    "description": "Url do webhook a testar",
+                    "type": "string",
+                    "example": "https://api.membership.dev/"
+                },
+                "dispatch_events": {
+                    "description": "Eventos a disparar (opcional)",
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "new_subscription",
+                            "subscription_cancelled",
+                            "subscription_cancel_request",
+                            "payment_processed"
+                        ],
+                        "example": "new_subscription"
+                    }
+                },
+                "mock_object": {
+                    "description": "Mock a disparar por evento (opcional)",
+                    "properties": {
+                        "verification_key": {
+                            "description": "X-Verification-Key personalizado para disparar no webhook",
+                            "type": "string",
+                            "example": "qwer1234"
+                        },
+                        "new_subscription": {
+                            "description": "Mock de assinatura criada (opcional)",
+                            "type": "object",
+                            "$ref": "#/definitions/NewSubscription"
+                        },
+                        "payment_processed": {
+                            "description": "Mock de pagamento processado (opcional)",
+                            "type": "object",
+                            "$ref": "#/definitions/PaymentProcessed"
+                        },
+                        "subscription_cancel_request": {
+                            "description": "Mock de solicitação de cancelamento de asssinatura (opcional)",
+                            "type": "object",
+                            "$ref": "#/definitions/SubscriptionCancelRequest"
+                        },
+                        "subscription_cancelled": {
+                            "description": "Mock de assinatura cancelada (opcional)",
+                            "type": "object",
+                            "$ref": "#/definitions/SubscriptionCancelled"
+                        }
+                    },
+                    "type": "object"
+                }
+            }
+        },
+        "Category": {
+            "properties": {
+                "id": {
+                    "description": "Id da categoria",
+                    "type": "integer",
+                    "example": 1
+                },
+                "name": {
+                    "description": "Nome da categoria",
+                    "type": "string",
+                    "example": "Nome Exemplo"
+                },
+                "description": {
+                    "description": "Descrição da categoria",
+                    "type": "string",
+                    "example": "Essa categoria é um exemplo"
+                },
+                "max_value": {
+                    "description": "Valor máximo de arrecadação. Após atingir esse valor, a categoria não permitirá mais assinaturas",
+                    "type": "number",
+                    "example": 245
+                },
+                "is_fixed_price": {
+                    "description": "Flag para determinar se uma categoria possui preço fixo ou variável",
+                    "type": "boolean",
+                    "example": false
+                },
+                "producer_id": {
+                    "description": "Id da Account do criador da categoria",
+                    "type": "integer",
+                    "example": 14
+                },
+                "plans": {
+                    "description": "Planos da categoria",
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Plan"
+                    }
+                },
+                "status": {
+                    "description": "Status de publicação da categoria",
+                    "type": "string",
+                    "enum": ["open", "closed"],
+                    "example": "open"
+                }
+            }
+        },
+        "ErrorModel": {
+            "description": "Modelo que encapsula os erros da aplicação",
+            "properties": {
+                "code": {
+                    "description": "Código HTTP do Erro",
+                    "type": "integer"
+                },
+                "message": {
+                    "description": "Mensagem de Erro",
+                    "type": "string"
+                },
+                "file": {
+                    "description": "Arquivo onde o erro for gerado",
+                    "type": "string"
+                },
+                "stacktrace": {
+                    "description": "Stacktrace do erro",
+                    "type": "string"
+                },
+                "field": {
+                    "description": "O field do erro",
+                    "type": "string"
+                },
+                "fields": {
+                    "description": "Os fields do erro, cada um com sua mensagem de erro",
+                    "type": "array",
+                    "items": {
+                        "properties": {
+                            "field_name": {
+                                "description": "Mensagem de erro do field",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "type": "object"
+                    }
+                }
+            }
+        },
+        "Plan": {
+            "required": [
+                "id",
+                "name",
+                "description",
+                "value",
+                "periodicity",
+                "periodicity_description",
+                "billing_description",
+                "is_fixed_price",
+                "status",
+                "category_id",
+                "address_required"
+            ],
+            "properties": {
+                "id": {
+                    "description": "Id do plano",
+                    "type": "integer",
+                    "example": 1
+                },
+                "name": {
+                    "description": "Nome do plano",
+                    "type": "string",
+                    "example": "Plano Básico"
+                },
+                "description": {
+                    "description": "Descrição do plano",
+                    "type": "string",
+                    "example": "Neste plano você recebe um monte de coisa nenhuma. ;)"
+                },
+                "value": {
+                    "description": "Valor do plano. Se for valor variável, é o valor mínimo.",
+                    "type": "number",
+                    "example": 1.5900000000000001
+                },
+                "periodicity": {
+                    "description": "Periodicidade de cobrança do plano",
+                    "type": "string",
+                    "enum": ["weekly", "monthly", "semester", "yearly"],
+                    "example": "monthly"
+                },
+                "periodicity_description": {
+                    "description": "Descrição da periodicidade de cobrança do plano",
+                    "type": "string",
+                    "example": "ao mês"
+                },
+                "billing_description": {
+                    "description": "Descrição da forma e data de cobrança",
+                    "type": "string",
+                    "example": "As cobranças mensais serão feitas sempre pela sua forma de pagamento padrão definida na sua Carteira. A cobrança é feita sempre no dia do mês em que você faz a assinatura."
+                },
+                "is_fixed_price": {
+                    "description": "Indica se o plano é de valor fixo ou variável",
+                    "type": "boolean",
+                    "example": true
+                },
+                "max_members": {
+                    "description": "Número máximo de assinantes que o plano pode ter",
+                    "type": "integer",
+                    "example": 100
+                },
+                "max_value": {
+                    "description": "Valor máximo que o plano pode arrecadar",
+                    "type": "number",
+                    "example": 1590
+                },
+                "status": {
+                    "description": "Status de publicação do plano",
+                    "type": "string",
+                    "enum": ["open", "closed"],
+                    "example": "open"
+                },
+                "category_id": {
+                    "description": "Id da categoria do plano",
+                    "type": "integer",
+                    "example": 1
+                },
+                "address_required": {
+                    "description": "Indica se o plano exige que o usuário selecione um endereço para realizar a assinatura",
+                    "type": "boolean",
+                    "example": false
+                },
+                "subscribers_count": {
+                    "description": "Número de assinantes do plano",
+                    "type": "integer",
+                    "example": 43
+                }
+            }
+        },
+        "PlanUpdateHistoryWidget": {
+            "required": ["type", "title", "body", "list"],
+            "properties": {
+                "type": {
+                    "description": "Tipo de widget",
+                    "type": "string",
+                    "example": "membership_plan_updates"
+                },
+                "title": {
+                    "description": "Título do widget",
+                    "type": "object",
+                    "example": {
+                        "value": "Plano alterado"
+                    }
+                },
+                "body": {
+                    "description": "Textos que fazem parte do corpo do widget (top ou bottom)",
+                    "type": "object",
+                    "example": {
+                        "top": "O dono deste plano fez as alterações a seguir em 88/88/8888 às 88:88.",
+                        "bottom": "Texto de exemplo no rodapé."
+                    }
+                },
+                "list": {
+                    "type": "object",
+                    "example": [
+                        {
+                            "label": "Nome antigo do plano",
+                            "text": "Plano Básico"
+                        },
+                        {
+                            "label": "Nome novo do plano",
+                            "text": "Plano Prata"
+                        }
+                    ]
+                }
+            }
+        },
+        "PlanUpdatedResource": {
+            "required": ["id", "changed_fields", "old", "new"],
+            "properties": {
+                "id": {
+                    "description": "Id da atualização de plano",
+                    "type": "integer",
+                    "example": 1
+                },
+                "changed_fields": {
+                    "description": "Lista de campos alterados",
+                    "type": "string"
+                },
+                "old": {
+                    "description": "Dados antes da alteração",
+                    "type": "string"
+                },
+                "new": {
+                    "description": "Dados depois da alteração",
+                    "type": "string"
+                }
+            }
+        },
+        "ProducerConfig": {
+            "title": "Configuração da conta",
+            "description": "Modelo de dados da configuração da conta do vendedor",
+            "properties": {
+                "webhook_url": {
+                    "description": "Url de disparo de webhook",
+                    "type": "string",
+                    "example": "https://seusite.com/webhook-picpay.php"
+                },
+                "webhook_verification_key": {
+                    "description": "Chave de validação de webhook gerada pela PicPay para enviar via header X-Verification-Key",
+                    "type": "string"
+                },
+                "terms_of_use_url": {
+                    "description": "Url da página de termos de uso para que o assinante possa abrir uma fonte externa antes de assinar os planos do vendedor relacionado",
+                    "type": "string",
+                    "example": "https://seusite.com/termos-de-uso"
+                },
+                "terms_of_use_markdown": {
+                    "description": "Texto com marcação de texto representando os termos de uso para que o assinante possa ler antes de assinar os planos do vendedor relacionado",
+                    "type": "string"
+                },
+                "terms_of_use_active": {
+                    "description": "Determina se os assinantes precisam aceitar os termos de uso antes de assinar os planos do vendedor",
+                    "type": "boolean",
+                    "example": true
+                }
+            }
+        },
+        "ProducerAccount": {
+            "title": "Producer",
+            "description": "Modelo de dados de um producer",
+            "properties": {
+                "id": {
+                    "description": "Id do producer",
+                    "type": "integer",
+                    "example": 123
+                },
+                "name": {
+                    "description": "Nome do producer",
+                    "type": "string",
+                    "example": "José da Silva"
+                },
+                "email": {
+                    "description": "E-mail do producer",
+                    "type": "string",
+                    "example": "ze.silva@picpay.com"
+                },
+                "phone": {
+                    "description": "Telefone do producer",
+                    "type": "string"
+                },
+                "is_pessoa_fisica": {
+                    "description": "Indica se o producer é pessoa física",
+                    "type": "boolean",
+                    "example": true
+                },
+                "img_url": {
+                    "description": "Url do avatar grande",
+                    "type": "string"
+                },
+                "img_url_small": {
+                    "description": "Url do avatar pequeno",
+                    "type": "string"
+                },
+                "type": {
+                    "description": "Tipo de producer",
+                    "type": "string"
+                },
+                "username": {
+                    "description": "Nome de usuário do producer",
+                    "type": "string",
+                    "example": "ze.silva"
+                },
+                "bio": {
+                    "description": "Biografia do producer",
+                    "type": "string",
+                    "example": "Oi, eu sou o Zé Silva"
+                },
+                "description_markdown": {
+                    "description": "Descrição em markdown do producer",
+                    "type": "string"
+                },
+                "analysis_status": {
+                    "description": "Status de análise da conta",
+                    "type": "string"
+                },
+                "active": {
+                    "description": "Indica se o producer está ativo",
+                    "type": "boolean",
+                    "example": true
+                }
+            }
+        },
+        "CategoryCreateBody": {
+            "title": "Category Create Request",
+            "description": "Modelo a ser usado em requisições de criação de categorias",
+            "properties": {
+                "name": {
+                    "description": "Nome da categoria",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Descrição da categoria",
+                    "type": "string"
+                },
+                "max_value": {
+                    "description": "Valor máximo de arrecadação da categoria.",
+                    "type": "string"
+                },
+                "is_fixed_price": {
+                    "description": "Define se a categoria é de valor fixo ou variável.",
+                    "type": "boolean"
+                },
+                "status": {
+                    "description": "Status de publicação da categoria.",
+                    "type": "string",
+                    "enum": ["open", "closed"]
+                }
+            },
+            "example": {
+                "name": "lorem ipsum",
+                "description": "dolor sit",
+                "max_value": 100,
+                "is_fixed_price": true,
+                "status": "open"
+            }
+        },
+        "CategoryUpdateBody": {
+            "title": "Category Update Request",
+            "description": "Modelo a ser usado em atualizações de categorias",
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/CategoryCreateBody/properties/name"
+                },
+                "description": {
+                    "$ref": "#/definitions/CategoryCreateBody/properties/description"
+                },
+                "status": {
+                    "$ref": "#/definitions/CategoryCreateBody/properties/status"
+                }
+            },
+            "example": {
+                "name": "consectetur adipiscing elit",
+                "description": "consectetur odio",
+                "status": "closed"
+            }
+        },
+        "PlanCreateBody": {
+            "title": "Plan Create Request",
+            "description": "Modelo a ser usado em requisições de criação de planos",
+            "properties": {
+                "name": {
+                    "description": "Nome do plano.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "Descrição do plano.",
+                    "type": "string"
+                },
+                "max_members": {
+                    "description": "Número máximo de membros ativos no plano ao mesmo tempo.",
+                    "type": "integer"
+                },
+                "value": {
+                    "description": "Valor cobrado na assinatura de um plano. Se o plano for de valor variável, é o valor mínimo da assinatura",
+                    "type": "number"
+                },
+                "periodicity": {
+                    "description": "Periodicidade em que ocorrerá a cobrança da assinatura para o plano cadastrado",
+                    "enum": ["weekly", "monthly", "semester", "yearly"]
+                },
+                "max_value": {
+                    "description": "Valor máximo de arrecadação do plano.",
+                    "type": "number"
+                },
+                "is_fixed_price": {
+                    "description": "Define se o plano será de valor fixo ou variável",
+                    "type": "boolean"
+                },
+                "status": {
+                    "description": "Status de publicação do plano",
+                    "type": "string",
+                    "enum": ["open", "closed"]
+                },
+                "category_id": {
+                    "description": "Id da categoria a qual o plano será atrelado",
+                    "type": "integer"
+                },
+                "address_required": {
+                    "description": "Define se o assinante precisa de um endereço para realizar a assinatura deste plano",
+                    "type": "boolean"
+                }
+            },
+            "example": {
+                "name": "lorem ipsum",
+                "description": "dolor sit amet",
+                "max_members": 40,
+                "value": 2.5,
+                "periodicity": "monthly",
+                "max_value": 100,
+                "is_fixed_price": false,
+                "status": "open",
+                "category_id": 1,
+                "address_required": false
+            }
+        },
+        "PlanDeleteBody": {
+            "title": "Plan Delete Request",
+            "description": "Modelo a ser utilizado em requisições de deleção de planos",
+            "properties": {
+                "refund_policy": {
+                    "description": "Política de estorno aplicada às assinaturas ativas do plano",
+                    "type": "string",
+                    "enum": ["no_refund", "proportional_refund", "full_refund"]
+                }
+            },
+            "example": {
+                "refund_policy": "no_refund"
+            }
+        },
+        "PlanUpdateBody": {
+            "title": "Plan Update Request",
+            "description": "Modelo a ser usado em requisições de atualização de planos",
+            "properties": {
+                "name": {
+                    "$ref": "#/definitions/PlanCreateBody/properties/name"
+                },
+                "description": {
+                    "$ref": "#/definitions/PlanCreateBody/properties/description"
+                },
+                "max_members": {
+                    "$ref": "#/definitions/PlanCreateBody/properties/max_members"
+                },
+                "max_value": {
+                    "$ref": "#/definitions/PlanCreateBody/properties/max_value"
+                },
+                "status": {
+                    "$ref": "#/definitions/PlanCreateBody/properties/status"
+                },
+                "address_required": {
+                    "$ref": "#/definitions/PlanCreateBody/properties/address_required"
+                }
+            },
+            "example": {
+                "name": "Praesent nec ex hendrerit",
+                "description": "tincidunt sapien sit amet",
+                "max_members": 50,
+                "max_value": 1000,
+                "status": "closed",
+                "address_required": true
+            }
+        },
+        "PlanUpdateValueBody": {
+            "title": "Plan Value Update Request",
+            "description": "Modelo a ser usado em requisições de atualização do valor de planos",
+            "properties": {
+                "value": {
+                    "$ref": "#/definitions/PlanCreateBody/properties/value"
+                }
+            },
+            "example": {
+                "value": 3
+            }
+        },
+        "SubscriptionCancel": [],
+        "Subscription": {
+            "properties": {
+                "id": {
+                    "description": "id da Assinatura",
+                    "type": "string",
+                    "example": "1"
+                },
+                "value": {
+                    "description": "Valor da assinatura",
+                    "type": "number",
+                    "example": 1.1000000000000001
+                },
+                "status": {
+                    "description": "Status da assinatura",
+                    "type": "string",
+                    "enum": [
+                        "active",
+                        "cancelled",
+                        "deleted",
+                        "payment_delayed",
+                        "pending_cancellation",
+                        "under_analysis"
+                    ],
+                    "example": "active"
+                },
+                "sign_up_date": {
+                    "description": "Data de ingresso no plano (a data de cobrança ocorrerá sempre no mesmo dia, respeitando-se a periodicidade do plano)",
+                    "type": "string",
+                    "example": "2018-05-04T15:33:16-03:00"
+                },
+                "next_payment_date": {
+                    "description": "Data da próxima cobrança",
+                    "type": "string",
+                    "example": "2018-06-04T15:33:16-03:00"
+                },
+                "billing_date_description": {
+                    "description": "Descrição da forma de cobrança da assinatura",
+                    "type": "string",
+                    "example": "Plano mensal. Próxima cobrança: <b>04/06/2018</b>."
+                },
+                "last_payment_date": {
+                    "description": "Data do ultimo pagamento processado para essa assinatura",
+                    "type": "string",
+                    "example": "2018-05-04T15:33:16-03:00"
+                },
+                "external_id": {
+                    "description": "Id que identifica a assinatura no serviço de pagamento recorrente",
+                    "type": "string",
+                    "example": "75768141-c4e7-426e-9b8a-ae6229d54bb7"
+                },
+                "visibility": {
+                    "description": "Visibilidade da assinatura no feed",
+                    "type": "string",
+                    "enum": ["1", "2", "3"],
+                    "example": "1"
+                },
+                "subscriber_id": {
+                    "description": "Id do consumer dono da assinatura",
+                    "type": "string",
+                    "example": "43"
+                },
+                "producer_id": {
+                    "description": "Id do seller produtor da assinatura",
+                    "type": "string",
+                    "example": "7"
+                },
+                "plan_id": {
+                    "description": "Id do plano assinado",
+                    "type": "string",
+                    "example": "3"
+                },
+                "last_billing_date_description": {
+                    "description": "Descrição da última cobrança da assinatura",
+                    "type": "string",
+                    "example": "Última cobrança: <b>04/05/2018 às 15:33</b>"
+                },
+                "warning_text": {
+                    "description": "Texto de warning para exibir no aplicativo",
+                    "type": "string",
+                    "example": "Assinatura atrasada."
+                },
+                "missing_address": {
+                    "description": "Se a assinatura possui endereço faltando (plano passou a pedir endereo após assinatura)",
+                    "type": "boolean"
+                },
+                "plan": {
+                    "description": "O id do pagamento recorrente que foi gerado",
+                    "$ref": "#/definitions/Plan"
+                },
+                "payment": {
+                    "description": "Objeto representando a transação no pagamento recorrente",
+                    "type": "object"
+                },
+                "subscriber": {
+                    "description": "Objeto com dados do consumer que fez a assinatura",
+                    "type": "object"
+                }
+            }
+        },
+        "Address": {
+            "title": "Endereço",
+            "description": "Modelo de endereços vinculados à assinaturas",
+            "properties": {
+                "address_name": {
+                    "description": "Apelido do endereço",
+                    "type": "string",
+                    "example": "Minha Casa"
+                },
+                "zip_code": {
+                    "description": "CEP",
+                    "type": "string",
+                    "example": "29015030"
+                },
+                "street_name": {
+                    "description": "Rua",
+                    "type": "string",
+                    "example": "Praça Dom Luiz Scortegagna"
+                },
+                "street_number": {
+                    "description": "Número",
+                    "type": "string",
+                    "example": "s/n"
+                },
+                "address_complement": {
+                    "description": "Complemento",
+                    "type": "string",
+                    "example": "apt 101"
+                },
+                "neighborhood": {
+                    "description": "Bairro",
+                    "type": "string",
+                    "example": "Centro"
+                },
+                "city": {
+                    "description": "Cidade",
+                    "type": "string",
+                    "example": "Vitória"
+                },
+                "state": {
+                    "description": "Estado",
+                    "type": "string",
+                    "example": "ES"
+                },
+                "country": {
+                    "description": "País",
+                    "type": "string",
+                    "example": "BR"
+                }
+            }
+        },
+        "NewSubscription": {
+            "title": "Nova Assinatura",
+            "description": "Modelo de dados de novas assinaturas",
+            "properties": {
+                "subscription_id": {
+                    "description": "Class WHNewSubscriptionResource",
+                    "$ref": "#/definitions/Subscription/properties/id"
+                },
+                "value": {
+                    "description": "Class WHNewSubscriptionResource",
+                    "$ref": "#/definitions/Subscription/properties/value"
+                },
+                "status": {
+                    "description": "Class WHNewSubscriptionResource",
+                    "$ref": "#/definitions/Subscription/properties/status"
+                },
+                "sign_up_date": {
+                    "description": "Class WHNewSubscriptionResource",
+                    "$ref": "#/definitions/Subscription/properties/sign_up_date"
+                },
+                "next_payment_date": {
+                    "description": "Class WHNewSubscriptionResource",
+                    "$ref": "#/definitions/Subscription/properties/next_payment_date"
+                },
+                "address": {
+                    "description": "Endereço vinculado à assinatura",
+                    "type": "object",
+                    "$ref": "#/definitions/Address"
+                },
+                "subscriber": {
+                    "description": "Assinante vinculado à assinatura",
+                    "type": "object",
+                    "$ref": "#/definitions/Subscriber"
+                },
+                "plan": {
+                    "description": "Plano assinado",
+                    "type": "object",
+                    "$ref": "#/definitions/Plan"
+                },
+                "transaction_id": {
+                    "description": "Id da transação da assinatura",
+                    "type": "integer"
+                }
+            }
+        },
+        "PaymentProcessed": {
+            "title": "Pagamento Processado",
+            "description": "Modelo de dados para pagamento processado",
+            "properties": {
+                "subscription_id": {
+                    "description": "Id da assinatura",
+                    "type": "integer",
+                    "example": 123123
+                },
+                "subscriber_id": {
+                    "description": "Id do assinante",
+                    "type": "integer",
+                    "example": 123
+                },
+                "value": {
+                    "description": "Valor pago",
+                    "type": "number",
+                    "example": 10.56
+                },
+                "payment_number": {
+                    "description": "Código do pagamento",
+                    "type": "integer",
+                    "example": 3
+                },
+                "payment_date": {
+                    "description": "Data do pagamento",
+                    "type": "string",
+                    "example": "2020-08-23T11:15:31"
+                },
+                "next_payment_date": {
+                    "description": "Data da próxima cobrança",
+                    "type": "string",
+                    "example": "2020-09-23T11:15:31"
+                },
+                "transaction_id": {
+                    "description": "Id da transação",
+                    "type": "integer",
+                    "example": 123456789
+                }
+            }
+        },
+        "Subscriber": {
+            "title": "Assinante",
+            "description": "Modelo de Assinante para o que é relacionado às assinaturas",
+            "properties": {
+                "id": {
+                    "description": "Id do assinante",
+                    "type": "integer",
+                    "example": 135135
+                },
+                "username": {
+                    "description": "Nome de usuário do assinante",
+                    "type": "string",
+                    "example": "ze.silva"
+                },
+                "cpf": {
+                    "description": "CPF do assinante",
+                    "type": "string",
+                    "example": "46465361370"
+                },
+                "name": {
+                    "description": "Nome do assinante",
+                    "type": "string",
+                    "example": "José da Silva"
+                },
+                "email": {
+                    "description": "E-mail do assinante",
+                    "type": "string",
+                    "example": "ze.silva@picpay.com"
+                },
+                "birth_date": {
+                    "description": "Data de aniversário do assinante em formato YYYY-MM-DD",
+                    "type": "string",
+                    "example": "1982-01-03"
+                },
+                "gender": {
+                    "description": "Gênero do assinante",
+                    "type": "string",
+                    "example": "M"
+                },
+                "phone_number": {
+                    "description": "Telefone",
+                    "properties": {
+                        "country": {
+                            "description": "DDI do país",
+                            "type": "integer",
+                            "example": 55
+                        },
+                        "area": {
+                            "description": "DDD da área",
+                            "type": "integer",
+                            "example": 27
+                        },
+                        "number": {
+                            "description": "Número do telefone",
+                            "type": "integer",
+                            "example": 9988555555
+                        }
+                    },
+                    "type": "object"
+                },
+                "image_url_small": {
+                    "description": "Url do avatar do assinante (tamanho pequeno)",
+                    "type": "string",
+                    "example": "https://user-images.githubusercontent.com/1821047/41442843-ab51143a-700f-11e8-8f5f-6206e76a8e9c.png"
+                },
+                "image_url_large": {
+                    "description": "Url do avatar do assinante (tamanho grande)",
+                    "type": "string",
+                    "example": "https://user-images.githubusercontent.com/1821047/41442843-ab51143a-700f-11e8-8f5f-6206e76a8e9c.png"
+                }
+            }
+        },
+        "SubscriptionCancelRequest": {
+            "title": "Solicitação de Cancelamento de Assinatura",
+            "description": "Modelo de dados de uma solicitação de cancelamento de assinatura",
+            "properties": {
+                "subscription_id": {
+                    "description": "Class WHSubscriptionCancelRequestResource",
+                    "$ref": "#/definitions/SubscriptionCancelled/properties/subscription_id"
+                },
+                "value": {
+                    "description": "Class WHSubscriptionCancelRequestResource",
+                    "$ref": "#/definitions/SubscriptionCancelled/properties/value"
+                },
+                "status": {
+                    "description": "Class WHSubscriptionCancelRequestResource",
+                    "$ref": "#/definitions/SubscriptionCancelled/properties/status"
+                },
+                "last_payment_date": {
+                    "description": "Class WHSubscriptionCancelRequestResource",
+                    "$ref": "#/definitions/SubscriptionCancelled/properties/last_payment_date"
+                },
+                "subscriber_id": {
+                    "description": "Class WHSubscriptionCancelRequestResource",
+                    "$ref": "#/definitions/SubscriptionCancelled/properties/subscriber_id"
+                },
+                "plan": {
+                    "description": "Class WHSubscriptionCancelRequestResource",
+                    "$ref": "#/definitions/SubscriptionCancelled/properties/plan"
+                },
+                "refund_policy": {
+                    "description": "Class WHSubscriptionCancelRequestResource",
+                    "$ref": "#/definitions/SubscriptionCancelled/properties/refund_policy"
+                },
+                "refund_value": {
+                    "description": "Class WHSubscriptionCancelRequestResource",
+                    "$ref": "#/definitions/SubscriptionCancelled/properties/refund_value"
+                },
+                "cancel_date": {
+                    "description": "Class WHSubscriptionCancelRequestResource",
+                    "$ref": "#/definitions/SubscriptionCancelled/properties/cancel_date"
+                },
+                "cancel_reason": {
+                    "description": "Class WHSubscriptionCancelRequestResource",
+                    "$ref": "#/definitions/SubscriptionCancelled/properties/cancel_reason"
+                }
+            }
+        },
+        "SubscriptionCancelled": {
+            "title": "Assinatura Cancelada",
+            "description": "Modelo de dados de uma assinatura cancelada",
+            "properties": {
+                "subscription_id": {
+                    "description": "Id da assinatura",
+                    "type": "integer",
+                    "example": 123123
+                },
+                "value": {
+                    "description": "Valor assinado",
+                    "type": "number",
+                    "example": 10.56
+                },
+                "status": {
+                    "description": "Status da assinatura",
+                    "type": "string",
+                    "example": "subscription_cancelled",
+                    "$ref": "#/definitions/Subscription/properties/status"
+                },
+                "last_payment_date": {
+                    "description": "Data/hora do último pagamento",
+                    "type": "string",
+                    "$ref": "#/definitions/Subscription/properties/last_payment_date"
+                },
+                "subscriber_id": {
+                    "description": "Id do assinante",
+                    "type": "integer",
+                    "example": 123
+                },
+                "plan": {
+                    "description": "Plano assinado",
+                    "type": "object",
+                    "$ref": "#/definitions/Plan"
+                },
+                "refund_policy": {
+                    "description": "Política de reembolso selecionada",
+                    "type": "string",
+                    "enum": ["full_refund", "proportional_refund", "no_refund"],
+                    "example": "no_refund"
+                },
+                "refund_value": {
+                    "description": "Valor reembolsado",
+                    "type": "number",
+                    "example": 0
+                },
+                "cancel_date": {
+                    "description": "Data/hora do cancelamento",
+                    "type": "string",
+                    "example": "2020-09-23T11:54:31"
+                },
+                "cancel_reason": {
+                    "description": "Motivo do cancelamento selecionado",
+                    "type": "string",
+                    "enum": ["consumer_request", "producer_request", "plan_cancelled", "missing_payment"],
+                    "example": "consumer_request"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,109 @@
+<seller-panel-header (logout)="onLogout()"></seller-panel-header>
+<div class="c-home o-page">
+    <div class="c-home__body">
+        <ng-container *ngIf="showAccountError">
+            <div class="c-home__feedback">
+                <apollo-feedback-card
+                    label="A conta bancária cadastrada não é válida. Para receber seu dinheiro, edite a conta."
+                    type="error"
+                    stacked="true"
+                    emphasis="true"
+                >
+                    <apollo-button
+                        class="c-home__feedback--edit-account"
+                        variant="link"
+                        size="sm"
+                        (click)="handleNavigateEditAccount()"
+                    >
+                        Editar conta bancária
+                    </apollo-button>
+                    <apollo-button
+                        class="c-home__feedback--manage-account"
+                        variant="link"
+                        size="sm"
+                        (click)="handleNavigateManageAccounts()"
+                    >
+                        Gerencias contas
+                    </apollo-button>
+                </apollo-feedback-card>
+            </div>
+        </ng-container>
+
+        <div class="c-home__actions">
+            <div class="c-home__actions--box">
+                <seller-panel-resume-balance-available
+                    [balance]="balanceAvaliable"
+                    [blockedBalance]="blockedBalance"
+                    [loading]="isLoadingWallet"
+                    [error]="balanceError"
+                    [accountError]="accountError"
+                    [checkingBankAccount]="checkingBankAccount"
+                    [retryCheckBankAccount]="retryCheckBankAccount"
+                ></seller-panel-resume-balance-available>
+            </div>
+            <div class="c-home__actions--box">
+                <seller-panel-resume-future-releases
+                    [balance]="balanceFutureReleases"
+                    [loading]="isLoadingWallet"
+                    [error]="balanceError"
+                >
+                </seller-panel-resume-future-releases>
+            </div>
+        </div>
+
+        <div class="c-home__transactions">
+            <!-- Loading -->
+            <ng-container *ngIf="isLoading && transactions.length <= 0">
+                <div class="c-home__transactions--loading">
+                    <seller-panel-loading-spinner [size]="60" [stroke]="6"></seller-panel-loading-spinner>
+                </div>
+            </ng-container>
+
+            <!-- Table -->
+            <div class="c-home__transactions--header" [hidden]="isLoading">
+                <h2 class="c-home__transactions--title">Últimas transações</h2>
+                <apollo-button
+                    class="c-home__transactions--btn-shipment"
+                    variant="unelevated"
+                    routerLink="/remessa-de-credito"
+                    *ngIf="b2p"
+                >
+                    <apollo-icon
+                        class="c-home__transactions--btn-shipment"
+                        svg-icon="money_business-usd-circle"
+                        slot="leading-icon"
+                        size="sm"
+                    ></apollo-icon>
+                    Criar nova remessa
+                </apollo-button>
+            </div>
+            <ng-container *ngIf="!transactionsError && !isLoading && transactions.length > 0">
+                <seller-panel-table-transactions
+                    [listTransactions]="transactions"
+                    [displayedColumns]="columsTable"
+                    [page]="'inicio'"
+                ></seller-panel-table-transactions>
+                <button
+                    mat-button
+                    color="primary"
+                    routerLink="/transacoes"
+                    class="c-home__transactions--see-more o-button p-1"
+                    (click)="eventTrackingClicked()"
+                >
+                    <span>Conferir todas</span>
+                </button>
+            </ng-container>
+
+            <!-- No results -->
+            <ng-container *ngIf="(transactions.length === 0 || transactionsError) && !isLoading">
+                <div class="c-home__transactions--feedback">
+                    <seller-panel-feedback
+                        [imagePath]="emptyStateData.svgPath"
+                        [title]="emptyStateData.title"
+                        [description]="emptyStateData.description"
+                    ></seller-panel-feedback>
+                </div>
+            </ng-container>
+        </div>
+    </div>
+</div>

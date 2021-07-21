@@ -1,0 +1,148 @@
+@use "mixins/breakpoint";
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/ui-styles';
+
+body[data-theme='light'] {
+    @include mat-core-theme($app-theme);
+    @include mat-table-theme($app-theme);
+    @include mat-tabs-theme($app-theme);
+    @include mat-button-theme($app-theme);
+    @include mat-form-field-theme($app-theme);
+    @include mat-input-theme($app-theme);
+    @include mat-select-theme($app-theme);
+    @include mat-tooltip-theme($app-theme);
+    @include mat-menu-theme($app-theme);
+    @include mat-progress-spinner-theme($app-theme);
+    @include mat-snack-bar-theme($app-theme);
+}
+
+body[data-theme='dark'] {
+    @include mat-core-theme($app-dark-theme);
+    @include mat-button-theme($app-dark-theme);
+    @include mat-form-field-theme($app-dark-theme);
+    @include mat-input-theme($app-dark-theme);
+    @include mat-tooltip-theme($app-dark-theme);
+    @include mat-table-theme($app-dark-theme);
+    @include mat-select-theme($app-dark-theme);
+    @include mat-tabs-theme($app-dark-theme);
+    @include mat-menu-theme($app-dark-theme);
+    @include mat-progress-spinner-theme($app-dark-theme);
+    @include mat-snack-bar-theme($app-dark-theme);
+}
+
+body {
+    background-color: rgb(var(--apollo-background-rgb));
+    color: rgba(var(--apollo-on-background-rgb), 0.86);
+}
+
+.c-section {
+    height: calc(100% - 48px);
+
+    &--no-margin {
+        margin-top: -#{theme('spacing.4')};
+    }
+
+    &__headline {
+        margin: theme('spacing.3') theme('spacing.none') theme('spacing.4');
+    }
+
+    &__title {
+        @include typography.title(large);
+
+        display: none;
+        margin-bottom: theme('spacing.3');
+
+        @include breakpoint.up(small) {
+            display: block;
+        }
+    }
+
+    &__feedback {
+        margin-bottom: theme('spacing.3');
+    }
+
+    &__body {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        padding-bottom: theme('spacing.7');
+
+        @include breakpoint.up(small) {
+            height: 100%;
+        }
+    }
+
+    &__body-description {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__body-paragraph {
+        color: theme('colors.grayscale.base');
+    }
+
+    &__body-link {
+        @include typography.link(primary);
+        cursor: pointer;
+    }
+
+    &__form {
+        padding-bottom: theme('spacing.7');
+    }
+
+    &__form-field {
+        margin-bottom: theme('spacing.3');
+    }
+}
+
+.c-footer {
+    position: absolute;
+    bottom: theme('spacing.none');
+    left: theme('spacing.none');
+    display: flex;
+    align-items: center;
+    align-self: flex-start;
+    width: 100%;
+    padding: theme('spacing.none') theme('spacing.2');
+
+    &--with-description {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    &--reverse {
+        flex-direction: column-reverse;
+        justify-content: flex-end;
+
+        @include breakpoint.up(small) {
+            flex-direction: row-reverse;
+        }
+    }
+
+    &__description {
+        margin-bottom: theme('spacing.2');
+    }
+
+    &__link {
+        @include typography.link(primary);
+    }
+
+    &__button {
+        width: 100%;
+
+        @include breakpoint.up(small) {
+            max-width: 255px;
+        }
+
+        &--previous {
+            display: none;
+
+            @include breakpoint.up(small) {
+                display: block;
+                margin-right: theme('spacing.3');
+            }
+        }
+    }
+}

@@ -1,0 +1,49 @@
+<div class="c-inputs-apis">
+    <div class="c-inputs-apis__header">
+        <h1 class="c-inputs-apis--title">{{ title }}</h1>
+        <apollo-button variant="link" (click)="hiddenToken = !hiddenToken">
+            <apollo-icon
+                slot="leading-icon"
+                [svgIcon]="hiddenToken ? 'interface-eye-slash' : 'interface-eye'"
+                size="sm"
+            ></apollo-icon>
+            {{ hiddenToken ? 'Mostrar tokens' : 'Esconder tokens' }}
+        </apollo-button>
+    </div>
+
+    <apollo-textfield
+        class="c-inputs-apis--field"
+        label="{{ tokens?.picpayToken }}"
+        name="x-picpay-token"
+        leading-icon="true"
+        [type]="hiddenToken ? 'password' : 'text'"
+        [value]="tokens?.x_picpay_token"
+        #xPicpayToken
+    >
+        <apollo-textfield-icon
+            slot="trailing-icon"
+            [cdkCopyToClipboard]="tokens?.x_picpay_token"
+            (cdkCopyToClipboardCopied)="onCopyInputTokenCallback($event, tokens?.picpayToken)"
+        >
+            <apollo-icon svg-icon="interface-copy"></apollo-icon>
+        </apollo-textfield-icon>
+    </apollo-textfield>
+
+    <apollo-textfield
+        class="c-inputs-apis--field"
+        label="{{ tokens?.sellerToken }}"
+        name="x-seller-token"
+        leading-icon="true"
+        [type]="hiddenToken ? 'password' : 'text'"
+        [value]="tokens?.x_seller_token"
+        #xSellerToken
+    >
+        <apollo-textfield-icon
+            slot="trailing-icon"
+            [cdkCopyToClipboard]="tokens?.x_seller_token"
+            (cdkCopyToClipboardCopied)="onCopyInputTokenCallback($event, tokens?.sellerToken)"
+        >
+            <apollo-icon svg-icon="interface-copy"></apollo-icon>
+        </apollo-textfield-icon>
+    </apollo-textfield>
+</div>

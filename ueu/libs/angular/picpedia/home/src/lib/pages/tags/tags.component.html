@@ -1,0 +1,12 @@
+<picpedia-navbar-header title="Tags"></picpedia-navbar-header>
+<section class="c-tags container-fluid">
+    <div class="c-tags__list row">
+        <div class="c-tags__list-container col-12 d-flex flex-wrap align-items-baseline">
+            <picpedia-badge
+                class="c-tags__list--item"
+                *ngFor="let item of tags$ | async"
+                [description]="item.tag_name"
+            ></picpedia-badge>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,123 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-table-transactions {
+    width: 100%;
+
+    .o-table__item {
+        @include typography.body(primary, normal);
+
+        border: none;
+        font-weight: 600;
+        padding: 0 8px;
+
+        &:first-of-type {
+            border: {
+                top-left-radius: 8px;
+                bottom-left-radius: 8px;
+            }
+        }
+        &:last-of-type {
+            border: {
+                top-right-radius: 8px;
+                bottom-right-radius: 8px;
+            }
+        }
+    }
+
+    &__consumer {
+        img {
+            width: 40px;
+            border-radius: 50%;
+            margin: 0 16px;
+        }
+    }
+
+    &__status {
+        &--wrapper {
+            display: flex;
+            align-items: center;
+
+            .mat-icon {
+                margin-right: 12px;
+            }
+        }
+    }
+
+    &__icon {
+        line-height: 12px !important;
+    }
+
+    @media screen and (max-width: 1366px) {
+        &__consumer {
+            max-width: 225px !important;
+        }
+
+        &__date {
+            max-width: 120px !important;
+        }
+
+        &__unity {
+            max-width: 100px !important;
+        }
+    }
+
+    @media screen and (max-width: 1080px) {
+        &__id,
+        &__unity {
+            display: none;
+        }
+
+        &__consumer {
+            max-width: 200px !important;
+        }
+
+        .o-table {
+            &__header-row {
+                .mat-column-id,
+                .mat-column-unity {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        padding: 0 4px;
+
+        &__date,
+        &__icon,
+        &__status span {
+            display: none;
+        }
+
+        &__consumer {
+            max-width: 150px !important;
+            img {
+                margin: 0 8px;
+            }
+        }
+
+        &__status {
+            max-width: 23px;
+            .mat-icon {
+                margin: 0 auto;
+            }
+        }
+
+        &__price {
+            max-width: 70px;
+            text-align: right;
+        }
+
+        .o-table {
+            &__header-row {
+                display: none;
+            }
+
+            &__item {
+                font-size: 14px;
+            }
+        }
+    }
+}

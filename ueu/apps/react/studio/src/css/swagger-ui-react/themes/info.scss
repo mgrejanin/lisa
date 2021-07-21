@@ -1,0 +1,166 @@
+@use "mixins/typography";
+@use "mixins/breakpoint";
+
+.info {
+    margin: 50px 0;
+
+    &.failed-config {
+        max-width: 880px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+
+    hgroup.main {
+        margin: theme('spacing.none') theme('spacing.none') theme('spacing.3');
+
+        a {
+            font-size: theme('fontSize.xs');
+            color: var(--apollo-gray-dark);
+
+            ::before {
+                content: 'URL: ';
+                color: theme('colors.grayscale.700');
+                font-weight: theme('fontWeight.semibold');
+            }
+        }
+    }
+    pre {
+        font-size: theme('fontSize.sm');
+    }
+    p,
+    li,
+    table {
+        @include text_body();
+        padding-bottom: theme('spacing.2');
+    }
+
+    .renderedMarkdown {
+        table {
+            width: 40rem;
+            margin: auto;
+            margin-bottom: theme('spacing.2');
+            border-top: theme('borderWidth.strong') solid theme('colors.primary.base');
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.04), 0px 3px 8px rgba(0, 0, 0, 0.04),
+                0px 0px 8px rgba(0, 0, 0, 0.04);
+            border-spacing: 0;
+            border-radius: theme('borderRadius.light');
+            @include breakpoint.down(small) {
+                width: 100%;
+            }
+        }
+        tr {
+            text-align: center;
+            &:nth-child(even) {
+                background-color: theme('colors.grayscale.50');
+            }
+
+            &:not(:last-child) {
+                border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.300');
+            }
+        }
+
+        thead {
+            display: table-header-group;
+            th {
+                text-transform: uppercase;
+                border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.300');
+
+                &:first-child {
+                    border-top-left-radius: theme('borderRadius.medium') !important;
+                }
+                &:last-child {
+                    border-top-right-radius: theme('borderRadius.medium') !important;
+                }
+            }
+        }
+
+        td {
+            border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.300');
+        }
+
+        th,
+        td {
+            padding: theme('spacing.2');
+            &:not(:first-child) {
+                border-left: 1px solid theme('colors.grayscale.300');
+            }
+        }
+    }
+
+    h1 {
+        @include typography.title(large);
+    }
+
+    h2 {
+        @include typography.title(medium);
+    }
+
+    h3 {
+        @include typography.title(small);
+    }
+
+    h4 {
+        @include text_body();
+        font-size: theme('fontSize.xl');
+        font-weight: theme('fontWeight.bold');
+    }
+
+    h5 {
+        @include text_body();
+        font-size: theme('fontSize.lg');
+        font-weight: theme('fontWeight.bold');
+    }
+
+    a {
+        font-size: 14px;
+        transition: all 0.4s;
+
+        @include text_body(var(--apollo-primary));
+
+        &:hover {
+            color: darken(theme('colors.primary.light.500'), 15%);
+        }
+        .url {
+            display: none;
+        }
+    }
+    > div {
+        margin: theme('spacing.none') theme('spacing.none') theme('spacing.half');
+    }
+
+    &__contact {
+        display: none;
+    }
+
+    .base-url {
+        display: none;
+    }
+
+    .title {
+        @include typography.title(xlarge);
+        margin: theme('spacing.none');
+        text-transform: uppercase;
+        word-wrap: break-word;
+        color: theme('colors.grayscale.900');
+        small {
+            display: block;
+
+            &.version-stamp {
+                display: none;
+            }
+
+            pre.version {
+                background-color: theme('colors.white');
+                font-size: theme('fontSize.xs');
+                color: theme('colors.grayscale.700');
+                margin: theme('spacing.none');
+                padding: theme('spacing.none');
+
+                &::before {
+                    content: 'Versão atual:';
+                }
+            }
+        }
+    }
+}

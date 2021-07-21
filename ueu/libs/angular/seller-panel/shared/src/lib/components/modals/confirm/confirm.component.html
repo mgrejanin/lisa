@@ -1,0 +1,36 @@
+<section class="c-confirm">
+    <div class="c-confirm__header">
+        <h2 class="c-confirm__header--title">{{ data?.title || 'Confirmar' }}</h2>
+        <button class="c-confirm__header--close-btn" type="button" (click)="onClose()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="c-confirm__body">
+        <h3>{{ data?.subtitle }}</h3>
+        <p>{{ data?.caption }}</p>
+    </div>
+    <div
+        class="c-confirm__footer"
+        [ngClass]="cancelButton || data?.buttons?.cancel ? 'c-confirm__footer--align-end' : ''"
+    >
+        <button
+            *ngIf="cancelButton || data?.buttons?.cancel"
+            mat-flat-button
+            color="secondary"
+            class="c-confirm__footer--btn-cancel o-button o-button__link"
+            type="button"
+            (click)="onClose()"
+        >
+            {{ data?.buttons?.cancel || 'Cancelar' }}
+        </button>
+        <button
+            mat-button
+            color="primary"
+            class="c-confirm__footer--btn-confirm o-button o-button__solid"
+            type="button"
+            (click)="onConfirm()"
+        >
+            {{ data?.buttons?.confirm || 'Confirmar' }}
+        </button>
+    </div>
+</section>

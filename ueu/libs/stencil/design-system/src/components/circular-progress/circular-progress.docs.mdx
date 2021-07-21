@@ -1,0 +1,50 @@
+import { Story, Status } from './../../../.storybook/components';
+import { Props } from '@storybook/addon-docs/blocks';
+
+# Circular Progress
+
+<Status />
+
+<Story id="components-circular-progress--base" />
+
+<Props id="components-circular-progress--base" />
+
+## Methods
+
+### `setDeterminate(determinate: boolean) => Promise<void>`
+
+API para deixar o estado fixo ou não
+
+#### Returns
+
+Type: `Promise<void>`
+
+### `setProgress(progress: number) => Promise<void>`
+
+API para setar o progresso do circulo
+
+#### Returns
+
+Type: `Promise<void>`
+
+### Orientações para angular:
+
+Para utilizar os métodos do componente utilize o @ViewChild() conforme exemplo a seguir:
+
+Html:
+
+```html
+<apollo-circular-progress #component></apollo-circular-progress>
+```
+
+Ts:
+
+```javascript
+@ViewChild('component') component: ApolloCircularProgress;
+
+//...
+
+setDisabled() {
+    this.component.setDeterminate(true);
+}
+```

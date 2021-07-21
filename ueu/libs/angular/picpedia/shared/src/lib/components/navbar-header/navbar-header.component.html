@@ -1,0 +1,58 @@
+<section class="c-navbar-header">
+    <div class="c-navbar-header__actions-row row">
+        <div class="c-navbar-header__container-breadcrumb">
+            <apollo-icon-button
+                title="Voltar"
+                *ngIf="showReturnButton"
+                icon="arrow_back"
+                (click)="onReturnButtonClick()"
+                class="c-navbar-header__return-button"
+            ></apollo-icon-button>
+
+            <div *ngIf="showBreadcrumbs" class="c-navbar-header__breadcrumb">
+                <div *ngFor="let item of breadcrumbs$ | async">
+                    <div
+                        *ngIf="currentRouteUrlPath === item.url; then activeRouteUrlPath; else parentRouteUrlPath"
+                    ></div>
+
+                    <ng-template #activeRouteUrlPath>
+                        <div class="c-navbar-header__breadcrumb-active">{{ item.label }}</div>
+                    </ng-template>
+
+                    <ng-template #parentRouteUrlPath>
+                        <apollo-button
+                            variant="link"
+                            size="md"
+                            [routerLink]="'/' + item.url"
+                            routerLinkActive="router-link-active"
+                        >
+                            {{ item.label }}
+                        </apollo-button>
+                        <span class="c-navbar-header__breadcrumb-separator">/</span>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+
+        <div class="c-navbar-header__actions-row__container-right">
+            <apollo-icon-button icon="help_outline" label="Filtrar"></apollo-icon-button>
+            <apollo-icon-button iconPack="interface" icon="interface-bell" label="Notificações"></apollo-icon-button>
+
+            <picpay-user-dropdown
+                class="c-navbar-header__user-dropdown"
+                [username]="(user$ | async)?.firstName"
+                *ngIf="user$ | async"
+            >
+                <button mat-flat-button class="c-user-dropdown__menu-button" (click)="handleLogout()">
+                    <mat-icon class="c-user-dropdown__menu-icon">highlight_off</mat-icon>
+                    <span>Sair</span>
+                </button>
+            </picpay-user-dropdown>
+        </div>
+    </div>
+    <div class="c-navbar-header__title-row row">
+        <div class="-navbar-header__title-container col-12">
+            <h1 class="c-navbar-header__title">{{ title }}</h1>
+        </div>
+    </div>
+</section>

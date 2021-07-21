@@ -1,0 +1,49 @@
+.sidepanel {
+    height: calc(100vh - 72px);
+    background-color: theme('colors.grayscale.lightest');
+    position: relative;
+    overflow-y: auto;
+    border-right: theme('borderWidth.light') solid theme('colors.grayscale.200');
+    display: block;
+    width: 27rem;
+
+    &__title {
+        margin-bottom: 0;
+        text-align: center;
+        font-size: theme('fontSize.3xl');
+        font-weight: theme('fontWeight.extrabold');
+    }
+
+    &__description {
+        padding: theme('spacing.1') theme('spacing.3') theme('spacing.4');
+        border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.100');
+        font-size: theme('fontSize.base');
+        text-align: center;
+    }
+
+    &__close {
+        display: flex;
+        justify-content: flex-end;
+        padding: theme('spacing.2') theme('spacing.2') 0 theme('spacing.2');
+    }
+
+    &__content {
+        padding: theme('spacing.3') theme('spacing.4');
+    }
+}
+
+.sidepanel__right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+
+    background-color: theme('colors.white');
+    box-shadow: theme('boxShadow.strong');
+    border: none;
+
+    .sidepanel__close {
+        display: flex;
+        justify-content: flex-start;
+    }
+}

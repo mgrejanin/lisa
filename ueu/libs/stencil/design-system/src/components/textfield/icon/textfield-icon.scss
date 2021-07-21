@@ -1,0 +1,45 @@
+@use "@material/theme" with (
+    $primary: theme('colors.primary.light.500'),
+    $secondary: theme('colors.primary.light.500'),
+);
+
+@use "@material/textfield/icon";
+
+@include icon.icon-core-styles;
+
+text-field-icon {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    outline: none;
+}
+
+.mdc-text-field {
+    .mdc-text-field__icon {
+        line-height: 1;
+        height: 24px;
+    }
+
+    @include icon.leading-icon-color(primary);
+    @include icon.trailing-icon-color(primary);
+    @include icon.disabled-icon-color(rgba(0, 0, 0, theme.text-emphasis(disabled)));
+}
+
+.mdc-text-field--invalid {
+    @include icon.leading-icon-color(theme('colors.critical.base'));
+    @include icon.trailing-icon-color(theme('colors.critical.base'));
+}
+
+[data-theme='dark'] {
+    .mdc-text-field {
+        @include icon.leading-icon-color(primary);
+        @include icon.trailing-icon-color(primary);
+        @include icon.disabled-icon-color(rgba(255, 255, 255, theme.text-emphasis(disabled)));
+    }
+
+    .mdc-text-field--invalid {
+        @include icon.leading-icon-color(theme('colors.critical.base'));
+        @include icon.trailing-icon-color(theme('colors.critical.base'));
+    }
+}

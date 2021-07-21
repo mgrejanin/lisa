@@ -1,0 +1,63 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-feature-log {
+    &__log {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-direction: column;
+
+        position: relative;
+
+        padding: 1rem;
+        padding-left: 1.75rem;
+
+        &:before {
+            content: '';
+            background: rgba(theme('colors.background.light.tertiary'), 0.75);
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: calc(50% - 0.75rem);
+            width: 1px;
+        }
+
+        &:after {
+            content: '';
+            background: rgba(theme('colors.background.light.tertiary'), 0.75);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: calc(50% - 0.75rem);
+            width: 1px;
+        }
+
+        &.no-after {
+            &:after {
+                display: none;
+            }
+        }
+
+        &--circle {
+            position: absolute;
+            left: calc(-0.5rem + 1px);
+
+            height: 1rem;
+            width: 1rem;
+
+            background-color: theme('colors.background.base');
+
+            border-radius: 100%;
+            border: 1px solid theme('colors.primary.base');
+        }
+
+        &--message {
+            @include typography.body(primary, medium);
+        }
+
+        &--info {
+            @include typography.body(primary, medium);
+        }
+    }
+}

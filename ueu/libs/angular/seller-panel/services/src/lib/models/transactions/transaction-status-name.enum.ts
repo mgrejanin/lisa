@@ -1,0 +1,16 @@
+export enum TransactionStatusIDName {
+    'A' = 'Em análise',
+    'B' = 'Chargeback',
+    'C' = 'Completada',
+    'D' = 'Recusada',
+    'E' = 'Em andamento',
+    'F' = 'Não autorizada',
+    'H' = 'Em espera',
+    'I' = 'Cancelada',
+    'O' = 'Aguardando Pagamento',
+    'P' = 'Aprovada',
+    'R' = 'Devolvida',
+    'S' = 'Erro',
+    'W' = 'Recusado em Remessa',
+    '' = '-',
+}

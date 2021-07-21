@@ -1,0 +1,113 @@
+<section class="c-onboarding-extract">
+    <div class="c-onboarding-extract__header shadow-sm">
+        <h2 class="c-onboarding-extract__header--title">Recebíveis sob contrato</h2>
+        <apollo-button (click)="this.onClose()" variant="link" size="sm"><mat-icon>close</mat-icon></apollo-button>
+    </div>
+
+    <div class="c-onboarding-extract__body" [ngSwitch]="this.onStepper()">
+        <ng-container *ngSwitchCase="1">
+            <ng-container *ngTemplateOutlet="firstSteper"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="2">
+            <ng-container *ngTemplateOutlet="secondSteper"></ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="3">
+            <ng-container *ngTemplateOutlet="thirdSteper"></ng-container>
+        </ng-container>
+
+        <div class="c-wrapper">
+            <span class="c-wrapper__step" [class.c-wrapper__current]="this.onStepper() === 1"></span>
+            <span class="c-wrapper__step" [class.c-wrapper__current]="this.onStepper() === 2"></span>
+            <span class="c-wrapper__step" [class.c-wrapper__current]="this.onStepper() === 3"></span>
+        </div>
+    </div>
+    <div class="c-onboarding-extract__footer">
+        <ng-container *ngIf="this.onStepper() >= 2">
+            <apollo-button (click)="this.onBack()" variant="link" size="sm"> Voltar para anterior </apollo-button>
+        </ng-container>
+
+        <apollo-button
+            (click)="this.onStepper() <= 2 ? this.onNext() : this.onCompleteOnboarding()"
+            variant="unelevated"
+            size="sm"
+        >
+            {{ this.onStepper() <= 2 ? 'Próximo' : 'Ok, entendi' }}
+        </apollo-button>
+    </div>
+</section>
+
+<ng-template #firstSteper>
+    <apollo-flex direction="column" [class.in-left]="!direction">
+        <apollo-box>
+            <div class="c-onboarding-extract__body--image">
+                <img src="/assets/images/onboarding-extract/introduction.svg" alt="" />
+            </div>
+        </apollo-box>
+        <apollo-box>
+            <div class="c-onboarding-extract__body--subtitle">
+                <h2>Alguns dos seus recebíveis serão transferidos para outro destinatário</h2>
+            </div>
+        </apollo-box>
+        <apollo-box>
+            <div class="c-onboarding-extract__body--description">
+                <p>
+                    Identificamos que alguns dos seus recebíveis PicPay estão sob contrato de crédito ou antecipação com
+                    outra instituição. Eles serão transferidos total ou parcialmente para o destinatário acordado, caso
+                    ainda estejam sob acordo.
+                </p>
+            </div>
+        </apollo-box>
+    </apollo-flex>
+</ng-template>
+
+<ng-template #secondSteper>
+    <apollo-flex direction="column" [ngClass]="direction ? 'in-right' : 'in-left'">
+        <apollo-box>
+            <div class="c-onboarding-extract__body--image">
+                <img src="/assets/images/onboarding-extract/intro_receivables.svg" alt="" />
+            </div>
+        </apollo-box>
+        <apollo-box>
+            <div class="c-onboarding-extract__body--subtitle">
+                <h2>No seu extrato aparecerá como “Transferência de recebível”</h2>
+            </div>
+        </apollo-box>
+        <apollo-box>
+            <div class="c-onboarding-extract__body--description">
+                <p>
+                    Na data de depósito do recebível, você verá movimentações no extrato como ”Transferência de
+                    recebível”. As movimentações são os valores por bandeiras de cartão negociadas no seu contrato sendo
+                    depositadas para o destinatário.
+                </p>
+            </div>
+        </apollo-box>
+    </apollo-flex>
+</ng-template>
+
+<ng-template #thirdSteper>
+    <apollo-flex direction="column" [ngClass]="direction ? 'in-right' : 'in-left'">
+        <apollo-box>
+            <div class="c-onboarding-extract__body--image">
+                <img src="/assets/images/onboarding-extract/intro_transfer.svg" alt="" />
+            </div>
+        </apollo-box>
+        <apollo-box>
+            <div class="c-onboarding-extract__body--subtitle">
+                <h2>Pouco tempo depois o seu recebível será depositado</h2>
+            </div>
+        </apollo-box>
+        <apollo-box>
+            <div class="c-onboarding-extract__body--description">
+                <p>
+                    Essas transferências podem impactar seu saldo disponível por alguns instantes, porém, pouco tempo
+                    depois o seu recebível será depositado e o seu saldo normalizado.
+                    <apollo-link
+                        href="https://ajudaempresas.picpay.com/hc/pt-br/articles/360061405971-O-que-s%C3%A3o-receb%C3%ADveis-sob-contrato-"
+                        isExternal="true"
+                        >Ainda tem dúvidas?</apollo-link
+                    >
+                </p>
+            </div>
+        </apollo-box>
+    </apollo-flex>
+</ng-template>

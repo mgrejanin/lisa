@@ -1,0 +1,26 @@
+<div class="not-found">
+    <dev-portal-header></dev-portal-header>
+    <div class="error-content__wrapper">
+        <div class="container">
+            <div class="error-content__info">
+                <h2 class="error-content__title">Página não encontrada - Algo deu errado!</h2>
+                <img class="error-content__error--image" src="./assets/dev-portal/images/error.png" />
+                <div class="error-content__text">
+                    <p>
+                        Não conseguimos encontrar a página que procura. <br />
+                        Tente novamente por um outro caminho ou entre em contato com nosso suporte.
+                    </p>
+                    <apollo-button
+                        variant="link"
+                        [routerLink]="['/']"
+                        [routerLinkActive]="['active']"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                    >
+                        voltar à página inicial
+                    </apollo-button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <dev-portal-footer></dev-portal-footer>
+</div>

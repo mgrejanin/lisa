@@ -1,0 +1,64 @@
+@import 'libs/ui/styles/src/lib/theming';
+
+:host {
+    flex: 1;
+}
+
+.c-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    height: 60px;
+    padding: theme('spacing.2') theme('spacing.4');
+
+    &__content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-self: flex-end;
+
+        &--icon {
+            font-size: theme('fontSize.5xl');
+            padding-top: theme('spacing.1');
+            color: rgba(var(--apollo-primary-rgb));
+        }
+
+        &--item {
+            padding: theme('spacing.none') theme('spacing.2');
+        }
+
+        &--menu {
+            padding-left: theme('spacing.3');
+        }
+    }
+
+    &__logo-active {
+        justify-content: space-between;
+    }
+
+    ::ng-deep .c-user-dropdown__user-header-name {
+        padding-right: theme('spacing.none') !important;
+    }
+
+    @include media-breakpoint-down(sm) {
+        padding: theme('spacing.2') theme('spacing.3');
+        justify-content: space-between;
+
+        border-bottom: theme('borderWidth.light') solid rgba(var(--apollo-on-background-rgb), 0.1);
+    }
+
+    @include media-breakpoint-down(xs) {
+        &__content--item {
+            padding: theme('spacing.none') theme('spacing.2');
+        }
+
+        &__content--menu {
+            padding-left: theme('spacing.2');
+        }
+
+        ::ng-deep .c-user-dropdown__user-header-name {
+            display: none;
+        }
+    }
+}

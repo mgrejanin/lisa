@@ -1,0 +1,28 @@
+@use "mixins/typography";
+
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-request-withdrawal {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: theme('borderRadius.medium');
+    background-color: rgb(var(--apollo-background-z2-rgb));
+
+    &__feedback {
+        position: relative;
+        padding: theme('spacing.none') theme('spacing.5');
+
+        &--header {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+        }
+
+        .c-request-withdrawal__feedback-content-retry {
+            position: relative;
+            text-align: center;
+            bottom: 30px;
+        }
+    }
+}

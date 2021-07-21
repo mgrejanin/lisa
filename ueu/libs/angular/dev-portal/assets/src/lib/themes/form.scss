@@ -1,0 +1,281 @@
+@use "mixins/typography";
+
+@use "mixins/breakpoint";
+
+select {
+    font-size: theme('fontSize.sm');
+    background-color: #fafafa;
+    font-weight: theme('fontWeight.normal');
+    border: theme('borderWidth.light') solid theme('colors.grayscale.500');
+    color: theme('colors.grayscale.700');
+    padding: theme('spacing.half') theme('spacing.5') theme('spacing.half') theme('spacing.half');
+    border-radius: theme('borderRadius.light');
+
+    @include text_headline();
+    appearance: none;
+
+    &[multiple] {
+        margin: theme('spacing.half') theme('spacing.none');
+        padding: theme('spacing.half');
+        background: theme('colors.grayscale.200');
+    }
+
+    &.invalid {
+        @include invalidFormElement();
+    }
+}
+
+.opblock-body select {
+    padding-right: theme('spacing.3');
+    @include breakpoint.down(small) {
+        min-width: 180px;
+    }
+}
+
+label {
+    font-size: theme('fontSize.xs');
+    font-weight: theme('fontWeight.bold');
+    margin: theme('spacing.none') theme('spacing.none') theme('spacing.half');
+    @include text_headline();
+}
+
+input[type='text'],
+input[type='password'],
+input[type='search'],
+input[type='email'],
+input[type='file'] {
+    @include breakpoint.down(small) {
+        max-width: 175px;
+    }
+}
+
+input[type='text'],
+input[type='password'],
+input[type='search'],
+input[type='email'],
+input[type='file'],
+textarea {
+    min-width: 100px;
+    margin: theme('spacing.half') theme('spacing.none');
+    padding: theme('spacing.none');
+    border: theme('borderWidth.light') solid theme('colors.grayscale.200');
+    border-radius: theme('borderRadius.light');
+    background: theme('colors.grayscale.200');
+
+    &.invalid {
+        @include invalidFormElement();
+    }
+}
+
+input,
+textarea,
+select {
+    &[disabled] {
+        display: none;
+    }
+}
+
+select[disabled] {
+    border-color: theme('colors.grayscale.500');
+}
+
+textarea[disabled] {
+    background-color: theme('colors.grayscale.700');
+    color: theme('colors.white');
+}
+
+@keyframes shake {
+    10%,
+    90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%,
+    80% {
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%,
+    50%,
+    70% {
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%,
+    60% {
+        transform: translate3d(4px, 0, 0);
+    }
+}
+
+textarea {
+    font-size: theme('fontSize.xs');
+    width: 100%;
+    min-height: 280px;
+    padding: theme('spacing.half');
+    border: theme('borderWidth.none');
+    border-radius: theme('borderRadius.light');
+    outline: none;
+    background: rgba(theme('colors.grayscale.light.200'), 0.8);
+    @include text_code();
+
+    &:focus {
+        border: theme('borderWidth.medium') solid theme('colors.grayscale.200');
+    }
+
+    &.curl {
+        font-size: theme('fontSize.xs');
+        min-height: 100px;
+        margin: theme('spacing.none');
+        padding: theme('spacing.half');
+        resize: none;
+        border-radius: theme('borderRadius.light');
+        background: theme('colors.grayscale.200');
+        @include text_code(theme('colors.grayscale.200'));
+    }
+}
+
+.checkbox {
+    padding: 5px 0 10px;
+    transition: opacity 0.5s;
+    color: theme('colors.grayscale.200');
+
+    label {
+        display: flex;
+    }
+
+    p {
+        font-weight: normal !important;
+        font-style: italic;
+        margin: theme('spacing.none') !important;
+
+        @include text_code();
+    }
+
+    input[type='checkbox'] {
+        display: none;
+
+        & + label > .item {
+            position: relative;
+            top: 3px;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin: theme('spacing.none') theme('spacing.half') theme('spacing.none') theme('spacing.none');
+            padding: theme('spacing.half');
+            cursor: pointer;
+            border-radius: theme('borderRadius.light');
+            background: theme('colors.grayscale.200');
+            box-shadow: 0 0 0 2px theme('colors.grayscale.200');
+            flex: none;
+
+            &:active {
+                transform: scale(0.9);
+            }
+        }
+
+        &:checked + label > .item {
+            background: theme('colors.grayscale.200') url(../icons/icon-check.svg) center center no-repeat;
+        }
+    }
+}
+
+.responses-wrapper {
+    .opblock-section-header {
+        label {
+            display: none;
+        }
+    }
+}
+
+.errors-wrapper {
+    margin: 20px;
+    padding: theme('spacing.1') theme('spacing.2');
+    animation: scaleUp 0.5s;
+    border: theme('borderWidth.medium') solid theme('colors.grayscale.200');
+    border-radius: theme('borderRadius.light');
+    background: rgba(theme('colors.grayscale.light.200'), 0.1);
+
+    .error-wrapper {
+        margin: theme('spacing.none') theme('spacing.none') theme('spacing.half');
+    }
+
+    .errors {
+        h4 {
+            font-size: theme('fontSize.sm');
+            margin: 0;
+            @include text_code();
+        }
+
+        small {
+            color: theme('colors.grayscale.200');
+        }
+
+        .message {
+            white-space: pre-line;
+
+            &.thrown {
+                max-width: 100%;
+            }
+        }
+
+        .error-line {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    hgroup {
+        display: flex;
+        align-items: center;
+
+        h4 {
+            font-size: theme('fontSize.xl');
+            margin: theme('spacing.none');
+            flex: 1;
+            @include text_headline();
+        }
+    }
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.markdown,
+.renderedMarkdown {
+    table {
+        display: table;
+    }
+    p,
+    pre {
+        @include typography.body(primary, default);
+    }
+    pre {
+        color: black;
+        font-weight: normal;
+        white-space: pre-wrap;
+        background: none;
+        padding: theme('spacing.none');
+        overflow-wrap: break-word;
+    }
+
+    code {
+        font-size: theme('fontSize.sm');
+        color: theme('colors.primary.base');
+        background: theme('colors.primary.lightest');
+        border-radius: theme('borderRadius.light');
+        padding: theme('spacing.half');
+        border: theme('borderWidth.none');
+    }
+
+    pre > code {
+        display: block;
+    }
+}

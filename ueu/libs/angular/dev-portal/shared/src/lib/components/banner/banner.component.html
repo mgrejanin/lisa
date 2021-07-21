@@ -1,0 +1,31 @@
+<section
+    class="banner"
+    [ngStyle]="{ 'background-color': backgroundColor, height: height }"
+    [ngClass]="{ 'banner--business': backgroundColor === 'business' }"
+    *ngIf="{ isMobile: isMobile$ | async } as store"
+>
+    <div class="container" [ngStyle]="{ height: height }">
+        <div
+            [ngClass]="[
+                'row banner__row align-items-center',
+                reverse ? 'reverse' : '',
+                'justify-content-' + justify_content
+            ]"
+        >
+            <div [ngClass]="['col-md-' + col_image, 'col-sm-12', 'image']" *ngIf="!store.isMobile">
+                <ng-content select="[banner-image]"></ng-content>
+            </div>
+            <div
+                class="background-mobile"
+                [ngClass]="{ banner__background: store.isMobile }"
+                [ngStyle]="store.isMobile && { 'background-image': 'url(' + backgroundImage + ')' }"
+            ></div>
+            <div [ngClass]="['col-md-' + col_content, 'col-sm-12', 'offset-' + offset, 'infos']">
+                <ng-content select="[banner-content]"> </ng-content>
+                <div class="actions">
+                    <ng-content select="[banner-actions]"></ng-content>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

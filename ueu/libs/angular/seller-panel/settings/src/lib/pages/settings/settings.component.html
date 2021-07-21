@@ -1,0 +1,18 @@
+<div class="c-settings-page">
+    <seller-panel-header [showLogoInDesktop]="true"></seller-panel-header>
+    <section class="c-settings-page__header">
+        <mat-icon class="c-settings-page__header--arrow-left" (click)="backToPreviousPage()"
+            >keyboard_arrow_left</mat-icon
+        >
+        <h2>Minha conta</h2>
+    </section>
+    <nav mat-tab-nav-bar class="o-tab-nav">
+        <ng-container *ngFor="let link of navLinks">
+            <a mat-tab-link [routerLink]="link.path" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+                {{ link.label }}
+            </a>
+        </ng-container>
+    </nav>
+
+    <router-outlet></router-outlet>
+</div>

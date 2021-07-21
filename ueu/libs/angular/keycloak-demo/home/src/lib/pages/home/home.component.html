@@ -1,0 +1,83 @@
+<section class="c-keycloak-demo">
+    <section class="c-keycloak-demo__container">
+        <h1 class="c-access-levels__title">Suas informações</h1>
+        <div class="c-keycloak-demo__user-info">
+            <div><strong>Nome:</strong> {{ user.firstName }} {{ user.lastName }}</div>
+            <div><strong>Username:</strong> {{ user.username }}</div>
+            <div>
+                <strong>Roles:</strong>
+                <ul>
+                    <li *ngFor="let role of userRoles">{{ role }}</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <mat-divider></mat-divider>
+
+    <section class="c-keycloak-demo__explanation-container">
+        <h1>Como o Keycloak funciona?</h1>
+        <section>
+            <h2>Validação de exibição de componentes</h2>
+            <ng-container *ngIf="!isShowingMenu; else showingMenuContent">
+                <p>
+                    Baseado nas suas roles atuais, você não consegue ver o item <strong>Admin</strong> no menu lateral,
+                    pois para ver o este item no menu, você precisa da role <strong>admin</strong>. Clicando no botão
+                    abaixo, a regra para a exibição desse menu será alterada, passando a usar uma das roles que você já
+                    tem para ser exibir o menu.
+                </p>
+                <div class="c-keycloak-demo__explanation-button-container">
+                    <apollo-button (click)="showMenuItem()">Exibir o item no menu</apollo-button>
+                </div>
+            </ng-container>
+        </section>
+
+        <section>
+            <h2>Validação de rotas</h2>
+            <p>
+                Também é possível validar as rotas que o usuário terá acesso dentro da aplicação baseado nas roles que
+                ele tem. Clicando no botão abaixo, a aplicação irá direcionar você para uma rota aque exija que você
+                tenha as roles <strong>admin ou editor</strong>. Na validação, será identificado que você não tem essa
+                role, e então você será redirecionado para uma página de acesso não autorizado.
+            </p>
+            <div class="c-keycloak-demo__explanation-button-container">
+                <apollo-button (click)="navigate()">Navegar para rota que voce não tem acesso</apollo-button>
+            </div>
+        </section>
+
+        <section>
+            <h2>Validação de API's</h2>
+            <p>
+                Com o login via Keycloak, também conseguimos tratar da autenticação de API junto ao backend. Quando uma
+                request é enviada do Front, é adicionado um Header na request contendo o token de autenticação do
+                usuário. O Backend irá utilizar esse token pra saber se o usuário é válido e se ele tem acesso a aquele
+                recurso.
+            </p>
+        </section>
+    </section>
+
+    <section>
+        <h1>Referência técnica</h1>
+        <p>
+            Clique
+            <a
+                class="c-keycloak-demo__implementation-link"
+                target="_blank"
+                href="https://github.com/PicPay/picpay-frontend/wiki/Keycloak-Modelo-de-integra%C3%A7%C3%A3o"
+                >aqui</a
+            >
+            para ler a documentação técnica de implementação do keycloak no Front-end.
+        </p>
+    </section>
+</section>
+
+<ng-template #showingMenuContent>
+    <p>
+        Agora você consegue ver o menu, pois a role necessário para que esse menu seja exibido é
+        <strong>{{ userRoles[0] }}</strong
+        >.
+    </p>
+    <div class="c-keycloak-demo__explanation-button-container">
+        <apollo-button (click)="showMenuItem()">Esconder o item no menu</apollo-button>
+    </div>
+</ng-template>

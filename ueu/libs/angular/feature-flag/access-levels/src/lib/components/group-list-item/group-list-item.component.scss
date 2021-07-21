@@ -1,0 +1,54 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+:host {
+    height: 100%;
+}
+
+.c-group-list-item {
+    height: 100%;
+
+    &__icon {
+        display: block;
+        height: 48px;
+        width: 48px;
+        color: theme('colors.primary.400');
+    }
+
+    &__description {
+        h2 {
+            color: #39464d;
+            margin: 0;
+        }
+
+        span {
+            margin: 0;
+            margin-bottom: 4px;
+            line-height: 1em;
+            font-size: 0.75em;
+            color: #aab0b2;
+        }
+    }
+
+    a {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        padding: 25px;
+
+        box-sizing: border-box;
+        background: #fff;
+
+        border: 1px solid #e5e5e5;
+        border-radius: 16px;
+
+        transition: all 225ms ease-in-out;
+
+        &.active,
+        &:hover {
+            background: #e3f7ea;
+            border-color: transparent;
+        }
+    }
+}

@@ -1,0 +1,183 @@
+<picpedia-navbar-header [title]="titleDashboardsDetail$ | async"></picpedia-navbar-header>
+
+<section class="c-dashboards-detail container-fluid">
+    <apollo-flex justify="center" class="c-dashboards-detail__loading" *ngIf="isLoadingDashboards$ | async">
+        <apollo-circular-progress radius="35" stroke="6"></apollo-circular-progress>
+    </apollo-flex>
+
+    <div class="c-dashboards-detail__container">
+        <div class="c-dashboards-detail__container-menu">
+            <apollo-flex alignItems="center">
+                <picpedia-badge-certification [badgeLabel]="badgeDashboardsDetail$ | async">{{
+                    badgeDashboardsDetail$ | async
+                }}</picpedia-badge-certification>
+
+                <apollo-icon
+                    svgIcon="objects-favorite"
+                    size="md"
+                    class="c-dashboards-detail__menu-icon"
+                ></apollo-icon>
+                <apollo-icon
+                    [matMenuTriggerFor]="infoMenuDropdown"
+                    svgIcon="interface-ellipsis-v"
+                    size="md"
+                    class="c-dashboards-detail__icon"
+                ></apollo-icon>
+
+                <mat-menu #infoMenuDropdown="matMenu" class="c-dashboards-detail__menu-content">
+                    <apollo-flex class="c-dashboards-detail__menu-box">
+                        <apollo-icon
+                            svgIcon="interface-edit-alt"
+                            size="md"
+                            class="c-dashboards-detail__menu-icon"
+                        ></apollo-icon>
+                        <apollo-text class="c-dashboards-detail__menu-text">Editar informações</apollo-text>
+                    </apollo-flex>
+
+                    <apollo-flex class="c-dashboards-detail__menu-box">
+                        <apollo-icon
+                            svgIcon="interface-times"
+                            size="md"
+                            class="c-dashboards-detail__menu-icon"
+                        ></apollo-icon>
+                        <apollo-text class="c-dashboards-detail__menu-text">Histórico</apollo-text>
+                    </apollo-flex>
+
+                    <apollo-flex class="c-dashboards-detail__menu-box">
+                        <apollo-icon
+                            svgIcon="communication-comment-alt-lines"
+                            size="md"
+                            class="c-dashboards-detail__menu-icon"
+                        ></apollo-icon>
+                        <apollo-text class="c-dashboards-detail__menu-text">Incluir comentário</apollo-text>
+                    </apollo-flex>
+                </mat-menu>
+            </apollo-flex>
+        </div>
+
+        <mat-tab-group animationDuration="0ms" (selectedTabChange)="tabClick($event.index)">
+            <mat-tab label="Detalhes">
+                <apollo-flex spacer>
+                    <apollo-box class="c-dashboards-detail__container-box">
+                        <apollo-box class="c-dashboards-detail__box">
+                            <apollo-text class="c-dashboards-detail__title"> Descrição </apollo-text>
+                            <apollo-text font-size="sm" class="c-dashboards-detail__text">
+                                {{ descriptionDashboardsDetail$ | async }}
+                            </apollo-text>
+                        </apollo-box>
+
+                        <apollo-box class="c-dashboards-detail__box">
+                            <apollo-text class="c-dashboards-detail__title"> Última atualização </apollo-text>
+                            <apollo-text>
+                                {{ dateDashboardsDetail$ | async }}
+                            </apollo-text>
+                        </apollo-box>
+
+                        <apollo-box class="c-dashboards-detail__box">
+                            <apollo-text class="c-dashboards-detail__title">
+                                Frequência de atualização
+                            </apollo-text>
+                            <apollo-text>
+                                {{ frequencyDashboardsDetail$ | async }}
+                            </apollo-text>
+                        </apollo-box>
+
+                        <apollo-box class="c-dashboards-detail__box">
+                            <apollo-text class="c-dashboards-detail__title"> Alcance dos dados </apollo-text>
+                            <apollo-text>
+                                {{ scopeDashboardsDetail$ | async }}
+                            </apollo-text>
+                        </apollo-box>
+
+                        <apollo-box class="c-dashboards-detail__box">
+                            <apollo-text class="c-dashboards-detail__title"> Tags </apollo-text>
+
+                            <apollo-box border="light" border-radius="strong" p="2" border-color="grayscale.lightest">
+                                <apollo-text
+                                    *ngFor="let item of tagsDashboardsDetail$ | async"
+                                    class="c-dashboards-detail__tag"
+                                >
+                                    {{ item.label }}
+                                </apollo-text>
+                            </apollo-box>
+                        </apollo-box>
+
+                        <apollo-box class="c-dashboards-detail__box">
+                            <apollo-text class="c-dashboards-detail__title"> Origem do dado </apollo-text>
+                            <apollo-text>
+                                {{ originDashboardsDetail$ | async }}
+                            </apollo-text>
+                        </apollo-box>
+                    </apollo-box>
+
+                    <apollo-box class="c-dashboards-detail__container-box-users">
+                        <apollo-box class="c-dashboards-detail__box-users">
+                            <apollo-text class="c-dashboards-detail__title c-dashboards-detail__title--users">
+                                Data steward
+                            </apollo-text>
+                            <apollo-text
+                                *ngFor="let item of stewardDashboardsDetail$ | async"
+                                class="c-dashboards-detail__text-users"
+                            >
+                                <apollo-flex>
+                                    <apollo-box>
+                                        <img src="{{ item.figure }}" class="c-dashboards-detail__figure-users" />
+                                    </apollo-box>
+                                    <apollo-box>
+                                        <apollo-text font-weight="bold">{{ item.name }}</apollo-text>
+                                        <apollo-text class="c-dashboards-detail__email-users">{{
+                                            item.email
+                                        }}</apollo-text>
+                                    </apollo-box>
+                                </apollo-flex>
+                            </apollo-text>
+                        </apollo-box>
+
+                        <apollo-box class="c-dashboards-detail__box-users">
+                            <apollo-text class="c-dashboards-detail__title c-dashboards-detail__title--users">
+                                Business owner
+                            </apollo-text>
+                            <apollo-text
+                                *ngFor="let item of ownerDashboardsDetail$ | async"
+                                class="c-dashboards-detail__text-users"
+                            >
+                                <apollo-flex>
+                                    <apollo-box>
+                                        <img src="{{ item.figure }}" class="c-dashboards-detail__figure-users" />
+                                    </apollo-box>
+                                    <apollo-box>
+                                        <apollo-text font-weight="bold">{{ item.name }}</apollo-text>
+                                        <apollo-text class="c-dashboards-detail__email-users">{{
+                                            item.email
+                                        }}</apollo-text>
+                                    </apollo-box>
+                                </apollo-flex>
+                            </apollo-text>
+                        </apollo-box>
+
+                        <apollo-box class="c-dashboards-detail__box-users">
+                            <apollo-text class="c-dashboards-detail__title c-dashboards-detail__title--users">
+                                Usuários frequentes
+                            </apollo-text>
+                            <apollo-flex spacer>
+                                <apollo-box *ngFor="let item of usersDashboardsDetail$ | async">
+                                    <img src="{{ item.figure }}" class="c-dashboards-detail__figure-users" />
+                                </apollo-box>
+                            </apollo-flex>
+                        </apollo-box>
+                    </apollo-box>
+                </apollo-flex>
+            </mat-tab>
+
+            <mat-tab label="Dashboards">
+                <apollo-center height="50px" bg="grayscale.lightest">
+                    Para acessar este dashboard é necessário fazer login no Looker.
+                </apollo-center>
+                <iframe #iframeLooker class="c-dashboards-detail__iframe"></iframe>
+            </mat-tab>
+
+            <mat-tab label="Métricas"></mat-tab>
+            <mat-tab label="Informações técnicas"></mat-tab>
+        </mat-tab-group>
+    </div>
+</section>

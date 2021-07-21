@@ -1,0 +1,8 @@
+.c-modal {
+    &__title {
+        color: theme('colors.grayscale.darkest');
+        font-weight: theme('fontWeight.extrabold');
+        font-size: theme('fontSize.3xl');
+        line-height: theme('lineHeight.base');
+    }
+}

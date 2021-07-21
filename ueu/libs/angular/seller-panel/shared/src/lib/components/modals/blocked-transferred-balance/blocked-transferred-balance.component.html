@@ -1,0 +1,29 @@
+<section class="c-blocked-transferred-balance">
+    <h2 class="c-blocked-transferred-balance__title">
+        <p>Saldo transferido</p>
+        <p>por determinação judicial</p>
+    </h2>
+
+    <div class="c-blocked-transferred-balance__content">
+        <p class="c-blocked-transferred-balance__content--message">
+            Por determinação judicial esse valor, que estava bloqueado, foi transferido para a Justiça.
+        </p>
+
+        <p class="c-blocked-transferred-balance__content--message">
+            Continue usando o valor restante na sua carteira normalmente com PicPay.
+        </p>
+    </div>
+
+    <hr class="c-blocked-transferred-balance__separator" />
+    <div class="c-blocked-transferred-balance__footer">
+        <button
+            mat-button
+            color="primary"
+            class="c-blocked-transferred-balance__footer--btn o-button o-button__solid"
+            type="button"
+            (click)="onClose()"
+        >
+            Ok, entendi
+        </button>
+    </div>
+</section>

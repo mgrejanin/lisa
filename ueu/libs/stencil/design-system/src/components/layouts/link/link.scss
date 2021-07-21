@@ -1,0 +1,11 @@
+apollo-link a {
+    color: inherit;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    display: inline-flex;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

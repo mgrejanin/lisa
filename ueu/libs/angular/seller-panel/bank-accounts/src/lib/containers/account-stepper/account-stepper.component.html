@@ -1,0 +1,173 @@
+<div class="c-account-stepper" [ngClass]="(isOpened$ | async) ? '' : 'd-none'">
+    <ng-container *ngIf="stepper.selectedIndex > 0 && stepper.selectedIndex + 1 !== stepperLength">
+        <button
+            mat-icon-button
+            type="button"
+            class="c-account-stepper__previous-btn"
+            (click)="onPreviousStep()"
+            [disabled]="isLoading$ | async"
+        >
+            <mat-icon class="i-icon">arrow_back</mat-icon>
+        </button>
+    </ng-container>
+
+    <mat-horizontal-stepper
+        #stepper
+        class="c-account-stepper__content o-stepper o-stepper__header-none"
+        (selectionChange)="onSelectionChange($event)"
+    >
+        <!-- STEP 1 - WELCOME -->
+        <mat-step>
+            <div class="c-account-stepper__header">
+                <ng-container *ngIf="(isLoading$ | async) === false">
+                    <h3 class="c-account-stepper__header--title">
+                        {{ (isEdit$ | async) ? 'Editar conta bancária' : 'Adicionar nova conta' }}
+                    </h3>
+                    <p class="c-account-stepper__header--caption">
+                        Confira os requisitos necessários para {{ (isEdit$ | async) ? 'editar' : 'cadastrar' }} uma
+                        conta bancária e receber seu dinheiro:
+                    </p>
+                </ng-container>
+            </div>
+            <ng-container *ngTemplateOutlet="accountContext"></ng-container>
+            <div class="c-account-stepper__content--footer">
+                <ng-container *ngTemplateOutlet="nextStepButton; context: { method: 'next' }"></ng-container>
+            </div>
+        </mat-step>
+
+        <!-- STEP 2 - BANKS AND FORM ACCOUNT -->
+        <mat-step>
+            <div class="c-account-stepper__header">
+                <ng-container *ngIf="(isLoading$ | async) === false">
+                    <h3 class="c-account-stepper__header--title">
+                        {{ (isEdit$ | async) ? 'Editar conta bancária' : 'Adicionar nova conta' }}
+                    </h3>
+                </ng-container>
+            </div>
+            <ng-container *ngIf="isSelectingBank$ | async; then banksList; else dynamicFormAccount"></ng-container>
+        </mat-step>
+
+        <!-- STEP 3 - CONFIRM DATA -->
+        <mat-step>
+            <div class="c-account-stepper__header">
+                <ng-container *ngIf="(isLoading$ | async) === false">
+                    <h3 class="c-account-stepper__header--title">Confirme as informações cadastradas</h3>
+                    <p
+                        *ngIf="(isLoading$ | async) === false && (hasError$ | async) === false"
+                        class="c-account-stepper__header--caption"
+                    >
+                        Confirme se os dados estão corretos para não ter problemas com seus saques bancários:
+                    </p>
+                </ng-container>
+            </div>
+            <ng-container
+                *ngIf="(isLoading$ | async) === false && (hasError$ | async) === false; else callbackTemplate"
+            >
+                <seller-panel-account-confirm (previous)="stepper.previous()"></seller-panel-account-confirm>
+                <div class="c-account-stepper__content--footer">
+                    <mat-checkbox color="primary" class="o-checkbox" [(ngModel)]="confirm">
+                        Estou ciente que essa será a conta principal de recebimento dos meus saques bancários.
+                    </mat-checkbox>
+                    <button
+                        mat-button
+                        class="c-account-stepper__content--footer o-button o-button__solid w-100"
+                        (click)="onConfirmAccount()"
+                        [disabled]="confirm === false"
+                    >
+                        Confirmar
+                    </button>
+                    <button type="button" mat-button class="o-button o-button__link w-100" (click)="stepper.previous()">
+                        Corrigir informações
+                    </button>
+                </div>
+            </ng-container>
+
+            <ng-template #callbackTemplate>
+                <ng-container *ngIf="isLoading$ | async">
+                    <div class="c-account-stepper__loading">
+                        <mat-spinner class="i-spinner" [diameter]="40"></mat-spinner>
+                        <p>Aguarde enquanto estamos validando seus dados bancários</p>
+                    </div>
+                </ng-container>
+
+                <ng-container *ngIf="hasError$ | async">
+                    <div class="c-account-stepper__error">
+                        <seller-panel-feedback
+                            imagePath="/assets/images/error_state.svg"
+                            title="Opa! Erramos por aqui"
+                            description="Tivemos uma falha no sistema e não conseguimos concluir."
+                        ></seller-panel-feedback>
+                    </div>
+                    <div class="c-account-stepper__content--footer">
+                        <button
+                            mat-button
+                            class="c-account-stepper__content--footer o-button o-button__solid w-100"
+                            (click)="onConfirmAccount()"
+                        >
+                            Tentar novamente
+                        </button>
+                        <button
+                            type="button"
+                            mat-button
+                            class="o-button o-button__link w-100"
+                            (click)="onPreviousStep()"
+                        >
+                            Corrigir informações
+                        </button>
+                    </div>
+                </ng-container>
+            </ng-template>
+        </mat-step>
+
+        <!-- STEP 4 - CONFIRM AND CLOSE -->
+        <mat-step>
+            <div class="c-account-stepper__header">
+                <ng-container *ngIf="(isLoading$ | async) === false && (hasError$ | async) === false">
+                    <h3 class="c-account-stepper__header--title">Configurações concluídas</h3>
+                    <ng-container *ngIf="currentAccount$ | async as account">
+                        <p *ngIf="account?.main; else simpleAccount" class="c-account-stepper__header--caption">
+                            Se você teve saques bancários cancelados, enviaremos seu dinheiro para conta bancária
+                            cadastrada em até <b>1 dia útil</b>.
+                        </p>
+                    </ng-container>
+                    <ng-template #simpleAccount>
+                        Se você tem o saque automático para a conta bancária habilitado; e teve saques cancelados,
+                        enviaremos seu dinheiro para essa conta em <strong>até 1 dia útil</strong>.
+                    </ng-template>
+                </ng-container>
+            </div>
+            <seller-panel-account-confirm-response></seller-panel-account-confirm-response>
+            <div class="c-account-stepper__content--footer">
+                <ng-container
+                    *ngTemplateOutlet="nextStepButton; context: { text: 'Ok, entendi', method: 'close' }"
+                ></ng-container>
+            </div>
+        </mat-step>
+    </mat-horizontal-stepper>
+</div>
+
+<!-- Next button template -->
+<ng-template #nextStepButton let-text="text" let-method="method">
+    <button
+        mat-button
+        class="c-account-stepper__content--footer o-button o-button__solid w-100"
+        (click)="onNextStep(method)"
+    >
+        {{ text ? text : 'Continuar' }}
+    </button>
+</ng-template>
+
+<!-- Account action context -->
+<ng-template #accountContext>
+    <seller-panel-account-action-context></seller-panel-account-action-context>
+</ng-template>
+
+<!-- Banks list -->
+<ng-template #banksList>
+    <seller-panel-banks-list></seller-panel-banks-list>
+</ng-template>
+
+<!-- Dynamic form account -->
+<ng-template #dynamicFormAccount>
+    <seller-panel-account-dynamic-form (next)="stepper.next()"></seller-panel-account-dynamic-form>
+</ng-template>

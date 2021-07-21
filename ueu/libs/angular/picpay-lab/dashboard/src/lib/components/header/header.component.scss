@@ -1,0 +1,50 @@
+@use "mixins/typography";
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: theme('spacing.2') theme('spacing.4');
+    border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.200');
+    height: theme('spacing.9');
+
+    &__info {
+        margin: theme('spacing.none') theme('spacing.4') theme('spacing.none') theme('spacing.none');
+        font-weight: theme('fontWeight.semibold');
+        font-size: theme('fontSize.sm');
+    }
+
+    &__save-btn {
+        margin-right: theme('spacing.4');
+
+        ::ng-deep {
+            .apollo-button__label {
+                color: theme('colors.grayscale.600');
+                font-weight: theme('fontWeight.bold') !important;
+                text-decoration: none !important;
+            }
+        }
+    }
+
+    &--disabled-actions {
+        .header {
+            &__back-button,
+            &__logo {
+                opacity: theme('opacity.light');
+            }
+
+            &__save-btn {
+                ::ng-deep {
+                    .apollo-button__label {
+                        color: theme('colors.grayscale.200');
+                    }
+                }
+            }
+        }
+    }
+
+    &__link {
+        @include typography.link(primary);
+    }
+}

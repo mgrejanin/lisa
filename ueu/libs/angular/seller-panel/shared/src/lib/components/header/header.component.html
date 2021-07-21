@@ -1,0 +1,91 @@
+<header class="c-header" [class.c-header__logo-active]="isShowLogoInDesktop$ | async">
+    <ng-container *ngIf="isShowLogoInDesktop$ | async">
+        <div class="picpay-empresas-logo"></div>
+    </ng-container>
+    <div class="c-header__content">
+        <div [class.c-header__content--item]="(isMobile$ | async) === false">
+            <a
+                mat-flat-button
+                color="primary"
+                class="c-header__change-panel-button o-button o-button__link"
+                [class.o-button__link]="isMobile$ | async"
+                title="Ir para o antigo painel lojista"
+                target="_top"
+                (click)="eventTrackingClicked('IR_PARA_PAINEL_ANTIGO')"
+                [href]="getForeignPanelLink()"
+            >
+                <ng-container *ngIf="(isMobile$ | async) === false">
+                    <span class="ml-2">Ir para o antigo painel lojista</span>
+                </ng-container>
+                <ng-container *ngIf="(isMobile$ | async) === true"><mat-icon>swap_horiz</mat-icon></ng-container>
+            </a>
+        </div>
+        <div class="c-header__content--item">
+            <a [href]="FAQ_URL" target="_blank" rel="noopener external" (click)="eventTrackingClicked('AJUDA')">
+                <span class="c-header__content--icon material-icons"> help_outline </span>
+            </a>
+        </div>
+        <!-- <div class="c-header__content--item">
+            <span class="c-header__content--icon material-icons">notifications</span>
+        </div> -->
+        <div class="c-header__content--menu">
+            <ng-container *ngIf="organizationData$ | async as organization; else loadingOrganizationData">
+                <picpay-user-dropdown
+                    [username]="organization?.name"
+                    [userImage]="organization?.image"
+                    [accountChange]="hasBranch$ | async"
+                    (changeProfile)="onChangeProfile()"
+                >
+                    <button
+                        mat-flat-button
+                        class="c-user-dropdown__menu-button"
+                        [routerLink]="['/configuracoes/meus-dados']"
+                        (click)="eventTrackingClicked('ALTERAR_MEUS_DADOS')"
+                    >
+                        <mat-icon fontSet="material-icons-outlined" class="c-user-dropdown__menu-icon">edit</mat-icon>
+                        <span>Alterar meus dados</span>
+                    </button>
+                    <button
+                        mat-flat-button
+                        class="c-user-dropdown__menu-button"
+                        [routerLink]="['/configuracoes/alterar-senha']"
+                        (click)="eventTrackingClicked('ALTERAR_SENHA')"
+                    >
+                        <mat-icon fontSet="material-icons-outlined" class="c-user-dropdown__menu-icon">lock</mat-icon>
+                        <span>Alterar senha</span>
+                    </button>
+                    <button
+                        mat-flat-button
+                        class="c-user-dropdown__menu-button"
+                        [routerLink]="['/configuracoes/saques-bancarios']"
+                        (click)="eventTrackingClicked('SAQUES_BANCARIOS')"
+                    >
+                        <mat-icon fontSet="material-icons-outlined" class="c-user-dropdown__menu-icon"
+                            >account_balance</mat-icon
+                        >
+                        <span>Saques bancários</span>
+                    </button>
+                    <ng-container *ngIf="organization.type === TYPE_ECOMMERCE">
+                        <button
+                            mat-flat-button
+                            class="c-user-dropdown__menu-button"
+                            [routerLink]="['/configuracoes/meu-plano']"
+                        >
+                            <mat-icon class="c-user-dropdown__menu-icon">store</mat-icon>
+                            <span>Meu plano</span>
+                        </button>
+                    </ng-container>
+                    <button mat-flat-button class="c-user-dropdown__menu-button" (click)="onLogout()">
+                        <mat-icon fontSet="material-icons-outlined" class="c-user-dropdown__menu-icon"
+                            >exit_to_app</mat-icon
+                        >
+                        <span>Sair</span>
+                    </button>
+                </picpay-user-dropdown>
+            </ng-container>
+            <ng-template #loadingOrganizationData>
+                <mat-spinner class="i-spinner" [diameter]="20"></mat-spinner>
+            </ng-template>
+        </div>
+    </div>
+</header>

@@ -1,0 +1,33 @@
+// COLOR PROPERTY
+.u-color__success {
+    color: theme('colors.success.base');
+}
+
+.u-color__danger {
+    color: theme('colors.critical.base');
+}
+
+.u-color__warning {
+    color: theme('colors.warning.base');
+}
+
+.u-color__info {
+    color: theme('colors.neutral.base');
+}
+
+// BACKGROUND-COLOR PROPERTY
+.u-bg-color__success {
+    background-color: theme('colors.success.base');
+}
+
+.u-bg-color__danger {
+    background-color: theme('colors.critical.base');
+}
+
+.u-bg-color__warning {
+    background-color: theme('colors.warning.base');
+}
+
+.u-bg-color__info {
+    background-color: theme('colors.neutral.base');
+}

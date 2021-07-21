@@ -1,0 +1,12 @@
+.default-error-screen {
+    height: 100vh;
+    display: flex;
+
+    &__wrapper,
+    &__no-data {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+        border: theme('borderWidth.light') solid theme('colors.grayscale.light');
+    }
+}

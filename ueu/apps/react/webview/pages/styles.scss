@@ -1,0 +1,39 @@
+// @import '../../../../libs/stencil/design-system/src/styles/scss-vars.scss';
+
+// body,
+// html {
+//     font-family: 'Montserrat', sans-serif !important;
+// }
+
+// .app,
+// .app-main {
+//     min-height: 100vh;
+//     height: 100%;
+//     width: 100%;
+//     overflow-x: hidden;
+// }
+
+// .c-hello-wrapper {
+//     display: flex;
+//     height: 100%;
+//     width: 100%;
+//     justify-content: center;
+//     align-items: center;
+//     min-height: 100vh;
+
+//     &__content {
+//         height: 100%;
+//         text-align: center;
+//         flex-flow: column;
+//         display: flex;
+
+//         h2 {
+//             font-weight: theme('fontWeight.bold');
+//             font-size: theme('fontSize.3xl');
+//         }
+
+//         apollo-button {
+//             margin-top: 30px;
+//         }
+//     }
+// }

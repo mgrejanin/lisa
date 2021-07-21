@@ -1,0 +1,49 @@
+@keyframes ghost_animation {
+    from {
+        right: 100%;
+    }
+    to {
+        right: calc(0% - 40px);
+    }
+}
+
+:host {
+    background-color: rgba(var(--apollo-on-background-rgb), 0.1);
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+.apollo-ghost-element {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+
+    &::before {
+        content: '';
+        animation-name: ghost_animation;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+        animation-delay: 0ms;
+        animation-timing-function: ease-in-out;
+        width: 40px;
+        height: 100%;
+        display: block;
+        position: absolute;
+        top: 0px;
+        right: 100%;
+        background-image: linear-gradient(
+            90deg,
+            rgba(var(--apollo-on-background-rgb), 0) 0%,
+            rgba(var(--apollo-on-background-rgb), 0.16) 50%,
+            rgba(var(--apollo-on-background-rgb), 0) 100%
+        );
+    }
+}

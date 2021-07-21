@@ -1,0 +1,36 @@
+<section class="c-variables-delete">
+    <apollo-heading class="c-variables-delete__title"> Excluir variável </apollo-heading>
+
+    <apollo-text class="c-variables-delete__subtitle">
+        Tem certeza que deseja excluir a variável
+        <span class="c-variables-delete__text">{{ data.key }}</span> permanentemente?
+    </apollo-text>
+
+    <form [formGroup]="formDeleteVariable">
+        <apollo-textfield
+            label="Nome da variável"
+            formControlName="keyValue"
+            required
+            class="c-variables-delete__input"
+            size="md"
+            maxlength="99"
+            threshold="500"
+            (apolloChange)="keyDelete($event.detail)"
+        ></apollo-textfield>
+
+        <apollo-flex justify="flex-end" class="c-variables-delete__container-buttons">
+            <apollo-link (click)="onNoClick()">
+                <div class="c-variables-delete__cancel">Cancelar</div>
+            </apollo-link>
+
+            <apollo-button
+                size="sm"
+                class="o-button-submit c-variables-delete__button"
+                (click)="deleteVariable()"
+                [disabled]="formDeleteVariable.invalid || showButton"
+            >
+                Excluir
+            </apollo-button>
+        </apollo-flex>
+    </form>
+</section>

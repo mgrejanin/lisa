@@ -1,0 +1,12 @@
+.c-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: theme('spacing.2');
+
+    &__icon-question {
+        color: theme('colors.primary.base');
+        display: flex;
+        align-items: center;
+        margin-right: theme('spacing.1');
+    }
+}

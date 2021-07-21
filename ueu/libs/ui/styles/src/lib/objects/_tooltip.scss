@@ -1,0 +1,8 @@
+.o-tooltip {
+    width: 100% !important;
+    padding: theme('spacing.1');
+    font-size: theme('fontSize.base');
+    color: rgba(var(--apollo-on-background-rgb), 0.86) !important;
+    background-color: rgb(var(--apollo-background-rgb)) !important;
+    box-shadow: theme('boxShadow.light');
+}

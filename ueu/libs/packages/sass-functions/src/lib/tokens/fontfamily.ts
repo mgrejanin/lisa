@@ -1,0 +1,26 @@
+export default {
+    sans: [
+        'Nunito Sans',
+        '-apple-system',
+        'San Francisco',
+        'blinkmacsystemfont',
+        'Segoe UI',
+        'Helvetica Neue',
+        'helvetica',
+        'arial',
+        'sans-serif',
+    ],
+    system: [
+        '-apple-system',
+        'BlinkMacSystemFont',
+        'Segoe UI',
+        'Roboto',
+        'Oxygen',
+        'Ubuntu',
+        'Cantarell',
+        'Fira Sans',
+        'Droid Sans',
+    ],
+    serif: ['Georgia', 'Times New Roman', 'Times, serif'],
+    mono: ['Menlo, Monaco', 'Courier New', 'monospace'],
+} as const;

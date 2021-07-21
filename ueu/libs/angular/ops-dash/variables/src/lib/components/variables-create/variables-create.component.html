@@ -1,0 +1,30 @@
+<section class="c-variables-create">
+    <apollo-text> Insira o nome da nova variável. </apollo-text>
+
+    <form [formGroup]="formCreateVariable">
+        <apollo-textfield
+            label="Nome da variável"
+            formControlName="key"
+            required
+            class="c-variables-create__input"
+            size="md"
+            maxlength="99"
+            helper-text="Prefixe o nome da variável com o nome do serviço e underline."
+        ></apollo-textfield>
+
+        <apollo-flex justify="flex-end" class="c-variables-create__container-buttons">
+            <apollo-link (click)="closeDialog()">
+                <div class="c-variables-create__cancel">Cancelar</div>
+            </apollo-link>
+
+            <apollo-button
+                size="sm"
+                class="o-button-submit c-variables-create__button"
+                (click)="createVariable()"
+                [disabled]="formCreateVariable.invalid"
+            >
+                Criar
+            </apollo-button>
+        </apollo-flex>
+    </form>
+</section>

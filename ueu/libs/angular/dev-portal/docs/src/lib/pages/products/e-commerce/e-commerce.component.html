@@ -1,0 +1,607 @@
+<dev-portal-banner
+    backgroundColor="#172126"
+    reverse="true"
+    col_image="3"
+    [col_content]="(isMobile$ | async) ? 10 : 5"
+    offset="1"
+    justify_content="end"
+>
+    <div banner-image class="d-none d-md-block">
+        <img src="./assets/icons/icone-banner-ecommerce.png" alt="Produto E-Commerce" />
+    </div>
+    <div banner-content>
+        <h1>E-Commerce</h1>
+        <p class="banner-text mb-4">
+            Aceite PicPay no seu e-commerce e faça parte do movimento que está revolucionando a relação com dinheiro no
+            Brasil
+        </p>
+        <div banner-actions *ngIf="(isMobile$ | async) === false">
+            <apollo-button class="btn-white" (click)="openDialog()" id="btn_contact_ecommerce" role="button">
+                <apollo-icon class="panel__icon material-icon">vpn_key</apollo-icon> Usar esse produto
+            </apollo-button>
+        </div>
+    </div>
+</dev-portal-banner>
+
+<div class="api-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="info-api col-10">
+                <div class="api-content__intro">
+                    <h2 class="api-content__title">Introdução</h2>
+                    <h3 class="api-content__subtitle" id="visao-geral">Visão geral</h3>
+                    <div class="api-content__text">
+                        <p>
+                            Nosso e-commerce é um plataforma oferecida para quem vende pela internet e quer faturar
+                            mais. Você ainda pode aproveitar nossa rede com mais de 8 milhões de usuários!
+                        </p>
+                        <p>
+                            Oferecendo PicPay no seu e-commerce, seus clientes efetuam o pagamento de forma segura
+                            diretamente em seu aplicativo. Você pode criar uma conta como pessoa física ou jurídica.
+                        </p>
+                    </div>
+                    <div class="api-content__image">
+                        <img
+                            class="api-content__image-width"
+                            src="./assets/images/e-commerce-howto.png"
+                            alt="E-Commerce do PicPay"
+                        />
+                    </div>
+                </div>
+
+                <div class="api-content__table" id="taxas">
+                    <h2 class="api-content__title">Taxas</h2>
+                    <p class="api-content__text">
+                        Você não paga taxa de adesão ou de cancelamento e seus primeiros 3 meses são gratuitos! Nos
+                        meses seguintes, é só escolher a taxa que melhor se adapta ao seu momento e quando quer receber,
+                        e vamos solicitar o pagamento de uma taxa de intermediação.
+                    </p>
+                    <div class="api-content__table-content">
+                        <table class="style-table table-responsive">
+                            <thead>
+                                <tr class="api-content__table-content-row">
+                                    <th class="api-content__table-content-title">DIAS A RECEBER</th>
+                                    <th class="api-content__table-content-title">TAXA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="api-content__table-content-row">
+                                    <td class="api-content__table-content-data">1 dia</td>
+                                    <td class="api-content__table-content-data">5,89%</td>
+                                </tr>
+                                <tr class="api-content__table-content-row">
+                                    <td class="api-content__table-content-data">14 dias</td>
+                                    <td class="api-content__table-content-data">4,89%</td>
+                                </tr>
+                                <tr class="api-content__table-content-row">
+                                    <td class="api-content__table-content-data">30 dias</td>
+                                    <td class="api-content__table-content-data">3,89%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="api-content__intro">
+                    <h2 class="api-content__title" id="funcionalidades-disponiveis">Funcionalidades disponíveis</h2>
+                    <p>Atualmente, a API de e-commerce do PicPay oferece as seguintes funcionalidades:</p>
+
+                    <ul>
+                        <li>Geração de link de redirecionamento com QR Code;</li>
+
+                        <li>Geração de QR Code para ser exibido dentro e-commerce e evitar o redirecionamento;</li>
+
+                        <li>Cancelamento de ordens não pagas;</li>
+
+                        <li>Estorno total de ordens pagas;</li>
+
+                        <li>Consulta de status;</li>
+                    </ul>
+
+                    <p>Saiba mais sobre cada funcionalidade nos nossos guias ao longo desta página.</p>
+                </div>
+            </div>
+
+            <div class="info-api col-10">
+                <div class="api-content__intro">
+                    <h2 class="api-content__title" id="comece-agora">Como começar?</h2>
+                    <div class="api-content__text">
+                        <h3 class="api-content__subtitle" id="antes-de-comecar">Antes de começar</h3>
+                        <p>
+                            Antes de iniciar sua integração, você deve possuir credenciais válidas para a utilização da
+                            nossa API. Você pode obter suas credenciais através
+                            <a class="api-content__link" href="http://ecommerce.picpay.com/register/" target="_blank"
+                                >desta página</a
+                            >.
+                        </p>
+                        <p>
+                            Após finalizar o seu cadastro, suas credenciais estarão disponíveis no
+                            <a class="api-content__link" href="https://painel-empresas.picpay.com/login" target="_blank"
+                                >painel lojista</a
+                            >, na aba <strong>Integrações</strong>.
+                        </p>
+
+                        <dev-portal-notice type="simple" theme="info">
+                            <div notice-content>
+                                <div class="notice__text">
+                                    <p>Suas credenciais são únicas e nunca devem ser compartilhadas com terceiros.</p>
+                                </div>
+                            </div>
+                        </dev-portal-notice>
+
+                        <div class="api-content__image">
+                            <img
+                                class="api-content__image-width"
+                                src="./assets/images/ecommerce/config-integracao.png"
+                                alt="Configurar Integração"
+                            />
+                        </div>
+
+                        <dev-portal-notice type="simple" theme="warning">
+                            <div notice-content>
+                                <div class="notice__text">
+                                    <p>
+                                        A geração de novos tokens no portal tem efeito imediato e invalida as credencias
+                                        geradas anteriormente.
+                                    </p>
+                                </div>
+                            </div>
+                        </dev-portal-notice>
+                    </div>
+
+                    <div class="api-content__table">
+                        <h3 class="api-content__subtitle" id="opcoes-de-integracao">Opções de integração</h3>
+                        <p class="api-content__text">
+                            O PicPay disponibiliza algumas formas de integração. Abaixo vamos falar um pouco mais sobre
+                            cada uma para que você possa entender qual é a melhor opção para o seu e-commerce.
+                        </p>
+                        <div class="api-content__table-content">
+                            <table class="style-table table-responsive">
+                                <thead>
+                                    <tr class="api-content__table-content-row">
+                                        <th class="api-content__table-content-title">Integração</th>
+                                        <th class="api-content__table-content-title">A quem se destina</th>
+                                        <th class="api-content__table-content-title">Link para o passo-a-passo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="api-content__table-content-row">
+                                        <td class="api-content__table-content-data">VTEX</td>
+                                        <td class="api-content__table-content-data">
+                                            Lojistas que já estão integrados ou possuem uma parceria com a VTEX;
+                                        </td>
+                                        <td class="api-content__table-content-data">Em breve</td>
+                                    </tr>
+                                    <tr class="api-content__table-content-row">
+                                        <td class="api-content__table-content-data">Magento 2</td>
+                                        <td class="api-content__table-content-data">
+                                            Lojistas que possuem seus e-commerces com Magento 2
+                                        </td>
+                                        <td class="api-content__table-content-data">Em breve</td>
+                                    </tr>
+                                    <tr class="api-content__table-content-row">
+                                        <td class="api-content__table-content-data">API Pública</td>
+                                        <td class="api-content__table-content-data">
+                                            Lojistas que desejam criar e customizar sua própria experiência (Seja via
+                                            web, aplicativo ou outros canais).
+                                        </td>
+                                        <td class="api-content__table-content-data">
+                                            <a class="api-content__link" href="#aceitando-pagamento">Como começar</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <dev-portal-notice type="simple" theme="info">
+                            <div notice-content>
+                                <div class="notice__text">
+                                    <p>
+                                        Estamos trabalhando para desenvolver novas integrações. Quer saber mais ou tem
+                                        interesse em alguma plataforma específica? Nos envie um e-mail para
+                                        relacionamento-empresas@picpay.com. É desenvolvedor e tem necessidade de alguma
+                                        plataforma? Aceitamos PRs
+                                    </p>
+                                </div>
+                            </div>
+                        </dev-portal-notice>
+                    </div>
+
+                    <h3 class="api-content__subtitle" id="testando-sua-integracao">Testando sua integração</h3>
+                    <p>
+                        Atualmente o PicPay não disponibiliza ambiente de SandBox. Todos os testes serão feitos no
+                        ambiente de produção e não geram qualquer ônus ao desenvolvedor/lojista, sendo que todos os
+                        pagamentos realizados podem ser imediatamente estornados (Através de nossa API de cancelamento,
+                        ou pelo
+                        <a class="api-content__link" href="https://painel-empresas.picpay.com/login" target="_blank"
+                            >painel lojista</a
+                        >).
+                    </p>
+
+                    <div class="api-content__image">
+                        <img
+                            class="api-content__image-width"
+                            src="./assets/images/ecommerce/testando-sua-integracao.gif"
+                            alt="Testando sua integração"
+                        />
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-api col-10">
+                <h2 class="api-content__title">Guias da API pública</h2>
+                <h3 class="api-content__subtitle" id="aceitando-pagamento">Aceitando pagamentos com a API públic</h3>
+                <p>
+                    Abaixo vamos descrever o passo-a-passo para que você aceite pagamentos online com PicPay, assim como
+                    o fluxo básico de um pagamento com QR Code e o ciclo de vida dos pagamentos.
+                </p>
+
+                <h2 class="api-content__title" id="como-funciona-api">Como funciona?</h2>
+                <h3 class="api-content__subtitle" id="autenticacao-api">Autenticação</h3>
+                <p>
+                    O PicPay disponibiliza duas chaves de integração: O <code class="code">x-picpay-token</code> e o
+                    <code class="code">x-seller-token</code>. Para esta operação, você deverá utilizar o
+                    <code class="code">x-picpay-token</code> em suas requisições.
+                </p>
+
+                <h3 class="api-content__subtitle" id="funcionamento-basico-api">Funcionamento básico</h3>
+                <p>
+                    O PicPay funciona como uma forma de pagamento assíncrona, ou seja, uma intenção de pagamento é
+                    gerada através de nossa API de pagamento e permanece com o status pending até que o usuário efetue o
+                    pagamento com o aplicativo verdinho. Veja abaixo o fluxo básico de funcionamento dos pagamentos via
+                    QR Code.
+                </p>
+
+                <div class="api-content__image">
+                    <img
+                        class="api-content__image-width"
+                        src="./assets/images/ecommerce/funcionamento-basico.png"
+                        alt="Funcionamento Básico"
+                    />
+                </div>
+
+                <p><strong>Passo 1:</strong> O cliente seleciona o PicPay como forma de pagamento em seu e-commerce;</p>
+
+                <p>
+                    <strong>Passo 2:</strong> Seu e-commerce deve efetuar uma chamada (server-side) para nossa API de
+                    pagamentos (<code class="code">/payments</code>), gerando uma intenção de pagamento com status
+                    <code class="code">pending</code> dentro do PicPay;
+                </p>
+
+                <dev-portal-code-snippet [infoCodes]="codes.payment"></dev-portal-code-snippet>
+                <p>
+                    <em
+                        >Exemplo de request: O e-commerce cria uma intenção de pagamento de 10 reais no PicPay para o
+                        cliente João dos Testes</em
+                    >
+                </p>
+
+                <p>
+                    <strong>Passo 3:</strong> O PicPay devolve o QR Code no retorno da chamada da API de pagamentos (URL
+                    para redirecionamento em <code class="code">paymentUrl</code> e imagem codificada em
+                    <code class="code">qrcode.base64</code>);
+                </p>
+
+                <dev-portal-code-snippet [infoCodes]="codes.qrcode"></dev-portal-code-snippet>
+                <p><em>Exemplo de response para o request do passo 3.</em></p>
+
+                <p>
+                    <strong>Passo 4:</strong> No seu e-commerce, você exibe o QR code para seu cliente efetuando o
+                    redirecionando para a URL ou exibindo o QR Code;
+                </p>
+
+                <div class="api-content__image">
+                    <img
+                        class="api-content__image-width"
+                        src="./assets/images/ecommerce/pague-com-picpay.png"
+                        alt="Pague com Picpay"
+                    />
+                </div>
+                <div class="api-content__image">
+                    <img
+                        class="api-content__image-width"
+                        src="./assets/images/ecommerce/tela-de-pagamento-teste.png"
+                        alt="Tela de Pagamento"
+                    />
+                </div>
+
+                <p>
+                    <strong>Passo 5:</strong> Caso identificarmos que seu cliente também é cliente PicPay, iremos enviar
+                    uma notificação dentro do aplicativo PicPay avisando sobre o pagamento pendente. Em todos os casos
+                    iremos enviar um e-mail de pagamento pendente contendo o link de nossa página de checkout. Neste
+                    momento, teremos uma intenção de pagamento com o status <code class="code">pending</code> (saiba
+                    mais sobre o ciclo de vida dos pagamentos aqui);
+                </p>
+
+                <p>
+                    <strong>Passo 6:</strong> O cliente efetua o pagamento através do App PicPay (Com saldo ou cartão de
+                    crédito).
+                </p>
+
+                <dev-portal-notice type="simple" theme="info">
+                    <div notice-content>
+                        <div class="notice__text">
+                            <p>
+                                Caso o cliente não efetue o pagamento até a data de expiração (enviada no momento de
+                                criação), o pagamento passará para o status <code class="code">expired</code>
+                            </p>
+                        </div>
+                    </div>
+                </dev-portal-notice>
+
+                <p>
+                    <strong>Passo 7:</strong> Caso o pagamento seja bem sucedido, o PicPay envia uma notificação para o
+                    e-commerce via <strong>POST</strong> na URL de <em>callback</em>, fornecida na requisição de
+                    pagamento como <code class="code">callbackUrl.</code>
+                </p>
+
+                <p>
+                    Seu e-commerce deverá estar preparado para receber um <strong>POST</strong> no endpoint
+                    <code class="code">/callback</code>, utilizando o <code class="code">x-seller-token</code> no header
+                    para autenticação da requisição. Para que o recebimento do <em>callback</em> seja considerado
+                    confirmado, seu e-commerce deve responder com <strong>HTTP Status 200.</strong>
+                </p>
+
+                <dev-portal-code-snippet [infoCodes]="codes.paymentOK"></dev-portal-code-snippet>
+                <p><em>Exemplo de notificação que o PicPay envia para o e-commerce.</em></p>
+
+                <dev-portal-notice type="simple" theme="info">
+                    <div notice-content>
+                        <div class="notice__text">
+                            <p>
+                                Porém, por questões de segurança, não iremos informar o novo status nesta requisição.
+                                Para isto, sua loja (a partir do recebimento de nossa notificação) deverá consultar
+                                nosso endpoint de status de pedidos.
+                            </p>
+                        </div>
+                    </div>
+                </dev-portal-notice>
+
+                <p>Saiba mais sobre as notificações que o PicPay envia neste artigo</p>
+
+                <p>
+                    <strong>Passo 8:</strong> O seu e-commerce deve efetuar um GET utilizando o
+                    <code class="code">referenceId</code> que enviamos por notificação, através para obtenção do status
+                    do pagamento.
+                </p>
+                <dev-portal-code-snippet [infoCodes]="codes.referenceID"></dev-portal-code-snippet>
+                <p><em>Exemplo de notificação que o PicPay envia para o e-commerce.</em></p>
+
+                <p>
+                    <strong>Passo 9:</strong> Caso o pagamento esteja confirmado, exibir confirmação no seu e-commerce.
+                </p>
+            </div>
+            <div class="info-api col-10">
+                <div class="api-content__intro">
+                    <h2 class="api-content__title" id="consultando-status-pagemento">
+                        Consultando o status dos pagamentoso
+                    </h2>
+                    <p>
+                        Abaixo, vamos descrever o passo-a-passo para que você consulte o status de suas ordens geradas
+                        através de nossa API de e-commerce.
+                    </p>
+
+                    <h2 class="api-content__title">Como funciona?</h2>
+                    <h3 class="api-content__subtitle" id="autenticacao-pagamento">Autenticação</h3>
+                    <p>
+                        O PicPay disponibiliza duas chaves de integração: O <code class="code">x-picpay-token</code> e o
+                        <code class="code">x-seller-token</code>. Para esta operação, você deverá utilizar o
+                        <code class="code">x-picpay-token</code> em suas requisições.
+                    </p>
+
+                    <h3 class="api-content__subtitle" id="funcionamento-basico-pagamento">Funcionamento básico</h3>
+                    <p>
+                        Você poderá consultar o status de toda ordem gerada por seu e-commerce através do
+                        <code class="code">referenceId</code> único informado no momento da requisição de pagamento. O
+                        endpoint de consulta irá retornar apenas o status de sua ordem, assim como os campos informados
+                        dentro de <code class="code">additional_info</code>.
+                    </p>
+
+                    <dev-portal-notice type="simple" theme="info">
+                        <div notice-content>
+                            <div class="notice__text">
+                                <p>
+                                    Os dados do comprador ou o QRCode gerado na criação da intenção de pagamento não
+                                    serão devolvidos pelo endpoint de consulta.
+                                </p>
+                            </div>
+                        </div>
+                    </dev-portal-notice>
+
+                    <p>
+                        <strong>Passo 1:</strong> O seu e-commerce deve efetuar um GET utilizando o
+                        <code class="code">referenceId</code> informado no momento da requisição (e que também enviamos
+                        por notificação a cada mudança de status). Entende um pouco mais sobre notificações [aqui]
+                    </p>
+
+                    <dev-portal-code-snippet [infoCodes]="codes.referenceID"></dev-portal-code-snippet>
+                    <p><em>Exemplo de requisição para consultar o status de uma ordem.</em></p>
+
+                    <h3 class="api-content__subtitle" id="ciclo-de-vida-de-um-pagamento">
+                        Ciclo de vida de um pagamento
+                    </h3>
+                    <p>
+                        Ao chamar o endpoint de pagamentos, uma ordem é gerada dentro do PicPay com status
+                        <code class="code">created</code>. A ordem de status <code class="code">created</code> poderá
+                        ser ou paga ou cancelada. Caso seja cancelada ou atinja a data de expiração (informada em
+                        <code class="code">expirationDate</code>, no momento da criação da ordem), a ordem passara para
+                        o status <code class="code">expired</code>.
+                    </p>
+
+                    <p>
+                        As ordens pagas com sucesso pelos usuários terão seu status atualizado para
+                        <code class="code">paid</code>. Caso o PicPay identifique algum comportamento fraudulento no
+                        processo de pagamentos, irá analisar a ordem que por sua vez ficará com o status
+                        <code class="code">analysis</code>.
+                    </p>
+
+                    <p>Abaixo um resumo sobre os status explicados acima, assim como outros status relevantes:</p>
+                    <ul>
+                        <li><code class="code">created:</code> registro criado</li>
+                        <li><code class="code">expired:</code> prazo para pagamento expirado ou ordem cancelada</li>
+                        <li><code class="code">analysis:</code> pago e em processo de análise anti-fraude</li>
+                        <li><code class="code">paid:</code> pago</li>
+                        <li><code class="code">completed:</code> pago e saldo disponível</li>
+                        <li><code class="code">refunded:</code> pago e devolvido</li>
+                        <li><code class="code">chargeback:</code> pago e com chargeback</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-api col-10">
+                <h2 class="api-content__title" id="solicitando-cancelamentos">Solicitando cancelamentos</h2>
+                <p>
+                    Abaixo, vamos descrever o passo-a-passo para que você cancelar suas ordens pendentes ou pagas
+                    através de nossa API de e-commerce.
+                </p>
+
+                <h2 class="api-content__title">Como funciona?</h2>
+                <h3 class="api-content__subtitle" id="autenticacao-cancelamento">Autenticação</h3>
+                <p>
+                    O PicPay disponibiliza duas chaves de integração: O <code class="code">x-picpay-token</code> e o
+                    <code class="code">x-seller-token</code>. Para esta operação, você deverá utilizar o
+                    <code class="code">x-picpay-token</code> em suas requisições.
+                </p>
+
+                <h3 class="api-content__subtitle" id="funcionamento-basico-cancelamento">Funcionamento básico</h3>
+                <p>
+                    Você poderá cancelar qualquer ordem gerada por seu e-commerce através de nosso end-point de
+                    cancelamento. Confira abaixo as regras:
+                </p>
+
+                <p>
+                    <strong>a)</strong> Se já foi pago, o cliente PicPay será estornado caso sua conta de Lojista no
+                    PicPay tenha saldo para realizar o estorno e caso o cliente PicPay tenha recebido algum cashback
+                    nesta transação, este valor será estornado do cliente (para isto o mesmo deve possuir saldo). Todas
+                    esses requisitos devem ser cumpridos para que o estorno da transação ocorra com sucesso. Neste caso,
+                    o <code class="code">authorizationId</code> também deve ser enviado no corpo da requisição.
+                </p>
+
+                <dev-portal-code-snippet [infoCodes]="codes.apiReference"></dev-portal-code-snippet>
+
+                <p><em>Exemplo de cancelamento de ordem paga. </em></p>
+                <p>
+                    Estas ordens irão passar do status <code class="code">paid</code> para
+                    <code class="code">refunded</code>
+                </p>
+                <p>
+                    <strong>b)</strong> Se ainda não foi pago, a transação será cancelada em nosso servidor e não
+                    permitirá pagamento por parte do cliente PicPay. Neste caso, o
+                    <code class="code">referenceId</code> é suficiente para a operação.
+                </p>
+
+                <dev-portal-code-snippet [infoCodes]="codes.referenceID"></dev-portal-code-snippet>
+
+                <p><em>Exemplo de cancelamento de ordem pendente.</em></p>
+                <p>
+                    Estas ordens irão passar do status <code class="code">created</code> para
+                    <code class="code">expired</code>.
+                </p>
+
+                <dev-portal-notice type="simple" theme="info">
+                    <div notice-content>
+                        <div class="notice__text">
+                            <p>
+                                Para transações pagas com saldo, o valor será devolvido à carteira do usuário quase que
+                                imediatamente após a operação. O estorno de uma transação feita com cartão de crédito
+                                pode demorar alguns dias ser refletido na fatura do cliente.
+                            </p>
+                        </div>
+                    </div>
+                </dev-portal-notice>
+            </div>
+
+            <div class="info-api col-10">
+                <h2 class="api-content__title" id="gerenciar-notificacoes">Gerenciar notificações</h2>
+                <p>
+                    Abaixo, vamos descrever o passo-a-passo para que você receba notificações sobre mudança de status de
+                    suas ordens geradas através de nossa API de e-commerce.
+                </p>
+
+                <h2 class="api-content__title">Como funciona?</h2>
+                <h3 class="api-content__subtitle" id="autenticacao-notificacoes">Autenticação</h3>
+
+                <p>
+                    O PicPay disponibiliza duas chaves de integração: O <code class="code">x-picpay-token</code> e o
+                    <code class="code">x-seller-token</code>. Para esta operação, você deverá estar pronto para receber
+                    requisições em seus servidores, utilizando o <code class="code">x-seller-token</code> para
+                    autenticar as requisições.
+                </p>
+
+                <h3 class="api-content__subtitle" id="funcionamento-basico-notificacoes">Funcionamento básico</h3>
+                <p>
+                    Após qualquer mudança de status em suas ordens o PicPay notificará a URL de callback (<code
+                        class="code"
+                        >callbackUrl</code
+                    >) informada no momento da requisição de pagamento. Acompanhe abaixo como seu e-commerce deve estar
+                    preparado para receber as notificações.
+                </p>
+
+                <p>
+                    <strong>Passo 1:</strong> Imediatamente após qualquer mudança de status de uma ordem, o PicPay envia
+                    uma notificação para seu e-commerce via <strong>POST</strong> na URL de <em>callback</em>, fornecida
+                    na requisição de pagamento como <code class="code">callbackUrl</code>.
+                </p>
+
+                <p>
+                    Seu e-commerce deverá estar preparado para receber um <strong>POST</strong> no endpoint
+                    <code class="code">/callback</code>, utilizando o <code class="code">x-seller-token</code> no header
+                    para autenticação da requisição. Para que o recebimento do <em>callback</em> seja considerado
+                    confirmado, seu e-commerce deve responder com <strong>HTTP Status 200</strong>.
+                </p>
+
+                <dev-portal-code-snippet [infoCodes]="codes.apiReference"></dev-portal-code-snippet>
+                <p><em>Exemplo de notificação que o PicPay envia para o e-commerce.</em></p>
+
+                <dev-portal-notice type="simple" theme="warning">
+                    <div notice-content>
+                        <div class="notice__text">
+                            <p>
+                                Por questões de segurança é extremamente importante que o seu e-commerce faça a
+                                validação do <code class="code">x-seller-token</code>
+                            </p>
+                        </div>
+                    </div>
+                </dev-portal-notice>
+
+                <p>
+                    <strong>Passo 2:</strong> O seu e-commerce deve efetuar um GET utilizando o
+                    <code class="code">referenceId</code> que enviamos por notificação, através para obtenção do novo
+                    status do pagamento.
+                </p>
+                <dev-portal-code-snippet [infoCodes]="codes.referenceID"></dev-portal-code-snippet>
+                <p><em>Exemplo de obtenção de status</em></p>
+
+                <h3 class="api-content__subtitle" id="situacoes-de-notificacao">Situações de notificação</h3>
+                <p>Seu e-commerce será notificado nas seguintes situações:</p>
+                <ul>
+                    <li>Pedido expirado: não é mais possível paga-lo usando PicPay;</li>
+                    <li>Pagamento em análise: usuário pagou porém o pagamento está sob análise;</li>
+                    <li>Pedido pago;</li>
+                    <li>Pedido completado: saldo disponível para saque;</li>
+                    <li>Pagamento devolvido: foi pago e estornado para o cliente;</li>
+                    <li>Pagamento com chargeback: cliente solicitou à operadora o cancelamento do pagamento;</li>
+                </ul>
+            </div>
+
+            <div class="info-api col-10">
+                <h2 class="api-content__title" id="recursos">Recursos</h2>
+                <h3 class="api-content__subtitle" id="postman">Postman</h3>
+
+                <p>Também é fã do Postman como nós? Faça download da nossa Collection abaixo</p>
+                <div
+                    class="postman-run-button"
+                    data-postman-action="collection/import"
+                    data-postman-var-1="e78cb7f8c7eaea11f471"
+                    data-postman-param="env%5BPicPay%20Public%5D=W3sia2V5IjoieC1waWNwYXktdG9rZW4iLCJ2YWx1ZSI6InlvdXJfdG9rZW4iLCJlbmFibGVkIjp0cnVlfSx7ImtleSI6InJlZmVyZW5jZUlkIiwidmFsdWUiOiJzb21lX3JlZklkIiwiZW5hYmxlZCI6dHJ1ZX1d"
+                ></div>
+
+                <h3 class="api-content__subtitle" id="obtendo-ajuda">Obtendo ajuda</h3>
+                <p>
+                    Esperamos ter ajudado com o conteúdo desta página! Caso tenha restado alguma dúvida, você pode
+                    consultar o nosso FAQ ou entrar em contato através do e-mail relacionamento-empresas@picpay.com
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

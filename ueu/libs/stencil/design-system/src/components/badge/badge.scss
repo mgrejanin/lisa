@@ -1,0 +1,18 @@
+.apollo-badge {
+    background-color: theme('colors.critical');
+    border-radius: theme('borderRadius.pill');
+    font-size: theme('fontSize.xs');
+    color: theme('colors.white');
+    font-weight: theme('fontWeight.bold');
+
+    &--simple {
+        width: 8px;
+        height: 8px;
+    }
+
+    &--numeric {
+        width: fit-content;
+        height: 16px;
+        padding: 0 4px;
+    }
+}

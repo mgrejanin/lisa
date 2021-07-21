@@ -1,0 +1,45 @@
+@use "mixins/breakpoint";
+
+.c-section {
+    position: relative;
+
+    &__form-figure {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: theme('spacing.3');
+
+        @include breakpoint.up(medium) {
+            flex-direction: row;
+        }
+    }
+    &__form-figure-item {
+        &--disclaimer {
+            margin-top: theme('spacing.3');
+
+            @include breakpoint.up(medium) {
+                margin-left: theme('spacing.3');
+                margin-top: theme('spacing.none');
+            }
+        }
+    }
+    &__card {
+        display: none;
+
+        @include breakpoint.up(medium) {
+            border: theme('borderWidth.light') solid theme('colors.grayscale.100');
+            border-radius: theme('borderRadius.medium');
+            display: block;
+            max-height: 580px;
+            max-width: 400px;
+            overflow: hidden;
+            padding: theme('spacing.2') theme('spacing.3') theme('spacing.none');
+            position: absolute;
+            right: 0;
+            top: -#{theme('spacing.5')};
+        }
+    }
+    &__card-paragraph {
+        margin-bottom: theme('spacing.2');
+    }
+}

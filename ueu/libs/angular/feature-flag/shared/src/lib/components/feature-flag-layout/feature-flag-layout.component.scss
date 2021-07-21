@@ -1,0 +1,11 @@
+@use "mixins/typography";
+
+.logo {
+    width: 100%;
+    display: flex;
+
+    span {
+        @include typography.title(medium);
+        margin-left: theme('spacing.1');
+    }
+}

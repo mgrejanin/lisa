@@ -1,0 +1,40 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-charge-value-links-modal {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 1rem;
+    background-color: rgb(var(--apollo-background-rgb));
+
+    &__header {
+        border-bottom: 1px solid rgb(var(--apollo-on-background-rgb), 0.1);
+        padding: 1rem;
+
+        &--title {
+            @include typography.title(small);
+        }
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+
+        &--item {
+            margin: 0.5rem 0;
+            text-decoration: none !important;
+            color: rgb(var(--apollo-on-background-rgb)) !important;
+            .mat-icon {
+                display: inline-flex;
+                margin-right: 1.5rem;
+
+                ::ng-deep svg path {
+                    fill: rgb(var(--apollo-on-background-rgb));
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,55 @@
+import { Story, Status } from './../../../.storybook/components';
+import { Props } from '@storybook/addon-docs/blocks';
+
+# Checkbox
+
+<Status />
+
+O `apollo-checkbox` é um componente de checkbox par.
+
+<Story id="components-checkbox--base" />
+
+<Props id="components-checkbox--base" />
+
+## Events
+
+| Event          | Description                                        | Type                   |
+| -------------- | -------------------------------------------------- | ---------------------- |
+| `apolloBlur`   | Evento disparado quando o componente perde o foco  | `CustomEvent<null>`    |
+| `apolloChange` | Evento disparado quando o valor do componente muda | `CustomEvent<boolean>` |
+
+### Orientações:
+
+Para ter acesso ao valor do evento emitido deve ser usada a propriedade `detail` do objeto `CustomEvent` que é emitido nos métodos.
+
+## Methods
+
+### `setDisabled(disabled: boolean) => Promise<void>`
+
+API que habilita/desabilita o componente
+
+#### Returns
+
+Type: `Promise<void>`
+
+### Orientações para angular:
+
+Para utilizar os métodos do componente utilize o @ViewChild() conforme exemplo a seguir:
+
+Html:
+
+```html
+<apollo-checkbox #checkbox />
+```
+
+Ts:
+
+```javascript
+@ViewChild('checkbox') checkbox: ApolloCheckbox;
+
+//...
+
+setDisabled() {
+    this.checkbox.setDisabled();
+}
+```

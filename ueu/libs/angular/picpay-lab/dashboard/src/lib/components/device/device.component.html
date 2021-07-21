@@ -1,0 +1,18 @@
+<div class="device">
+    <div class="device__fixed-content">
+        <ng-content select="[fixed-content]"></ng-content>
+    </div>
+    <div class="device__scroll-content">
+        <ng-content select="[scroll-content]"> </ng-content>
+
+        <apollo-button
+            variant="outlined"
+            class="device__scroll-content-btn"
+            (click)="onAddSectionClick()"
+            *ngIf="addSectionVisible"
+        >
+            <apollo-icon slot="leading-icon" svgIcon="interface-plus" size="sm"></apollo-icon>
+            Adicionar seção
+        </apollo-button>
+    </div>
+</div>

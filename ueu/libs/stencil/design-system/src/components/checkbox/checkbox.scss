@@ -1,0 +1,68 @@
+@use "@material/theme" with (
+    $primary: theme('colors.primary.light.500'),
+    $secondary: theme('colors.primary.light.500'),
+);
+@use "@material/checkbox";
+@use "@material/form-field";
+
+@include checkbox.core-styles;
+@include form-field.core-styles;
+
+apollo-checkbox {
+    user-select: none;
+
+    --mdc-theme-primary: var(--apollo-primary);
+    --mdc-theme-on-primary: var(--apollo-on-primary);
+    --mdc-theme-secondary: var(--apollo-primary);
+    --mdc-theme-on-secondary: var(--apollo-on-primary);
+
+    label {
+        margin-bottom: 0rem;
+        position: relative;
+        font-size: 1rem;
+        color: rgba(var(--apollo-on-background-rgb), 0.87);
+    }
+
+    .mdc-form-field {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        .mdc-checkbox + label {
+            padding: 0 0 0 theme('spacing.1');
+        }
+    }
+}
+
+.mdc-checkbox {
+    @include checkbox.ink-color(white);
+
+    &.mdc-checkbox--invalid {
+        --mdc-theme-primary: var(--apollo-error);
+        --mdc-theme-on-primary: var(--apollo-on-error);
+        --mdc-theme-secondary: var(--apollo-error);
+        --mdc-theme-on-secondary: var(--apollo-on-error);
+        @include checkbox.container-colors(theme('colors.critical.light.500'));
+    }
+}
+
+[data-theme='dark'] {
+    .mdc-checkbox {
+        @include checkbox.ink-color(black);
+        @include checkbox.container-colors(theme('colors.grayscale.light.300'));
+        @include checkbox.disabled-container-colors(
+            theme('colors.grayscale.light.500'),
+            transparent,
+            transparent,
+            theme('colors.background.dark.tertiary')
+        );
+
+        &.mdc-checkbox--invalid {
+            --mdc-theme-primary: var(--apollo-error);
+            --mdc-theme-on-primary: var(--apollo-on-error);
+            --mdc-theme-secondary: var(--apollo-error);
+            --mdc-theme-on-secondary: var(--apollo-on-error);
+            @include checkbox.container-colors(theme('colors.critical.light.500'));
+        }
+    }
+}

@@ -1,0 +1,26 @@
+<div class="c-charge-value-modal">
+    <h2 class="c-charge-value-modal__title">Definir valor</h2>
+    <form class="c-charge-value-modal__form" [formGroup]="form" (ngSubmit)="onSetValue()">
+        <mat-form-field appearance="outline">
+            <mat-label>Valor (R$)</mat-label>
+            <input matInput currencyMask inputmode="numeric" formControlName="chargeValue" />
+
+            <button *ngIf="value" matSuffix mat-icon-button type="button" (click)="clearValue()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+
+        <button mat-button type="submit" class="c-charge-value-modal__confirm o-button o-button__solid">
+            Confirmar
+        </button>
+
+        <button
+            mat-button
+            type="button"
+            class="c-charge-value-modal__cancel o-button o-button__link"
+            (click)="onCancel()"
+        >
+            Cancelar
+        </button>
+    </form>
+</div>

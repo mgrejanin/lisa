@@ -1,0 +1,66 @@
+@use "@material/theme" with (
+    $primary: theme('colors.primary.light.500'),
+    $secondary: theme('colors.primary.light.500'),
+);
+
+@use "@material/radio";
+@use "@material/form-field";
+
+@include radio.core-styles;
+@include form-field.core-styles;
+
+apollo-radio {
+    user-select: none;
+    display: flex;
+    align-items: center;
+
+    --mdc-theme-primary: var(--apollo-primary);
+    --mdc-theme-on-primary: var(--apollo-on-primary);
+    --mdc-theme-secondary: var(--apollo-primary);
+    --mdc-theme-on-secondary: var(--apollo-on-primary);
+
+    label {
+        padding: 0 theme('spacing.1') 0 theme('spacing.1');
+        margin-bottom: 0rem;
+        position: relative;
+        font-size: 1rem;
+        color: rgba(var(--apollo-on-background-rgb), 0.87);
+    }
+
+    .radio-inline {
+        padding: 0 theme('spacing.1') 0 0;
+    }
+
+    .mdc-form-field {
+        width: 100%;
+    }
+}
+
+[dir='rtl'] {
+    .radio-inline {
+        padding: 0 0 0 theme('spacing.1');
+    }
+}
+
+[data-theme='dark'] {
+    .mdc-radio {
+        @include radio.unchecked-stroke-color(white);
+        @include radio.disabled-unchecked-stroke-color(rgba(white, theme.text-emphasis(disabled)));
+        @include radio.disabled-checked-stroke-color(rgba(white, theme.text-emphasis(disabled)));
+        @include radio.disabled-checked-stroke-color(rgba(white, theme.text-emphasis(disabled)));
+        @include radio.disabled-ink-color(rgba(white, theme.text-emphasis(disabled)));
+    }
+}
+
+.mdc-radio {
+    &.mdc-radio--invalid {
+        --mdc-theme-primary: var(--apollo-error);
+        --mdc-theme-on-primary: var(--apollo-on-error);
+        --mdc-theme-secondary: var(--apollo-error);
+        --mdc-theme-on-secondary: var(--apollo-on-error);
+        @include radio.ink-color(theme('colors.critical.base'));
+        @include radio.checked-stroke-color(theme('colors.critical.base'));
+        @include radio.unchecked-stroke-color(theme('colors.critical.base'));
+        @include radio.focus-indicator-color(theme('colors.critical.base'));
+    }
+}

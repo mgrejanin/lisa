@@ -1,0 +1,80 @@
+<Meta title="Introdução/Começando" />
+
+# Começando
+
+As instruções abaixo cobrem como usar o **Apollo Design System** com um aplicativo Angular.
+
+## Como configurar
+
+No módulo principal da sua aplicação, importe o módulo DesignSystemAngularModule com o forRoot():
+
+```javascript
+// app.module.ts
+import { DesignSystemAngularModule } from '@picpay/design-system-angular';
+@NgModule({
+    imports: [
+        DesignSystemAngularModule.forRoot(),
+        // ...
+    ],
+    // ...
+})
+export class AppModule {}
+```
+
+Nos módulos internos da sua lib, importe o módulo **DesignSystemAngularModule**, dessa vez sem o forRoot():
+
+```javascript
+// lib-internal.module.ts
+import { DesignSystemAngularModule } from '@picpay/design-system-angular';
+@NgModule({
+    imports: [
+        DesignSystemAngularModule,
+        // ...
+    ],
+    // ...
+})
+export class LibInternalModule {}
+```
+
+## Control Value Accessor
+
+A biblioteca DesignSystemAngularModule também implementa as diretivas de ControlValueAccessor.
+
+-   Boolean Value Accessor
+-   Numeric Value Accessor
+-   Radio Value Accessor
+-   Select Value Accessor
+-   Text Value Accessor
+-   Value Accessor
+
+## Exemplo de utilização do validator customizado
+
+No form do html informar o formGroup:
+
+```html
+<form [formGroup]="formName"></form>
+```
+
+Informar o formControlName no apollo-textfield:
+
+```html
+<apollo-textfield label="name" formControlName="name" required size="md" maxlength="99"></apollo-textfield>
+```
+
+Fazer a chamada do customMessage no arquivo .ts:
+
+```javascript
+ngOnInit(): void {
+    this.formName = this.formBuilder.group({
+        Name: [
+            '',
+            [
+                Validators.required,
+                customMessage(
+                    Validators.pattern('^[A-Z][A-Z0-9_]*$'), 'Mensagem',
+                ),
+            ],
+        ],
+    });
+}
+```

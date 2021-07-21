@@ -1,0 +1,16 @@
+@use "mixins/breakpoint";
+
+.seller-register-container {
+    position: relative;
+    display: grid;
+    grid-template-rows: theme('spacing.10') theme('spacing.none') 3fr;
+    min-height: calc(100vh - #{theme('spacing.8')});
+    margin-top: theme('spacing.4');
+    margin-bottom: theme('spacing.4');
+
+    @include breakpoint.up(small) {
+        min-height: calc(100vh - #{theme('spacing.12')});
+        margin-top: theme('spacing.6');
+        margin-bottom: theme('spacing.6');
+    }
+}

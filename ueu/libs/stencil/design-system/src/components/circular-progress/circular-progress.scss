@@ -1,0 +1,23 @@
+@use "@material/theme" with (
+    $primary: theme('colors.primary.light.500')
+);
+
+@use "@material/circular-progress/mdc-circular-progress";
+
+apollo-circular-progress {
+    * {
+        box-sizing: border-box;
+    }
+
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+
+    &.--invert {
+        .mdc-circular-progress__indeterminate-circle-graphic {
+            stroke: #fff;
+        }
+    }
+}

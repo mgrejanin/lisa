@@ -1,0 +1,27 @@
+@import 'libs/ui/styles/src/lib/theming';
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    ::ng-deep {
+        mat-spinner {
+            circle {
+                stroke: rgba(var(--apollo-primary-rgb), 1);
+            }
+        }
+    }
+
+    .text {
+        color: rgba(var(--apollo-primary-rgb), 1);
+
+        &--left {
+            margin-right: 20px;
+        }
+
+        &--right {
+            margin-left: 20px;
+        }
+    }
+}

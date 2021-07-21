@@ -1,0 +1,14 @@
+// interfaces
+import { DashboardLogoOptions } from '@picpay/ui/components';
+import { CommonLayoutsConfig } from '@picpay/ui/layouts';
+
+const desktopMenu = [{ icon: 'toggle_on', text: 'Home', route: '/home' }];
+
+const mobileMenu = [{ icon: 'toggle_on', text: 'Home', route: '/home' }];
+
+export const layoutConfig: CommonLayoutsConfig = {
+    menuItems: desktopMenu,
+    mobileMenuItems: mobileMenu,
+    dashboardLogo: DashboardLogoOptions.FEATURE_FLAG,
+    dashboardTitle: '<%= appName %>',
+};

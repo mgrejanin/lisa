@@ -1,0 +1,71 @@
+<section class="c-section">
+    <div class="c-section__headline">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="c-section__title">{{ title }}</h1>
+                <p class="c-section__description">Vamos precisar de algumas informações pra identificar a empresa.</p>
+            </div>
+        </div>
+    </div>
+
+    <form class="c-section__form" [formGroup]="companyDataForm" (ngSubmit)="onSubmit()">
+        <fieldset>
+            <div class="row">
+                <div class="col-md-6 c-section__form-field">
+                    <apollo-textfield
+                        class="c-section__form-input c-section__form-input--cnpj"
+                        label="CNPJ"
+                        formControlName="company_cnpj"
+                        type="text"
+                        required="true"
+                        helper-text="Ex: 12.345.678/0001-01"
+                        maskVariant="cnpj"
+                    ></apollo-textfield>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 c-section__form-field">
+                    <apollo-textfield
+                        label="Razão social"
+                        formControlName="company_social"
+                        type="text"
+                        required="true"
+                        helper-text="Ex: PicPay Serviços S.A."
+                    ></apollo-textfield>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 c-section__form-field">
+                    <apollo-select label="Tipo de empresa" formControlName="company_type" required="true">
+                        <apollo-select-item *ngFor="let type of types" [value]="type.value">
+                            {{ type.value }}
+                        </apollo-select-item>
+                    </apollo-select>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</section>
+
+<footer class="c-footer c-footer--reverse">
+    <apollo-button
+        size="md"
+        type="button"
+        block
+        class="c-footer__button c-footer__button--next"
+        [disabled]="companyDataForm.invalid"
+        (click)="onSubmit()"
+    >
+        Continuar
+    </apollo-button>
+    <apollo-button
+        size="md"
+        type="button"
+        block
+        variant="outlined"
+        class="c-footer__button c-footer__button--cnpj"
+        [routerLink]="['/form/picpay-pro']"
+    >
+        Não tenho CNPJ
+    </apollo-button>
+</footer>

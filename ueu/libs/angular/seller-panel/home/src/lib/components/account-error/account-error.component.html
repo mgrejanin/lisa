@@ -1,0 +1,21 @@
+<section class="c-account-error">
+    <div class="c-account-error__header">
+        <button mat-icon-button class="c-account-error__header--close-button" (click)="onClose()">
+            <apollo-icon fill="#00ac4a" svgIcon="interface-times" size="md"> </apollo-icon>
+        </button>
+    </div>
+    <div class="c-account-error__content">
+        <seller-panel-feedback
+            imagePath="/assets/images/feedback-error.svg"
+            [title]="title"
+            [description]="description"
+            height="45vh"
+        ></seller-panel-feedback>
+    </div>
+
+    <div class="c-account-error__footer">
+        <apollo-button class="c-account-error__footer--btn" (click)="onEditAccount()" [loading]="loading">{{
+            buttonText
+        }}</apollo-button>
+    </div>
+</section>

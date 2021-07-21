@@ -1,0 +1,170 @@
+$mq-small: 0px;
+$mq-medium: 767px;
+$mq-large: 979px;
+
+@mixin family() {
+    font-family: theme('fontFamily.sans');
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+}
+
+@mixin title($size: large) {
+    @include family();
+
+    @if $size == xlarge {
+        font-size: theme('fontSize.4xl');
+        line-height: theme('lineHeight.5xl');
+        font-weight: theme('fontWeight.extrabold');
+    }
+
+    @if $size == large {
+        font-size: theme('fontSize.3xl');
+        line-height: theme('lineHeight.3xl');
+        font-weight: theme('fontWeight.extrabold');
+    }
+
+    @if $size == medium {
+        font-size: theme('fontSize.xl');
+        line-height: theme('lineHeight.xl');
+        font-weight: theme('fontWeight.extrabold');
+    }
+
+    @if $size == small {
+        font-size: theme('fontSize.lg');
+        line-height: theme('lineHeight.lg');
+        font-weight: theme('fontWeight.bold');
+    }
+
+    @media (min-width: $mq-medium) {
+        @if $size == xlarge {
+            font-size: theme('fontSize.6xl');
+            line-height: theme('lineHeight.6xl');
+            font-weight: theme('fontWeight.extrabold');
+        }
+
+        @if $size == large {
+            font-size: theme('fontSize.4xl');
+            line-height: theme('lineHeight.4xl');
+            font-weight: theme('fontWeight.extrabold');
+        }
+
+        @if $size == medium {
+            font-size: theme('fontSize.2xl');
+            line-height: theme('lineHeight.2xl');
+            font-weight: theme('fontWeight.extrabold');
+        }
+
+        @if $size == small {
+            font-size: theme('fontSize.xl');
+            line-height: theme('lineHeight.xl');
+            font-weight: theme('fontWeight.bold');
+        }
+
+        @media (min-width: $mq-large) {
+            @if $size == xlarge {
+                font-size: theme('fontSize.7xl');
+                line-height: theme('lineHeight.7xl');
+                font-weight: theme('fontWeight.extrabold');
+            }
+
+            @if $size == large {
+                font-size: theme('fontSize.5xl');
+                line-height: theme('lineHeight.5xl');
+                font-weight: theme('fontWeight.extrabold');
+            }
+
+            @if $size == medium {
+                font-size: theme('fontSize.3xl');
+                line-height: theme('lineHeight.3xl');
+                font-weight: theme('fontWeight.extrabold');
+            }
+
+            @if $size == small {
+                font-size: theme('fontSize.2xl');
+                line-height: theme('lineHeight.2xl');
+                font-weight: theme('fontWeight.bold');
+            }
+        }
+    }
+}
+
+@mixin body($type: primary, $weight: default) {
+    @include family();
+
+    @if $type == primary {
+        font-size: theme('fontSize.base');
+        line-height: theme('lineHeight.base');
+
+        @if $weight == default {
+            font-weight: theme('fontWeight.normal');
+        }
+
+        @if $weight == highlight {
+            font-weight: theme('fontWeight.bold');
+        }
+    }
+
+    @if $type == secondary {
+        font-size: theme('fontSize.sm');
+        line-height: theme('lineHeight.sm');
+
+        @if $weight == default {
+            font-weight: theme('fontWeight.semibold');
+        }
+
+        @if $weight == highlight {
+            font-weight: theme('fontWeight.extrabold');
+        }
+    }
+}
+
+@mixin caption($weight: default) {
+    @include family();
+
+    font-size: theme('fontSize.xs');
+    line-height: theme('lineHeight.xs');
+
+    @if $weight == default {
+        font-weight: theme('fontWeight.normal');
+    }
+
+    @if $weight == highlight {
+        font-weight: theme('fontWeight.bold');
+    }
+}
+
+@mixin link($type: primary) {
+    @include family();
+
+    text-decoration: underline;
+    color: var(--apollo-primary);
+
+    @if $type == primary {
+        font-size: theme('fontSize.base');
+        line-height: theme('lineHeight.base');
+        font-weight: theme('fontWeight.normal');
+    }
+
+    @if $type == secondary {
+        font-size: theme('fontSize.sm');
+        line-height: theme('lineHeight.sm');
+        font-weight: theme('fontWeight.semibold');
+    }
+
+    &:active {
+        color: var(--apollo-primary-dark);
+    }
+
+    &:focus {
+        color: var(--apollo-primary);
+        outline: none !important;
+        border: theme('borderWidth.light') solid var(--apollo-primary);
+        border-radius: theme('borderRadius.light');
+        box-shadow: 0 0 2px var(--apollo-primary);
+    }
+
+    &:hover {
+        color: var(--apollo-primary-dark);
+    }
+}

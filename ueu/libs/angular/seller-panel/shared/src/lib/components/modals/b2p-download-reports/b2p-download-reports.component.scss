@@ -1,0 +1,106 @@
+@use "mixins/typography";
+
+.c-download-report {
+    max-height: 100%;
+
+    &__header {
+        text-align: center;
+        align-items: center;
+
+        padding: theme('spacing.1') 0;
+    }
+
+    &__title {
+        flex: 1;
+        align-self: center;
+
+        @include typography.title(medium);
+    }
+
+    &__content {
+        overflow-y: auto;
+
+        padding: 0 22px;
+        max-height: 40vh;
+
+        &__image {
+            padding: 8px 0px;
+
+            &--formatted {
+                width: auto;
+                height: 144px;
+            }
+        }
+
+        &--paragraph {
+            padding: theme('spacing.1');
+        }
+
+        &--font-bold {
+            font-weight: theme('fontWeight.bold');
+        }
+
+        &--field-error {
+            margin-bottom: 24px;
+        }
+
+        &--text-error {
+            font-weight: theme('fontWeight.normal');
+            font-size: theme('fontSize.xs');
+        }
+
+        &--nowrap {
+            flex-wrap: nowrap;
+        }
+
+        &--margin-right {
+            margin-right: theme('spacing.4');
+        }
+    }
+
+    &__download {
+        padding: theme('spacing.2') 0;
+    }
+
+    &__footer {
+        padding: theme('spacing.1') theme('spacing.2');
+        border-top: 1px solid rgba(var(--apollo-on-background-rgb), 0.2);
+    }
+
+    &__warning {
+        padding-bottom: theme('spacing.2');
+    }
+
+    &__close-button {
+        margin-right: 5px;
+    }
+
+    @media screen and (max-width: 768px) {
+        border-radius: 0;
+        height: 100%;
+
+        &__content {
+            height: 100%;
+            max-height: none;
+        }
+
+        &__footer {
+            flex-direction: column-reverse;
+            align-items: center;
+        }
+
+        &--mobile {
+            flex-wrap: nowrap;
+            height: 100%;
+        }
+    }
+}
+
+::ng-deep .mat-autocomplete-panel {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+}
+
+::ng-deep .mat-option-disabled {
+    color: #8a9499 !important;
+}

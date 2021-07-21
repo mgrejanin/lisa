@@ -1,0 +1,56 @@
+@use "mixins/typography";
+
+.c-change-recharge-value {
+    position: relative;
+    text-align: center;
+    background-color: theme('colors.background.light.primary');
+    border-radius: theme('borderRadius.strong');
+    padding: theme('spacing.2') theme('spacing.3');
+
+    &__header &__body,
+    &__form,
+    &__footer {
+        margin: theme('spacing.none') auto;
+        max-width: 90%;
+    }
+
+    &__header {
+        &-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include typography.title(medium);
+            color: theme('colors.grayscale.700');
+            margin-bottom: theme('spacing.4');
+        }
+
+        &-close-btn {
+            position: absolute;
+            top: theme('spacing.2');
+            right: theme('spacing.1');
+
+            background: transparent;
+            border: theme('borderWidth.none');
+            line-height: 0;
+        }
+    }
+
+    &__body {
+        &-content {
+            display: flex;
+            flex-direction: column;
+
+            &-item {
+                font-size: theme('fontSize.lg');
+                margin-bottom: theme('spacing.2');
+            }
+        }
+    }
+
+    &__form {
+        &-feedback {
+            margin: theme('spacing.1') auto theme('spacing.3') auto;
+            width: 90%;
+        }
+    }
+}

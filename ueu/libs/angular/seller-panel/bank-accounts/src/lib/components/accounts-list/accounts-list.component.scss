@@ -1,0 +1,138 @@
+@use 'mixins/typography';
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-accounts-list {
+    padding: theme('spacing.none') theme('spacing.3');
+    margin: theme('spacing.none');
+    max-height: 305px;
+    overflow-y: auto;
+
+    &__item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: theme('spacing.2');
+        border-radius: theme('spacing.1');
+
+        &:hover,
+        &:focus {
+            background-color: rgba(var(--apollo-primary-rgb), 0.15);
+            outline-color: rgba(var(--apollo-primary-rgb), 1);
+        }
+
+        .c-account-item-container {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+
+            &__icon {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                border: theme('borderWidth.light') solid rgba(var(--apollo-on-background-rgb), 0.1);
+                margin-right: theme('spacing.2');
+            }
+
+            &__content {
+                display: flex;
+                flex-wrap: wrap;
+                flex: 1;
+                justify-content: space-between;
+
+                &--data {
+                    display: flex;
+                }
+
+                .c-account-item {
+                    &__name {
+                        font-size: theme('fontSize.sm');
+                        font-weight: theme('fontWeight.bold');
+                        line-height: theme('lineHeight.base');
+                        margin: theme('spacing.none');
+                        color: rgb(var(--apollo-on-background-rgb));
+
+                        &--caption {
+                            font-size: theme('fontSize.xs');
+                            font-weight: theme('fontWeight.normal');
+                            line-height: theme('lineHeight.2xl');
+                            text-transform: uppercase;
+                        }
+                    }
+
+                    &__badge {
+                        margin-left: theme('spacing.half');
+                        text-align: center;
+                        align-self: flex-start;
+                        text-transform: uppercase;
+                        padding: theme('spacing.half') theme('spacing.half');
+                        background-color: rgba(var(--apollo-primary-rgb));
+                        color: $white;
+                        border-radius: theme('borderRadius.light');
+                        font-size: theme('fontSize.xs');
+                        font-weight: theme('fontWeight.bold');
+                    }
+                }
+
+                &--error {
+                    margin-right: theme('spacing.2');
+
+                    font-size: theme('fontSize.xs');
+                    font-weight: theme('fontWeight.bold');
+                    line-height: theme('lineHeight.2xl');
+
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        color: var(--apollo-error);
+                    }
+
+                    .u-color__danger {
+                        margin-right: theme('spacing.1');
+                    }
+                }
+            }
+        }
+
+        &--action {
+            cursor: pointer;
+        }
+    }
+
+    &__loading-wrapper,
+    &__empty-wrapper,
+    &__error-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        margin: theme('spacing.4') theme('spacing.3');
+
+        img {
+            width: 140px;
+        }
+
+        h3 {
+            @include typography.title(medium);
+            margin: theme('spacing.2') 0;
+        }
+
+        p {
+            @include typography.body(primary, small);
+            padding-left: theme('spacing.6');
+            padding-right: theme('spacing.6');
+        }
+
+        span {
+            color: rgba(var(--apollo-primary-rgb)) !important;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        padding: theme('spacing.3') theme('spacing.1');
+    }
+}

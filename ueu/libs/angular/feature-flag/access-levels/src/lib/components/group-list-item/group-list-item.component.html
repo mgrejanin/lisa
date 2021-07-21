@@ -1,0 +1,10 @@
+<li class="c-group-list-item" role="listitem">
+    <a [routerLink]="link" class="c-group-list-item__container" [id]="id" [ngClass]="active ? 'active' : ''">
+        <apollo-icon [svgIcon]="iconName" size="md" class="c-group-list-item__icon"> </apollo-icon>
+
+        <div class="c-group-list-item__description">
+            <span *ngIf="label">{{ label }}</span>
+            <h2>{{ title }}</h2>
+        </div>
+    </a>
+</li>

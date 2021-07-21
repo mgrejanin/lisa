@@ -1,0 +1,45 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-features-list {
+    &__sidenav {
+        @include mat-elevation(5);
+
+        background-color: theme('colors.background.base');
+    }
+
+    &__filter {
+        width: auto;
+
+        margin-bottom: 2rem;
+
+        ::ng-deep .mat-form-field-wrapper {
+            padding: 0px;
+            margin: 0px;
+        }
+    }
+
+    &__title {
+        @include typography.title(large);
+        margin-bottom: 1rem;
+    }
+
+    &__action-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: row;
+    }
+
+    &__table {
+        width: 100%;
+    }
+}
+
+::ng-deep .mat-menu-panel {
+    background-color: white;
+
+    button {
+        background-color: transparent;
+    }
+}

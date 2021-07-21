@@ -1,0 +1,13 @@
+<picpedia-navbar-header [title]="titleModels"></picpedia-navbar-header>
+
+<section class="c-glossary-models container-fluid">
+    <apollo-flex justify="center" class="c-glossary-models__loading" *ngIf="isLoadingModels$ | async">
+        <apollo-circular-progress radius="35" stroke="6"></apollo-circular-progress>
+    </apollo-flex>
+
+    <div class="c-glossary-models__container">
+        <div *ngFor="let item of models$ | async">
+            <picpedia-cards [title]="item.data_domain | titlecase" [icon]="iconModels" [routerLink]="item.data_domain"></picpedia-cards>
+        </div>
+    </div>
+</section>

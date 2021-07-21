@@ -1,0 +1,91 @@
+<section class="c-variables">
+    <mat-drawer-container>
+        <ops-dash-header></ops-dash-header>
+
+        <div class="c-variables__container-title">
+            <h1 class="c-variables__h1">Variáveis</h1>
+        </div>
+
+        <form [formGroup]="searchForm" class="c-variables__filter">
+            <apollo-textfield
+                label="Buscar"
+                formControlName="searchString"
+                class="c-variables__input"
+                size="md"
+                threshold="500"
+                (apolloChange)="applyFilter(false)"
+            ></apollo-textfield>
+
+            <apollo-select
+                label="Filtro"
+                formControlName="filterOption"
+                (apolloChange)="applyFilter(true)"
+                class="c-variables__options-filter"
+            >
+                <apollo-select-item [selected]="true" value="name"> por nome </apollo-select-item>
+                <apollo-select-item value="service"> por serviço </apollo-select-item>
+            </apollo-select>
+        </form>
+
+        <apollo-button variant="outlined" size="md" class="c-variables__button-create" (click)="openDialog()">
+            <apollo-icon slot="leading-icon" svgIcon="interface-plus"></apollo-icon>
+            Criar variável
+        </apollo-button>
+
+        <div class="c-variables__loading" *ngIf="isLoadingListVariables$ | async">
+            <apollo-circular-progress radius="35" stroke="6"></apollo-circular-progress>
+        </div>
+
+        <table mat-table [dataSource]="variables$ | async" class="c-variables__table">
+            <ng-container matColumnDef="key">
+                <th mat-header-cell *matHeaderCellDef class="c-variables__title o-table__title">Key</th>
+                <td mat-cell *matCellDef="let element" class="o-table__item">
+                    <div class="c-variables__item-key">{{ element.key }}</div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="icon">
+                <th
+                    mat-header-cell
+                    *matHeaderCellDef
+                    class="c-variables__title c-variables__column-icon o-table__title"
+                ></th>
+                <td mat-cell *matCellDef="let element" class="o-table__item">
+                    <apollo-icon
+                        class="material-icon c-variables__icon-delete"
+                        (click)="deleteDialog(element.key)"
+                        title="excluir"
+                    >
+                        delete
+                    </apollo-icon>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr
+                mat-row
+                *matRowDef="let element; columns: displayedColumns"
+                class="c-variables__row o-table__row"
+                (click)="selectedItems(element.key)"
+            ></tr>
+        </table>
+
+        <mat-paginator
+            [pageSize]="itemsPerPage"
+            showFirstLastButtons
+            [length]="totalItems$ | async"
+            (page)="getPageItems($event.pageIndex)"
+        ></mat-paginator>
+
+        <mat-drawer #drawer mode="side" position="end">
+            <div>
+                <div>
+                    <apollo-icon class="material-icon c-variables__icon-close" (click)="drawer.toggle()">
+                        close
+                    </apollo-icon>
+                    <ops-dash-variables-update></ops-dash-variables-update>
+                </div>
+            </div>
+        </mat-drawer>
+    </mat-drawer-container>
+</section>

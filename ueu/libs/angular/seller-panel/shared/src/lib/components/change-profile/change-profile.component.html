@@ -1,0 +1,50 @@
+<div class="c-change-profile">
+    <header class="c-change-profile__header">
+        <apollo-textfield
+            label="Busque por nome da loja"
+            class="c-change-profile__header--search mt-2"
+            threshold="400"
+            leading-icon
+            trailingClearIcon
+            [disabled]="loading || loadedError"
+            (apolloChange)="onSearchProfiles($event.detail)"
+        >
+            <apollo-textfield-icon slot="leading-icon">
+                <apollo-icon svgIcon="interface-search"></apollo-icon>
+            </apollo-textfield-icon>
+        </apollo-textfield>
+    </header>
+    <div class="c-change-profile__container">
+        <div class="c-change-profile__loading" *ngIf="loading; else callbackTemplate">
+            <seller-panel-loading-spinner></seller-panel-loading-spinner>
+        </div>
+        <ng-template #callbackTemplate>
+            <ng-container *ngIf="sellersFiltered.length > 0">
+                <ul class="c-change-profile__list">
+                    <li
+                        (click)="changeSeller(result?.id)"
+                        *ngFor="let result of sellersFiltered"
+                        class="c-change-profile__list--item"
+                    >
+                        {{ result?.cpf_cnpj ? result?.cpf_cnpj + ' - ' : '' }} {{ result?.name }}
+                    </li>
+                </ul>
+            </ng-container>
+            <ng-container *ngIf="sellersFiltered?.length === 0 && !loadedError">
+                <seller-panel-feedback
+                    [imagePath]="'/assets/images/empty_search.svg'"
+                    title="Nenhuma filial encontrada"
+                    height="250px"
+                ></seller-panel-feedback>
+            </ng-container>
+            <ng-container *ngIf="loadedError">
+                <seller-panel-feedback
+                    imagePath="/assets/images/error_state.svg"
+                    title="Opa! Erramos por aqui"
+                    description="Tivemos uma falha no sistema e não conseguimos concluir."
+                    height="260px"
+                ></seller-panel-feedback>
+            </ng-container>
+        </ng-template>
+    </div>
+</div>

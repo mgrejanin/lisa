@@ -1,0 +1,968 @@
+<dev-portal-banner
+    backgroundColor="#172126"
+    reverse="true"
+    col_image="4"
+    col_content="6"
+    offset="1"
+    justify_content="end"
+>
+    <div banner-image class="d-none d-md-block">
+        <img src="./assets/icons/icone-banner-plataforma-aberta.png" alt="Produto Plataforma Aberta" />
+    </div>
+    <div banner-content>
+        <h1>Plataforma Aberta</h1>
+        <div>
+            <p class="banner-text mb-4">
+                Quer personalizar a experiência da sua empresa na Store do PicPay? Chega mais! Aqui tem tudo o que
+                precisa saber para customizar templates, editar estruturação e muito mais
+            </p>
+            <p class="banner-text mb-4">Aproveite, é hora de criar!</p>
+        </div>
+    </div>
+</dev-portal-banner>
+
+<div class="api-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="info-api col-10">
+                <div id="estrutura-de-customizacao" class="api-content__block">
+                    <h2 class="api-content__title">Estrutura de customização</h2>
+                    <div class="api-content__text">
+                        <p>
+                            A estrutura de customização tem como finalidade dar a liberdade controlada para o usuário
+                            adequar o template da store de acordo com a sua proposta de serviço e conversão. A
+                            customização proporciona ao usuário alternativas de edição da estrutura da loja que
+                            inicialmente vamos definir como módulos, com uma limitação de estruturas possíveis
+                            inicialmente podemos escalar em opções de acordo com a evolução do projeto.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="modulos" class="api-content__block">
+                    <h2 class="api-content__title">Módulos</h2>
+                    <div class="api-content__text">
+                        <p>
+                            Módulos são massas estruturantes que juntas formam o wireframe do template, os módulos nada
+                            mais são do que os organismos do Atomic Design sem a propriedade visual do componente afim
+                            de formatar a estrutura organizacional da página, inicialmente vamos oferecer ao usuário 4
+                            opções de módulos sendo que apenas 3 deles podem compor uma página, essa regra existe dada a
+                            opção de módulo de valor de venda.
+                        </p>
+                    </div>
+                    <div class="api-content__row row">
+                        <div class="api-content__image bg col-md-4">
+                            <img src="./assets/images/plataforma-aberta/modulo-texto.png" alt="Módulo Texto" />
+                        </div>
+                        <div class="api-content__text col">
+                            <strong>Módulo de Texto</strong>
+                            <p>
+                                O módulo de texto tem como premissa oferecer o conteúdo sobre a empresa ou produto mas
+                                também oferece liberdade textual para o usuário exibir qualquer mensagem sem limites de
+                                caracteres.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="api-content__row row">
+                        <div class="api-content__image bg col-md-4">
+                            <img
+                                src="./assets/images/plataforma-aberta/modulo-card-banner.png"
+                                alt="Módulo Card Banner"
+                            />
+                        </div>
+                        <div class="api-content__text col">
+                            <strong>Módulo Card Banner</strong>
+                            <p>
+                                O módulo de Coin Value tem como premissa funcionar para vendas de valores em condição
+                                monetária, onde a marca vende um valor em R$ para consumo dentro de seu produto.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="api-content__row row">
+                        <div class="api-content__image bg col-md-4">
+                            <img src="./assets/images/plataforma-aberta/layouts.png" alt="Layouts" />
+                        </div>
+                        <div class="api-content__text col">
+                            <strong>Layouts</strong>
+                            <p>Possibilidades de wireframe com a utilização de <strong>2 módulos</strong>.</p>
+                        </div>
+                    </div>
+                    <h3 id="blocos-nao-modulares" class="api-content__subtitle">Blocos não modulares</h3>
+                    <div class="api-content__text">
+                        <p>
+                            Existem blocos no MVP que <strong>não são modulares</strong> ou seja eles não podem ser
+                            aplicados em um lugar diferente do já definido no wireframe, sendo assim o usuário ja inicia
+                            o desenvolvimento em um esqueleto existente, onde ele modula apenas o corpo da loja com os
+                            módulos acima mantendo uma unidade do aplicativo no topo.
+                        </p>
+                    </div>
+                    <div class="api-content__row row">
+                        <div class="api-content__image bg col-md-4">
+                            <img src="./assets/images/plataforma-aberta/store-header.png" alt="Store Header" />
+                        </div>
+                        <div class="api-content__text col">
+                            <strong>Store Header</strong>
+                            <p>
+                                O store header é o componente que agrega a capa, avatar, back button e o fav button, ele
+                                possui personalização por parte do usuário com as imagens do avatar e capa mas não
+                                possibilita alteração de posicionamento, tamanho, cor e texto.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="fluxos-de-navegacao" class="api-content__block">
+                    <h2 class="api-content__title">Fluxos de navegação</h2>
+                    <div class="api-content__text">
+                        <p>
+                            No MVP temos possibilidades de fluxo de venda que devem ser utilizados de acordo com o
+                            produto e proposta de experiência do parceiro integrado. O acesso ao fluxo de navegação pode
+                            ser feito em
+                            <a
+                                class="api-content__link"
+                                href="https://whimsical.com/store-picpay-MotrncuaPxB6aizrjsZJ17"
+                                target="_blank"
+                                >nosso Whimscal</a
+                            >.
+                        </p>
+                    </div>
+                    <div class="api-content__image">
+                        <img
+                            src="./assets/images/plataforma-aberta/fluxo-de-navegacao.png"
+                            width="100%"
+                            alt="Fluxo de Navegação"
+                        />
+                    </div>
+                    <h3 id="estrutura-de-personalizacao" class="api-content__subtitle">Estrutura de personalização</h3>
+                    <div class="api-content__text">
+                        <p>
+                            A estrutura de personalização tem como finalidade proporcionar ao usuário a possibilidade de
+                            personalizar os componentes da store para uma maior imersão na experiência de compra, assim
+                            como a estrutura de customização inicialmente vamos limitar o nível de personalização para
+                            alavancar métricas para validarmos a evolução dessa personalização e ainda garantirmos a
+                            unidade visual do aplicativo. A personalização garante ao usuário uma integração da sua
+                            marca com o template da store proporcionando ferramentas iniciais para criação de uma
+                            experiência integrada a marca.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="componentes-personalizaveis" class="api-content__block">
+                    <h2 class="api-content__title">Componentes personalizáveis</h2>
+                    <h3 id="header" class="api-content__subtitle">Header</h3>
+                    <div class="api-content__row row">
+                        <div class="api-content__image col-md-4">
+                            <img src="./assets/images/plataforma-aberta/banner.png" alt="Banner" />
+                        </div>
+                        <div class="api-content__text col">
+                            <strong>Banner</strong>
+                            <p>
+                                O banner tem a possibilidade de upload de imagem de acordo com a necessidade do usuário
+                                e não possui qualquer restrição em relação ao conteúdo da imagem como excesso de texto
+                                ou elementos.
+                            </p>
+                        </div>
+                        <div class="api-content__notice">
+                            <dev-portal-notice type="complete" theme="info">
+                                <div notice-content>
+                                    <h4 class="notice__title">Qual o limite de texto?</h4>
+                                    <div class="notice__text">
+                                        <p>
+                                            Não há limite de texto para o banner da loja, mas para uma leitura mais
+                                            dinâmica do leitor recomendamos o limite de 20% da imagem do banner ser
+                                            composta por texto.
+                                        </p>
+                                    </div>
+                                </div>
+                            </dev-portal-notice>
+                        </div>
+                    </div>
+                    <div class="api-content__row row">
+                        <div class="api-content__image col-md-4">
+                            <img src="./assets/images/plataforma-aberta/avatares.png" alt="Avatares" />
+                        </div>
+                        <div class="api-content__text col">
+                            <strong>Avatares</strong>
+                            <p>
+                                O avatares tem a possibilidade de upload de imagem de acordo com a sua aplicação, eles
+                                são exibidos em diferentes conteúdos durante a navegação assim como em diferentes
+                                tamanhos, não possuem nenhuma restrição quanto ao conteúdo mas devem seguir a
+                                recomendação de serem simplificados para uma fácil leitura do usuário.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="api-content__row row">
+                        <div class="api-content__image col-md-4">
+                            <img src="./assets/images/plataforma-aberta/card-button.png" alt="Card Button" />
+                        </div>
+                        <div class="api-content__text col">
+                            <strong>Card Button</strong>
+                            <p>
+                                O card button é formato por 3 atomos de texto, eles podem ser organizados de acordo com
+                                a experiência desejada, 1 atomo de ícone e 1 atomo de seta que não podem ser
+                                reposicionados dentro do card button.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="api-content__row row">
+                        <div class="api-content__image col-md-4">
+                            <img src="./assets/images/plataforma-aberta/content-text.png" alt="Content Text" />
+                        </div>
+                        <div class="api-content__text col">
+                            <strong>Content Text</strong>
+                            <p>
+                                O texto que descreve a loja no usuário de modo generalista ou especifico pode ser
+                                realocado de maneira que entregue a experiência desejada (como explicado na área de
+                                módulos) ele não pode ter suas propriedades de cor, tamanho e tipo de fonte alterados.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="api-content__notice">
+                        <dev-portal-notice type="simple" theme="info">
+                            <div notice-content>
+                                <div class="notice__text">
+                                    <p>
+                                        - O <code>Content text</code> não possui limite de caracteres para o texto de
+                                        corpo e possui o limite de linha para o título.
+                                    </p>
+                                    <p>
+                                        - Uma boa prática é utilizar textos diretos que auxiliem o usuário na tomada de
+                                        decisão sobre o produto.
+                                    </p>
+                                </div>
+                            </div>
+                        </dev-portal-notice>
+                    </div>
+                    <div class="api-content__row row">
+                        <div class="api-content__image col-md-4">
+                            <img src="./assets/images/plataforma-aberta/green-button.png" alt="Green Button" />
+                        </div>
+                        <div class="api-content__text col">
+                            <strong>Green Button</strong>
+                            <p>
+                                O green button é utilizado para executar funções essenciais dentro de fluxos, ele é
+                                formato pelo elemento verde junto a um átomo de texto.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="api-content__notice">
+                        <dev-portal-notice type="simple" theme="info">
+                            <div notice-content>
+                                <div class="notice__text">
+                                    <p>
+                                        - O green button deve possuir 1 linha e não podem ter sua propriedade de cor e
+                                        largura alterados.
+                                    </p>
+                                    <p>
+                                        - Uma boa prática é a utilização de ações dinâmicas para garantir fluidez na
+                                        experiência.
+                                    </p>
+                                </div>
+                            </div>
+                        </dev-portal-notice>
+                    </div>
+                    <div class="api-content__row row">
+                        <div class="api-content__image without-100 col-md-4">
+                            <img src="./assets/images/plataforma-aberta/secondary-button.png" alt="Secondary Button" />
+                        </div>
+                        <div class="api-content__text col">
+                            <strong>Secondary Button</strong>
+                            <p>
+                                O secondary button é utilizado para executar funções não essenciais ou secundárias
+                                dentro de fluxos, ele é formato pelo átomo de texto.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="api-content__notice">
+                        <dev-portal-notice type="simple" theme="info">
+                            <div notice-content>
+                                <div class="notice__text">
+                                    <p>
+                                        - O secondary button deve possuir 1 linha e não pode ter sua propriedade de cor
+                                        alterada.
+                                    </p>
+                                    <p>
+                                        - Uma boa prática é a utilização de ações dinâmicas para garantir fluidez na
+                                        experiência.
+                                    </p>
+                                </div>
+                            </div>
+                        </dev-portal-notice>
+                    </div>
+                </div>
+
+                <div id="assinatura-spotify" class="api-content__block mb-4">
+                    <h3 class="api-content__subtitle">Assinatura Spotify</h3>
+                    <div class="api-content__image">
+                        <img src="./assets/images/plataforma-aberta/assinatura-spotify.png" alt="Assinatura Spotify" />
+                    </div>
+                </div>
+
+                <div id="uber-gift-card" class="api-content__block">
+                    <h3 class="api-content__subtitle">Uber Gift Card</h3>
+                    <div class="api-content__image">
+                        <img src="./assets/images/plataforma-aberta/uber-gift-card.png" alt="Uber Gift Card" />
+                    </div>
+                </div>
+
+                <div id="banner-header" class="api-content__block">
+                    <h2 class="api-content__title">Banner Header</h2>
+                    <div class="api-content__text">
+                        <p>Sobre o componente - Server Driven UI</p>
+                        <p>
+                            O componente header consiste em uma <code>toolbar</code>. À depender do
+                            <code>type</code> dentro do objeto <code>header</code> teremos estilos de
+                            <strong>toolbar</strong> diferentes.
+                        </p>
+                        <p>
+                            Atualmente possuímos apenas o <code>type store_header</code>, mas poderemos adicionar novos
+                            tipos posteriormente.
+                        </p>
+                    </div>
+                    <div class="api-content__notice">
+                        <dev-portal-notice type="simple" theme="info">
+                            <div notice-content>
+                                <div class="notice__text">
+                                    <p>
+                                        O componente Header possui um botão "Favoritar" integrado, porém, esse botão
+                                        está oculto até o presente momento pois sua implementação não foi concluída.
+                                    </p>
+                                </div>
+                            </div>
+                        </dev-portal-notice>
+                    </div>
+                </div>
+                <div class="api-content__block">
+                    <h3 id="store_header" class="api-content__subtitle">store_header</h3>
+                    <div class="api-content__codes_preview">
+                        <div class="row mb-4">
+                            <div class="code col-md-9 col-sm-12">
+                                <dev-portal-code-snippet [infoCodes]="mockCodes.storeHeader"></dev-portal-code-snippet>
+                            </div>
+                            <div class="preview col-sm-12 col-md-3 mt-2 text-center">
+                                <p class="text-center">View</p>
+                                <div class="my-2">
+                                    <img
+                                        src="./assets/images/plataforma-aberta/previews/store_header_preview_ios.png"
+                                        alt="Store Header IOS"
+                                    />
+                                </div>
+                                <div class="my-2">
+                                    <img
+                                        src="./assets/images/plataforma-aberta/previews/store_header_preview_android.png"
+                                        alt="Store Header Android"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="api-content__table__content">
+                        <table class="table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>DIAS A RECEBER</th>
+                                    <th>TYPE</th>
+                                    <th>REQUIRED</th>
+                                    <th>DESCRIÇÃO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+                                    <td>string</td>
+                                    <td>Sim</td>
+                                    <td>A string que identifica o tipo desse componente</td>
+                                </tr>
+                                <tr>
+                                    <td>title</td>
+                                    <td>string</td>
+                                    <td>Sim</td>
+                                    <td>O texto que representa o nome do produto</td>
+                                </tr>
+                                <tr>
+                                    <td>banner</td>
+                                    <td>string</td>
+                                    <td>Sim</td>
+                                    <td>A string com a url da imagem a ser exibida no banner</td>
+                                </tr>
+                                <tr>
+                                    <td>is_favorite</td>
+                                    <td>string</td>
+                                    <td>Sim</td>
+                                    <td>Flag que indica se o produto desse header é favorito ou não</td>
+                                </tr>
+                                <tr>
+                                    <td>action</td>
+                                    <td>
+                                        <dev-portal-code-snippet
+                                            [infoCodes]="mockCodes.storeHeaderTable"
+                                        ></dev-portal-code-snippet>
+                                    </td>
+                                    <td>Sim</td>
+                                    <td>
+                                        Handler para ser chamado quando o botão “Favoritar" é pressionado. Contem os
+                                        atributos necessários para executar uma ação de favoritar
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="texto" class="api-content__block">
+                    <h2 class="api-content__title">Texto</h2>
+                    <div class="api-content__text">
+                        <p>Sobre o componente - Server Driven UI</p>
+                        <p>
+                            O componente Texto é usado para descrever algo. O componente possui atualmente 3 variações:
+                        </p>
+                        <ul>
+                            <li>title</li>
+                            <li>subtitle</li>
+                            <li>markdown</li>
+                        </ul>
+                    </div>
+                    <div class="api-content__block">
+                        <strong>Title</strong>
+                        <div class="api-content__codes_preview">
+                            <div class="row mb-4">
+                                <div class="code col-md-9 col-sm-12">
+                                    <dev-portal-code-snippet
+                                        [infoCodes]="mockCodes.textTitle"
+                                    ></dev-portal-code-snippet>
+                                </div>
+                                <div class="preview col-md-3 col-sm-12 text-center">
+                                    <p class="text-center">View</p>
+                                    <div class="my-2">
+                                        <img
+                                            src="./assets/images/plataforma-aberta/previews/texto_title_preview_ios.png"
+                                            alt="Texto Title IOS"
+                                        />
+                                    </div>
+                                    <div class="my-2">
+                                        <img
+                                            src="./assets/images/plataforma-aberta/previews/texto_title_preview_android.png"
+                                            alt="Texto Title Android"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="api-content__block">
+                        <div class="api-content__text">
+                            <strong>Markdown</strong>
+                            <p>
+                                Exibe texto usando HTML tags ou Markdown tags, geralmente usado para exibir textos
+                                personalizados
+                            </p>
+                            <div class="api-content__codes_preview">
+                                <div class="row mb-4">
+                                    <div class="code col-md-9 col-sm-12">
+                                        <dev-portal-code-snippet
+                                            [infoCodes]="mockCodes.textMarkdown"
+                                        ></dev-portal-code-snippet>
+                                    </div>
+                                    <div class="preview col-md-3 col-sm-12 text-center">
+                                        <p class="text-center">View</p>
+                                        <div class="my-2">
+                                            <img
+                                                src="./assets/images/plataforma-aberta/previews/texto_markdown_preview_ios.png"
+                                                alt="Texto Markdown IOS"
+                                            />
+                                        </div>
+                                        <div class="my-2">
+                                            <img
+                                                src="./assets/images/plataforma-aberta/previews/texto_markdown_preview_android.png"
+                                                alt="Texto Markdown Android"
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="api-content__block">
+                        <div class="api-content__text">
+                            <strong>Propriedades</strong>
+                        </div>
+                        <div class="api-content__table__content">
+                            <table class="table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>DIAS A RECEBER</th>
+                                        <th>TYPE</th>
+                                        <th>REQUIRED</th>
+                                        <th>DESCRIÇÃO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>type</td>
+                                        <td>string</td>
+                                        <td>Sim</td>
+                                        <td>A string que identifica o tipo desse componente</td>
+                                    </tr>
+                                    <tr>
+                                        <td>title</td>
+                                        <td>string</td>
+                                        <td>Sim</td>
+                                        <td>O texto que representa o nome do produto</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="botao" class="api-content__block">
+                    <h2 class="api-content__title">Botão</h2>
+                    <div class="api-content__text">
+                        <p>Sobre o componente - Server Driven UI</p>
+                        <p>O componente button possui 2 variações:</p>
+                        <ul>
+                            <li>link</li>
+                            <li>button</li>
+                        </ul>
+                    </div>
+                    <div class="api-content__text">
+                        <strong>Link</strong>
+                        <div class="api-content__codes_preview">
+                            <div class="row mb-4">
+                                <div class="code col-md-9 col-sm-12">
+                                    <dev-portal-code-snippet
+                                        [infoCodes]="mockCodes.buttonLink"
+                                    ></dev-portal-code-snippet>
+                                </div>
+                                <div class="preview col-md-3 col-sm-12 text-center">
+                                    <p class="text-center">View</p>
+                                    <div class="my-2">
+                                        <img
+                                            src="./assets/images/plataforma-aberta/previews/button_link_preview_ios.png"
+                                            alt="Botão Link IOS"
+                                        />
+                                    </div>
+
+                                    <div class="my-2">
+                                        <img
+                                            src="./assets/images/plataforma-aberta/previews/button_link_preview_android.png"
+                                            alt="Botão Link Android"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="api-content__text">
+                        <strong>Markdown</strong>
+                        <p>
+                            Exibe texto usando HTML tags ou Markdown tags, geralmente usado para exibir textos
+                            personalizados
+                        </p>
+                        <div class="api-content__codes_preview">
+                            <div class="row mb-4">
+                                <div class="code col-md-9 col-sm-12">
+                                    <dev-portal-code-snippet
+                                        [infoCodes]="mockCodes.buttonMarkdown"
+                                    ></dev-portal-code-snippet>
+                                </div>
+                                <div class="preview col-md-3 col-sm-12 text-center">
+                                    <p class="text-center">View</p>
+                                    <div class="my-2">
+                                        <img
+                                            src="./assets/images/plataforma-aberta/previews/button_markdown_preview_ios.png"
+                                            alt="Botão Markdown IOS"
+                                        />
+                                    </div>
+                                    <div class="my-2">
+                                        <img
+                                            src="./assets/images/plataforma-aberta/previews/button_markdown_preview_android.png"
+                                            alt="Botão Markdown Android"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <strong>Propriedades</strong>
+                        <div class="api-content__table__content">
+                            <table class="table-responsive">
+                                <thead>
+                                    <tr>
+                                        <th>DIAS A RECEBER</th>
+                                        <th>TYPE</th>
+                                        <th>REQUIRED</th>
+                                        <th>DESCRIÇÃO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>type</td>
+                                        <td>string</td>
+                                        <td>Sim</td>
+                                        <td>A string que identifica o tipo desse componente</td>
+                                    </tr>
+                                    <tr>
+                                        <td>title</td>
+                                        <td>string</td>
+                                        <td>Sim</td>
+                                        <td>Texto a ser exibido no botão</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="lista" class="api-content__block">
+                    <h2 class="api-content__title">Lista</h2>
+                    <div class="api-content__text">
+                        <p>Sobre o componente - Server Driven UI</p>
+                        <p>A Lista é um componente que agrega outros componentes.</p>
+                    </div>
+                    <div class="api-content__notice">
+                        <dev-portal-notice type="simple" theme="warning">
+                            <div notice-content>
+                                <div class="notice__text">
+                                    <p>A lista não pode ser vazia, ou seja a propriedade items deve conter itens.</p>
+                                </div>
+                            </div>
+                        </dev-portal-notice>
+                    </div>
+                    <div class="api-content__notice">
+                        <dev-portal-notice type="simple" theme="info">
+                            <div notice-content>
+                                <div class="notice__text">
+                                    <p>Por falta de definições, atualmente a lista só pode ter um tipo de item.</p>
+                                </div>
+                            </div>
+                        </dev-portal-notice>
+                    </div>
+                    <div class="api-content__text">
+                        <p>Exemplo de list contendo tipos de component product_card_item:</p>
+                    </div>
+                    <div class="api-content__text">
+                        <strong>Link</strong>
+                        <div class="api-content__codes_preview">
+                            <div class="row mb-4">
+                                <div class="code col-md-9 col-sm-12">
+                                    <dev-portal-code-snippet [infoCodes]="mockCodes.listLink"></dev-portal-code-snippet>
+                                </div>
+                                <div class="preview col-md-3 col-sm-12 text-center">
+                                    <p class="text-center">View</p>
+                                    <div class="my-2">
+                                        <img
+                                            src="./assets/images/plataforma-aberta/previews/list_link_preview_ios.png"
+                                            alt="Lista Link IOS"
+                                        />
+                                    </div>
+                                    <div class="my-2">
+                                        <img
+                                            src="./assets/images/plataforma-aberta/previews/list_link_preview_android.png"
+                                            alt="Lista Link Android"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <strong>Propriedades</strong>
+                    </div>
+                    <div class="api-content__table__content">
+                        <table class="table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>DIAS A RECEBER</th>
+                                    <th>TYPE</th>
+                                    <th>REQUIRED</th>
+                                    <th>DESCRIÇÃO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>type</td>
+                                    <td>string</td>
+                                    <td>Sim</td>
+                                    <td>A string que identifica o tipo desse componente</td>
+                                </tr>
+                                <tr>
+                                    <td>title</td>
+                                    <td>string</td>
+                                    <td>Sim</td>
+                                    <td>Lista de componentes dentro da lista</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="actions" class="api-content__block">
+                    <h2 class="api-content__title">Actions</h2>
+                    <div class="api-content__text">
+                        <p>Propriedades genéricas de uma action</p>
+                        <p>
+                            Uma <code>action</code> pode possuir propriedades que são independentes do
+                            <code>type</code> da <code>action</code> . Atualmente temos apenas a propriedade
+                            <code>form_keys</code> que pode ser usada em qualquer action.
+                        </p>
+                        <p>
+                            <strong>Propriedade form_keys</strong>
+                        </p>
+                        <p>
+                            A propriedade <code>form_keys</code> é utilizada para associar um único ou vários
+                            componentes de entrada de dados para a <code>action</code> que possui a propriedade
+                            <code>form_keys</code>. Com a utilização dessa propriedade conseguimos realizar um gatilho
+                            para que a validação do componente ocorra e também conseguimos capturar a informação do
+                            componente em questão para efetivar a execução da <code>action</code>.
+                        </p>
+                        <p>Exemplo:</p>
+                        <div class="api-content__codes_preview mb-4">
+                            <div class="code">
+                                <dev-portal-code-snippet
+                                    [infoCodes]="mockCodes.actionsFormKeys"
+                                ></dev-portal-code-snippet>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="webview" class="api-content__block">
+                    <h2 class="api-content__title">Webview</h2>
+                    <div class="api-content__text">
+                        <p>
+                            A <code>action</code> do tipo <code>webview</code> tem em sua <code>property</code> uma
+                            <code>webView</code> que por sua vez contem uma propriedade <code>url</code>.
+                        </p>
+                        <p>Exemplo:</p>
+                        <div class="api-content__codes_preview mb-4">
+                            <div class="code">
+                                <dev-portal-code-snippet
+                                    [infoCodes]="mockCodes.actionsWebview"
+                                ></dev-portal-code-snippet>
+                            </div>
+                        </div>
+                        <p>
+                            Ao ser acionada, a <code>activity</code> com uma <code>webView</code> será aberta com o
+                            endereço que consta na propriedade <code>url</code>.
+                        </p>
+                    </div>
+                </div>
+                <div id="exemplo-de-json-completo" class="api-content__block">
+                    <h2 class="api-content__title">Exemplo de JSON completo</h2>
+                    <div class="api-content__text">
+                        <p>
+                            Abaixo temos o JSON da loja do iFood composto por componentes como Header, Título e Card
+                            List.
+                        </p>
+                        <div class="api-content__codes_preview">
+                            <div class="row mb-4">
+                                <div class="code col-md-9 col-sm-12">
+                                    <dev-portal-code-snippet
+                                        [infoCodes]="mockCodes.exempleJsonComplete"
+                                    ></dev-portal-code-snippet>
+                                </div>
+                                <div class="preview col-md-3 col-sm-12 text-center">
+                                    <p class="text-center">View</p>
+                                    <div class="my-2">
+                                        <img
+                                            src="./assets/images/plataforma-aberta/previews/example_json_complete_preview_ios.png"
+                                            alt="Exemplo de Json Completo IOS"
+                                        />
+                                    </div>
+                                    <div class="my-2">
+                                        <img
+                                            src="./assets/images/plataforma-aberta/previews/example_json_complete_preview_android.png"
+                                            alt="Exemplo de Json Completo Android"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="webhook" class="api-content__block">
+                    <h2 class="api-content__title">Webhook</h2>
+                    <div class="api-content__text">
+                        <p>
+                            Quando um usuário efetuar uma compra de um produto, e essa, tiver seu pagamento(BIZ,
+                            movimentação das carteiras dentro do Picpay) efetuado com sucesso, um webhook será disparado
+                            para o parceiro de acordo com as informações fornecidas no cadastro da store.
+                        </p>
+                        <p>Para a consolidação do Webhook, precisamos de 3 tipos de requests de API:</p>
+
+                        <strong>Autenticação</strong>
+                        <p>Request para a requisição de token de autorização a partir de login</p>
+
+                        <strong>Execução da Compra</strong>
+                        <p>
+                            Endpoints utilizados para fazer uma compra com sucesso <br />
+                            Ex: /api/compra requisição para solicitar um código e /api/confirmacao requisição para a
+                            confirmação da solicitação de compra.
+                        </p>
+                        <strong>Cancelamento da Compra</strong>
+                        <p>Endpoint utilizado para o cancelamento de compra caso ocorra um erro no fluxo</p>
+                    </div>
+                    <div class="api-content__notice">
+                        <dev-portal-notice type="simple" theme="warning">
+                            <div notice-content>
+                                <div class="notice__text">
+                                    <p>Para o Webhook de execução, podemos ter somente um endpoint.</p>
+                                </div>
+                            </div>
+                        </dev-portal-notice>
+                    </div>
+                    <div class="api-content__notice">
+                        <dev-portal-notice type="simple" theme="warning">
+                            <div notice-content>
+                                <div class="notice__text">
+                                    <p>
+                                        O Webhook de autenticação só é obrigatório caso a API do parceiro exija
+                                        autenticação por login.
+                                    </p>
+                                </div>
+                            </div>
+                        </dev-portal-notice>
+                    </div>
+                </div>
+                <div id="informacoes-necessarias-para-a-configuracao-do-webhook" class="api-content__block">
+                    <h2 class="api-content__title">Informações necessárias para a configuração do webhook:</h2>
+                    <div class="api-content__text">
+                        <p>
+                            <strong>Api url:</strong> (url disponibilizada pelo parceiro, a mesma deve ter certificado
+                            SSL)
+                        </p>
+
+                        <p><strong>Método:</strong> (método do endpoint)</p>
+                    </div>
+                    <strong>HEADERS:</strong>
+                    <div class="api-content__table__content">
+                        <table class="table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>CHAVE</th>
+                                    <th>DESCRIÇÃO</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Content-Type</td>
+                                    <td>application/json</td>
+                                </tr>
+                                <tr>
+                                    <td>HEADERS-PARCEIRO-X</td>
+                                    <td>Headers que o parceiro poderá definir no cadastro da loja</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="body" class="api-content__block">
+                    <h2 class="api-content__title">Body</h2>
+                    <p>JSON especificado pelo parceiro. Por exemplo:</p>
+                    <div class="api-content__codes_preview mb-4">
+                        <div class="code">
+                            <dev-portal-code-snippet [infoCodes]="mockCodes.webhookBody"></dev-portal-code-snippet>
+                        </div>
+                    </div>
+                    <div class="api-content__table__content">
+                        <table class="table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>CHAVE</th>
+                                    <th>DESCRIÇÃO</th>
+                                    <th>TIPO</th>
+                                    <th>OBRIGATÓRIO</th>
+                                    <th>NULO</th>
+                                    <th>OBSERVAÇÕES</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>transaction</td>
+                                    <td>Informações da transação fornecidas pelo picpay</td>
+                                    <td>Object</td>
+                                    <td>Sim</td>
+                                    <td>Não</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>transaction.identifier</td>
+                                    <td>Identificador da transação criada no picpay</td>
+                                    <td>String</td>
+                                    <td>Sim</td>
+                                    <td>Não</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>transaction.consumer</td>
+                                    <td>Informações do usuário comprador do produto</td>
+                                    <td>Object</td>
+                                    <td>Sim</td>
+                                    <td>Não</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>transaction.consumer.identifier</td>
+                                    <td>Identificador do usuário no picpay</td>
+                                    <td>String</td>
+                                    <td>Sim</td>
+                                    <td>Não</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>transaction.value</td>
+                                    <td>Valor total da transação em reais</td>
+                                    <td>Double</td>
+                                    <td>Sim</td>
+                                    <td>Não</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>transaction.created_at</td>
+                                    <td>infoCodes de criação da transação</td>
+                                    <td>Datetime</td>
+                                    <td>Sim</td>
+                                    <td>Não</td>
+                                    <td>
+                                        Podemos colocar uma regra para escolha do parceiro, para receber o valor em
+                                        reais ou centavos
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Informações que o parceiro poderá definir na configuração</td>
+                                    <td>Any</td>
+                                    <td>Sim</td>
+                                    <td>Sim</td>
+                                    <td>A infoCodes será enviada com timezone</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="api-content__text mt-4">
+                        <strong> Exemplo de uma request </strong>
+                        <p>
+                            POST /v1/compra HTTP/1.1 <br />
+                            Host: <a class="api-content__link">api.parceiro.com.br</a><br />
+                            Content-Type: application/json<br />
+                            Request-Identifier: 0cc1f831-3ebd-4e1e-95e8-88d0df1a2830<br />
+                            API-KEY: KEY<br />
+                            API-ID: ID<br />
+                        </p>
+                    </div>
+                    <div class="api-content__codes_preview mb-4">
+                        <div class="code">
+                            <dev-portal-code-snippet
+                                [infoCodes]="mockCodes.webhookBodyRequestExample"
+                            ></dev-portal-code-snippet>
+                        </div>
+                    </div>
+                    <div class="api-content__text">
+                        <p>
+                            Nesse exemplo de request, podemos ver que o parceiro optou por adicionar dois
+                            headers(API-KEY e API-ID) com os seguintes valores respectivamente(KEY e ID), além também,
+                            de adicionar dois valores ao body (product e username), onde essas informações ele mapeou
+                            aos componentes das telas criadas. Neste caso, vamos possibilitar que o parceiro possa
+                            mapear um componente para receber o valor preenchido ou pré definido nele, por ex: um input
+                            onde o name dele foi [ username ] e o valor foi preenchido pelo usuário, ou, um componente
+                            de seleção onde o name dele foi [ product ] e o valor pré definido foi [ 12345 ].
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

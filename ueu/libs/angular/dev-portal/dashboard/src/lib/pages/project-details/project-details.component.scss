@@ -1,0 +1,174 @@
+@use "mixins/typography";
+@use "mixins/breakpoint";
+
+::ng-deep {
+    apollo-card {
+        .mdc-card {
+            width: 100%;
+        }
+    }
+    apollo-button.delete_project__button {
+        apollo-icon {
+            color: theme('colors.critical.base');
+        }
+        .mdc-button:not(:disabled) {
+            color: theme('colors.grayscale.500');
+            text-decoration: none;
+        }
+        .mdc-button .apollo-button-container .apollo-button__label {
+            text-decoration: none;
+        }
+    }
+    apollo-button.edit_project__button {
+        apollo-icon {
+            color: theme('colors.primary.base');
+        }
+        .mdc-button:not(:disabled) {
+            color: theme('colors.grayscale.500');
+            text-decoration: none;
+        }
+        .mdc-button .apollo-button-container .apollo-button__label {
+            text-decoration: none;
+        }
+    }
+    apollo-button.favorite_project__button {
+        apollo-icon {
+            color: theme('colors.primary.base');
+        }
+        .mdc-button:not(:disabled) {
+            color: theme('colors.grayscale.500');
+            text-decoration: none;
+        }
+        .mdc-button .apollo-button-container .apollo-button__label {
+            text-decoration: none;
+        }
+    }
+}
+
+.project-details {
+    user-select: none;
+    &__title {
+        @include typography.title(large);
+        color: theme('colors.grayscale.700');
+        margin-bottom: theme('spacing.2');
+        @include breakpoint.down(small) {
+            margin: theme('spacing.2') theme('spacing.none');
+        }
+    }
+    &__introduction {
+        display: flex;
+        color: theme('colors.grayscale.700');
+        margin-top: theme('spacing.4');
+        @include breakpoint.down(small) {
+            display: block;
+        }
+        &__infos {
+            margin-left: theme('spacing.4');
+            width: 100%;
+            @include breakpoint.down(small) {
+                margin: theme('spacing.2') theme('spacing.none');
+            }
+        }
+    }
+    .infos__content {
+        display: flex;
+        justify-content: space-between;
+        @include breakpoint.down(small) {
+            display: block;
+        }
+        .label {
+            @include typography.body(primary, highlight);
+            color: theme('colors.grayscale.400');
+            text-transform: uppercase;
+        }
+        &--title {
+            @include typography.title(medium);
+            display: grid;
+            color: theme('colors.grayscale.700');
+            padding-bottom: theme('spacing.2');
+        }
+
+        &--date {
+            text-align: right;
+            @include breakpoint.down(small) {
+                text-align: left;
+            }
+        }
+
+        &--description {
+            @include typography.body(secundary, default);
+            width: 100%;
+            color: theme('colors.grayscale.700');
+        }
+        &__actions {
+            display: flex;
+            border-top: theme('borderWidth.light') solid theme('colors.grayscale.200');
+            width: 100%;
+            @include breakpoint.down(small) {
+                display: block;
+                border: theme('borderWidth.light') solid theme('colors.grayscale.200');
+                border-radius: theme('borderRadius.medium');
+            }
+        }
+    }
+    &__content {
+        margin: theme('spacing.4') theme('spacing.none');
+        margin-bottom: theme('spacing.11');
+
+        .cards {
+            margin: theme('spacing.4') -theme('spacing.2');
+            .card {
+                animation: 0.3s ease-in-out both fade-in;
+                padding: theme('spacing.2');
+                cursor: pointer;
+                apollo-card-content {
+                    padding: 0;
+                }
+                apollo-card.mdc-card__actions {
+                    padding: 0;
+                }
+                &__content {
+                    padding: theme('spacing.3');
+                }
+
+                &__title {
+                    @include typography.title(small);
+                    color: theme('colors.black');
+                }
+                &__category {
+                    @include typography.body(primary, highlight);
+                    color: theme('colors.primary.base');
+                    padding: theme('spacing.1') theme('spacing.none');
+                }
+                &__text {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-top: theme('spacing.2');
+
+                    &__description {
+                        @include typography.body(primary, default);
+                        color: theme('colors.grayscale.base');
+                        text-align: left;
+                        margin: theme('spacing.none');
+                    }
+                    img {
+                        max-width: 80px;
+                    }
+                }
+            }
+            &.cards-scroll {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+                .card {
+                    flex: 0 0 auto;
+                }
+            }
+        }
+    }
+    &__error {
+        min-height: calc(100vh - 110px);
+    }
+}

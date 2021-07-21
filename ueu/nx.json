@@ -1,0 +1,633 @@
+{
+    "implicitDependencies": {
+        "workspace.json": "*",
+        "package.json": {
+            "dependencies": "*",
+            "devDependencies": "*"
+        },
+        "tsconfig.base.json": "*",
+        "tslint.json": "*",
+        ".eslintrc.json": "*",
+        "nx.json": "*"
+    },
+    "affected": {
+        "defaultBase": "develop"
+    },
+    "npmScope": "picpay",
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "@nrwl/nx-cloud",
+            "options": {
+                "cacheableOperations": ["build", "lint", "test", "e2e", "build-storybook", "prepare"],
+                "accessToken": "OTYwMTZlOWYtNmM3OC00N2QxLWE5YWQtYTI0MGUwYmE5ODI5fHJlYWQ=",
+                "canTrackAnalytics": false,
+                "showUsageWarnings": true,
+                "url": "https://nx-cloud.prd-hub-virginia.k8s.hub.picpay.cloud"
+            }
+        }
+    },
+    "projects": {
+        "design-system": {
+            "tags": [
+                "type:lib",
+                "scope:design-system"
+            ],
+            "implicitDependencies": [
+                "packages-stencil-sass",
+                "packages-sass-functions"
+            ]
+        },
+        "design-system-angular": {
+            "tags": [
+                "type:lib",
+                "scope:design-system"
+            ],
+            "implicitDependencies": [
+                "design-system"
+            ]
+        },
+        "design-system-react": {
+            "tags": [
+                "type:lib",
+                "scope:design-system"
+            ],
+            "implicitDependencies": [
+                "design-system"
+            ]
+        },
+        "lab-components": {
+            "tags": [
+                "type:lib",
+                "scope:lab-components"
+            ],
+            "implicitDependencies": [
+                "design-system"
+            ]
+        },
+        "lab-components-angular": {
+            "tags": [
+                "type:lib",
+                "scope:lab-components"
+            ],
+            "implicitDependencies": [
+                "lab-components"
+            ]
+        },
+        "dev-portal": {
+            "tags": [
+                "type:app",
+                "scope:dev-portal"
+            ],
+            "implicitDependencies": [
+                "dev-portal-assets",
+                "ui-styles"
+            ]
+        },
+        "dev-portal-e2e": {
+            "tags": [
+                "scope:dev-portal"
+            ],
+            "implicitDependencies": [
+                "dev-portal"
+            ]
+        },
+        "dev-portal-assets": {
+            "tags": [
+                "type:lib",
+                "scope:dev-portal"
+            ]
+        },
+        "dev-portal-docs": {
+            "tags": [
+                "type:lib",
+                "scope:dev-portal"
+            ]
+        },
+        "dev-portal-dashboard": {
+            "tags": [
+                "type:lib",
+                "scope:dev-portal"
+            ]
+        },
+        "dev-portal-home": {
+            "tags": [
+                "type:lib",
+                "scope:dev-portal"
+            ]
+        },
+        "dev-portal-not-found": {
+            "tags": [
+                "type:lib",
+                "scope:dev-portal"
+            ]
+        },
+        "dev-portal-shared": {
+            "tags": [
+                "type:lib",
+                "scope:dev-portal"
+            ]
+        },
+        "feature-flag": {
+            "tags": [
+                "type:app",
+                "scope:feature-flag"
+            ],
+            "implicitDependencies": [
+                "ui-styles"
+            ]
+        },
+        "feature-flag-e2e": {
+            "tags": [
+                "scope:feature-flag"
+            ],
+            "implicitDependencies": [
+                "feature-flag"
+            ]
+        },
+        "feature-flag-features": {
+            "tags": [
+                "type:lib",
+                "scope:feature-flag"
+            ]
+        },
+        "feature-flag-shared": {
+            "tags": [
+                "type:lib",
+                "scope:feature-flag"
+            ]
+        },
+        "feature-flag-auth": {
+            "tags": [
+                "type:lib",
+                "scope:feature-flag"
+            ]
+        },
+        "feature-flag-access-levels": {
+            "tags": [
+                "type:lib",
+                "scope:feature-flag"
+            ]
+        },
+        "finance-dash": {
+            "tags": [
+                "type:app",
+                "scope:finance-dash"
+            ],
+            "implicitDependencies": [
+                "ui-styles"
+            ]
+        },
+        "finance-dash-e2e": {
+            "tags": [
+                "scope:finance-dash"
+            ],
+            "implicitDependencies": [
+                "finance-dash"
+            ]
+        },
+        "finance-dash-recharges": {
+            "tags": [
+                "type:lib",
+                "scope:finance-dash"
+            ]
+        },
+        "keycloak-demo": {
+            "tags": [
+                "type:app",
+                "scope:keycloak-demo"
+            ],
+            "implicitDependencies": [
+                "ui-styles"
+            ]
+        },
+        "keycloak-demo-e2e": {
+            "tags": [
+                "scope:keycloak-demo"
+            ],
+            "implicitDependencies": [
+                "keycloak-demo"
+            ]
+        },
+        "keycloak-demo-home": {
+            "tags": [
+                "type:lib",
+                "scope:keycloak-demo"
+            ]
+        },
+        "ops-dash": {
+            "tags": [
+                "type:app",
+                "scope:ops-dash"
+            ],
+            "implicitDependencies": [
+                "ui-styles"
+            ]
+        },
+        "ops-dash-e2e": {
+            "tags": [
+                "scope:ops-dash"
+            ],
+            "implicitDependencies": [
+                "ops-dash"
+            ]
+        },
+        "ops-dash-variables": {
+            "tags": [
+                "type:lib",
+                "scope:ops-dash"
+            ]
+        },
+        "ops-dash-help": {
+            "tags": [
+                "type:lib",
+                "scope:ops-dash"
+            ]
+        },
+        "ops-dash-shared": {
+            "tags": [
+                "type:lib",
+                "scope:ops-dash"
+            ]
+        },
+        "picpay-lab": {
+            "tags": [
+                "type:app",
+                "scope:picpay-lab"
+            ],
+            "implicitDependencies": [
+                "ui-styles"
+            ]
+        },
+        "picpay-lab-e2e": {
+            "tags": [
+                "scope:picpay-lab"
+            ],
+            "implicitDependencies": [
+                "picpay-lab"
+            ]
+        },
+        "picpedia": {
+            "tags": [
+                "type:app",
+                "scope:picpedia"
+            ],
+            "implicitDependencies": [
+                "ui-styles"
+            ]
+        },
+        "picpedia-e2e": {
+            "tags": [
+                "scope:picpedia"
+            ],
+            "implicitDependencies": [
+                "picpedia"
+            ]
+        },
+        "seller-panel": {
+            "tags": [
+                "type:app",
+                "scope:seller-panel"
+            ],
+            "implicitDependencies": [
+                "seller-panel-assets",
+                "ui-styles"
+            ]
+        },
+        "seller-panel-e2e": {
+            "tags": [
+                "scope:seller-panel"
+            ],
+            "implicitDependencies": [
+                "seller-panel"
+            ]
+        },
+        "seller-panel-services": {
+            "tags": [
+                "type:lib",
+                "scope:seller-panel"
+            ]
+        },
+        "seller-panel-shipment": {
+            "tags": [
+                "type: lib",
+                "scope: seller-panel"
+            ]
+        },
+        "seller-panel-helpers": {
+            "tags": [
+                "type:lib",
+                "scope:seller-panel"
+            ]
+        },
+        "seller-panel-shared": {
+            "tags": [
+                "type:lib",
+                "scope:seller-panel"
+            ]
+        },
+        "seller-panel-auth": {
+            "tags": [
+                "type:lib",
+                "scope:seller-panel"
+            ]
+        },
+        "seller-panel-assets": {
+            "tags": [
+                "type:lib",
+                "scope:seller-panel"
+            ]
+        },
+        "seller-panel-bank-accounts": {
+            "tags": [
+                "type:lib",
+                "scope:seller-panel"
+            ]
+        },
+        "seller-panel-charge": {
+            "tags": [
+                "type:lib",
+                "scope:seller-panel"
+            ]
+        },
+        "seller-panel-credentials": {
+            "tags": [
+                "type:lib",
+                "scope:seller-panel"
+            ]
+        },
+        "seller-panel-extract": {
+            "tags": [
+                "type:lib",
+                "scope:seller-panel"
+            ]
+        },
+        "seller-panel-forgot-password": {
+            "tags": [
+                "type:lib",
+                "scope:seller-panel"
+            ]
+        },
+        "seller-panel-home": {
+            "tags": [
+                "type:lib",
+                "scope:seller-panel"
+            ]
+        },
+        "seller-panel-integrations": {
+            "tags": [
+                "type:lib",
+                "scope:seller-panel"
+            ]
+        },
+        "seller-panel-login": {
+            "tags": [
+                "type:lib",
+                "scope:seller-panel"
+            ]
+        },
+        "seller-panel-settings": {
+            "tags": [
+                "type:lib",
+                "scope:seller-panel"
+            ]
+        },
+        "seller-panel-transactions": {
+            "tags": [
+                "type:lib",
+                "scope:seller-panel"
+            ]
+        },
+        "seller-register": {
+            "tags": [
+                "type:app",
+                "scope:seller-register"
+            ]
+        },
+        "seller-register-e2e": {
+            "tags": [
+                "scope:seller-register"
+            ],
+            "implicitDependencies": [
+                "seller-register"
+            ]
+        },
+        "seller-register-assets": {
+            "tags": [
+                "type: lib",
+                "scope: seller-register"
+            ]
+        },
+        "seller-register-form": {
+            "tags": [
+                "type:lib",
+                "scope:seller-register"
+            ]
+        },
+        "seller-register-shared": {
+            "tags": [
+                "type:lib",
+                "scope:seller-register"
+            ]
+        },
+        "seller-register-config": {
+            "tags": [
+                "type:lib",
+                "scope:seller-register"
+            ]
+        },
+        "packages-event-tracking": {
+            "tags": [
+                "type:lib",
+                "scope:package"
+            ]
+        },
+        "packages-features-flag": {
+            "tags": [
+                "type:lib",
+                "scope:package"
+            ]
+        },
+        "packages-keycloak": {
+            "tags": [
+                "type:lib",
+                "scope:package"
+            ]
+        },
+        "ui-components": {
+            "tags": [
+                "type:lib",
+                "scope:ui"
+            ]
+        },
+        "ui-styles": {
+            "tags": [
+                "type:lib",
+                "scope:ui"
+            ]
+        },
+        "ui-layouts": {
+            "tags": [
+                "type:lib",
+                "scope:ui"
+            ]
+        },
+        "website": {
+            "tags": [
+                "type:app",
+                "scope:website"
+            ]
+        },
+        "website-e2e": {
+            "tags": [
+                "scope:website"
+            ],
+            "implicitDependencies": [
+                "website"
+            ]
+        },
+        "webview": {
+            "tags": [
+                "type:app",
+                "scope:webview"
+            ]
+        },
+        "webview-e2e": {
+            "tags": [
+                "scope:webview"
+            ],
+            "implicitDependencies": [
+                "webview"
+            ]
+        },
+        "cashback-calculator": {
+            "tags": [
+                "type:lib",
+                "scope:webview"
+            ]
+        },
+        "packages-stencil-sass": {
+            "tags": [
+                "type:lib",
+                "scope:package"
+            ]
+        },
+        "packages-sass-functions": {
+            "tags": [
+                "type:lib",
+                "scope:package"
+            ]
+        },
+        "picpedia-shared": {
+            "tags": [
+                "type:lib",
+                "scope:picpedia"
+            ]
+        },
+        "picpedia-home": {
+            "tags": [
+                "type:lib",
+                "scope:picpedia"
+            ]
+        },
+        "picpedia-assets": {
+            "tags": [
+                "type:lib",
+                "scope:picpedia"
+            ]
+        },
+        "picpay-lab-dashboard": {
+            "tags": [
+                "type:lib",
+                "scope:picpay-lab"
+            ]
+        },
+        "angular-shared-core-data-access": {
+            "tags": [
+                "type:lib",
+                "scope:angular-shared"
+            ]
+        },
+        "angular-shared-core-notifications": {
+            "tags": [
+                "type:lib",
+                "scope:angular-shared"
+            ]
+        },
+        "angular-shared-default-screens": {
+            "tags": [
+                "type:lib",
+                "scope:angular-shared"
+            ]
+        },
+        "angular-shared-directives": {
+            "tags": [
+                "type:lib",
+                "scope:angular-shared"
+            ]
+        },
+        "angular-shared-e2e": {
+            "tags": [
+                "type:lib",
+                "scope:angular-shared"
+            ]
+        },
+        "angular-shared-helpers": {
+            "tags": [
+                "type:lib",
+                "scope:angular-shared"
+            ]
+        },
+        "angular-shared-pipes": {
+            "tags": [
+                "type:lib",
+                "scope:angular-shared"
+            ]
+        },
+        "angular-shared-services": {
+            "tags": [
+                "type:lib",
+                "scope:angular-shared"
+            ]
+        },
+        "angular-shared-track-events": {
+            "tags": [
+                "type:lib",
+                "scope:angular-shared"
+            ]
+        },
+        "angular-shared-validators": {
+            "tags": ["type:lib", "scope:angular-shared"]
+        },
+        "api-picpedia": {
+            "tags": ["type: app", "scope: api-picpedia"]
+        },
+        "api-picpedia-business-glossary": {
+            "tags": ["type: lib", "scope: api-picpedia"]
+        },
+        "api-picpedia-auth": {
+            "tags": ["type: lib", "scope: api-picpedia"]
+        },
+        "api-picpedia-shared": {
+            "tags": ["type: lib", "scope: api-picpedia"]
+        },
+        "studio": {
+            "tags": ["type: app; scope: dev-portal"]
+        },
+        "dev-portal-open-banking": {
+            "tags": ["type:lib", "scope:dev-portal"]
+        },
+        "growth-dash": {
+            "tags": ["type:app", "scope:growth-dash"]
+        },
+        "growth-dash-e2e": {
+            "tags": ["scope:growth-dash"],
+            "implicitDependencies": ["growth-dash"]
+        },
+        "growth-dash-shared": {
+            "tags": ["type:lib", "scope:growth-dash"]
+        },
+        "growth-dash-campaigns": {
+            "tags": ["type:lib", "scope:growth-dash"]
+        }
+    }
+}

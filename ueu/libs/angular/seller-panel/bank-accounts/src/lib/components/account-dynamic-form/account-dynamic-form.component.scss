@@ -1,0 +1,81 @@
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-account-dynamic-form {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 110px);
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    &__bank-data {
+        padding-bottom: 16px;
+
+        &--error {
+            display: flex;
+            border-radius: theme('spacing.1');
+            background-color: rgba(var(--apollo-error-rgb), 0.2);
+            border: 1px solid var(--apollo-error);
+            padding: theme('spacing.2');
+            margin-bottom: theme('spacing.3');
+
+            .text {
+                margin-left: theme('spacing.1');
+                font-weight: 500;
+                font-style: normal;
+                font-size: theme('fontSize.base');
+            }
+        }
+
+        &--field {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: theme('spacing.1');
+            margin-bottom: theme('spacing.2');
+            border: 1px solid rgba(var(--apollo-on-background-rgb), 0.2);
+            border-radius: theme('spacing.1');
+            transition: all 0.2s ease-in-out;
+
+            cursor: pointer;
+
+            img {
+                margin-right: theme('spacing.1');
+            }
+
+            p {
+                flex: 1;
+                margin: 0;
+            }
+
+            &:hover,
+            &:focus {
+                border-color: rgba(var(--apollo-on-background-rgb), 0.1);
+                outline-color: rgba(var(--apollo-primary-rgb), 1);
+            }
+        }
+    }
+
+    &__account-data {
+        padding-top: theme('spacing.2');
+    }
+
+    &__icon {
+        cursor: pointer;
+    }
+
+    &__submit {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        flex: 1;
+
+        button {
+            margin-top: theme('spacing.2');
+        }
+    }
+}
+
+::ng-deep .mat-stepper-horizontal {
+    background-color: transparent !important;
+}

@@ -1,0 +1,72 @@
+@use 'mixins/typography';
+
+html,
+body {
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    min-height: 100vh !important;
+}
+
+.sb-show-main.sb-main-centered #root {
+    padding: 0 !important;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+// BODY
+span {
+    &.body-primary-default {
+        @include typography.body(primary, default);
+    }
+    &.body-primary-highlight {
+        @include typography.body(primary, highlight);
+    }
+    &.body-secondary-default {
+        @include typography.body(secondary, default);
+    }
+    &.body-secondary-highlight {
+        @include typography.body(secondary, highlight);
+    }
+}
+
+// CAPTION
+span {
+    &.caption-default {
+        @include typography.caption(default);
+    }
+    &.caption-highlight {
+        @include typography.caption(highlight);
+    }
+}
+
+// TITLE
+span {
+    &.title-xlarge {
+        @include typography.title(xlarge);
+    }
+    &.title-large {
+        @include typography.title(large);
+    }
+    &.title-medium {
+        @include typography.title(medium);
+    }
+    &.title-small {
+        @include typography.title(small);
+    }
+}
+
+// LINK
+span {
+    &.link-primary {
+        @include typography.link(primary);
+        cursor: pointer;
+    }
+    &.link-secondary {
+        @include typography.link(secondary);
+        cursor: pointer;
+    }
+}

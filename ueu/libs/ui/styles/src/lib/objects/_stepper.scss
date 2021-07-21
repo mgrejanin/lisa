@@ -1,0 +1,23 @@
+.o-stepper {
+    &__header-none {
+        .mat-horizontal-stepper-header-container {
+            display: none !important;
+        }
+    }
+
+    .mat-stepper-horizontal,
+    .mat-stepper-vertical {
+        height: 100% !important;
+    }
+
+    .mat-horizontal-content-container {
+        height: 100% !important;
+        padding: 0 !important;
+    }
+
+    .mat-horizontal-stepper-content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+}

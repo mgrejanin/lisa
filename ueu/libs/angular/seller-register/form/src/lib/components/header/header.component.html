@@ -1,0 +1,22 @@
+<div class="c-header">
+    <div class="c-header__content c-header__content--web">
+        <seller-register-logo></seller-register-logo>
+    </div>
+
+    <div class="c-header__content c-header__content--mobile">
+        <mat-icon aria-label="Voltar" class="c-header__return" fontSet="material-icons-round" (click)="goBack()"
+            >keyboard_arrow_left</mat-icon
+        >
+        <span class="c-header__title">
+            {{ headerTitle }}
+        </span>
+    </div>
+
+    <div class="c-header__progress">
+        <apollo-progress-bar
+            [total]="10"
+            [fraction]="valueProgressBar"
+            *ngIf="activateProgressbar"
+        ></apollo-progress-bar>
+    </div>
+</div>

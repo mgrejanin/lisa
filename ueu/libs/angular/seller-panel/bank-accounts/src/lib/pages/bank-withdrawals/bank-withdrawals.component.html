@@ -1,0 +1,41 @@
+<div class="c-bank-withdrawals">
+    <!-- Accounts List -->
+    <apollo-feedback-card
+        label="Você tem um empréstimo ativo com o Banco Original e a alteração de conta não é permitida agora."
+        type="info"
+        stacked="true"
+        *ngIf="hasHangsAccount$ | async"
+    >
+    </apollo-feedback-card>
+    <div class="c-bank-withdrawals__content">
+        <div class="c-bank-withdrawals__wrapper c-bank-withdrawals__wrapper--bank-accounts">
+            <h2 class="c-bank-withdrawals__title">Gerenciar contas bancárias</h2>
+            <div class="c-bank-withdrawals__body">
+                <seller-panel-accounts-list
+                    [disableItemActions]="isAccountDetailsOpened$ | async"
+                    [editAccountId]="editAccountId"
+                ></seller-panel-accounts-list>
+            </div>
+            <div class="c-bank-withdrawals__new-account">
+                <apollo-button
+                    variant="link"
+                    [disabled]="(isLoading$ | async) || (isAccountDetailsOpened$ | async)"
+                    (click)="onCreateBankAccount()"
+                >
+                    Adicionar nova conta
+                </apollo-button>
+            </div>
+        </div>
+        <!-- Auto withdrawal -->
+        <ng-container *ngIf="hasSellerAccount$ | async">
+            <div class="c-bank-withdrawals__wrapper c-bank-withdrawals__wrapper--auto-withdrawal">
+                <h2 class="c-bank-withdrawals__title">Saque automático</h2>
+                <seller-panel-auto-withdrawal></seller-panel-auto-withdrawal>
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<seller-panel-sidenav>
+    <seller-panel-cdk-portal></seller-panel-cdk-portal>
+</seller-panel-sidenav>

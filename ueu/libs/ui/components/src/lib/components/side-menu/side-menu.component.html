@@ -1,0 +1,41 @@
+<div
+    class="c-side-menu"
+    [ngClass]="{ collapsed: !isOpen }"
+    cdkTrapFocus
+    (mouseover)="onToggleIsMenuOpen(true)"
+    (mouseleave)="onToggleIsMenuOpen(false)"
+>
+    <section class="c-side-menu__content-wrapper">
+        <section class="c-side-menu__logo-wrapper" mat-ripple>
+            <ng-content select="[slot=logo-wrap]"></ng-content>
+        </section>
+
+        <!-- MENU -->
+        <div class="c-side-menu__items">
+            <!-- CUSTOM WRAP -->
+            <ng-content select="[slot=side-menu-wrap]"></ng-content>
+
+            <ng-container *ngFor="let item of items">
+                <picpay-menu-item
+                    *picpayIfRoles="item.roles || []"
+                    [params]="item"
+                    [isCollapsed]="!isOpen"
+                    class="c-side-menu__menu-item"
+                ></picpay-menu-item>
+            </ng-container>
+        </div>
+    </section>
+
+    <div
+        class="c-side-menu__lock-button"
+        (mouseover)="onMouseOverLockButton($event)"
+        (click)="onToggleKeepMenuOpen(!keepOpen)"
+        [matTooltip]="keepOpen ? 'Desfixar menu lateral' : 'Fixar menu lateral'"
+        matTooltipPosition="after"
+        aria-label="Botão para fixar/desfixar a largura do menu lateral"
+    >
+        <mat-icon class="c-side-menu__lock-button--icon">
+            {{ keepOpen ? 'keyboard_arrow_left' : 'keyboard_arrow_right' }}
+        </mat-icon>
+    </div>
+</div>

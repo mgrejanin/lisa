@@ -1,0 +1,117 @@
+<ng-container *ngIf="{ projects: projects$ | async, errors: errors$ | async } as store">
+    <section class="c-new-project" *ngIf="!store.errors; else hasError">
+        <div class="container">
+            <ng-container *ngIf="!store.isLoading; else isLoading">
+                <ng-container
+                    *ngIf="(store.projects && store.projects?.length) || !newProjectScreen; else withoutProjects"
+                >
+                    <h1 class="c-new-project__title">
+                        {{ editing ? formRef.name.value : 'Preencha as informações do seu projeto' }}
+                    </h1>
+                    <dev-portal-notice theme="info" customImg="./assets/icons/step-register.svg" type="complete" btnClosed="true">
+                        <div notice-content>
+                            <h4 class="notice__title">Porque preencher essas informações?</h4>
+                            <div class="notice__text">
+                                <p>
+                                    Essas informações irão ajudar a identificar o seu projeto em meio a todos os
+                                    projetos que podem ser criados.
+                                </p>
+                            </div>
+                        </div>
+                    </dev-portal-notice>
+                    <form
+                        class="c-new-project__form"
+                        [formGroup]="newProjectForm"
+                        (ngSubmit)="onSubmit()"
+                        autocomplete="off"
+                    >
+                        <div class="c-new-project__form-content">
+                            <div class="c-new-project__form-content-avatar">
+                                <dev-portal-avatar
+                                    [image]="formRef.image.value"
+                                    [name]="formRef.name.value"
+                                    [creating]="true"
+                                    (getAvatar)="setAvatar($event)"
+                                ></dev-portal-avatar>
+                            </div>
+                            <div class="c-new-project__form-content-fields">
+                                <apollo-textfield
+                                    name="name"
+                                    id="name"
+                                    formControlName="name"
+                                    label="Nome do Projeto"
+                                    [helperText]="formRef.name.errors?.alreadyExist ? 'Projeto já existe' : ''"
+                                    max-length="16"
+                                    character-counter="true"
+                                    required
+                                ></apollo-textfield>
+
+                                <apollo-textfield
+                                    name="description"
+                                    id="description"
+                                    formControlName="description"
+                                    max-length="250"
+                                    label="Descrição do Projeto"
+                                    textarea="true"
+                                    character-counter="true"
+                                    rows="4"
+                                    required
+                                ></apollo-textfield>
+                            </div>
+                        </div>
+                        <div class="c-new-project__form-actions">
+                            <apollo-button size="md" block variant="outlined" (click)="cancel()">
+                                Cancelar
+                            </apollo-button>
+                            <apollo-button size="md" block type="submit" [disabled]="newProjectForm.invalid">{{
+                                editing ? 'Editar Projeto' : 'Criar Projeto'
+                            }}</apollo-button>
+                        </div>
+                    </form>
+                </ng-container>
+            </ng-container>
+        </div>
+    </section>
+</ng-container>
+
+<ng-template #hasError>
+    <apollo-center class="c-new-project__error">
+        <apollo-feedback-page
+            page-title="Ops! Algo deu errado"
+            [pageSubtitle]="
+                'Ocorreu um erro ao carregar as informações. Verifique sua conexão ou tente novamente mais tarde'
+            "
+            type="error"
+            use-figure="true"
+        >
+        </apollo-feedback-page>
+    </apollo-center>
+</ng-template>
+
+<ng-template #withoutProjects>
+    <div class="row justify-content-center mt-5">
+        <dev-portal-notice theme="info" type="complete" btnClosed="true">
+            <div notice-content>
+                <h4 class="notice__title">O que é um projeto?</h4>
+                <div class="notice__text">
+                    <p>
+                        Um projeto pode representar sua empresa ou campanha. Você pode criar vários projetos e ligar
+                        nossos produtos conforme sua necessidade.
+                    </p>
+                </div>
+            </div>
+        </dev-portal-notice>
+    </div>
+    <div class="row justify-content-center">
+        <div class="text-center">
+            <img src="./assets/images/criar-novo-projeto.png" alt="Criar novo projeto" title="Criar novo projeto" />
+            <p class="mb-5">
+                Você ainda não tem nenhum projeto criado e <br />
+                comece a criar experiências com Picpay
+            </p>
+            <apollo-button size="md" (click)="newProjectScreen = !newProjectScreen"
+                >Criar um novo projeto</apollo-button
+            >
+        </div>
+    </div>
+</ng-template>

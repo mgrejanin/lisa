@@ -1,0 +1,90 @@
+<Meta title="Packages/Design Tokens" />
+
+# sass-functions/tokens
+
+Essa biblioteca tem o intuito de transformar todos os design tokens definido pelo time de Designers em propriedades que possam ser consumidas dentro do código. Assim, toda vez que houver alguma alteração nos tokens, será realizada somente em um lugar e todos os projetos irão ser atualizados automaticamente. Permitindo uma melhor manutenção e escalabilidade dos padrões de layout da empresa.
+
+## Implementação
+
+Você pode importar em qualquer arquivo .ts, .tsx ou até mesmo .mdx para consumir dos tokens.
+
+Exemplo de implementação em um componente stencil .tsx:
+
+```ts
+import { Component, h, Host, Prop } from '@stencil/core';
+
+import { Token } from 'libs/packages/sass-functions/src/lib/tokens';
+
+// ...
+
+// Tambem é possível incorporar os tokens em tipagens para serem renderizados na hora de implementar tal propriedade com a tipagem.
+export type Size = ResponsiveProp<keyof typeof Token.size>;
+export type Spacing = ResponsiveProp<keyof typeof Token.spacing>;
+
+@Component({
+    tag: 'some-component',
+    styleUrl: 'container.scss',
+    shadow: false,
+})
+export class SomeComponent {
+    paddingLeft: Spacing = '2';
+    paddingRight: Spacing = '2';
+
+    // ...
+
+    render() {
+        return <Host>// ...</Host>;
+    }
+}
+```
+
+## Tokens
+
+Exemplo de implementação de um Design System configurando seus tokens:
+
+```ts
+import DesignSystem from 'design-system-utils';
+import { Token } from 'libs/packages/sass-functions/src/lib/tokens';
+
+export const tokens = {
+    breakpoints: Token.screens,
+    // ...
+    borderRadius: Token.borderRadius,
+    borderWidth: Token.borderWidth,
+    boxShadow: Token.boxShadow,
+    opacity: Token.opacity,
+    // ...
+    size: Token.size,
+};
+
+export const Apollo = new DesignSystem(tokens, { fontSizeUnit: 'rem' });
+
+// DS tokens instaciados:
+
+// Spacing
+Apollo.spacing(prop);
+// Color
+Apollo.color(prop);
+// Color brand
+Apollo.brand(prop);
+// FontSize
+Apollo.fs(prop);
+// Type
+Apollo.get(`type.${prop}`);
+// Opacity
+Apollo.get(`opacity.${prop}`);
+// Border
+Apollo.get(`borderWidth.${prop}`);
+// Border Color
+Apollo.get(`borderRadius.${prop}`);
+// Shadow
+Apollo.get(`boxShadow.${prop}`);
+// Transition
+Apollo.get(`transition.${prop}`);
+// Layouts
+Apollo.get(`layout.${prop}`);
+// Size
+Apollo.get(`size.${prop}`);
+// GET
+Apollo.get(prop);
+```

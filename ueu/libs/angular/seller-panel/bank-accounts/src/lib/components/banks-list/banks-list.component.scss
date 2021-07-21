@@ -1,0 +1,62 @@
+:host {
+    height: 100%;
+}
+
+.c-banks-list {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+
+    &__search {
+        ::ng-deep .mat-form-field-wrapper {
+            padding: 0 !important;
+            padding-bottom: theme('spacing.1') !important;
+        }
+    }
+
+    &__content {
+        width: 100%;
+        min-height: calc(100vh - 200px);
+        flex-grow: 1;
+
+        &--item {
+            display: flex;
+            align-items: center;
+            text-transform: uppercase;
+            color: rgba(var(--apollo-on-background-rgb), 0.6);
+            cursor: pointer;
+
+            &:hover,
+            &:focus {
+                background-color: rgba(var(--apollo-primary-rgb), 0.1);
+                outline-color: rgba(var(--apollo-primary-rgb), 1);
+            }
+
+            img {
+                width: theme('spacing.4');
+                height: theme('spacing.4');
+                margin-right: theme('spacing.1');
+                border-radius: 50%;
+            }
+
+            p {
+                margin: 0;
+            }
+        }
+    }
+
+    &__loading,
+    &__empty-result,
+    &__error-result {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+
+        &--body {
+            flex: 1;
+        }
+    }
+}

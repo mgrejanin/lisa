@@ -1,0 +1,79 @@
+<section class="c-banks-list">
+    <div class="c-banks-list__search">
+        <mat-form-field appearance="outline">
+            <span matPrefix>
+                <mat-icon class="mr-2">search</mat-icon>
+            </span>
+            <mat-label>Busque aqui pelo seu banco</mat-label>
+            <input #inputSearchBank matInput [formControl]="bankValue" type="text" />
+            <button *ngIf="bankValue.value" matSuffix mat-icon-button type="button" (click)="onClearValue()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <ng-container *ngIf="loadingBanks$ | async; else callbackTemplate">
+        <div class="c-banks-list__loading">
+            <mat-spinner class="i-spinner" [diameter]="40"></mat-spinner>
+        </div>
+    </ng-container>
+</section>
+<ng-template #callbackTemplate>
+    <ng-container
+        *ngIf="(banksList$ | async) && (banksList$ | async)?.length !== 0 && (loadingBanksFailed$ | async) === false"
+    >
+        <cdk-virtual-scroll-viewport
+            #virtualScroll
+            itemSize="50"
+            maxBufferPx="1080"
+            minBufferPx="1080"
+            class="c-banks-list__content"
+        >
+            <ul class="c-banks-list__content" class="o-list" tabindex="0">
+                <li
+                    *cdkVirtualFor="let bank of banksList$"
+                    class="c-banks-list__content--item"
+                    tabindex="0"
+                    [attr.aria-label]="'Banco' + bank"
+                    (keyup.space)="onClickBankItem(bank)"
+                    (click)="onClickBankItem(bank)"
+                >
+                    <img [src]="bank?.img_url || 'assets/icons/bank.svg'" alt="Ícone do banco" />
+                    <p>{{ bank?.id }} - {{ bank?.name }}</p>
+                </li>
+            </ul>
+        </cdk-virtual-scroll-viewport>
+    </ng-container>
+    <ng-container
+        *ngIf="
+            (loadingBanks$ | async) === false &&
+            (banksList$ | async)?.length === 0 &&
+            (loadingBanksFailed$ | async) === false
+        "
+    >
+        <div class="c-banks-list__empty-result">
+            <seller-panel-feedback
+                imagePath="/assets/images/empty_search.svg"
+                title="Nenhum resultado para 
+            sua busca"
+                description="Refaça ou limpe a busca para 
+            visualizar resultados."
+            ></seller-panel-feedback>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="loadingBanksFailed$ | async" class="c-banks-list__error-result">
+        <div class="c-banks-list__error-result--body">
+            <seller-panel-feedback
+                imagePath="/assets/images/error_state.svg"
+                title="Opa! Erramos por aqui"
+                description="Tivemos uma falha no sistema e não conseguimos concluir."
+            ></seller-panel-feedback>
+        </div>
+        <button
+            mat-button
+            class="c-banks-list__error-result--retry o-button o-button__solid w-100"
+            (click)="onClearValue()"
+        >
+            Tentar novamente
+        </button>
+    </ng-container>
+</ng-template>

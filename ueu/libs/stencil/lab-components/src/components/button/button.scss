@@ -1,0 +1,7 @@
+.lab-button {
+    width: 100%;
+
+    &--editing {
+        pointer-events: none;
+    }
+}

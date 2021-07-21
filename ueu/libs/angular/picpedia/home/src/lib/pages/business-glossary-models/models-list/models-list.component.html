@@ -1,0 +1,52 @@
+<picpedia-navbar-header [title]="titleModelsList$ | async"></picpedia-navbar-header>
+
+<section class="c-models-list container-fluid">
+    <apollo-flex justify="center" class="c-models-list__loading" *ngIf="isLoadingModels$ | async">
+        <apollo-circular-progress radius="35" stroke="6"></apollo-circular-progress>
+    </apollo-flex>
+
+    <div class="c-models-list__container">
+        <div *ngFor="let item of modelsList$ | async">
+            <apollo-list [routerLink]="item.name | lowercase">
+                <div class="c-models-list__list">
+                    <apollo-icon [svgIcon]="iconModels" size="md" class="c-models-list__list-icon"></apollo-icon>
+                    {{ item.description }}
+
+                    <div class="c-models-list__list-items">
+                        <div class="c-models-list__list-badge">{{ item.dataDomain }}</div>
+                        <div class="c-models-list__list-badge c-models-list__list-badge--item">
+                            {{ item.tag }}
+                        </div>
+                        <picpedia-badge-certification [badgeLabel]="item.badge">{{
+                            item.badge
+                        }}</picpedia-badge-certification>
+
+                        <div class="c-models-list__list-favorite">
+                            <ng-container *ngIf="item.favorite; else favoriteOutlined">
+                                <apollo-icon
+                                    class="material-icons c-models-list__list-favorite-icon"
+                                    (click)="updateModelsListFavorite(false, item.idFavorite)"
+                                    >grade</apollo-icon
+                                >
+                            </ng-container>
+
+                            <ng-template #favoriteOutlined>
+                                <apollo-icon
+                                    class="material-icons-outlined"
+                                    (click)="updateModelsListFavorite(true, item.idFavorite)"
+                                    >grade</apollo-icon
+                                >
+                            </ng-template>
+                        </div>
+                        <div class="c-models-list__list-arrow">
+                            <apollo-icon class="material-icons-outlined">chevron_right</apollo-icon>
+                        </div>
+                    </div>
+                </div>
+                <div class="c-models-list__list-divider">
+                    <apollo-list-divider></apollo-list-divider>
+                </div>
+            </apollo-list>
+        </div>
+    </div>
+</section>

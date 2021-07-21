@@ -1,0 +1,35 @@
+.modal {
+    position: relative;
+    background: theme('colors.white');
+    border-radius: theme('borderRadius.strong');
+
+    &__header {
+        border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.100');
+        padding: theme('spacing.3');
+    }
+
+    &__close-button {
+        color: theme('colors.primary.600');
+        position: absolute;
+        top: theme('spacing.1');
+        right: theme('spacing.1');
+    }
+
+    &__title {
+        font-size: theme('fontSize.3xl');
+        font-weight: theme('fontWeight.extrabold');
+        line-height: theme('lineHeight.3xl');
+        padding-top: theme('spacing.3');
+    }
+
+    &__content {
+        padding: theme('spacing.3');
+        line-height: theme('lineHeight.7xl');
+        margin: theme('spacing.none');
+    }
+
+    &__img {
+        width: 60%;
+        object-fit: cover;
+    }
+}

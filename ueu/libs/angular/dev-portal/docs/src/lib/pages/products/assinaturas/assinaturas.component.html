@@ -1,0 +1,73 @@
+<dev-portal-banner
+    backgroundColor="#172126"
+    reverse="true"
+    col_image="3"
+    [col_content]="(isMobile$ | async) ? 10 : 5"
+    offset="1"
+    justify_content="end"
+>
+    <div banner-image class="d-none d-md-block">
+        <img src="./assets/icons/icone-banner-assinaturas.png" alt="Produto Assinaturas" />
+    </div>
+    <div banner-content>
+        <h1>Assinaturas</h1>
+        <p class="banner-text" class="mb-4">
+            Crie planos de assinatura para seus produtos, solicite o pagamento aos seus clientes de modo recorrente
+        </p>
+        <div banner-actions *ngIf="(isMobile$ | async) === false">
+            <apollo-button class="btn-white" (click)="openDialog()" id="btn_contact_assinaturas" role="button">
+                <apollo-icon class="panel__icon material-icon">vpn_key</apollo-icon> Usar esse produto
+            </apollo-button>
+        </div>
+    </div>
+</dev-portal-banner>
+
+<div class="api-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="info-api col-10">
+                <div class="api-content__intro" id="o-que-e">
+                    <h2 class="api-content__title">Receba mensalmente de seus clientes e apoiadores</h2>
+                    <div class="api-content__text">
+                        <p>
+                            PicPay Assinaturas é o serviço de pagamentos recorrentes do PicPay perfeito para clubes de
+                            assinatura, financiamentos coletivos, criadores de conteúdo e muito mais. Crie seu perfil,
+                            defina seus planos de assinatura e comece a receber. Esqueça a burocracia e tenha total
+                            controle do seu negócio. Acompanhe suas novas assinaturas, dados de seus assinantes, datas
+                            de pagamentos e mais.
+                        </p>
+                    </div>
+                </div>
+                <div class="api-content__steps no-description" id="como-assinar">
+                    <h2 class="api-content__title">Como os usuários assinam seus planos</h2>
+                    <p class="api-content__text">
+                        Você faz um cadastro no nosso Painel Lojista, usa uma chave de integração no seu e-commerce e
+                        configura a aplicação em poucos passos.
+                    </p>
+                    <div class="media mb-1">
+                        <span class="step align-self-center mr-3">1</span>
+                        <div class="media-body">
+                            Após abrir o aplicativo, tocar no botão 'Pagar' na parte inferior da tela
+                        </div>
+                    </div>
+                    <div class="arrow text-center">
+                        <img src="./assets/icons/arrow-step.svg" alt="Próximo Passo" class="text-center" />
+                    </div>
+                    <div class="media my-1">
+                        <span class="step align-self-center mr-3">2</span>
+                        <div class="media-body">
+                            No campo de busca na parte superior da tela, procurar seu perfil de assinaturas
+                        </div>
+                    </div>
+                    <div class="arrow text-center">
+                        <img src="./assets/icons/arrow-step.svg" alt="Próximo Passo" />
+                    </div>
+                    <div class="media mt-1">
+                        <span class="step align-self-center mr-3">3</span>
+                        <div class="media-body">Depois de escolher o plano, é só confirmar a assinatura</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

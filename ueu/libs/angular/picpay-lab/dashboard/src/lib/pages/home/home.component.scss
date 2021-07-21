@@ -1,0 +1,83 @@
+.home {
+    display: flex;
+    flex-direction: row;
+    max-height: calc(100vh - 4.5rem);
+    position: relative;
+
+    &__sidemenu {
+        z-index: 2;
+    }
+
+    &__sidepanel {
+        position: relative;
+        z-index: 1;
+    }
+
+    &__container {
+        width: calc(100vw + 8rem);
+        overflow: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        height: 100%;
+
+        &__scroll-content {
+            min-height: theme('spacing.16');
+            height: auto;
+
+            &-item {
+                width: 100%;
+            }
+            .drop-area,
+            .drag-placeholder {
+                min-height: 6.25rem;
+                width: 100%;
+                height: 100%;
+                max-height: theme('spacing.24');
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: rgba(theme('colors.primary.light.50'), 0.9);
+                color: theme('colors.grayscale.700');
+                box-sizing: border-box;
+                border: 0.125rem dashed theme('colors.primary.600');
+                position: relative;
+                left: 0;
+                top: 0;
+                flex-direction: column;
+                &__label {
+                    margin-top: theme('spacing.1');
+                    margin-bottom: theme('spacing.none');
+                    font-size: theme('fontSize.sm');
+                    font-weight: theme('fontWeight.semibold');
+                    line-height: theme('lineHeight.sm');
+                }
+            }
+
+            .cdk-drag-placeholder {
+                .home__container__scroll-content-item {
+                    display: none;
+                }
+            }
+
+            &.cdk-drop-list-dragging {
+                .drop-area {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .cdk-drag {
+        transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+        &-preview {
+            position: static;
+            box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+                0 3px 14px 2px rgba(0, 0, 0, 0.12);
+        }
+        &-animating {
+            transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+        }
+    }
+}

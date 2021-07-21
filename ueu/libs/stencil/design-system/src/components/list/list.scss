@@ -1,0 +1,12 @@
+@use "@material/list";
+
+@include list.core-styles;
+
+:host {
+    display: block;
+}
+
+apollo-list {
+    --mdc-theme-primary: var(--apollo-primary);
+    --mdc-theme-surface: var(--apollo-background-z2);
+}

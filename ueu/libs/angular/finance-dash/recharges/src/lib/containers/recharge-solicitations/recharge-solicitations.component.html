@@ -1,0 +1,139 @@
+<div class="c-recharges-solicitation__loading" *ngIf="isLoading$ | async">
+    <apollo-circular-progress radius="30"></apollo-circular-progress>
+</div>
+
+<section class="c-recharges-solicitation" *ngIf="(isLoading$ | async) === false">
+    <table mat-table [dataSource]="recharges$ | async" class="c-recharges-solicitation__table o-table">
+        <ng-container matColumnDef="id_counter">
+            <th mat-header-cell *matHeaderCellDef class="c-recharges-solicitation__table-title o-table__title">ID</th>
+            <td mat-cell *matCellDef="let element" class="c-recharges-solicitation__table-item o-table__item">
+                {{ element.id_counter }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="consumer_id">
+            <th mat-header-cell *matHeaderCellDef class="c-recharges-solicitation__table-title o-table__title">
+                CLIENTE
+            </th>
+            <td mat-cell *matCellDef="let element" class="c-recharges-solicitation__table-item o-table__item">
+                <span>{{ element.consumer?.name ? element.consumer?.name : 'Consumer Não Existe' }}</span>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="recharge_method_type_id">
+            <th mat-header-cell *matHeaderCellDef class="c-recharges-solicitation__table-title o-table__title">
+                RECARGA
+            </th>
+            <td mat-cell *matCellDef="let element" class="c-recharges-solicitation__table-item o-table__item">
+                {{ getRechargesMethod(element.recharge_method_type_id) }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="request_date">
+            <th mat-header-cell *matHeaderCellDef class="c-recharges-solicitation__table-title o-table__title">DATA</th>
+            <td mat-cell *matCellDef="let element" class="c-recharges-solicitation__table-item o-table__item">
+                {{ element.request_date | date: 'dd/MM/yyyy' }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="status_name">
+            <th mat-header-cell *matHeaderCellDef class="c-recharges-solicitation__table-title o-table__title">
+                STATUS
+            </th>
+            <td mat-cell *matCellDef="let element" class="c-recharges-solicitation__table-item o-table__item">
+                {{ element.status_name }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="value">
+            <th mat-header-cell *matHeaderCellDef class="c-recharges-solicitation__table-title o-table__title">
+                VALOR
+            </th>
+            <td mat-cell *matCellDef="let element" class="c-recharges-solicitation__table-item o-table__item">
+                {{ element.value | currency: 'BRL' }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="code">
+            <th mat-header-cell *matHeaderCellDef class="c-recharges-solicitation__table-title o-table__title">
+                EFETIVADO EM
+            </th>
+            <td mat-cell *matCellDef="let element" class="c-recharges-solicitation__table-item o-table__item">
+                {{ element.completion_date | date: 'dd/MM/yyyy' }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="completion_date">
+            <th mat-header-cell *matHeaderCellDef class="c-recharges-solicitation__table-title o-table__title">
+                CONTA
+            </th>
+            <td mat-cell *matCellDef="let element" class="c-recharges-solicitation__table-item o-table__item">
+                <div class="datatable-celula">
+                    <div class="conta">
+                        {{
+                            element.bankAccount
+                                ? element.bankAccount.bank_id +
+                                  ' - Ag ' +
+                                  element.bankAccount.agencia +
+                                  ' / ' +
+                                  (element.bankAccount.tipo || element.bankAccount.operacao) +
+                                  ' / ' +
+                                  element.bankAccount.conta
+                                : 'Não Existe'
+                        }}
+                    </div>
+                </div>
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef class="c-recharges-solicitation__table-title o-table__title"></th>
+            <td mat-cell *matCellDef="let element" class="c-recharges-solicitation__table-item o-table__item">
+                <apollo-menu>
+                    <apollo-icon-button
+                        slot="anchor"
+                        icon-pack="interface"
+                        icon="interface-ellipsis-v"
+                        color="#525f66"
+                    ></apollo-icon-button>
+
+                    <apollo-list>
+                        <apollo-list-item
+                            (click)="openChangeRechargeValue(element.id, element.id_counter, element.value)"
+                        >
+                            <apollo-icon svgIcon="interface-edit-alt" label="Alterar valor" size="sm"> </apollo-icon>
+                            <span>Alterar valor</span>
+                        </apollo-list-item>
+                        <apollo-list-item>
+                            <apollo-icon svgIcon="interface-check" label="Concluir recarga" size="sm"> </apollo-icon>
+                            <span>Concluir recarga</span>
+                        </apollo-list-item>
+                        <apollo-list-item>
+                            <apollo-icon svgIcon="interface-times" label="Concluir recarga" size="sm"> </apollo-icon>
+                            <span>Cancelar recarga</span>
+                        </apollo-list-item>
+                        <apollo-list-item>
+                            <apollo-icon svgIcon="interface-info-circle" label="Concluir recarga" size="sm">
+                            </apollo-icon>
+                            <span>Infos consumer</span>
+                        </apollo-list-item>
+                        <apollo-list-item>
+                            <apollo-icon svgIcon="interface-edit-alt" label="Alterar valor" size="sm"> </apollo-icon>
+                            <span>Alterar valor</span>
+                        </apollo-list-item>
+                        <apollo-list-item>
+                            <apollo-icon svgIcon="communication-comment-alt-message" label="Concluir recarga" size="sm">
+                            </apollo-icon>
+                            <span>Incluir comentário</span>
+                        </apollo-list-item>
+                    </apollo-list>
+                </apollo-menu>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" class="o-table__row"></tr>
+    </table>
+
+    <mat-paginator [pageSize]="pageInitial" showFirstLastButtons [length]="totalRecharges$ | async"></mat-paginator>
+</section>

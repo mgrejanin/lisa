@@ -1,0 +1,12 @@
+@use "@material/ripple";
+
+apollo-nav-item {
+    @include ripple.surface;
+    @include ripple.radius-bounded;
+    @include ripple.states;
+
+    display: block;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}

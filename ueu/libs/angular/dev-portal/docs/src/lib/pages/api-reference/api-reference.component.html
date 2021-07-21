@@ -1,0 +1,147 @@
+<div class="c-api-reference">
+    <ng-container *ngIf="isMobile$ | async">
+        <ng-container *ngTemplateOutlet="btnMenuMobile"></ng-container>
+    </ng-container>
+    <dev-portal-header></dev-portal-header>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-menu p-0">
+                <div
+                    [ngClass]="{
+                        'c-api-reference__menu_wrapper': true,
+                        'c-api-reference__menu_mobile_wrapper': isMobile$ | async,
+                        open: toggleMobile.menu
+                    }"
+                >
+                    <dev-portal-docs-swagger-scroll
+                        (menuSelected)="toggleMobile.menu = false"
+                        [slug]="currentSlug"
+                    ></dev-portal-docs-swagger-scroll>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-content p-0">
+                <ng-container *ngTemplateOutlet="produtos"></ng-container>
+                <div class="container">
+                    <div
+                        [ngClass]="{
+                            hidden:
+                                (docLoadSuccess$ | async) === false || !(activeProduct$ | async)?.documentations.length,
+                            'row justify-content-center': true
+                        }"
+                    >
+                        <div class="info-api col-10 p-0">
+                            <div id="swagger-editor" class="api-content__wrapper"></div>
+                        </div>
+                    </div>
+                    <div
+                        *ngIf="(docLoadSuccess$ | async) === false && (activeProduct$ | async)?.documentations.length"
+                        class="row justify-content-center"
+                    >
+                        <div class="info-api col-10 p-0 api-content__wrapper">
+                            <h2 class="api-content__title">Referências da API - Algo deu errado!</h2>
+                            <img class="api-content__error--image" src="./assets/dev-portal/images/error.png" />
+                            <div class="api-content__text">
+                                <p>
+                                    Não conseguimos carregar os dados da API. Tente novamente mais tarde ou entre em
+                                    contato com nosso suporte.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ng-container *ngIf="isMobile$ | async">
+                    <ng-container *ngTemplateOutlet="footerMobile"></ng-container>
+                </ng-container>
+                <dev-portal-footer></dev-portal-footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #produtos>
+    <ng-container [ngSwitch]="currentSlug">
+        <ng-container *ngSwitchCase="'e-commerce'">
+            <dev-portal-e-commerce></dev-portal-e-commerce>
+        </ng-container>
+        <ng-container *ngSwitchCase="'b2p'">
+            <dev-portal-b2p></dev-portal-b2p>
+        </ng-container>
+        <ng-container *ngSwitchCase="'assinaturas'">
+            <dev-portal-assinaturas></dev-portal-assinaturas>
+        </ng-container>
+        <ng-container *ngSwitchCase="'plataforma-aberta'">
+            <dev-portal-open-platform></dev-portal-open-platform>
+        </ng-container>
+    </ng-container>
+</ng-template>
+
+<ng-template #btnMenuMobile>
+    <button
+        class="c-api-reference__menu_button_mobile"
+        (click)="toggleMobile.menu = !toggleMobile.menu"
+        role="button"
+        title="Menu"
+    >
+        <apollo-icon class="c-api-reference__menu_button_mobile__icon material-icon">menu</apollo-icon>
+    </button>
+</ng-template>
+
+<ng-template #footerMobile>
+    <div class="c-api-reference__footer_fixed">
+        <div
+            [ngClass]="'c-api-reference__footer_fixed__buttons footer_mobile_' + currentSlug"
+            *ngIf="!toggleMobile.cardsProducts; else productsMobile"
+        >
+            <div class="ff-button">
+                <apollo-button
+                    block="true"
+                    variant="outlined"
+                    (click)="toggleMobile.cardsProducts = !toggleMobile.cardsProducts"
+                    role="button"
+                    title="Ver produtos"
+                    id="btn_ver_produtos"
+                    >Ver produtos</apollo-button
+                >
+            </div>
+            <div class="ff-button">
+                <apollo-button block="true" [id]="'btn_contact_' + currentSlug" (click)="openDialog()" role="button">
+                    Quero usar!</apollo-button
+                >
+            </div>
+        </div>
+    </div>
+    <div class="c-api-reference__bg" *ngIf="toggleMobile.cardsProducts"></div>
+</ng-template>
+
+<ng-template #productsMobile>
+    <div class="c-api-reference__footer_fixed__products">
+        <div class="title">
+            <span>Todos os produtos</span>
+            <apollo-icon class="material-icon" (click)="toggleMobile.cardsProducts = !toggleMobile.cardsProducts"
+                >close</apollo-icon
+            >
+        </div>
+        <div class="cards cards-scroll" *ngIf="products$ | async as products">
+            <apollo-card
+                class="card"
+                *ngFor="let product of products"
+                [routerLink]="['/docs/' + product.slug]"
+                [id]="'btn_card_' + product.slug"
+                (click)="openProducts(product.name)"
+            >
+                <apollo-card-content>
+                    <h4 class="card__title">{{ product.name }}</h4>
+                    <span class="card__category">{{ product.category }}</span>
+                    <div class="card__content">
+                        <div>
+                            <p class="card__description">{{ product.description }}</p>
+                        </div>
+                        <div>
+                            <img [src]="'./assets/icons/' + product.slug + '.png'" [alt]="product.name" />
+                        </div>
+                    </div>
+                </apollo-card-content>
+            </apollo-card>
+        </div>
+    </div>
+</ng-template>

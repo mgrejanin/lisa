@@ -1,0 +1,29 @@
+@use "sass:map";
+@use "sass:color" as colors;
+
+@function get-color($theme-alias: (), $palette: (), $value, $key) {
+    @if (map.has-key($theme-alias, $value)) {
+        $value-alias: map.get($theme-alias, $value);
+
+        @if ($key == contrast) {
+            @return map.get(map.get($palette, $key), $value-alias);
+        }
+
+        @return map.get($palette, $value-alias);
+    }
+
+    @if (map.has-key($palette, $value)) {
+        @if ($key == contrast) {
+            @return map.get(map.get($palette, $key), $value);
+        }
+
+        @return map.get($palette, $value);
+    }
+
+    @error "Unknown value '#{$value}' on palette";
+    @return null;
+}
+
+@function get-rgb-color($palette) {
+    @return #{colors.red($palette), colors.green($palette), colors.blue($palette)};
+}

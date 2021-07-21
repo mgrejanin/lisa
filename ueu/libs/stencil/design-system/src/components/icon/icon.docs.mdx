@@ -1,0 +1,43 @@
+import { Story, Icons, Status } from './../../../.storybook/components';
+import { Props } from '@storybook/addon-docs/blocks';
+
+# Icons
+
+<Status />
+
+Os ícones são usados ​​no produto para apresentar ações e comandos comuns.
+
+<Story id="design-tokens-icons--base" />
+
+<Props id="design-tokens-icons--base" />
+
+Ícones neste pacote suporta os seguintes tamanhos: `16` e `24` pixels. Esses tamanhos referem-se à largura e altura do ícone. Você pode importar um componente de ícone para o seu projeto, referindo-se ao seu nome e tamanho:
+
+```html
+<apollo-icon svgIcon="arrows-arrow-up" size="sm"></apollo-icon>
+```
+
+### Acessibilidade
+
+Por padrão, os componentes de ícone são tratados como conteúdo decorativo. Se desejar que o ícone seja anunciado por um leitor de tela, você pode fornecer um `label`. Exemplo:
+
+```html
+<apollo-icon svgIcon="interface-plus-circle" size="sm" label="Adicionar"></apollo-icon>
+```
+
+Se você precisar adicionar uma descrição de funcionalidade para o ícone você pode fornecer um `role`. Exemplo:
+
+```html
+<apollo-icon svgIcon="file-file-blank" size="sm" role="document"></apollo-icon>
+```
+
+### Material Icons
+
+Evite o uso de material icons. Sempre confira se existe no Design System ícone que atende a necessidade ou a possibilidade de inclusão de novos ícones no DS.
+Caso seja necessário usar ícone do material você pode usar conforme exemplo abaixo:
+
+<Story id="design-tokens-icons--slot" />
+
+### Lista completa de ícones
+
+<Icons />

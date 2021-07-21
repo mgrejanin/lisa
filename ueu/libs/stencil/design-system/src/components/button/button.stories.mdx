@@ -1,0 +1,161 @@
+import { Meta, Story, Canvas, Source, Description } from '@storybook/addon-docs/blocks';
+import dedent from 'ts-dedent';
+
+import readme from './../../components/button/readme.md';
+
+<Meta
+    title="Components/Button"
+    parameters={{
+        previewTabs: {
+            canvas: { hidden: false },
+        },
+    }}
+/>
+
+export const ButtonText = 'PicPay Lovers';
+
+export const Template = props => (
+    <apollo-button
+        {...props}
+        block={props.block ? 'true' : undefined}
+        round={props.round ? 'true' : undefined}
+        disabled={props.disabled ? 'true' : undefined}
+        danger={props.danger ? 'true' : undefined}
+        ripple={props.ripple ? 'true' : undefined}
+        loading={props.loading ? 'true' : undefined}
+    >
+        {ButtonText}
+    </apollo-button>
+);
+
+# Button
+
+## Default
+
+<Canvas>
+    <Story
+        name="All Props"
+        args={{
+            variant: 'unelevated',
+            block: false,
+            round: true,
+            disabled: false,
+            danger: false,
+            ripple: false,
+            loading: false,
+            type: 'button',
+            target: '_blank',
+            size: 'sm',
+            href: '',
+            name: '',
+            value: '',
+        }}
+        argTypes={{
+            variant: {
+                control: { type: 'select', options: ['link', 'outlined', 'raised', 'unelevated'] },
+            },
+            type: {
+                control: { type: 'select', options: ['button', 'menu', 'reset', 'submit'] },
+            },
+            target: {
+                control: { type: 'select', options: ['_blank', '_self'] },
+            },
+            size: {
+                control: { type: 'select', options: ['sm', 'md'] },
+            },
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<apollo-button>${ButtonText}</apollo-button>`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+## Primary
+
+<Canvas>
+    <Story name="Primary">
+        <apollo-button variant="unelevated">{ButtonText}</apollo-button>
+    </Story>
+</Canvas>
+
+## Secondary
+
+<Canvas>
+    <Story name="Secondary">
+        <apollo-button variant="outlined">{ButtonText}</apollo-button>
+    </Story>
+</Canvas>
+
+## Tertiary
+
+<Canvas>
+    <Story name="Tertiary">
+        <apollo-button variant="link">{ButtonText}</apollo-button>
+    </Story>
+</Canvas>
+
+## Danger
+
+<Canvas>
+    <Story name="Danger">
+        <apollo-button variant="unelevated" danger>
+            {ButtonText}
+        </apollo-button>
+    </Story>
+</Canvas>
+
+## Icons
+
+<Canvas>
+    <Story
+        name="Leading Icon"
+        parameters={{
+            docs: {
+                source: {
+                    code: dedent`
+                        <apollo-button variant="unelevated">
+                            <apollo-icon slot="leading-icon" svg-icon="objects-heart" size="sm"></apollo-icon>
+                            ${ButtonText}
+                        </apollo-button>
+                    `,
+                },
+            },
+        }}
+    >
+        <apollo-button variant="unelevated">
+            <apollo-icon slot="leading-icon" svg-icon="objects-heart" size="sm"></apollo-icon>
+            {ButtonText}
+        </apollo-button>
+    </Story>
+</Canvas>
+
+<Canvas>
+    <Story
+        name="Trailing Icon"
+        parameters={{
+            docs: {
+                source: {
+                    code: dedent`
+                        <apollo-button variant="unelevated">
+                            ${ButtonText}
+                            <apollo-icon slot="trailing-icon" svg-icon="objects-heart" size="sm"></apollo-icon>
+                        </apollo-button>
+                    `,
+                },
+            },
+        }}
+    >
+        <apollo-button variant="unelevated">
+            {ButtonText}
+            <apollo-icon slot="trailing-icon" svg-icon="objects-heart" size="sm"></apollo-icon>
+        </apollo-button>
+    </Story>
+</Canvas>
+
+<Description markdown={readme} />

@@ -1,0 +1,113 @@
+<section class="c-user-management">
+    <!-- HEADER -->
+    <feature-flag-features-header [showReturnBtn]="true"></feature-flag-features-header>
+    <!-- CONTENT -->
+    <section class="c-user-management__content container o-page">
+        <!-- TITLE -->
+        <h1 class="c-user-management__title">{{ (squad$ | async)?.name }}</h1>
+
+        <!-- TOP ACTION -->
+        <section class="c-user-management__action-bar">
+            <!-- SEARCH -->
+            <feature-flag-search (updateFilter)="updateFilter($event)"></feature-flag-search>
+
+            <!-- CREATE BUTTON -->
+            <button
+                *featureFlagIfRoles="canShow"
+                mat-flat-button
+                class="c-user-management__create-btn o-button"
+                (click)="onAddUser()"
+            >
+                <mat-icon class="o-button__icon">add</mat-icon> Convidar Usuários
+            </button>
+        </section>
+
+        <!-- TABLE -->
+        <table mat-table [dataSource]="dataSource$ | async" class="c-user-management__table o-table">
+            <!-- NAME -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef class="c-user-management__table-name">Nome</th>
+                <td mat-cell *matCellDef="let element" class="o-table__item-name">
+                    <div class="o-table__item-name--avatar">
+                        <apollo-avatar
+                            size="small"
+                            radius="full"
+                            [src]="element.picture"
+                            alt="Foto de perfil do usuário"
+                        ></apollo-avatar>
+                        {{ element.fullname }}
+                    </div>
+                </td>
+            </ng-container>
+
+            <!-- DESCRIPTION -->
+            <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef class="c-user-management__table-email">E-mail</th>
+                <td mat-cell *matCellDef="let element" class="o-table__item">
+                    {{ element.email }}
+                </td>
+            </ng-container>
+
+            <!-- ROLE -->
+            <ng-container matColumnDef="role">
+                <th mat-header-cell *matHeaderCellDef class="c-user-management__table-access">Acesso</th>
+                <td mat-cell *matCellDef="let element" class="o-table__item">
+                    <mat-form-field
+                        *featureFlagIfRoles="canShow; else noAdminTemplate"
+                        class="c-login-page__form--input col-md-6"
+                        appearance="outline"
+                    >
+                        <mat-select
+                            placeholder="Mode"
+                            [value]="element.role"
+                            [id]="element.id"
+                            (selectionChange)="updateUserAccessRole($event.source.id, $event.value, element.role)"
+                        >
+                            <mat-option *ngFor="let role of roles$ | async" [value]="role.id">
+                                {{ role.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <ng-template #noAdminTemplate>
+                        <span>{{ userRole(element)?.name }}</span>
+                    </ng-template>
+                </td>
+            </ng-container>
+
+            <!-- ACTION -->
+            <ng-container matColumnDef="action">
+                <th mat-header-cell *matHeaderCellDef class="c-user-management__table-action">Ação</th>
+                <td mat-cell *matCellDef="let element" class="o-table__item">
+                    <div *featureFlagIfRoles="canShow" class="c-user-dropdown">
+                        <div [matMenuTriggerFor]="userMenuDropdown">
+                            <button mat-icon-button>
+                                <apollo-icon svgIcon="interface-bars" size="md"> </apollo-icon>
+                            </button>
+                        </div>
+                        <mat-menu #userMenuDropdown="matMenu" class="c-user-dropdown__menu">
+                            <button
+                                type="button"
+                                mat-menu-item
+                                disableRipple
+                                (click)="onRemoveUser(element.id, element.role)"
+                            >
+                                <div class="c-user-dropdown__menu-button">
+                                    <apollo-icon
+                                        svgIcon="interface-trash-alt"
+                                        size="md"
+                                        class="c-user-dropdown__icon"
+                                    ></apollo-icon>
+                                    <span class="c-user-dropdown__link"> Remover usuário </span>
+                                </div>
+                            </button>
+                            <ng-content></ng-content>
+                        </mat-menu>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns" class="o-table__row"></tr>
+        </table>
+    </section>
+</section>

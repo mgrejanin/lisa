@@ -1,0 +1,30 @@
+<section class="c-confirmation-modal o-modal-content">
+    <button
+        mat-icon-button
+        aria-label="Fechar"
+        class="c-confirmation-modal__close-btn o-modal__close-btn"
+        (click)="onClose(false)"
+    >
+        <mat-icon>close</mat-icon>
+    </button>
+
+    <h1 class="c-confirmation-modal__title o-modal__title">{{ data.title ? data.title : 'Confirmar ação' }}</h1>
+
+    <div class="c-confirmation-modal__message o-modal__message">
+        {{ data.message ? data.message : 'Você tem certeza de que deseja realizar essa ação?' }}
+    </div>
+
+    <div class="o-modal__btn-wrapper">
+        <button class="c-confirmation-modal__cancel-btn o-button o-button__link" type="button" (click)="onClose(false)">
+            Cancelar
+        </button>
+
+        <button
+            class="c-confirmation-modal__confirm-btn o-button o-button__solid"
+            type="button"
+            (click)="onClose(true)"
+        >
+            Confirmar
+        </button>
+    </div>
+</section>

@@ -1,0 +1,64 @@
+<picpay-lab-header></picpay-lab-header>
+
+<div class="home">
+    <picpay-lab-side-menu
+        class="home__sidemenu"
+        [items]="itemsMenu"
+        (openMenuOption)="handleOpenSidePanel($event)"
+    ></picpay-lab-side-menu>
+
+    <section class="home__sidepanel" [ngSwitch]="itemActive?.text" [@slideInOut]="menuState">
+        <picpay-lab-sidepanel
+            *ngSwitchCase="'Adicionar seção'"
+            [title]="'Hora de montar a sua loja!'"
+            [description]="
+                'Aqui você encontra opções para enriquecer a loja. Você pode adicionar descrições, preços, criar lista de produtos e até adicionar um produto ou serviço em destaque.'
+            "
+            (clickButton)="closePanel()"
+        >
+            <picpay-lab-section> </picpay-lab-section>
+        </picpay-lab-sidepanel>
+
+        <picpay-lab-sidepanel *ngSwitchDefault (clickButton)="closePanel()"> </picpay-lab-sidepanel>
+    </section>
+
+    <section class="home__container" [@deviceMove]="menuState">
+        <picpay-lab-device
+            [addSectionVisible]="itemActive?.text !== 'Adicionar seção' ? true : itemActive?.isActive ? false : true"
+            (addSectionClick)="openSidePanel(itemsMenu[0])"
+        >
+            <ng-container fixed-content>
+                <lab-header></lab-header>
+            </ng-container>
+            <ng-container scroll-content>
+                <section
+                    class="home__container__scroll-content"
+                    #deviceList="cdkDropList"
+                    cdkDropList
+                    id="deviceList"
+                    cdkDropListConnectedTo="sectionList"
+                    [cdkDropListData]="items"
+                    (cdkDropListDropped)="drop($event)"
+                >
+                    <div *ngFor="let item of items">
+                        <div cdkDrag>
+                            <lab-transformer
+                                class="home__container__scroll-content-item"
+                                [component]="item"
+                            ></lab-transformer>
+
+                            <div class="drag-placeholder" *cdkDragPlaceholder>
+                                <apollo-icon svgIcon="interface-plus-circle"></apollo-icon>
+                                <label class="drag-placeholder__label"> Arraste e solte aqui</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="menuState === 'in' && itemActive.id === 1" class="drop-area">
+                        <apollo-icon svgIcon="interface-plus-circle"></apollo-icon>
+                        <label class="drop-area__label"> Arraste e solte aqui</label>
+                    </div>
+                </section>
+            </ng-container>
+        </picpay-lab-device>
+    </section>
+</div>

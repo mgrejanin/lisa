@@ -1,0 +1,12 @@
+.c-tags {
+    &__list-container {
+        padding: theme('spacing.none') theme('spacing.3');
+    }
+    &__list--item {
+        margin: theme('spacing.2') theme('spacing.1');
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}

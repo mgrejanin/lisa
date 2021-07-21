@@ -1,0 +1,18 @@
+:host {
+    height: 100%;
+}
+
+.c-account-action-context {
+    margin-top: 15vh;
+
+    &__section {
+        display: flex;
+        &:not(:first-of-type) {
+            margin-top: theme('spacing.2');
+        }
+    }
+
+    .mat-icon {
+        margin-right: theme('spacing.1');
+    }
+}

@@ -1,0 +1,19 @@
+<section class="c-section">
+    <div class="c-section__body">
+        <seller-register-static-content
+            [title]="title"
+            [responsiveTitle]="true"
+            firstParagraph="Conta criada! Agora, configure as taxas, dados bancários e como sua
+            empresa será vista no PicPay."
+            illustration="assets/seller-register/images/config.svg"
+            illustrationAlt="Uma ilustração de uma pessoa segurando uma ferramenta"
+        ></seller-register-static-content>
+    </div>
+</section>
+
+<footer class="c-footer">
+    <!-- Include router link when next page is created -->
+    <apollo-button size="md" type="button" block class="c-footer__button c-footer__button--next" [routerLink]="['']">
+        Iniciar
+    </apollo-button>
+</footer>

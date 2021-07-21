@@ -1,0 +1,10 @@
+.c-user-create {
+    &__title {
+        margin-bottom: 1em;
+    }
+}
+
+::ng-deep .mat-autocomplete-panel {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+}

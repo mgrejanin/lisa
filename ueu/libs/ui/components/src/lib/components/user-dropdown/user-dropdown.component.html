@@ -1,0 +1,26 @@
+<section class="c-user-dropdown">
+    <div [matMenuTriggerFor]="userMenuDropdown">
+        <button mat-icon-button>
+            <img src="{{ userImage }}" width="32px" height="32px" class="c-user-dropdown__img-btn" />
+        </button>
+
+        <span class="c-user-dropdown__user-header-name" *ngIf="username">{{ username }}</span>
+    </div>
+
+    <mat-menu #userMenuDropdown="matMenu" class="c-user-dropdown__menu-content">
+        <div mat-menu-item class="c-user-dropdown__menu-user-button" disableRipple>
+            <img src="{{ userImage }}" width="80px" height="80px" class="c-user-dropdown__user-image" />
+            <span class="c-user-dropdown__user-name">{{ username }}</span>
+            <a
+                href="javascript:void(0)"
+                (click)="changeCurrentProfile()"
+                class="c-user-dropdown__link-account"
+                *ngIf="accountChange"
+            >
+                Mudar de conta
+            </a>
+        </div>
+
+        <ng-content></ng-content>
+    </mat-menu>
+</section>

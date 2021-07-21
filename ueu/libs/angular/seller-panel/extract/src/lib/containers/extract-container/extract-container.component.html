@@ -1,0 +1,106 @@
+<div class="c-extract-container">
+    <div class="c-extract-container__header">
+        <apollo-heading size="lg" class="c-extract-container__title">Extrato</apollo-heading>
+        <div class="c-extract-container__actions">
+            <seller-panel-resume-future-releases
+                routerLink="/extrato/lancamentos-futuros"
+                class="c-extract-container__actions c-extract-container__actions--custom-height"
+                [balance]="nextReleaseData?.balance"
+                [noBalance]="noBalanceFutureReleases"
+                [date]="nextReleaseData?.date"
+                [loading]="isLoading"
+                [error]="balanceFutureReleasesError"
+            ></seller-panel-resume-future-releases>
+
+            <div class="c-extract-container__actions c-extract-container__actions--buttons">
+                <button
+                    mat-button
+                    color="primary"
+                    class="c-extract-container-download-reports o-button"
+                    [class.o-button__link]="isMobile$ | async"
+                    routerLink="/configuracoes/saques-bancarios"
+                >
+                    <mat-icon disableRipple>settings</mat-icon>
+                    <ng-container *ngIf="(isMobile$ | async) === false">
+                        <span class="ml-2">Gerenciar contas bancárias</span>
+                    </ng-container>
+                </button>
+                <button
+                    mat-button
+                    color="primary"
+                    class="c-extract-container-download-reports o-button"
+                    id="btn-download-report"
+                    [class.o-button__link]="isMobile$ | async"
+                    [disabled]="disableDownloadExtractButton()"
+                    (click)="isB2P ? openB2BDownloadReports() : openDownloadReports()"
+                >
+                    <mat-icon disableRipple>save_alt</mat-icon>
+                    <ng-container *ngIf="(isMobile$ | async) === false">
+                        <span class="ml-2">{{ isB2P ? 'Baixar relatório' : 'Exportar relatório' }}</span>
+                    </ng-container>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="c-extract-container__body">
+        <!-- General Loading -->
+        <ng-container *ngIf="isLoading && tableData?.extract?.length === 0">
+            <div class="c-extract-container__loading">
+                <seller-panel-loading-spinner [size]="50" [stroke]="5"></seller-panel-loading-spinner>
+            </div>
+        </ng-container>
+
+        <!-- Extract Table -->
+        <ng-container *ngIf="tableData?.extract?.length > 0">
+            <div class="c-extract-container__table">
+                <seller-panel-table-extract [data]="tableData"></seller-panel-table-extract>
+
+                <!-- Load more -->
+                <ng-container *ngIf="tablePagination?.last_date && tablePagination?.next_page">
+                    <div class="c-extract-container__table--load-more">
+                        <button
+                            mat-button
+                            [disabled]="isLoading"
+                            class="o-button o-button__link c-extract-container__btn-container"
+                            (click)="getMoreExtractItems()"
+                        >
+                            <span>{{ isLoading ? 'Carregando...' : 'Carregar mais' }}</span>
+
+                            <!-- Button Loading -->
+                            <ng-container *ngIf="isLoading">
+                                <div class="c-extract-container__loading c-extract-container__btn-container--centered">
+                                    <seller-panel-loading-spinner
+                                        [size]="20"
+                                        [stroke]="2"
+                                    ></seller-panel-loading-spinner>
+                                </div>
+                            </ng-container>
+                        </button>
+                    </div>
+                </ng-container>
+            </div>
+        </ng-container>
+
+        <!-- No results -->
+        <ng-container *ngIf="tableData?.extract?.length === 0 && !isLoading">
+            <div class="c-transactions__feedback">
+                <seller-panel-feedback
+                    [imagePath]="feedbackByExtractResult.svgPath"
+                    [title]="feedbackByExtractResult.title"
+                    [description]="feedbackByExtractResult.description"
+                ></seller-panel-feedback>
+            </div>
+        </ng-container>
+
+        <mat-chip
+            color="primary"
+            [@simpleFadeAnimation]="'in'"
+            *ngIf="scrollToTopVisible"
+            class="c-extract-container__scroll-to"
+            selected
+            (click)="scrollToTop()"
+        >
+            Voltar ao topo
+        </mat-chip>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<section class="c-modal-warning">
+    <div class="c-modal-warning__header">
+        <h2 class="c-modal-warning__header--title">{{ data?.title }}</h2>
+        <button class="c-modal-warning__header--close-btn" type="button" (click)="onClose()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="c-modal-warning__body">
+        <seller-panel-feedback [imagePath]="data?.imagePath" height="25vh"></seller-panel-feedback>
+        <h3 class="c-modal-warning__body--subtitle">{{ data?.subtitle }}</h3>
+        <p class="c-modal-warning__body--caption">{{ data?.caption }}</p>
+    </div>
+    <div class="c-modal-warning__footer">
+        <button
+            mat-button
+            color="primary"
+            class="c-modal-warning__footer--btn-confirm o-button o-button__solid"
+            type="button"
+            (click)="onClose()"
+        >
+            {{ data?.buttons?.confirm || 'Ok, entendi' }}
+        </button>
+        <a
+            [href]="faq_url"
+            *ngIf="data?.buttons?.help"
+            target="_blank"
+            rel="noopener external"
+            class="c-modal-warning__footer--btn-help o-button o-button__link"
+        >
+            Preciso de ajuda
+        </a>
+    </div>
+</section>

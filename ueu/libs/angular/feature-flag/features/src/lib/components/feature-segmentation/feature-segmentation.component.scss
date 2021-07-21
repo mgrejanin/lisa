@@ -1,0 +1,117 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-feature-segmentation {
+    border-top: 1px solid rgba(theme('colors.background.light.tertiary'), 0.75);
+
+    margin: 0 -1em;
+
+    padding: 0 1em;
+
+    &__title {
+        color: theme('colors.primary.base') !important;
+
+        @include typography.title(small);
+        font-size: 1rem !important;
+
+        padding: 1.5em 0 !important;
+
+        width: 100%;
+        background-color: transparent;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        border: none;
+
+        &--triangle {
+            transition: all 225ms ease-in-out;
+
+            &.flipped {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    &__content {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+
+        padding: 0;
+
+        width: 100%;
+
+        flex-basis: 100%;
+
+        max-height: 0px;
+
+        overflow: hidden;
+
+        transition: max-height 225ms $cubic-bezier;
+
+        &.active {
+            // Here i used an arbitrary
+            // large number because 'max-height: none'
+            // would not work with the animation. If needed,
+            // you can always make it bigger.
+            max-height: 3000px;
+
+            padding: 1.5rem 0;
+
+            overflow: unset;
+        }
+
+        &:first-of-type {
+            padding-top: 0;
+        }
+
+        &--key {
+            @include typography.body(primary, bold);
+            font-size: 0.75rem;
+
+            text-transform: uppercase;
+        }
+
+        &--value {
+            @include typography.body(primary, medium);
+
+            margin-bottom: 1.5rem;
+
+            &::first-letter {
+                text-transform: uppercase;
+            }
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        &-json {
+            margin-bottom: 1.5rem;
+
+            &.opened {
+                margin-bottom: unset;
+            }
+
+            &--icon {
+                transition: all 225ms ease-in-out;
+                cursor: pointer;
+
+                &.collapse {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+
+    &__value {
+        &-value {
+            &::first-letter {
+                text-transform: unset;
+            }
+        }
+    }
+}

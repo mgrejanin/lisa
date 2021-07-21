@@ -1,0 +1,21 @@
+<div class="c-account-confirm">
+    <ng-container *ngIf="currentAccount$ | async as account">
+        <div class="c-account-confirm__bank">
+            <div class="c-account-confirm__bank--name">
+                <img [src]="(currentBank$ | async)?.img_url || 'assets/icons/bank.svg'" alt="Ícone do banco" />
+                <span>{{ (currentBank$ | async)?.name | uppercase }}</span>
+            </div>
+            <div class="c-account-confirm__bank--data">
+                <p><b>Agência</b>{{ account?.branch }}{{ account?.branch_digit ? '-' + account?.branch_digit : '' }}</p>
+                <p>
+                    <b>Conta</b>{{ account?.account }}{{ account?.account_digit ? '-' + account?.account_digit : '' }}
+                </p>
+                <p>
+                    <b>{{ account?.type?.legal_nature === 'PJ' ? 'CNPJ' : 'CPF' }}</b>
+                    {{ account?.document | cpfCnpj }}
+                </p>
+                <span>{{ account?.type?.label }}</span>
+            </div>
+        </div>
+    </ng-container>
+</div>

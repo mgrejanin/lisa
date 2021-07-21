@@ -1,0 +1,94 @@
+apollo-sidebar {
+    display: inline-block;
+    height: 100%;
+
+    &.collapsed {
+        .apollo-sidebar__nav {
+            width: 86px;
+
+            apollo-nav-item {
+                padding: 0 6px;
+            }
+        }
+
+        .apollo-sidebar__collapse-text,
+        .apollo-navitem__text {
+            opacity: 0;
+        }
+
+        .apollo-sidebar__collapse {
+            padding: 0 6px;
+
+            .apollo-icon--svg {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    &:hover .apollo-sidebar__nav {
+        border-color: theme('colors.white');
+        box-shadow: theme('boxShadow.medium');
+    }
+
+    &:hover .apollo-sidebar__nav,
+    .apollo-sidebar__nav {
+        width: 286px;
+
+        apollo-nav-item {
+            padding: 0;
+        }
+    }
+
+    &:hover .apollo-sidebar__collapse-text,
+    &:hover .apollo-navitem__text,
+    .apollo-sidebar__collapse-text,
+    .apollo-navitem__text {
+        opacity: 1;
+    }
+
+    &:hover .apollo-sidebar__collapse,
+    .apollo-sidebar__collapse {
+        padding: 0;
+    }
+
+    .apollo-sidebar__nav {
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        transition: 0.3s;
+        border-right: theme('borderWidth.light') solid theme('colors.grayscale.100');
+
+        .apollo-sidebar__container {
+            height: 100%;
+        }
+
+        apollo-nav-item {
+            transition: 0.3s;
+        }
+
+        apollo-collapse {
+            .apollo-collapse-body {
+                apollo-nav-item {
+                    padding-left: theme('spacing.5');
+                }
+            }
+        }
+    }
+
+    .apollo-sidebar__menu {
+        width: 100%;
+        padding-bottom: 65px;
+        max-height: 100vh;
+        overflow: auto;
+    }
+
+    .apollo-sidebar__collapse {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        transition: 0.3s;
+        background-color: theme('colors.white');
+        z-index: 10;
+    }
+}

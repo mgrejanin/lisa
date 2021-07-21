@@ -1,0 +1,51 @@
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-change-profile {
+    &__header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0px 16px 16px -20px rgba(0, 0, 0, 0.3);
+
+        &--search {
+            flex: 1;
+            max-width: 360px;
+        }
+    }
+
+    &__container {
+        height: 305px;
+        padding-top: 30px;
+        margin: 0 auto;
+        overflow: auto;
+        overflow-x: hidden;
+    }
+
+    &__list {
+        padding: 0;
+        list-style: none;
+
+        &--item {
+            padding: 10px 30px;
+            font-size: 20px;
+            cursor: pointer;
+
+            &:first-child {
+                padding-top: 0;
+            }
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &__loading {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+    }
+}

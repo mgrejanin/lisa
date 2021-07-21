@@ -1,0 +1,140 @@
+@use "mixins/breakpoint";
+@use "mixins/typography";
+
+.notice {
+    display: flex;
+    border-radius: theme('borderRadius.medium');
+    padding: theme('spacing.2');
+    margin: theme('spacing.3') theme('spacing.none');
+
+    &.complete {
+        @include breakpoint.down(small) {
+            flex-direction: column;
+            padding: theme('spacing.1') theme('spacing.2') theme('spacing.3');
+        }
+        &.info {
+            background: theme('colors.neutral.lightest');
+        }
+        &.error {
+            background: theme('colors.critical.lightest');
+        }
+        &.success {
+            background: theme('colors.success.lightest');
+        }
+        &.warning {
+            background: theme('colors.warning.lightest');
+        }
+        .notice {
+            &__image {
+                align-self: center;
+                margin-right: theme('spacing.3');
+                img {
+                    width: 70px;
+                }
+                @include breakpoint.down(small) {
+                    order: 2;
+                    margin-top: -20px;
+                    margin-right: theme('spacing.none');
+                    padding-bottom: theme('spacing.2');
+                }
+            }
+            &__content {
+                flex-grow: 1;
+                align-self: center;
+                color: theme('colors.grayscale.600');
+                font-size: theme('fontSize.sm');
+                font-weight: theme('fontWeight.semibold');
+
+                &--close {
+                    &-btn {
+                        margin: theme('spacing.none');
+                        white-space: nowrap;
+                    }
+                    @include breakpoint.down(small) {
+                        order: 1;
+                        text-align: right;
+                    }
+                }
+                @include breakpoint.down(small) {
+                    order: 3;
+                }
+            }
+        }
+    }
+    &.simple {
+        @include breakpoint.down(small) {
+            position: relative;
+            flex-direction: column;
+        }
+        &.info {
+            border: theme('borderWidth.light') solid theme('colors.neutral.base');
+        }
+        &.warning {
+            border: theme('borderWidth.light') solid theme('colors.warning.base');
+        }
+        &.error {
+            border: theme('borderWidth.light') solid theme('colors.critical.base');
+        }
+        &.success {
+            border: theme('borderWidth.light') solid theme('colors.success.base');
+        }
+        .notice {
+            &__image {
+                align-self: center;
+            }
+            &__content {
+                flex-grow: 1;
+                align-self: center;
+                padding: theme('spacing.none') theme('spacing.1');
+                font-weight: theme('fontWeight.semibold');
+
+                &--close {
+                    &-btn {
+                        white-space: nowrap;
+                    }
+                }
+                @include breakpoint.down(small) {
+                    &--close {
+                        top: 0;
+                        right: 0;
+                        position: absolute;
+                    }
+                }
+            }
+        }
+    }
+}
+
+::ng-deep {
+    .notice {
+        &__content {
+            p:last-of-type {
+                margin: theme('spacing.none');
+            }
+            @include breakpoint.down(small) {
+                text-align: center;
+            }
+            .notice__title {
+                font-size: theme('fontSize.lg');
+                font-weight: theme('fontWeight.bold');
+                margin: theme('spacing.none');
+            }
+            &--close {
+                @include breakpoint.down(small) {
+                    apollo-icon-button .mdc-icon-button svg {
+                        width: 15px !important;
+                        height: 15px !important;
+                    }
+                }
+            }
+        }
+        &.simple {
+            .notice__content--close {
+                apollo-icon-button .mdc-icon-button svg {
+                    width: 15px !important;
+                    height: 15px !important;
+                }
+            }
+        }
+    }
+}

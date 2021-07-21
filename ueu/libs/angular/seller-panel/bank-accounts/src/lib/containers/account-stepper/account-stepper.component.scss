@@ -1,0 +1,87 @@
+@use 'mixins/typography';
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-account-stepper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &__previous-btn {
+        position: absolute;
+        top: -56px;
+        left: -11px;
+        cursor: pointer;
+
+        &:disabled {
+            opacity: 0.4;
+        }
+    }
+
+    &__header {
+        &--title {
+            @include typography.title(medium);
+            margin-bottom: theme('spacing.1');
+        }
+
+        &--caption {
+            @include typography.body(primary, normal);
+            margin: 0;
+            color: rgba(var(--apollo-on-background-rgb), 0.6);
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+
+        &--footer {
+            display: flex;
+            flex-direction: column;
+
+            small {
+                color: rgba(var(--apollo-on-background-rgb), 0.6);
+                text-align: center;
+                margin-bottom: theme('spacing.2');
+            }
+
+            ::ng-deep .mat-checkbox-layout {
+                white-space: normal !important;
+                font-size: 14px;
+            }
+
+            ::ng-deep .o-checkbox.mat-checkbox .mat-checkbox-inner-container {
+                margin-right: theme('spacing.2');
+            }
+
+            ::ng-deep .mat-checkbox {
+                margin-right: theme('spacing.2');
+            }
+        }
+    }
+
+    &__loading,
+    &__error {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+
+        p {
+            padding: theme('spacing.3') theme('spacing.4');
+            font-size: theme('spacing.2');
+            text-align: center;
+            color: rgba(var(--apollo-on-background-rgb), 0.6);
+        }
+    }
+
+    @include media-breakpoint-down(xs) {
+        &__step {
+            &--one {
+                padding-top: 8vh;
+            }
+        }
+    }
+}

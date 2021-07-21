@@ -1,0 +1,29 @@
+@use "mixins/typography";
+
+.c-recharges-solicitation {
+    width: 100%;
+
+    &__table {
+        width: 100%;
+    }
+
+    &__table-title:first-of-type {
+        padding-left: theme('spacing.none');
+    }
+
+    &__table-item {
+        padding: theme('spacing.2') theme('spacing.none') !important;
+
+        mat-icon {
+            display: flex;
+        }
+    }
+
+    &__loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+    }
+}

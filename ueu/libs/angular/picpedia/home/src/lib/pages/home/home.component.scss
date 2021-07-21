@@ -1,0 +1,50 @@
+.c-home {
+    &.container-fluid {
+        padding-left: theme('spacing.5');
+        padding-right: theme('spacing.5');
+    }
+}
+
+.c-home__tags--link {
+    margin-right: theme('spacing.2');
+    margin-bottom: theme('spacing.2');
+}
+
+.c-home__search {
+    margin-bottom: theme('spacing.3');
+
+    &-actions {
+        &-container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-end;
+        }
+        &--refresh,
+        &--filter {
+            min-width: 150px;
+        }
+    }
+}
+
+.c-home__bookmarks {
+    margin-top: theme('spacing.12');
+    &--title {
+        color: theme('colors.grayscale.base');
+    }
+
+    &--not-found-container {
+        justify-items: center;
+    }
+
+    &--not-found-text {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+.c-home__bookmarks__empty {
+    &--title {
+        margin-top: theme('spacing.5');
+        margin-bottom: theme('spacing.1');
+    }
+}

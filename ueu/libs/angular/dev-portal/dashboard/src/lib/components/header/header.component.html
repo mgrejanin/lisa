@@ -1,0 +1,25 @@
+<header class="c-header">
+    <div class="c-header__content">
+        <div class="c-header__content--item">
+            <a
+                href="https://ajudaempresas.picpay.com/hc/pt-br/categories/360004972752-PicPay-Studio-"
+                target="_blank"
+                rel="noopener external"
+            >
+                <span class="c-header__content--icon material-icons"> help_outline </span>
+            </a>
+        </div>
+        <div class="c-header__content--menu" *ngIf="user$ | async as user">
+            <picpay-user-dropdown [username]="user.attributes?.name" [userImage]="user.attributes?.picture[0]">
+                <button [routerLink]="['/']" mat-flat-button class="c-user-dropdown__menu-button">
+                    <apollo-icon class="c-user-dropdown__menu-icon" svg-icon="file-file-alt" size="md"></apollo-icon>
+                    <span>Ver documentações</span>
+                </button>
+                <button mat-flat-button class="c-user-dropdown__menu-button" (click)="onLogout()">
+                    <apollo-icon class="c-user-dropdown__menu-icon" svg-icon="interface-entry" size="md"></apollo-icon>
+                    <span>Sair</span>
+                </button>
+            </picpay-user-dropdown>
+        </div>
+    </div>
+</header>

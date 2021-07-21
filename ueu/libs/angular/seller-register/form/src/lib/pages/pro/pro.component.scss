@@ -1,0 +1,39 @@
+@use "mixins/breakpoint";
+
+.c-section {
+    &__title {
+        display: block;
+    }
+
+    &__body-illustration {
+        margin-top: theme('spacing.3');
+
+        @include breakpoint.up(small) {
+            margin-top: theme('spacing.none');
+        }
+    }
+
+    &__body-buttons {
+        display: none;
+
+        @include breakpoint.up(medium) {
+            display: flex;
+        }
+    }
+
+    &__body-button {
+        &--ios {
+            margin-left: theme('spacing.1');
+        }
+    }
+}
+
+.c-footer {
+    &__button {
+        &--download {
+            @include breakpoint.up(medium) {
+                display: none;
+            }
+        }
+    }
+}

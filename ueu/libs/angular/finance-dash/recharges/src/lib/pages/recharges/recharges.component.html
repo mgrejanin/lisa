@@ -1,0 +1,32 @@
+<section class="c-recharges">
+    <finance-dash-recharges-header></finance-dash-recharges-header>
+    <div class="c-recharges__container-title">
+        <h1 class="c-recharges__h1">Recarga</h1>
+    </div>
+
+    <section class="c-recharges__action-bar">
+        <apollo-button variant="outlined" size="md" class="c-recharges__action-bar--buttons">
+            <apollo-icon slot="leading-icon" svgIcon="file-file-download-alt"></apollo-icon>
+            Baixar relatório
+        </apollo-button>
+
+        <apollo-button variant="outlined" size="md" class="c-recharges__action-bar--buttons">
+            <apollo-icon slot="leading-icon" svgIcon="interface-sliders-v"></apollo-icon>
+            Filtrar
+        </apollo-button>
+
+        <apollo-button variant="outlined" size="md" class="c-recharges__action-bar--buttons">
+            <apollo-icon slot="leading-icon" svgIcon="interface-plus"></apollo-icon>
+            Criar nova
+        </apollo-button>
+    </section>
+    <mat-tab-group
+        class="c-recharges__tabs"
+        mat-align-tabs="center"
+        (selectedTabChange)="tabIndexActive = $event.index"
+    >
+        <mat-tab label="Solicitação">
+            <finance-dash-recharge-solicitations *ngIf="tabIndexActive === 0"></finance-dash-recharge-solicitations>
+        </mat-tab>
+    </mat-tab-group>
+</section>

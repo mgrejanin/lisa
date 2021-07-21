@@ -1,0 +1,22 @@
+.c-account-error {
+    background-color: rgb(var(--apollo-background-z2-rgb));
+    overflow: hidden;
+    border-radius: 1rem;
+    padding: theme('spacing.2') theme('spacing.3') theme('spacing.4');
+
+    &__header {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__content {
+        padding: 1rem;
+    }
+
+    &__footer {
+        margin-top: theme('spacing.1');
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+}

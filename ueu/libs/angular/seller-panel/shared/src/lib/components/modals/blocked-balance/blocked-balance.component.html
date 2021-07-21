@@ -1,0 +1,30 @@
+<section class="c-blocked-balance">
+    <h2 class="c-blocked-balance__title">
+        <p>Saldo bloqueado</p>
+        <p>por determinação judicial</p>
+    </h2>
+
+    <div class="c-blocked-balance__content">
+        <p class="c-blocked-balance__content--message">
+            Esse valor está temporariamente bloqueado para uso, segundo determinação judicial.
+        </p>
+
+        <p class="c-blocked-balance__content--message">
+            Pode ocorrer variações conforme liberação total ou parcial do valor, novo bloqueio ou transferência para
+            justiça.
+        </p>
+    </div>
+
+    <hr class="c-blocked-balance__separator" />
+    <div class="c-blocked-balance__footer">
+        <button
+            mat-button
+            color="primary"
+            class="c-blocked-balance__footer--btn o-button o-button__solid"
+            type="button"
+            (click)="onClose()"
+        >
+            Ok, entendi
+        </button>
+    </div>
+</section>

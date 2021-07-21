@@ -1,0 +1,46 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';
+import readme from './../../components/transformer/readme.md';
+
+<Meta title="Components/Transformer" />
+
+export const Template = props => <lab-transformer {...props} />;
+
+export const options = [
+    '{ "type": "button", "label": "primary button" }',
+    '{ "type": "card-button", "spotlight": "spotlight", "description": "description" }',
+    '{ "type": "title", "text": "title" }',
+    '{ "type": "header" }',
+    '{ "type": "markdown", "text": "markdown" }',
+];
+
+# Transformer
+
+## All Props
+
+<Canvas>
+    <Story
+        name="All Props"
+        args={{
+            component: options[0],
+        }}
+        argTypes={{
+            component: {
+                control: {
+                    type: 'select',
+                    options,
+                },
+            },
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<lab-transformer component='${options[0]}'></lab-transformer>`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Description markdown={readme} />

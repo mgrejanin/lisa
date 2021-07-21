@@ -1,0 +1,126 @@
+<section
+    class="container project-details"
+    *ngIf="{ project: activatedProject$ | async, errors: error$ | async } as store"
+>
+    <ng-container *ngIf="!store.errors; else hasError">
+        <dev-portal-notice theme="success" type="complete" btnClosed="true" *ngIf="createdProject">
+            <div notice-content>
+                <h4 class="notice__title">Sucesso!</h4>
+                <div class="notice__text">
+                    <p>
+                        Parabéns acaba de criar um projeto, agora vamos começar a usar nossos produtos?
+                    </p>
+                </div>
+            </div>
+        </dev-portal-notice>
+        <div class="project-details__introduction" *ngIf="store.project">
+            <dev-portal-avatar
+                [image]="store.project.image"
+                [name]="store.project.name"
+                (getAvatar)="setAvatar($event, store.project)"
+            ></dev-portal-avatar>
+            <div class="project-details__introduction__infos">
+                <div class="infos__content">
+                    <div class="infos__content--title">
+                        <span class="label">Nome do projeto</span>
+                        <p>
+                            {{ store.project.name }}
+                        </p>
+                    </div>
+                    <div class="infos__content--date">
+                        <span class="label">Data de criação</span>
+                        <p>{{ store.project.created_at | date: 'dd/MM/yyyy' }}</p>
+                    </div>
+                </div>
+                <div class="infos__content">
+                    <div class="infos__content--description">
+                        <span class="label"> Descrição do projeto </span>
+                        <p>
+                            {{ store.project.description }}
+                        </p>
+                    </div>
+                </div>
+                <div class="infos__content">
+                    <div class="infos__content__actions">
+                        <div class="infos__content__actions--edit">
+                            <apollo-button class="edit_project__button" variant="link" [routerLink]="['editar']">
+                                <apollo-icon
+                                    class="edit_project__icon"
+                                    svg-icon="interface-edit"
+                                    size="sm"
+                                    label="Editar Projeto"
+                                ></apollo-icon>
+                                Editar informações
+                            </apollo-button>
+                        </div>
+                        <div class="infos__content__actions--delete">
+                            <apollo-button
+                                class="delete_project__button"
+                                (click)="deleteProject(store.project)"
+                                variant="link"
+                            >
+                                <apollo-icon
+                                    class="delete_project__icon"
+                                    svg-icon="interface-trash-alt"
+                                    size="sm"
+                                    label="Deletar Projeto"
+                                ></apollo-icon>
+                                Deletar projeto
+                            </apollo-button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="project-details__content">
+            <div class="row">
+                <div class="col">
+                    <span>Conheça nossos produtos para adicionar a este projeto.</span>
+                </div>
+            </div>
+            <div class="row cards" *ngIf="products$ | async as products">
+                <apollo-card class="col-lg-6 col-md-12 col-sm-12 card" *ngFor="let product of products">
+                    <div class="card__content">
+                        <apollo-card-content>
+                            <h3 class="card__title">{{ product.name }}</h3>
+                            <span class="card__category">{{ product.category }}</span>
+                            <div class="card__text">
+                                <div>
+                                    <p class="card__description">{{ product.description }}</p>
+                                </div>
+                                <div>
+                                    <img
+                                        [alt]="'Icone do Produto ' + product.name"
+                                        [src]="'./assets/icons/' + product.slug + '.png'"
+                                    />
+                                </div>
+                            </div>
+                        </apollo-card-content>
+                        <apollo-card-actions>
+                            <apollo-card-action-buttons>
+                                <apollo-button (click)="openDialog(product)" size="md"> Habilitar </apollo-button>
+                                <apollo-button [routerLink]="['/docs/' + product.slug]" size="md" variant="link">
+                                    Mais detalhes
+                                </apollo-button>
+                            </apollo-card-action-buttons>
+                        </apollo-card-actions>
+                    </div>
+                </apollo-card>
+            </div>
+        </div>
+    </ng-container>
+</section>
+
+<ng-template #hasError>
+    <apollo-center class="c-project-details__error">
+        <apollo-feedback-page
+            page-title="Ops! Algo deu errado"
+            [pageSubtitle]="
+                'Ocorreu um erro ao carregar as informações. Verifique sua conexão ou tente novamente mais tarde'
+            "
+            type="error"
+            use-figure="true"
+        >
+        </apollo-feedback-page>
+    </apollo-center>
+</ng-template>

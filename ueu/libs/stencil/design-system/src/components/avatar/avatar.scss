@@ -1,0 +1,76 @@
+@use "sass:map";
+
+@use "@material/theme" with (
+  $primary: theme('colors.primary.light.500'),
+);
+
+$avatar-sizes: (
+    'xsmall': (
+        32px,
+    ),
+    'small': (
+        40px,
+    ),
+    'medium': (
+        48px,
+    ),
+    'large': (
+        72px,
+    ),
+    'xlarge': (
+        96px,
+    ),
+);
+
+.apollo-avatar {
+    display: inline-block;
+    width: map.get($avatar-sizes, 'medium');
+    height: map.get($avatar-sizes, 'medium');
+    border: theme('borderWidth.light') solid theme('colors.grayscale.300');
+    border-radius: theme('borderRadius.full');
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: theme('colors.primary.100');
+    background-position: center center;
+    background-size: 100%;
+    /* stylelint-disable */
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    @each $size, $props in $avatar-sizes {
+        &__size-#{$size} {
+            width: nth($props, 1);
+            height: nth($props, 1);
+        }
+    }
+
+    @each $border,
+        $props
+            in (
+                none: theme('borderWidth.none'),
+                light: theme('borderWidth.light'),
+                medium: theme('borderWidth.medium'),
+                strong: theme('borderWidth.strong')
+            )
+    {
+        &__border-#{$border} {
+            border-width: nth($props, 1);
+        }
+    }
+
+    @each $radius,
+        $props
+            in (
+                none: theme('borderRadius.none'),
+                light: theme('borderRadius.light'),
+                medium: theme('borderRadius.medium'),
+                strong: theme('borderRadius.strong'),
+                pill: theme('borderRadius.pill'),
+                full: theme('borderRadius.full')
+            )
+    {
+        &__radius-#{$radius} {
+            border-radius: nth($props, 1);
+        }
+    }
+}

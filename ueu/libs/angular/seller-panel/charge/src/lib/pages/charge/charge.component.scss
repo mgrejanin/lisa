@@ -1,0 +1,253 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-charge {
+    &__title {
+        font-size: theme('fontSize.5xl');
+        line-height: theme('fontHeight.6xl');
+        font-weight: theme('fontWeight.bold');
+        margin: theme('spacing.none');
+    }
+
+    &__header {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        margin-bottom: theme('spacing.3');
+
+        &--actions {
+            display: flex;
+            align-items: center;
+
+            button {
+                margin-left: theme('spacing.2');
+            }
+        }
+    }
+
+    &__body {
+        display: flex;
+
+        &--section {
+            min-height: 480px;
+
+            border: theme('borderWidth.light') solid rgba(var(--apollo-on-background-rgb), 0.1);
+            border-radius: theme('spacing.1');
+            padding: theme('spacing.3');
+
+            &:not(:last-of-type) {
+                margin-right: theme('spacing.3');
+            }
+
+            h2,
+            h3 {
+                @include typography.title(small);
+                font-size: theme('fontHeight.3xl') !important;
+            }
+
+            p {
+                margin: theme('spacing.3') theme('spacing.none');
+                color: rgba(var(--apollo-on-background-rgb), 0.6);
+            }
+        }
+
+        &--link {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 2;
+        }
+
+        &--qr-code {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        &--mobile-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            border-top: theme('borderWidth.light') solid rgba(var(--apollo-on-background-rgb), 0.1) !important;
+            background-color: rgb(var(--apollo-background-rgb));
+
+            ::ng-deep .mat-button {
+                border: theme('spacing.none') !important;
+                margin-bottom: theme('spacing.3');
+
+                span {
+                    color: rgb(var(--apollo-on-background-rgb));
+                    font-weight: theme('fontWeight.bold');
+
+                    .mat-icon {
+                        margin-right: theme('spacing.4') !important;
+                        color: rgba(var(--apollo-primary-rgb));
+                    }
+                }
+            }
+        }
+    }
+
+    &__link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: rgba(var(--apollo-on-background-rgb), 0.03);
+        border-radius: theme('spacing.1');
+        padding: theme('spacing.1') theme('spacing.2');
+
+        span {
+            @include typography.body(primary, highlight);
+            max-width: 550px;
+        }
+
+        &--btn-copy {
+            .mat-icon {
+                width: 16px;
+                height: 16px;
+                font-size: theme('fontSize.lg');
+                margin-right: theme('spacing.1');
+            }
+
+            button {
+                padding: theme('spacing.none') theme('spacing.1');
+                text-transform: none;
+            }
+        }
+    }
+
+    &__social {
+        display: flex;
+
+        &--link {
+            width: 48px;
+            height: 48px;
+            padding: theme('spacing.none');
+
+            &:not(:last-of-type) {
+                margin-right: theme('spacing.2');
+            }
+
+            ::ng-deep .mat-button-wrapper {
+                display: flex;
+            }
+        }
+    }
+
+    &__qr-code {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        ::ng-deep .qrcode {
+            img {
+                width: 250px;
+                border: theme('borderWidth.light') solid rgba(var(--apollo-on-background-rgb), 0.1);
+                border-radius: theme('borderWidth.medium');
+            }
+        }
+
+        &--value {
+            @include typography.title(medium);
+            color: rgba(var(--apollo-primary-rgb)) !important;
+            text-align: center;
+
+            border: theme('borderWidth.light') solid rgba(var(--apollo-on-background-rgb), 0.1);
+            border-radius: theme('spacing.2');
+
+            width: 100%;
+            max-width: 250px;
+            padding: theme('spacing.1') theme('spacing.none');
+            margin-bottom: theme('spacing.none');
+        }
+    }
+
+    .mat-button {
+        text-transform: none !important;
+        background: transparent !important;
+    }
+
+    @media screen and (max-width: 1366px) {
+        &__body {
+            flex-direction: column;
+
+            &--section {
+                &:not(:last-of-type) {
+                    margin-right: theme('spacing.none');
+                }
+
+                margin-bottom: theme('spacing.3');
+            }
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        &__link span {
+            max-width: 350px;
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        padding: {
+            top: theme('spacing.none');
+            right: theme('spacing.none');
+            left: theme('spacing.none');
+        }
+
+        &__header,
+        &__body--link,
+        &__body--qr-code h3 {
+            display: none;
+        }
+
+        &__body {
+            &--section {
+                margin-bottom: theme('spacing.none');
+                min-height: auto;
+                border: theme('spacing.none');
+                border-radius: theme('spacing.none');
+            }
+
+            &--qr-code {
+                background-color: rgb(var(--apollo-background-z2-rgb));
+                p {
+                    margin: theme('spacing.2') auto;
+                    text-align: center;
+                    order: 2;
+                    max-width: 300px;
+                }
+            }
+        }
+
+        &__qr-code {
+            &--value {
+                background-color: rgb(var(--apollo-background-rgb));
+                margin-bottom: theme('spacing.none') !important;
+            }
+
+            ::ng-deep .qrcode {
+                img {
+                    width: 206px;
+                }
+            }
+        }
+
+        &__btn-charge-value {
+            order: 3;
+            margin: theme('spacing.none') auto;
+            max-width: 280px;
+        }
+    }
+
+    &__btn-print-qr-code {
+        text-align: center;
+        min-width: 200px;
+        min-height: 40px;
+
+        &--loading {
+            padding: theme('spacing.1') theme('spacing.none');
+            left: theme('spacing.1');
+            position: relative;
+        }
+    }
+}

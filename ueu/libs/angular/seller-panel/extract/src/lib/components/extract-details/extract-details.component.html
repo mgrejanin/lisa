@@ -1,0 +1,91 @@
+<div class="c-detail-transaction">
+    <div class="c-detail-transaction__header">
+        <img class="c-detail-transaction__header--image" [src]="data?.header?.img_url" />
+        <p class="c-detail-transaction__header--username">{{ data?.header.title }}</p>
+        <div class="c-detail-transaction__header--status u-bg-color__success">
+            <mat-icon>check_circle_outline</mat-icon>
+            <span><b>Realizada</b></span>
+        </div>
+
+        <div class="c-info">
+            <div class="c-info__field">
+                <label>Data e hora</label>
+                <p>{{ data?.header.date | date: 'dd/MM/yyyy - HH:mm' }}</p>
+            </div>
+            <div class="c-info__field">
+                <label>ID DE TRANSAÇÃO</label>
+                <p>{{ data?.header.id }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="c-detail-transaction__body">
+        <div class="c-detail-transaction__body--section">
+            <div class="c-detail-transaction__body--title">
+                <h3>Destinatário</h3>
+            </div>
+            <div class="c-detail-transaction__body--field">
+                <label>Agência e conta</label>
+                <p>{{ data?.body?.destination.agency }} | {{ data?.body?.destination.account }}</p>
+            </div>
+            <div class="c-detail-transaction__body--field">
+                <label>CNPJ</label>
+                <p>{{ data?.body?.destination.cnpj }}</p>
+            </div>
+            <div class="c-detail-transaction__body--field">
+                <label>Instituição</label>
+                <p>{{ data?.body?.destination.institution }}</p>
+            </div>
+        </div>
+        <div class="c-detail-transaction__body--section">
+            <div class="c-detail-transaction__body--title">
+                <h3>Beneficiário do contrato</h3>
+            </div>
+            <div class="c-detail-transaction__body--field">
+                <label>CNPJ</label>
+                <p>{{ data?.body?.beneficiary.cnpj }}</p>
+            </div>
+        </div>
+        <div class="c-detail-transaction__body--section">
+            <div class="c-detail-transaction__body--title">
+                <h3>Descrição</h3>
+            </div>
+
+            <div class="c-detail-transaction__body--field">
+                <p>
+                    {{ data?.body?.description.label }}
+                </p>
+                <span (click)="knowMore()">Saiba mais sobre isso</span>
+            </div>
+            <div class="c-detail-transaction__body--field">
+                <label>CNPJ</label>
+                <p>{{ data?.body?.description.cnpj }}</p>
+            </div>
+            <div class="c-detail-transaction__body--field">
+                <label>Total transferido</label>
+                <p class="u-text-ellipsis">{{ data?.body?.description.total_transfer | currency: 'BRL' }}</p>
+            </div>
+            <div class="c-detail-transaction__body--field">
+                <label>VALOR REFERENTE A BANDEIRA</label>
+                <p>{{ data?.body?.description.flag_card }}</p>
+            </div>
+            <div class="c-detail-transaction__body--field">
+                <label>FORMA DE PAGAMENTO</label>
+                <p>{{ data?.body?.description.form_of_payment }}</p>
+                <ng-container *ngFor="let card of data?.banners">
+                    <aside>
+                        <apollo-feedback-card label="{{ card?.label }}" type="{{ card?.type }}"> </apollo-feedback-card>
+                    </aside>
+                </ng-container>
+            </div>
+        </div>
+
+        <div class="c-detail-transaction__body--section">
+            <div class="c-detail-transaction__body--field">
+                <label>Total</label>
+                <p>
+                    <b>{{ data?.total | currency: 'BRL':'symbol':'1.2-2' }}</b>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

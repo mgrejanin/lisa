@@ -1,0 +1,134 @@
+<ng-container *ngIf="(docLoadSuccess$ | async) === false; else docLoadSuccess">
+    <img class="c-swagger-scroll__error--image" src="./assets/dev-portal/images/error.png" />
+    <h2 class="c-swagger-scroll__error--title">Algo deu errado!</h2>
+</ng-container>
+<ng-template #docLoadSuccess>
+    <div class="c-swagger-loading" *ngIf="isLoading">
+        <apollo-circular-progress></apollo-circular-progress>
+    </div>
+    <section id="swagger-scroll" class="c-swagger-scroll" *ngIf="!isLoading">
+        <div class="c-swagger-scroll__wrapper" *ngIf="activeProduct$ | async as activeProduct">
+            <h3 class="c-swagger-scroll__title">
+                {{ activeProduct.name }}
+            </h3>
+            <div class="c-swagger-scroll__version" *ngIf="(docVersions$ | async)?.length > 1">
+                <p class="c-swagger-scroll__version--label">Versões da API</p>
+                <div class="c-swagger-scroll__version--selection-container">
+                    <div class="c-swagger-scroll__version--selection" (click)="toggleVersionSelector()">
+                        {{ currentDoc ? currentDoc : (docVersions$ | async)[0] }}
+                        <apollo-icon size="sm" class="material-icon c-swagger-scroll__version--arrow" tabindex="-1"
+                            >keyboard_arrow_down</apollo-icon
+                        >
+                    </div>
+                    <div
+                        class="c-swagger-scroll__version--backdrop"
+                        [class.open]="isVersionOpen"
+                        (click)="toggleVersionSelector()"
+                    ></div>
+                    <div class="c-swagger-scroll__version--selection overlaid" [class.open]="isVersionOpen">
+                        <a
+                            *ngFor="let version of docVersions$ | async"
+                            [id]="'btn_documentation_version_' + slug + '_' + version"
+                            class="c-swagger-scroll__version--selection-button"
+                            [title]="'Visualizar documenação na versão ' + version"
+                            (click)="updateDocVersion(version)"
+                            >{{ version }}</a
+                        >
+                        <apollo-icon size="sm" class="material-icon c-swagger-scroll__version--arrow" tabindex="-1"
+                            >keyboard_arrow_up</apollo-icon
+                        >
+                    </div>
+                </div>
+            </div>
+            <nav class="c-swagger-scroll__buttons_wrapper" aria-label="Sidebar Menu">
+                <ng-container *ngFor="let itemMenu of staticItems; let i = index">
+                    <div *ngIf="itemMenu">
+                        <div
+                            class="c-swagger-scroll__buttons_wrapper--group"
+                            *ngIf="itemMenu.items?.length; else semAccordion"
+                        >
+                            <label
+                                [attr.for]="itemMenu.id"
+                                [id]="itemMenu.id"
+                                class="c-swagger-scroll__buttons_wrapper--title"
+                                >{{ itemMenu.title }}</label
+                            >
+                            <input
+                                type="checkbox"
+                                [checked]="accordionOpenedByDefault || i === 0"
+                                class="c-swagger-scroll__buttons_wrapper--checkbox"
+                                [attr.aria-label]="itemMenu.title"
+                                [id]="itemMenu.id"
+                                role="checkbox"
+                                [attr.aria-checked]="accordionOpenedByDefault"
+                            />
+                            <div class="c-swagger-scroll__buttons_wrapper--link_container">
+                                <apollo-icon
+                                    size="sm"
+                                    class="material-icon c-swagger-scroll__buttons_wrapper--arrow"
+                                    tabindex="-1"
+                                    >keyboard_arrow_down</apollo-icon
+                                >
+                                <div class="c-swagger-scroll__buttons_wrapper--animation-container">
+                                    <a
+                                        *ngFor="let item of itemMenu.items; let i = index"
+                                        (click)="scrollToElement(item.id)"
+                                        class="c-swagger-scroll__buttons_wrapper--link"
+                                    >
+                                        <span class="c-swagger-scroll__buttons_wrapper--method_name">{{
+                                            item.title
+                                        }}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <ng-template #semAccordion>
+                            <div class="c-swagger-scroll__buttons_wrapper--group">
+                                <a
+                                    (click)="scrollToElement(itemMenu.id)"
+                                    class="c-swagger-scroll__buttons_wrapper--title"
+                                    >{{ itemMenu.title }}</a
+                                >
+                            </div>
+                        </ng-template>
+                    </div>
+                </ng-container>
+                <div *ngFor="let group of endpointGroup" class="c-swagger-scroll__buttons_wrapper--group">
+                    <label [for]="'title-tag-label-' + group.tag" class="c-swagger-scroll__buttons_wrapper--title">{{
+                        group.tag
+                    }}</label>
+                    <input
+                        type="checkbox"
+                        [checked]="accordionOpenedByDefault"
+                        class="c-swagger-scroll__buttons_wrapper--checkbox"
+                        [attr.aria-label]="group.tag"
+                        [id]="'title-tag-label-' + group.tag"
+                        role="checkbox"
+                        [attr.aria-checked]="accordionOpenedByDefault"
+                    />
+                    <div class="c-swagger-scroll__buttons_wrapper--link_container">
+                        <apollo-icon
+                            size="sm"
+                            class="material-icon c-swagger-scroll__buttons_wrapper--arrow"
+                            tabindex="-1"
+                            >keyboard_arrow_down</apollo-icon
+                        >
+                        <div class="c-swagger-scroll__buttons_wrapper--animation-container">
+                            <a
+                                *ngFor="let item of group.endpoints; let i = index"
+                                (click)="scrollToElement(generateAnchorLink(item))"
+                                class="c-swagger-scroll__buttons_wrapper--link"
+                            >
+                                <span class="c-swagger-scroll__buttons_wrapper--method_badge" [ngClass]="item.method">
+                                    {{ item.method }}
+                                </span>
+                                <span class="c-swagger-scroll__buttons_wrapper--method_name">{{ item.summary }}</span>
+                                <span class="c-swagger-scroll__buttons_wrapper--method_path">{{ item.path }}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </section>
+</ng-template>

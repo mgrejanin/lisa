@@ -1,0 +1,67 @@
+@use "mixins/typography";
+
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-modal-warning {
+    position: relative;
+    text-align: center;
+    background-color: rgb(var(--apollo-background-z2-rgb));
+    color: rgba(var(--apollo-on-background-rgb), 0.86);
+    border-radius: theme('borderRadius.strong');
+
+    &__header {
+        padding: theme('spacing.2') theme('spacing.none');
+        width: 100%;
+        position: relative;
+        box-shadow: theme('boxShadow.medium');
+
+        &--title {
+            @include typography.title(medium);
+        }
+
+        &--close-btn {
+            position: absolute;
+            top: 16px;
+            right: 8px;
+
+            background: transparent;
+            border: none;
+
+            mat-icon {
+                color: var(--apollo-primary);
+            }
+        }
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: theme('spacing.2');
+        &--subtitle {
+            @include typography.title(medium);
+            font-weight: 700;
+        }
+        &--caption {
+            color: theme('colors.grayscale.600');
+            padding: theme('spacing.1') theme('spacing.6');
+        }
+    }
+
+    &__footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: theme('spacing.1') 25%;
+        &--btn-confirm {
+            margin-bottom: theme('spacing.1');
+            font-weight: 600;
+            font-size: theme('fontSize.base');
+        }
+        &--btn-help {
+            font-weight: 600;
+            font-size: theme('fontSize.base');
+            margin-bottom: theme('spacing.5');
+        }
+    }
+}

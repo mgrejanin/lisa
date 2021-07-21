@@ -1,0 +1,8 @@
+{
+    "/flags/*": {
+        "target": "https://api-internal.ms.qa.limbo.work",
+        "secure": true,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

@@ -1,0 +1,10 @@
+.c-header {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+
+    padding: theme('spacing.4') theme('spacing.2') theme('spacing.1');
+}

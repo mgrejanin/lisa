@@ -1,0 +1,7 @@
+export const environment = {
+    apiUrl: '',
+    <% if(sso) { %>keycloakClientId: '',
+    keycloakRealm: '',
+    keycloakUrl: '',<% } %>
+    production: false,
+};

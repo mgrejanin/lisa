@@ -1,0 +1,109 @@
+@use "mixins/typography";
+
+@use "mixins/breakpoint";
+
+.code-snippet {
+    background-color: #2d3a40;
+    border-radius: theme('borderRadius.medium');
+    border-top: 6px solid theme('colors.primary.400');
+    padding: theme('spacing.2');
+
+    &__tabs {
+        .tab-item {
+            .tab-title {
+                display: flex;
+                font-size: theme('fontSize.sm');
+                color: theme('colors.grayscale.300');
+                font-weight: theme('fontWeight.bold');
+                cursor: pointer;
+
+                .title-item {
+                    padding: theme('spacing.none') theme('spacing.3');
+                    margin-right: theme('spacing.3');
+
+                    &.active {
+                        color: theme('colors.primary.400');
+                        border-bottom: theme('borderWidth.strong') solid theme('colors.primary.400');
+                    }
+                }
+            }
+        }
+    }
+
+    &__type {
+        display: flex;
+        border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.200');
+        justify-content: space-between;
+
+        .type-code {
+            color: theme('colors.grayscale.light');
+            font-size: theme('fontSize.sm');
+            position: relative;
+
+            p {
+                position: absolute;
+                bottom: theme('spacing.none');
+            }
+        }
+        .copy-paste {
+            .icon {
+                color: theme('colors.white');
+                font-size: theme('fontSize.base');
+                cursor: pointer;
+                vertical-align: middle;
+            }
+        }
+    }
+
+    &__code {
+        max-height: 350px;
+        margin-top: theme('spacing.2');
+        overflow: auto;
+        text-align: left;
+        pre {
+            margin-bottom: theme('spacing.none');
+
+            ::ng-deep .hljs {
+                color: theme('colors.white');
+
+                &-string,
+                &-number,
+                &-literal,
+                &-regexp {
+                    color: theme('colors.primary.600');
+                }
+                &-comment {
+                    color: theme('colors.grayscale.light');
+                }
+                &-name {
+                    color: theme('colors.critical.light');
+                }
+                &-ln-numbers {
+                    color: theme('colors.grayscale.light');
+                    border-right: theme('borderWidth.light') solid theme('colors.grayscale.light');
+                    padding-right: theme('spacing.1');
+                    margin-right: theme('spacing.1');
+                    text-align: right;
+                }
+                &-ln-code {
+                    padding-left: theme('spacing.2');
+                }
+            }
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: theme('colors.grayscale.200');
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: theme('colors.white');
+    }
+}

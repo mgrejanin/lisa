@@ -1,0 +1,9 @@
+export enum DashboardLogoOptions {
+    FEATURE_FLAG = 'FEATURE_FLAG',
+    HERODASH = 'HERODASH',
+    OPSDASH = 'OPSDASH',
+    SELLER_PANEL = 'SELLER_PANEL',
+    FINANCE_DASH = 'FINANCE_DASH',
+    PICPEDIA = 'PICPEDIA',
+    GROWTH_DASH = 'GROWTH_DASH',
+}

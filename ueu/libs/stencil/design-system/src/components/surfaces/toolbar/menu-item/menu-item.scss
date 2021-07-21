@@ -1,0 +1,25 @@
+apollo-menu-item {
+    cursor: pointer;
+
+    .apollo-menu-item-container {
+        overflow: hidden;
+        position: relative;
+    }
+
+    a {
+        text-decoration: none;
+        color: theme('colors.grayscale.900');
+        font-size: theme('fontSize.base');
+        padding: theme('spacing.2');
+        display: block;
+        border-style: solid;
+        border-width: theme('borderWidth.medium');
+        border-color: transparent;
+        border-radius: theme('borderRadius.strong');
+        outline: none;
+
+        &:focus {
+            border-color: #0050c5;
+        }
+    }
+}

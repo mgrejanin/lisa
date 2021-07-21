@@ -1,0 +1,41 @@
+<div class="upload-avatar">
+    <div class="upload-avatar__header">
+        <h1>Ajuste de imagem</h1>
+        <p>Faça o corte de como gostaria que a imagem fosse apresentada</p>
+        <div class="upload-avatar__toggle">
+            <ul>
+                <li [ngClass]="{ active: (gallery | async) === true }">
+                    <button id="avatarsBtn" (click)="updateGallery(true)">Avatares</button>
+                </li>
+                <li [ngClass]="{ active: (gallery | async) === false }" (click)="handleUploadImage()">
+                    <button id="uploadBtn" (click)="updateGallery(false)">Upload</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div [ngClass]="{ 'upload-avatar__gallery': true, 'd-none': (gallery | async) === false }">
+        <dev-portal-carousel (currentSlide)="currentSlideEvent($event)" [slides]="avatars"></dev-portal-carousel>
+    </div>
+    <div [ngClass]="{ 'upload-avatar__preview': true, 'd-none': (gallery | async) === true }" #wrapper>
+        <img-cropper #cropper [image]="newAvatar" [settings]="cropperSettings"></img-cropper>
+    </div>
+    <div class="upload-avatar__choose">
+        <div *ngIf="(gallery | async) === false">
+            <label class="upload-avatar__choose__link" for="avatar"> Escolher imagem do computador </label>
+            <input
+                label="Escolher do computador"
+                #uploadImage
+                type="file"
+                (change)="uploadImageChange($event)"
+                name="avatar"
+                id="avatar"
+                accept="image/png, image/jpeg"
+            />
+        </div>
+    </div>
+    <div class="upload-avatar__separator"></div>
+    <div class="upload-avatar__actions">
+        <apollo-button variant="outlined" (click)="dialogRef.close()"> Cancelar </apollo-button>
+        <apollo-button (click)="saveImage()" type="button">Salvar</apollo-button>
+    </div>
+</div>

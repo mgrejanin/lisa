@@ -1,0 +1,49 @@
+<div class="c-range-slider">
+    <div class="c-range-slider__value c-range-slider__value--initial">
+        <p class="c-range-slider__days">1 dia</p>
+        <p class="c-range-slider__rate">{{ isLoading ? '0,00%' : minValueTax }}</p>
+    </div>
+    <div class="c-range-slider__range">
+        <div
+            class="c-range-slider__pointer"
+            [style]="{ transform: 'translateX(-' + pointerPosition + '%)', left: pointerPosition + '%' }"
+        >
+            <output name="output" for="days" class="c-range-slider__pointer-value">
+                <p class="c-range-slider__pointer-number">{{ isLoading ? '0' : days }}</p>
+                <span class="c-range-slider__pointer-label">
+                    {{ days > 1 ? 'dias' : 'dia' }}
+                </span>
+            </output>
+        </div>
+        <input
+            type="range"
+            name="days"
+            #range
+            class="c-range-slider__input"
+            [min]="minValue"
+            [max]="maxValue"
+            (input)="onInputChange(range)"
+            [value]="initialValue"
+            [disabled]="isLoading || responseError"
+        />
+        <div
+            class="c-range-slider__pointer c-range-slider__pointer--bottom"
+            [style]="{ transform: 'translateX(-' + pointerPosition + '%)', left: pointerPosition + '%' }"
+        >
+            <output
+                name="output"
+                for="days"
+                class="c-range-slider__pointer-value c-range-slider__pointer-value--bottom"
+            >
+                <p class="c-range-slider__pointer-number c-range-slider__pointer-number--bottom">
+                    {{ isLoading ? '0,00%' : taxPercentage }}
+                </p>
+                <span class="c-range-slider__pointer-label"> de taxa </span>
+            </output>
+        </div>
+    </div>
+    <div class="c-range-slider__value c-range-slider__value--final">
+        <p class="c-range-slider__days">{{ isLoading ? '0' : maxValue }} dias</p>
+        <p class="c-range-slider__rate">{{ isLoading ? '0,00%' : maxValueTax }}</p>
+    </div>
+</div>

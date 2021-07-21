@@ -1,0 +1,58 @@
+<div class="c-future-releases">
+    <div class="c-future-releases__header">
+        <button mat-icon-button class="c-future-releases__header--navigation">
+            <mat-icon class="i-icon" tabindex="-1" routerLink="/extrato/listagem">arrow_back</mat-icon>
+            <span tabindex="-1" routerLink="/extrato/listagem">Extrato</span>
+        </button>
+        <apollo-heading size="lg" class="c-future-releases__header--title">Lançamentos futuros</apollo-heading>
+        <apollo-text fontSize="lg">Próximos recebimentos das suas vendas PicPay</apollo-text>
+        <ng-container *ngIf="tableData?.has_receivables">
+            <apollo-feedback-card
+                label="Alguns dos seus recebíveis serão transferidos para outro destinatário devido contrato de crédito ou antecipação."
+                type="warning"
+                stacked="true"
+            >
+                <apollo-button (click)="knowMore()" variant="link" size="sm"> Saiba mais </apollo-button>
+            </apollo-feedback-card>
+        </ng-container>
+    </div>
+    <div class="c-future-releases__body">
+        <ng-container *ngIf="isLoading">
+            <!-- General Loading -->
+            <div class="c-future-releases__loading">
+                <seller-panel-loading-spinner [size]="50" [stroke]="5"></seller-panel-loading-spinner>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="tableData?.list?.length > 0 && !isLoading">
+            <!-- Future Releases Table -->
+            <div class="c-future-releases__table">
+                <seller-panel-table-future-releases [data]="tableData"></seller-panel-table-future-releases>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="(tableData?.list?.length === 0 && !isLoading) || (!tableData && !isLoading)">
+            <!-- No results -->
+            <div class="c-future-releases__feedback">
+                <seller-panel-feedback
+                    [imagePath]="emptyStateData.svgPath"
+                    [title]="emptyStateData.title"
+                    [description]="emptyStateData.description"
+                ></seller-panel-feedback>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="scrollToTopVisible">
+            <!-- Scroll to top -->
+            <mat-chip
+                color="primary"
+                [@simpleFadeAnimation]="'in'"
+                class="c-future-releases__scroll-to"
+                selected
+                (click)="scrollToTop()"
+            >
+                Voltar ao topo
+            </mat-chip>
+        </ng-container>
+    </div>
+</div>

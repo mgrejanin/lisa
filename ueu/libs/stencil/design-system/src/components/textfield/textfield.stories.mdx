@@ -1,0 +1,347 @@
+import { Meta, Story, Canvas, Source, Description } from '@storybook/addon-docs/blocks';
+import readme from './../../components/textfield/readme.md';
+
+<Meta
+    title="Components/Text Field"
+    parameters={{
+        previewTabs: {
+            canvas: { hidden: false },
+        },
+    }}
+/>
+
+export const defaultLabel = 'PicPay Lovers';
+
+export const Template = props => (
+    <div key={JSON.stringify(props)}>
+        <apollo-textfield
+            {...props}
+            no-floating-label={props.noFloatingLabel}
+            trailing-clear-icon={props.trailingClearIcon}
+            helper-text={props.helperText}
+            helper-persist={props.helperPersist}
+            character-counter={props.characterCounter}
+            max-length={props.maxLength}
+            min-length={props.minLength}
+            value-prefix={props.valuePrefix}
+            value-suffix={props.valueSuffix}
+            text-area={props.textArea}
+            inputmode={props.inputMode}
+            mask={props.mask}
+            mask-variant={props.maskVariant}
+        ></apollo-textfield>
+    </div>
+);
+
+export const TemplateMask = props => (
+    <div key={JSON.stringify(props)}>
+        <apollo-textfield {...props} mask={props.mask} mask-variant={props.maskVariant}></apollo-textfield>
+    </div>
+);
+
+# Text Field
+
+## Default
+
+<Canvas>
+    <Story
+        name="All Props"
+        args={{
+            label: defaultLabel,
+            variant: 'outlined',
+            size: 'md',
+            type: 'text',
+            noFloatingLabel: false,
+            trailingClearIcon: false,
+            required: false,
+            disabled: false,
+            readonly: false,
+            invalid: false,
+            success: false,
+            helperText: '',
+            helperPersist: false,
+            characterCounter: false,
+            mask: '',
+            maskVariant: '',
+            maxLength: 16,
+            minLength: 0,
+            value: '',
+            valuePrefix: '',
+            valueSuffix: '',
+            textArea: false,
+            rows: 8,
+            cols: 40,
+            inputMode: 'text',
+        }}
+        argTypes={{
+            variant: {
+                control: { type: 'select', options: ['filled', 'outlined'] },
+            },
+            size: {
+                control: { type: 'select', options: ['sm', 'md'] },
+            },
+            type: {
+                control: {
+                    type: 'select',
+                    options: ['text', 'email', 'password', 'tel', 'search', 'number', 'url', 'date'],
+                },
+            },
+            noFloatingLabel: {
+                name: 'no-floating-label',
+            },
+            trailingClearIcon: {
+                name: 'trailing-clear-icon',
+            },
+            helperText: {
+                name: 'helper-text',
+            },
+            helperPersist: {
+                name: 'helper-persist',
+            },
+            characterCounter: {
+                name: 'character-counter',
+            },
+            mask: {
+                name: 'mask',
+            },
+            maskVariant: {
+                name: 'mask-variant',
+                control: {
+                    type: 'select',
+                    options: [null, 'number', 'cep', 'date', 'cpf', 'cnpj', 'tel', 'cel', 'currency'],
+                },
+            },
+            maxLength: {
+                name: 'max-length',
+                type: {
+                    name: 'number',
+                    required: false,
+                },
+            },
+            minLength: {
+                name: 'min-length',
+                type: {
+                    name: 'number',
+                    required: false,
+                },
+            },
+            value: {
+                name: 'value',
+            },
+            valuePrefix: {
+                name: 'value-prefix',
+            },
+            valueSuffix: {
+                name: 'value-suffix',
+            },
+            textArea: {
+                name: 'textarea',
+            },
+            inputMode: {
+                control: {
+                    type: 'select',
+                    options: ['none', 'text', 'numeric', 'tel', 'decimal', 'email', 'url', 'search'],
+                },
+            },
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<apollo-textfield></apollo-textfield>`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+## Leading Icon
+
+<Canvas>
+    <Story name="Leading Icon">
+        <apollo-textfield label={defaultLabel} leading-icon="true">
+            <apollo-textfield-icon slot="leading-icon">
+                <apollo-icon svg-icon="objects-heart"></apollo-icon>
+            </apollo-textfield-icon>
+        </apollo-textfield>
+    </Story>
+</Canvas>
+
+## Trailing Icon
+
+<Canvas>
+    <Story name="Trailing Icon">
+        <apollo-textfield label={defaultLabel} trailing-icon="true">
+            <apollo-textfield-icon slot="trailing-icon">
+                <apollo-icon svg-icon="objects-heart"></apollo-icon>
+            </apollo-textfield-icon>
+        </apollo-textfield>
+    </Story>
+</Canvas>
+
+## Helper Text
+
+<Canvas>
+    <Story
+        name="Helper Text"
+        args={{
+            label: 'Buscar',
+            helperText: 'Seu texto assistivo aqui',
+            helperPersist: true,
+        }}
+        argTypes={{
+            helperText: {
+                name: 'helper-text',
+            },
+            helperPersist: {
+                name: 'helper-persist',
+            },
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<apollo-textfield label=${defaultLabel} helper-text="Seu texto assistivo aqui" helper-persist="true" />`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+## Max Length
+
+<Canvas>
+    <Story
+        name="Max Length"
+        args={{
+            label: 'Buscar',
+            characterCounter: true,
+            maxLength: 16,
+        }}
+        argTypes={{
+            characterCounter: {
+                name: 'character-counter',
+            },
+            maxLength: {
+                name: 'max-length',
+                type: {
+                    name: 'number',
+                    required: false,
+                },
+            },
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<apollo-textfield label=${defaultLabel} max-length="16" character-counter="true" />`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+## Min Length
+
+<Canvas>
+    <Story
+        name="Min Length"
+        args={{
+            label: 'Buscar',
+            minLength: 4,
+        }}
+        argTypes={{
+            minLength: {
+                name: 'min-length',
+                type: {
+                    name: 'number',
+                    required: false,
+                },
+            },
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<apollo-textfield label=${defaultLabel} min-length="4" />`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+## Search
+
+<Canvas>
+    <Story name="Type Search">
+        <apollo-textfield
+            label={defaultLabel}
+            type="search"
+            no-floating-label="true"
+            trailing-clear-icon="true"
+        ></apollo-textfield>
+    </Story>
+</Canvas>
+
+## Mask
+
+<Canvas>
+    <Story
+        name="Mask"
+        args={{
+            label: defaultLabel,
+            size: 'md',
+            mask: '99/99-99.99',
+            maskVariant: '',
+        }}
+        argTypes={{
+            size: {
+                control: { type: 'select', options: ['sm', 'md'] },
+            },
+            mask: {
+                name: 'mask',
+            },
+            maskVariant: {
+                name: 'mask-variant',
+                control: {
+                    type: 'select',
+                    options: [null, 'number', 'cep', 'date', 'cpf', 'cnpj', 'tel', 'cel', 'currency'],
+                },
+            },
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<apollo-textfield mask="99/99-99.99" mask-variant=""></apollo-textfield>`,
+                },
+            },
+        }}
+    >
+        {TemplateMask.bind({})}
+    </Story>
+</Canvas>
+
+## Double Mask
+
+A Propriedade `maskVariant` aceita um array de string para determinar duas máscaras para o mesmo campo.
+
+```jsx
+<apollo-textfield label="CPF / CNPJ" maskVariant={['cpf', 'cnpj']}></apollo-textfield>
+```
+
+```jsx
+<apollo-textfield label="CPF / CNPJ" [maskVariant]="['cpf', 'cnpj']"></apollo-textfield>
+```
+
+Caso sua aplicação não aceite JSX será necessário definir o array diretamente no seu script.
+
+```javascript
+const inputElement = document.querySelector('apollo-textfield');
+inputElement.maskVariant = ['cpf', 'cnpj'];
+```
+
+<Description markdown={readme} />

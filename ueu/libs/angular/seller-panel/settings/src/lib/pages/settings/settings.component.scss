@@ -1,0 +1,46 @@
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-settings-page {
+    margin: theme('spacing.none') auto;
+    width: 100%;
+
+    &__header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin: 16px auto;
+        max-width: 1140px;
+
+        h2 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: theme('spacing.none');
+        }
+
+        &--arrow-left {
+            position: relative;
+            left: -theme('spacing.2');
+            font-size: theme('fontSize.5xl');
+            line-height: 24px;
+            margin-right: theme('spacing.2');
+            cursor: pointer;
+        }
+    }
+
+    .container {
+        padding: theme('spacing.none');
+    }
+
+    @media screen and (max-width: 1140px) {
+        .container {
+            padding: theme('spacing.none') theme('spacing.2') !important;
+        }
+
+        &__header {
+            &--arrow-left {
+                left: theme('spacing.none');
+                margin-right: 24px;
+            }
+        }
+    }
+}

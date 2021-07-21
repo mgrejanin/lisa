@@ -1,0 +1,58 @@
+import { Story, Status } from './../../../.storybook/components';
+import { Props } from '@storybook/addon-docs/blocks';
+
+# Card
+
+<Status />
+
+O `apollo-card` é um componente de card.
+
+<Story id="components-card--base" />
+
+## Properties
+
+<Props id="components-card--base" />
+
+### Properties Card Media
+
+| Property | Attribute | Description                                                                                                          | Type                          | Default     |
+| -------- | --------- | -------------------------------------------------------------------------------------------------------------------- | ----------------------------- | ----------- |
+| `format` | `format`  | Escala automaticamente a altura da área de mídia de acordo com sua largura, mantendo uma proporção quadrada ou 16:9. | `"16:9" \| "1:1" \| "square"` | `'square'`  |
+| `image`  | `image`   | Escala automaticamente a altura da área de mídia de acordo com sua largura, mantendo uma proporção quadrada ou 16:9. | `string`                      | `undefined` |
+
+## Card Structure
+
+1. **Content**
+
+    Card content hold all card elements, and their size is determined by the space those elements occupy. Card elevation is expressed by the container.
+
+2. **Media [optional]**
+
+    Cards can include a variety of media, including photos, and graphics, such as icons.
+
+3. **Buttons [optional]**
+
+    Cards can include buttons for actions.
+
+4. **Icons [optional]**
+
+    Cards can include icons for actions.
+
+## Card sections
+
+| Element                      |                     Valor do exemplo                      |
+| ---------------------------- | :-------------------------------------------------------: |
+| `apollo-card-actions`        | Container for buttons and icons at the bottom of the card |
+| `apollo-card-action-buttons` |                   Container for buttons                   |
+| `apollo-card-action-icons`   |                    Container for icons                    |
+| `apollo-card-content`        |                Intended for blocks of text                |
+| `apollo-card-media`          |        Stretches the image to the container width         |
+| `apollo-card-media-content`  |         Intended for blocks of text inside media          |
+
+## Card Actions
+
+<Story id="components-card--actions" />
+
+## Card Media
+
+<Story id="components-card--media" />

@@ -1,0 +1,54 @@
+<section class="c-section">
+    <div class="c-section__body">
+        <div class="row">
+            <div class="c-section__headline col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="c-section__title">{{ title }}</h1>
+                        <p class="c-section__body-description c-section__body-paragraph">
+                            Antes de começar, confira alguns requisitos essenciais para abrir sua conta aqui no PicPay
+                            Empresas:
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 offset-md-1 c-section__card">
+                <div class="c-section__card-content c-section__card-content--company">
+                    <img src="assets/seller-register/images/bag-icon.svg" alt="Imagem de uma bolsa de escritório" />
+                    <h5 class="c-section__card-title">Sua empresa deve ter um CNPJ válido</h5>
+                </div>
+                <div class="c-section__card-content c-section__card-content--informations">
+                    <img src="assets/seller-register/images/user-icon.svg" alt="Imagem de um avatar" />
+                    <h5 class="c-section__card-title">
+                        As informações cadastradas devem ser da pessoa responsável legal pela empresa
+                    </h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="c-footer c-footer--with-description">
+    <div class="c-footer__description">
+        Clicando em Começar o cadastro, você concorda com nossa
+        <a class="c-footer__link c-footer__link--privacy" href="https://picpay.com/site/privacidade" target="_blank"
+            >política de privacidade</a
+        >
+        e
+        <a
+            class="c-footer__link c-footer__link--contract"
+            href="https://picpay.com/app_webviews/terms_biz/"
+            target="_blank"
+            >contrato</a
+        >.
+    </div>
+    <apollo-button
+        size="md"
+        type="button"
+        block
+        class="c-footer__button c-footer__button--next"
+        [routerLink]="['/form/responsavel']"
+    >
+        Começar o cadastro
+    </apollo-button>
+</footer>

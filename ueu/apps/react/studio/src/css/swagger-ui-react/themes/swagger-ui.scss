@@ -1,0 +1,11 @@
+.swagger-ui {
+    @import 'mixins';
+    @import 'layout';
+    @import 'auth';
+    @import 'btn';
+    @import 'form';
+    @import 'info';
+    @import 'model';
+    @import 'servers';
+    @import 'table';
+}

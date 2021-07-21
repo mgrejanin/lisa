@@ -1,0 +1,20 @@
+@use '@material/theme';
+
+@use "@material/list";
+
+apollo-list-group {
+    .mdc-list-group__subheader {
+        --mdc-typography-subtitle1-font-size: #{theme('fontSize.sm')};
+        @include list.group-subheader-ink-color(
+            rgba(theme('colors.background.dark.secondary'), theme.text-emphasis(medium))
+        );
+    }
+}
+
+[data-theme='dark'] {
+    apollo-list-group {
+        @include list.group-subheader-ink-color(
+            rgba(theme('colors.background.light.secondary'), theme.text-emphasis(medium))
+        );
+    }
+}

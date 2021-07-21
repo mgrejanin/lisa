@@ -1,0 +1,76 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+$sidenav-width: 390px;
+
+.c-detail-transaction {
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding-bottom: 24px;
+
+        &--image {
+            width: 72px;
+            border-radius: 50%;
+        }
+
+        &--username {
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 20px;
+            margin: 16px 0;
+        }
+
+        &--status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 16px;
+            border-radius: 4px;
+            min-width: 170px;
+            color: var(--apollo-background);
+
+            .mat-icon {
+                font-size: 16px;
+                width: 16px;
+                height: 16px;
+                margin-right: 8px;
+            }
+        }
+    }
+
+    &__body {
+        &--section {
+            border-top: 1px solid rgba(var(--apollo-on-background-rgb), 0.2);
+            padding-bottom: 12px;
+        }
+
+        &--field {
+            padding: 8px 24px;
+
+            label {
+                font-size: 12px;
+                font-weight: bold;
+                line-height: 20px;
+                text-transform: uppercase;
+                color: rgba(var(--apollo-on-background-rgb), 0.7);
+            }
+
+            p {
+                @include typography.body(primary, normal);
+            }
+        }
+
+        &--btn-cancel {
+            @include typography.body(secondary, normal);
+            padding: 0 !important;
+            background-color: transparent !important;
+
+            &:hover {
+                font-weight: bold;
+            }
+        }
+    }
+}

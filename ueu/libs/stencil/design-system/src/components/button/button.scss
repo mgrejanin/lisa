@@ -1,0 +1,203 @@
+@use "mixins/typography";
+
+@use "@material/theme" with (
+    $primary: theme('colors.primary.light.500'),
+    $on-primary: theme('colors.white')
+);
+
+@use "@material/button" with (
+    $height: 40px,
+    $maximum-height: 48px
+);
+
+@use "@material/ripple";
+
+$button-sizes: (
+    'sm': (
+        40px,
+        theme('fontSize.base'),
+    ),
+    'md': (
+        48px,
+        theme('fontSize.base'),
+    ),
+);
+
+@mixin apollo-button-letter-spacing() {
+    letter-spacing: normal;
+}
+
+apollo-button {
+    @include button.core-styles;
+
+    --mdc-theme-primary: var(--apollo-primary);
+    --mdc-theme-on-primary: var(--apollo-on-primary);
+
+    .mdc-touch-target-wrapper {
+        display: inline-block;
+    }
+
+    .mdc-button {
+        @include button.disabled-ink-color(theme('colors.grayscale.400'));
+
+        &.mdc-button--unelevated {
+            color: theme('colors.white');
+
+            &:disabled {
+                @include button.disabled-container-fill-color(theme('colors.grayscale.100'));
+            }
+
+            & > .mdc-button__ripple {
+                @include ripple.states-base-color(theme('colors.primary.light.100'));
+            }
+        }
+
+        &.mdc-button--danger > .mdc-button__ripple {
+            @include ripple.states-base-color(theme('colors.critical.light.50'));
+        }
+
+        &.mdc-button--outlined {
+            @include button.outline-color(var(--mdc-theme-primary));
+            @include button.outline-width(theme('borderWidth.medium'));
+
+            &:disabled {
+                @include button.disabled-outline-color(theme('colors.grayscale.100'));
+                @include button.disabled-container-fill-color(theme('colors.grayscale.100'));
+            }
+
+            & > .mdc-button__ripple {
+                @include ripple.states-base-color(theme('colors.primary.light.100'));
+            }
+
+            &.mdc-button--danger > .mdc-button__ripple {
+                @include ripple.states-base-color(theme('colors.critical.light.100'));
+            }
+        }
+
+        &.mdc-button--link {
+            @include button.shape-radius(10%);
+            @include button.height(48px);
+
+            & > .mdc-button__ripple {
+                @include ripple.states-base-color(theme('colors.primary.light.100'));
+            }
+
+            .apollo-button__label,
+            ::slotted(.apollo-button__label) {
+                text-decoration: underline;
+            }
+        }
+
+        .apollo-button-container {
+            display: flex;
+            align-items: center;
+
+            apollo-icon {
+                font-size: theme('fontSize.lg');
+                margin: 0;
+            }
+
+            apollo-icon + .apollo-button__label {
+                margin: 0 theme('spacing.half');
+            }
+
+            .apollo-button__label + apollo-icon {
+                margin: 0 theme('spacing.half');
+            }
+
+            .apollo-button__label,
+            ::slotted(.apollo-button__label) {
+                @include typography.body(primary, default);
+                @include apollo-button-letter-spacing();
+                margin: 0;
+            }
+
+            .apollo-button__label:empty {
+                display: none;
+            }
+        }
+
+        .apollo-button-container__loading {
+            visibility: hidden;
+        }
+
+        apollo-circular-progress {
+            position: absolute;
+        }
+    }
+
+    /**
+      * === MODIFIERS ===
+    **/
+
+    &[block],
+    &[block] .mdc-touch-target-wrapper,
+    &[block] .mdc-button {
+        width: 100%;
+    }
+
+    &[round] .mdc-button {
+        @include button.shape-radius(100%);
+    }
+
+    &[danger] .mdc-button {
+        --mdc-theme-primary: var(--apollo-error);
+        --mdc-theme-on-primary: var(--apollo-on-error);
+    }
+    &[type] {
+        -webkit-appearance: none; /* Safari */
+        -khtml-appearance: none; /* Konqueror HTML */
+        -moz-appearance: none; /* Old versions of Firefox */
+        -ms-appearance: none; /* Internet Explorer/Edge */
+        appearance: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+    }
+}
+
+/**
+  * SIZES
+**/
+
+apollo-button[size='sm'] .mdc-button {
+    &.mdc-button--link {
+        font-size: theme('fontSize.sm');
+    }
+}
+
+@each $size, $props in $button-sizes {
+    $default-height: nth($props, 1);
+    $font-size: nth($props, 2);
+
+    apollo-button[size='#{$size}'] .mdc-button {
+        @include button.height($default-height);
+        @include button.horizontal-padding(($default-height * 0.5));
+        font-size: $font-size;
+        text-transform: none;
+
+        // Circular Button
+        min-width: $default-height !important;
+    }
+
+    apollo-button[size='#{$size}'] .mdc-button--link {
+        @include button.horizontal-padding(($default-height * 0.35));
+    }
+}
+
+/**
+  * THEME
+**/
+
+[data-theme='dark'] {
+    .mdc-button {
+        &.mdc-button--outlined {
+            & > .mdc-button__ripple {
+                @include ripple.states-base-color(theme('colors.primary.light.900'));
+            }
+        }
+
+        &.mdc-button--link {
+            & > .mdc-button__ripple {
+                @include ripple.states-base-color(theme('colors.primary.light.900'));
+            }
+        }
+    }
+}

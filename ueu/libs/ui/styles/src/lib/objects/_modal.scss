@@ -1,0 +1,151 @@
+@use "mixins/typography";
+
+.o-modal {
+    @include media-breakpoint-down(sm) {
+        max-width: 100vw !important;
+        width: 100%;
+        position: relative;
+    }
+
+    &--rounded {
+        .mat-dialog-container {
+            border-radius: 20px !important;
+
+            @include media-breakpoint-down(sm) {
+                border-radius: 12px !important;
+            }
+        }
+    }
+
+    .mat-dialog-container {
+        background-color: rgb(var(--apollo-background-rgb)) !important;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
+        max-height: calc(100vh - 4rem);
+        overflow: auto;
+        position: relative !important;
+    }
+
+    &__content {
+        max-height: 100%;
+    }
+
+    &__close-btn {
+        position: absolute !important;
+        cursor: pointer;
+
+        right: 1.5rem;
+        top: 1.5rem;
+
+        color: rgba(var(--apollo-primary-rgb)) !important;
+
+        @include media-breakpoint-down(sm) {
+            top: 0;
+            right: 0;
+        }
+    }
+
+    &__title {
+        @include typography.title(medium);
+        color: rgba(var(--apollo-on-background-rgb), 0.86);
+        text-align: center !important;
+
+        // this is being added because the
+        // typography styles are being overwritten.
+        font-size: 1.5rem !important;
+        line-height: 33px !important;
+        font-weight: 800 !important;
+        // -------------------------
+
+        margin-bottom: 2rem !important;
+
+        width: calc(100% - 40px);
+    }
+
+    &__message {
+        @include typography.body(primary, default);
+
+        margin-bottom: 3rem !important;
+    }
+
+    &__group {
+        padding: 1.5rem;
+
+        border: 1px solid rgba(var(--apollo-background-z3-rgb), 0.5);
+
+        border-radius: 0.75rem;
+
+        &--title {
+            @include typography.body(secondary, default);
+        }
+    }
+
+    &__btn-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        padding: 1.5rem 1.5rem 0;
+        margin: 0 -1.5rem;
+
+        border-top: 1px solid rgba(var(--apollo-background-z3-rgb), 0.5);
+
+        button {
+            &:not(:last-of-type) {
+                margin-right: 0.5rem;
+            }
+        }
+    }
+
+    &__cancel {
+        @include typography.body(secondary, default);
+        color: rgb(var(--apollo-primary-rgb));
+        text-align: center;
+        text-decoration: underline;
+
+        cursor: pointer;
+
+        margin-top: 1rem;
+    }
+
+    &__message-success {
+        @include typography.body(primary, highlight);
+        color: rgb(var(--apollo-primary-rgb));
+    }
+
+    &__message-error {
+        @include typography.body(primary, highlight);
+        color: $red;
+    }
+
+    &__actions {
+        justify-content: flex-end;
+    }
+
+    .mat-dialog-content {
+        max-height: 100%;
+    }
+}
+
+.o-modal-reset {
+    .mat-dialog-container {
+        box-shadow: none !important;
+        background: none !important;
+        color: none !important;
+        padding: 0 !important;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .full-screen-modal {
+        width: 100vw !important;
+        max-width: 100vw !important;
+        height: 100% !important;
+        margin: 0 !important;
+
+        .mat-dialog-container {
+            padding: 0 !important;
+        }
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "id": "picpay-create-app",
+    "type": "object",
+    "properties": {
+        "appName": {
+            "type": "string",
+            "description": "Nome do app",
+            "x-prompt": "Qual o nome da aplicação?"
+        },
+        "sso": {
+            "type": "boolean",
+            "description": "Adicionar sso na aplicação",
+            "x-prompt": "Deseja adicionar sso na aplicação?"
+        },
+        "isFullyAuthenticated": {
+            "type": "boolean",
+            "description": "Adicionar SSO em toda a aplicação",
+            "x-prompt": "Se sua aplicação precisa de SSO, ela será 100% autenticada?"
+        },
+        "stateManagement": {
+            "type": "boolean",
+            "description": "Adicionar gerenciamento de estado na aplicação",
+            "x-prompt": "Deseja adicionar gerenciamento de estado na aplicação?"
+        },
+        "isDashboard": {
+            "type": "boolean",
+            "description": "Adicina o layout padrão de dashboard",
+            "x-prompt": "Sua aplicação é uma dashboard?"
+        }
+    },
+    "required": ["appName"]
+}

@@ -1,0 +1,112 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-user-dropdown {
+    display: flex;
+    justify-content: flex-end;
+
+    &__img-btn {
+        border-radius: 100%;
+    }
+
+    ::ng-deep &__menu-icon {
+        margin-right: 1.5rem;
+    }
+
+    ::ng-deep &__menu-link {
+        color: rgba(var(--apollo-on-background-rgb), 0.5);
+    }
+
+    &__user-header-name {
+        @include typography.body(secondary, default);
+        border: none;
+        margin-left: 0.5rem;
+        padding-right: 1rem;
+        cursor: pointer;
+    }
+
+    ::ng-deep &__menu-content {
+        background-color: $white;
+        min-width: 340px !important;
+        border-radius: 1rem !important;
+        // @TODO fazer o border-radius ficar global em todos os menus e modais
+    }
+
+    &__menu-user-button {
+        border-bottom: 1px solid #e7e7e7 !important;
+        background-color: $white;
+        height: auto !important;
+        margin-bottom: 1rem;
+        padding: 1rem !important;
+        width: 100%;
+        text-align: center;
+
+        &:hover {
+            background-color: transparent !important;
+        }
+    }
+
+    &__user-image {
+        border-radius: 100%;
+    }
+
+    &__user-name {
+        @include typography.body(primary, highlight);
+        text-align: center;
+        padding-top: 0.5rem;
+        display: block;
+    }
+
+    &__link-account {
+        @include typography.body(secondary, default);
+        color: rgba(var(--apollo-primary-rgb), 0.75);
+        text-decoration: underline;
+    }
+
+    ::ng-deep &__menu-button {
+        display: flex !important;
+
+        margin-bottom: 1rem !important;
+
+        width: 100%;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            width: 0;
+            height: 100%;
+            background-color: theme('colors.primary.base');
+            transition: width 200ms $cubic-bezier;
+        }
+
+        &:hover {
+            &::after {
+                width: 3px;
+            }
+        }
+
+        span {
+            @include typography.body(primary, highlight);
+            color: rgba(var(--apollo-on-background-rgb), 0.5);
+            vertical-align: middle;
+        }
+
+        &:hover span {
+            @include typography.body(primary, highlight);
+        }
+
+        mat-icon {
+            color: rgba(var(--apollo-on-background-rgb), 0.5);
+            margin-right: 1.5rem;
+        }
+
+        &:hover mat-icon,
+        &:hover svg {
+            color: theme('colors.primary.base');
+        }
+    }
+}

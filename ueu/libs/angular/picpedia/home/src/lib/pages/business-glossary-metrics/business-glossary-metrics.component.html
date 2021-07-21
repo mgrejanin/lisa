@@ -1,0 +1,18 @@
+<picpedia-navbar-header [title]="titleMetrics"></picpedia-navbar-header>
+
+<section class="c-glossary-metrics container-fluid">
+    <apollo-flex justify="center" class="c-glossary-metrics__loading" *ngIf="isLoadingMetrics$ | async">
+        <apollo-circular-progress radius="35" stroke="6"></apollo-circular-progress>
+    </apollo-flex>
+
+    <div class="c-glossary-metrics__container">
+        <div *ngFor="let item of metrics$ | async" class="c-glossary-metrics__cards">
+            <picpedia-cards
+                [title]="item.data_domain | titlecase"
+                [icon]="iconMetrics"
+                [routerLink]="item.data_domain"
+                class="c-glossary-metrics__cards-item"
+            ></picpedia-cards>
+        </div>
+    </div>
+</section>

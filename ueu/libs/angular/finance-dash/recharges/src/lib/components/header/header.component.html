@@ -1,0 +1,14 @@
+<section class="c-header">
+    <!-- USER DROPDOWN -->
+    <picpay-user-dropdown class="c-header__user-dropdown">
+        <button mat-flat-button class="c-user-dropdown__menu-button">
+            <mat-icon class="c-user-dropdown__menu-icon">highlight_off</mat-icon>
+            <span>Sair</span>
+        </button>
+    </picpay-user-dropdown>
+
+    <!-- BACK BUTTON -->
+    <button mat-flat-button class="c-header__return-btn o-button o-button__return" *ngIf="showReturnBtn">
+        <mat-icon class="o-button__icon">keyboard_backspace</mat-icon> voltar
+    </button>
+</section>

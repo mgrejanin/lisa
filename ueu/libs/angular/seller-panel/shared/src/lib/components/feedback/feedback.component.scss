@@ -1,0 +1,34 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-container-feedback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    height: 60vh;
+
+    &__title {
+        @include typography.title(large);
+
+        margin: {
+            top: 32px;
+            bottom: 16px;
+        }
+    }
+
+    &__description {
+        @include typography.body(primary, normal);
+    }
+
+    &__image {
+        width: 190px;
+    }
+
+    @include media-breakpoint-down(xs) {
+        &__image {
+            width: 140px;
+        }
+    }
+}

@@ -1,0 +1,34 @@
+@use "mixins/breakpoint";
+
+apollo-feedback-page-actions {
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    align-self: flex-end;
+
+    apollo-button {
+        width: 100%;
+        .mdc-touch-target-wrapper {
+            width: 100%;
+        }
+        button {
+            width: 100%;
+        }
+    }
+
+    @include breakpoint.up(small) {
+        apollo-button {
+            width: auto;
+            .mdc-touch-target-wrapper {
+                width: auto;
+            }
+            button {
+                width: auto;
+            }
+        }
+    }
+}

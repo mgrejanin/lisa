@@ -1,0 +1,27 @@
+@use "mixins/typography";
+
+.layout-studio {
+    &__logo {
+        width: 100%;
+        display: flex;
+        svg {
+            fill: theme('colors.primary.base');
+        }
+        span {
+            @include typography.title(medium);
+            &:before {
+                @include typography.title(small);
+                content: '|';
+                margin: theme('spacing.1');
+            }
+        }
+    }
+
+    &__choose-projects {
+        padding: theme('spacing.2');
+        background: theme('colors.white');
+        margin: 0 12px;
+        border-radius: theme('borderRadius.medium');
+        box-shadow: theme('boxShadow.light');
+    }
+}

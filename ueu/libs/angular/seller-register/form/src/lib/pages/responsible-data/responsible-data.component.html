@@ -1,0 +1,119 @@
+<section class="c-section">
+    <div class="c-section__headline">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="c-section__title">{{ title }}</h1>
+                <p class="c-section__body-description c-section__body-paragraph">
+                    Conte um pouco sobre a pessoa responsável legal pela empresa. É importante que os dados sejam da
+                    pessoa titular do CNPJ ou sócia da empresa.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="c-section__feedback">
+        <apollo-feedback-card
+            class="feedback-card"
+            label="Seu e-mail será usado para fazer login na sua conta PicPay. Anote para não esquecer."
+            type="warning"
+        >
+        </apollo-feedback-card>
+    </div>
+
+    <form class="c-section__form" [formGroup]="responsibleForm" (ngSubmit)="onSubmit()">
+        <fieldset>
+            <div class="row">
+                <div class="col-md-12">
+                    <apollo-textfield
+                        class="c-section__form-field"
+                        label="Nome completo"
+                        formControlName="user_name"
+                        required
+                        helper-text="Ex: Antonio Santos da Silva"
+                    ></apollo-textfield>
+                </div>
+
+                <div class="col-md-6">
+                    <apollo-textfield
+                        class="c-section__form-field"
+                        label="E-mail"
+                        type="email"
+                        formControlName="user_email"
+                        required
+                        helper-text="Ex: nome@email.com"
+                    ></apollo-textfield>
+                </div>
+
+                <div class="col-md-6">
+                    <apollo-textfield
+                        class="c-section__form-field"
+                        label="CPF"
+                        type="tel"
+                        maskVariant="cpf"
+                        formControlName="user_document"
+                        required
+                        helper-text="Ex: 000.000.000-00"
+                    ></apollo-textfield>
+                </div>
+
+                <div class="col-md-6">
+                    <apollo-textfield
+                        class="c-section__form-field"
+                        label="Telefone celular"
+                        type="tel"
+                        maskVariant="cel"
+                        formControlName="user_cell_number"
+                        required
+                        helper-text="Ex: (00) 00000-0000"
+                    ></apollo-textfield>
+                </div>
+
+                <div class="col-md-6">
+                    <apollo-textfield
+                        class="c-section__form-field"
+                        label="Data de nascimento"
+                        type="tel"
+                        maskVariant="date"
+                        formControlName="user_birthday"
+                        required
+                        helper-text="Ex: 00/00/0000"
+                    ></apollo-textfield>
+                </div>
+
+                <div class="col-md-12">
+                    <apollo-textfield
+                        class="c-section__form-field"
+                        label="Nome completo da mãe"
+                        formControlName="user_mother"
+                        required
+                        helper-text="Ex: Maria Santos da Silva"
+                    ></apollo-textfield>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</section>
+
+<footer class="c-footer c-footer--reverse">
+    <apollo-button
+        size="md"
+        type="button"
+        block
+        class="c-footer__button c-footer__button--next"
+        [disabled]="(isLoading$ | async) || responsibleForm.invalid"
+        [loading]="isLoading$ | async"
+        (click)="onSubmit()"
+    >
+        Continuar
+    </apollo-button>
+    <apollo-button
+        size="md"
+        type="button"
+        variant="link"
+        block
+        class="c-footer__button c-footer__button--previous"
+        [routerLink]="['/form/dicas']"
+    >
+        Voltar
+    </apollo-button>
+</footer>

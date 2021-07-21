@@ -1,0 +1,57 @@
+<!-- DEFAULT MENU ITEM -->
+
+<div
+    *ngIf="!params.submenus || params.submenus.length === 0; else submenus"
+    class="c-menu-item"
+    mat-ripple
+    routerLinkActive="active"
+    [ngClass]="{ collapsed: isCollapsed, disabled: params.disabled }"
+>
+    <a [routerLink]="[params.route]" class="c-menu-item__link" [title]="params.text"></a>
+
+    <mat-icon fontSet="material-icons-outlined" class="c-menu-item__icon">{{ params.icon }}</mat-icon>
+
+    <span class="c-menu-item__text text-truncate" [ngClass]="{ 'u-hidden': isCollapsed }">{{ params.text }}</span>
+</div>
+
+<!-- MENU ITEM WITH SUBMENUS (collapsible) -->
+
+<ng-template #submenus>
+    <div
+        class="c-menu-item__submenu-container"
+        routerLinkActive="active"
+        [ngClass]="{ collapsed: isCollapsed, disabled: params.disabled }"
+        (click)="checkbox.click()"
+    >
+        <input #checkbox type="checkbox" class="c-menu-item__checkbox" />
+
+        <div class="c-menu-item has-submenu" mat-ripple [title]="params.text">
+            <mat-icon fontSet="material-icons-outlined" class="c-menu-item__icon">{{ params.icon }}</mat-icon>
+
+            <span class="c-menu-item__text text-truncate" [ngClass]="{ 'u-hidden': isCollapsed }">
+                {{ params.text }}
+            </span>
+
+            <mat-icon
+                fontSet="material-icons-outlined"
+                class="c-menu-item__icon c-menu-item__icon--triangle"
+                [ngClass]="{ 'u-hidden': isCollapsed }"
+            >
+                keyboard_arrow_down
+            </mat-icon>
+        </div>
+
+        <div class="c-menu-item__submenus">
+            <div
+                mat-ripple
+                class="c-menu-item__submenus--item text-truncate"
+                [ngClass]="{ disabled: item.disabled }"
+                *ngFor="let item of params.submenus"
+                [routerLink]="[item.route]"
+                [title]="item.text"
+            >
+                {{ item.text }}
+            </div>
+        </div>
+    </div>
+</ng-template>

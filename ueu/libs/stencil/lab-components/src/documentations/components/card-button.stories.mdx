@@ -1,0 +1,52 @@
+import { Meta, Story, Canvas, Source, Description } from '@storybook/addon-docs/blocks';
+import dedent from 'ts-dedent';
+
+import readme from './../../components/card-button/readme.md';
+
+<Meta title="Components/Card Button" />
+
+export const AvatarText = 'https://via.placeholder.com/90x90.png?text=avatar';
+export const DescriptionText = 'Texto de descrição para apoio. Texto de descrição para apoio.';
+export const isEditingBoolean = false;
+export const SpotlightText = 'Texto em destaque';
+export const ValueText = 'R$ 20,00';
+
+export const Template = props => <lab-card-button {...props} is-editing={props.isEditing ? 'true' : undefined} />;
+
+# Card Button
+
+## Default
+
+<Canvas>
+    <Story
+        name="All Props"
+        args={{
+            avatar: AvatarText,
+            description: DescriptionText,
+            isEditing: false,
+            spotlight: SpotlightText,
+            value: ValueText,
+        }}
+        argTypes={{
+            isEditing: {
+                name: 'is-editing',
+            },
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: dedent`<lab-card-button
+                                    avatar="${AvatarText}"
+                                    description="${DescriptionText}"
+                                    spotlight="${SpotlightText}"
+                                    value="${ValueText}"
+                                ></lab-card-button>`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Description markdown={readme} />

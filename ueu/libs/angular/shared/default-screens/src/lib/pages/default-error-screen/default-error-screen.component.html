@@ -1,0 +1,37 @@
+<div class="default-error-screen">
+    <div class="default-error-screen__wrapper" *ngIf="(receivedData | json) !== '{}'; else noDataReceived">
+        <apollo-feedback-page
+            [pageTitle]="receivedData?.title"
+            [pageSubtitle]="receivedData?.subtitle"
+            [type]="receivedData?.type"
+            [useFigure]="receivedData?.figure"
+        >
+            <apollo-feedback-page-actions>
+                <div *ngFor="let button of receivedData?.buttons">
+                    <apollo-button [variant]="button.variant" [href]="button.href" [routerLink]="button.routerLink">{{
+                        button.text
+                    }}</apollo-button>
+                </div>
+            </apollo-feedback-page-actions>
+        </apollo-feedback-page>
+    </div>
+</div>
+
+<ng-template #noDataReceived>
+    <div class="default-error-screen__no-data">
+        <apollo-feedback-page
+            page-title="Opa! parece que nenhuma {data} foi recebida por aqui."
+            page-subtitle="Dê uma olhada no README para mais informações de como utilizar esse componente!"
+            type="warning"
+            use-figure="true"
+        >
+            <apollo-feedback-page-actions>
+                <apollo-button
+                    variant="unelevated"
+                    href="https://github.com/PicPay/picpay-frontend/tree/develop/libs/angular/shared/default-screens"
+                    >Ver o README</apollo-button
+                >
+            </apollo-feedback-page-actions>
+        </apollo-feedback-page>
+    </div>
+</ng-template>

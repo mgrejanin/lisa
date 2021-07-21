@@ -1,0 +1,68 @@
+// angular
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+<% if(stateManagement) { %>// akita
+import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';<% } %>
+
+// environment
+import { environment } from '../environments/environment';
+
+// components
+import { AppComponent } from './app.component';
+
+// modules
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AppRoutingModule } from './app.routing.module';
+
+// libs
+import { DesignSystemAngularModule } from '@picpay/design-system-angular';
+<% if(sso) { %>import { PicpayKeycloakConfig, PicpayKeycloakModule } from '@picpay/keycloak';<% } %>
+import { CoreDataAccessConfig, CoreDataAccessModule } from '@picpay/angular/shared/core/data-access';
+<% if(isDashboard) { %>import { CommonLayoutsModule } from '@picpay/ui/layouts';
+
+// configs
+import { layoutConfig } from './app.layout.config';<% } %>
+
+// interceptors
+import {
+    CoreNotificationsModule,
+    ErrNotificationInterceptor,
+    NotificationsService,
+} from '@picpay/angular/shared/core/notifications';
+
+<% if(sso) { %>const keycloakConfig: PicpayKeycloakConfig = {
+    clientId: environment.keycloakClientId,
+    realm: environment.keycloakRealm,
+    url: environment.keycloakUrl,
+    onLoad: <% if(!isFullyAuthenticated) { %>'check-sso'<% } else { %>'login-required'<% } %>,
+    notAllowedRouteRedirectTo: 'error/not-authorized',
+};<% } %>
+
+const coreConfig: CoreDataAccessConfig = {
+    apiUrl: environment.apiUrl,
+    isProd: environment.production,
+};
+
+@NgModule({
+    declarations: [AppComponent],
+    imports: [
+        BrowserAnimationsModule,
+        BrowserModule,
+        HttpClientModule,
+        AppRoutingModule,
+        CoreDataAccessModule.forRoot(coreConfig),
+        DesignSystemAngularModule.forRoot(),
+        CoreNotificationsModule,
+        <% if(isDashboard) { %>CommonLayoutsModule.forRoot(layoutConfig),<% } %>
+        <% if(sso) { %>PicpayKeycloakModule.forRoot(keycloakConfig),<% } %>
+        <% if(stateManagement) { %>environment.production ? [] : AkitaNgDevtools,<% } %>
+    ],
+    exports: [DesignSystemAngularModule],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: ErrNotificationInterceptor, multi: true },
+        NotificationsService,
+    ],
+    bootstrap: [AppComponent],
+})
+export class AppModule {}

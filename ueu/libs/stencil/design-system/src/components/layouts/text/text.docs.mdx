@@ -1,0 +1,30 @@
+import { Story, Status, Texts } from './../../../../.storybook/components';
+import { Props } from '@storybook/addon-docs/blocks';
+
+# Text
+
+<Status />
+
+O componente `apollo-text` é usado para renderizar texto e parágrafos em uma interface.
+
+<Story id="typography-text--base" />
+
+<Props id="typography-text--base" />
+
+## Size
+
+Para aumentar o tamanho da fonte do texto, você pode passar a propriedade `fontSize`.
+
+<Texts />
+
+## Truncate text
+
+Passe `isTruncated` para renderizar reticência quando o texto exceder a largura.
+
+<Story id="typography-text--truncate" />
+
+## noOfLines
+
+Da mesma forma, que o `isTruncated` passe a propriedade `noOfLines` e defina-o com o número de linhas desejado.
+
+<Story id="typography-text--no-of-lines" />

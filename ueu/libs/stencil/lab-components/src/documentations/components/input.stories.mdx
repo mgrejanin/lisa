@@ -1,0 +1,108 @@
+import { Meta, Story, Canvas, Source, Description } from '@storybook/addon-docs/blocks';
+import dedent from 'ts-dedent';
+
+import readme from './../../components/input/readme.md';
+
+<Meta title="Components/Input" />
+
+export const LabelInput = 'Lab Input';
+
+export const Template = props => (
+    <lab-input
+        {...props}
+        isEditing={props.isEditing}
+        input-type={props.inputType}
+        max-size={props.maxSize}
+        isEnabled={props.isEnabled}
+        label={props.label}
+        text={props.text}
+    />
+);
+
+# Input
+
+## Default
+
+<Canvas>
+    <Story
+        name="All Props"
+        args={{
+            label: LabelInput,
+            isEditing: false,
+            maxSize: '10',
+            text: '10',
+            inputType: 'general',
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<lab-input input-type=general label=${LabelInput}></lab-input>`,
+                },
+            },
+        }}
+        argTypes={{
+            inputType: {
+                control: {
+                    type: 'select',
+                    options: ['general', 'email', 'password', 'number'],
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+## Max Size
+
+<Canvas>
+    <Story
+        name="Max Size"
+        args={{
+            label: LabelInput,
+            isEditing: false,
+            maxSize: '5',
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<lab-input  max-size=5 label=${LabelInput}></lab-input>`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+## Input Type
+
+<Canvas>
+    <Story
+        name="Input Type"
+        args={{
+            label: LabelInput,
+            isEditing: false,
+            inputType: 'password',
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<lab-input input-type= password label=${LabelInput}></lab-input>`,
+                },
+            },
+        }}
+        argTypes={{
+            inputType: {
+                control: {
+                    type: 'select',
+                    options: ['general', 'email', 'password', 'number'],
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Description markdown={readme} />

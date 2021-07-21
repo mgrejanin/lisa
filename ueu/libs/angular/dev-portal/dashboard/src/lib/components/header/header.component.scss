@@ -1,0 +1,67 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+:host {
+    flex: 1;
+}
+
+.c-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    height: 60px;
+    padding: theme('spacing.1') theme('spacing.4');
+    user-select: none;
+
+    &__content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-self: flex-end;
+
+        &--icon {
+            font-size: 32px;
+            padding-top: theme('spacing.1');
+            color: theme('colors.primary.base');
+        }
+
+        &--item {
+            padding: theme('spacing.none') theme('spacing.2');
+            @include media-breakpoint-down(xs) {
+                padding: theme('spacing.none') theme('spacing.1');
+            }
+        }
+
+        &--menu {
+            padding-left: theme('spacing.2');
+            @include media-breakpoint-down(xs) {
+                padding-left: theme('spacing.1');
+            }
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        padding: 12px theme('spacing.2');
+
+        border-bottom: theme('borderWidth.light') solid rgba(var(--apollo-on-background-rgb), 0.1);
+    }
+}
+
+::ng-deep .c-user-dropdown {
+    &__menu-button {
+        padding: theme('spacing.1') theme('spacing.3');
+        background: transparent;
+        border: none;
+        position: relative;
+        a {
+            color: inherit;
+        }
+    }
+    &__user-header-name {
+        padding-right: theme('spacing.none') !important;
+        @include media-breakpoint-down(xs) {
+            display: none;
+        }
+    }
+}

@@ -1,0 +1,18 @@
+<div class="c-mobile-fixed-menu">
+    <ng-container *ngFor="let item of items | slice: 0:5">
+        <div
+            class="c-mobile-fixed-menu__item"
+            *picpayIfRoles="item.roles || []"
+            [routerLink]="[item.route]"
+            routerLinkActive="active"
+        >
+            <mat-icon fontSet="material-icons-outlined" class="c-mobile-fixed-menu__item--icon">{{
+                item.icon
+            }}</mat-icon>
+
+            <span class="c-mobile-fixed-menu__item--text">
+                {{ item.text }}
+            </span>
+        </div>
+    </ng-container>
+</div>

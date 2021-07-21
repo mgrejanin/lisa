@@ -1,0 +1,97 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+@import 'libs/ui/styles/src/lib/ui-styles';
+
+body[data-theme='light'] {
+    @include mat-core-theme($app-theme);
+    @include mat-button-theme($app-theme);
+    @include mat-form-field-theme($app-theme);
+    @include mat-input-theme($app-theme);
+    @include mat-tooltip-theme($app-theme);
+    @include mat-datepicker-theme($app-theme);
+    @include mat-tabs-theme($app-theme);
+    @include mat-dialog-theme($app-theme);
+    @include mat-select-theme($app-theme);
+    @include mat-menu-theme($app-theme);
+    @include mat-stepper-theme($app-theme);
+    @include mat-radio-theme($app-theme);
+    @include mat-chips-theme($app-theme);
+    @include mat-slide-toggle-theme($app-theme);
+}
+
+body[data-theme='dark'] {
+    @include mat-core-theme($app-dark-theme);
+    @include mat-button-theme($app-dark-theme);
+    @include mat-form-field-theme($app-dark-theme);
+    @include mat-input-theme($app-dark-theme);
+    @include mat-tooltip-theme($app-dark-theme);
+    @include mat-datepicker-theme($app-dark-theme);
+    @include mat-tabs-theme($app-dark-theme);
+    @include mat-dialog-theme($app-dark-theme);
+    @include mat-select-theme($app-dark-theme);
+    @include mat-menu-theme($app-dark-theme);
+    @include mat-stepper-theme($app-dark-theme);
+    @include mat-radio-theme($app-dark-theme);
+    @include mat-chips-theme($app-dark-theme);
+    @include mat-slide-toggle-theme($app-dark-theme);
+
+    .picpay-empresas-logo {
+        background-image: url(./assets/logo-empresas-aberto.svg) !important;
+    }
+
+    .c-charge-value-links-modal {
+        background-color: rgb(var(--apollo-background-z3-rgb));
+    }
+
+    .c-change-image-profile,
+    .c-sidenav {
+        background-color: rgb(var(--apollo-background-z2-rgb));
+    }
+}
+
+body,
+html {
+    background-color: rgb(var(--apollo-background-rgb));
+    color: rgba(var(--apollo-on-background-rgb), 0.86);
+}
+
+h1 {
+    @include typography.title(large);
+}
+
+h2 {
+    @include typography.title(medium);
+}
+
+h3 {
+    @include typography.title(small);
+}
+
+.picpay-empresas-logo {
+    width: 125px;
+    height: 55px;
+    background-image: url(./assets/logo-empresas-aberto.svg);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: 90px;
+}
+
+.pipay-empresas-background {
+    background-size: 120px;
+}
+
+.grecaptcha-badge {
+    width: 70px !important;
+    overflow: hidden !important;
+    transition: all 0.3s ease !important;
+    right: 0px !important;
+    bottom: 70px !important;
+}
+
+.grecaptcha-badge:hover {
+    width: 256px !important;
+}
+
+.mat-tooltip.tooltipHelp {
+    font-size: theme('fontSize.sm');
+}

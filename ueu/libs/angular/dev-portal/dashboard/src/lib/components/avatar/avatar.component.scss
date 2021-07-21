@@ -1,0 +1,70 @@
+@use "mixins/typography";
+@use "mixins/breakpoint";
+
+.avatar {
+    box-shadow: theme('boxShadow.light');
+    border-radius: theme('borderRadius.medium');
+    min-width: 201px;
+    width: 201px;
+    height: 206px;
+
+    color: theme('colors.grayscale.400');
+    padding: theme('spacing.4');
+    cursor: pointer;
+    @include breakpoint.down(small) {
+        min-width: 100%;
+        height: 75px;
+        padding: theme('spacing.2');
+        margin: theme('spacing.2') theme('spacing.none');
+    }
+
+    &__icon {
+        @include typography.title(large);
+        width: 117px;
+        height: 117px;
+        margin: 0 auto;
+
+        border-radius: theme('borderRadius.full');
+        color: theme('colors.grayscale.400');
+        background: theme('colors.grayscale.50');
+
+        &--default,
+        &--custom {
+            ::ng-deep {
+                apollo-icon {
+                    margin: 0;
+                }
+                svg {
+                    width: 56px;
+                    height: 56px;
+                }
+            }
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+
+            > * {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        &:hover {
+            opacity: 0.5;
+        }
+
+        @include breakpoint.down(small) {
+            width: 50px;
+            height: 50px;
+        }
+    }
+
+    &__title {
+        @include typography.caption(highlight);
+        margin: 16px 0;
+        text-align: center;
+    }
+}

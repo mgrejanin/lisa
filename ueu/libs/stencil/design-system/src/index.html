@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="pt-BR">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=no"
+        />
+        <title>Apollo Design System</title>
+
+        <script type="module" src="/build/design-system.esm.js"></script>
+        <script nomodule src="/build/design-system.js"></script>
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+
+        <link
+            href="https://fonts.googleapis.com/icon?family=Material+Icons%7CMaterial+Icons+Outlined"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="/build/design-system.css" />
+
+        <style>
+            * {
+                box-sizing: border-box;
+                border-style: none;
+            }
+
+            html,
+            body {
+                margin: 0;
+                padding: 0;
+                min-height: 100vh;
+                display: flex;
+                flex: 1;
+            }
+
+            .theme-selector {
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+        </style>
+    </head>
+    <body data-theme="light">
+        <apollo-icon-button
+            icon-pack="weather"
+            icon-off="weather-moon"
+            icon-on="weather-sun"
+            size="sm"
+            onClick="handleDarkMode()"
+            class="theme-selector"
+        ></apollo-icon-button>
+
+        <apollo-page></apollo-page>
+    </body>
+    <script>
+        const handleDarkMode = () => {
+            const dataTheme = document.querySelector('body');
+
+            if (dataTheme.getAttribute('data-theme') === 'light') {
+                dataTheme.setAttribute('data-theme', 'dark');
+                return;
+            }
+
+            dataTheme.setAttribute('data-theme', 'light');
+        };
+    </script>
+</html>

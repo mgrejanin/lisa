@@ -1,0 +1,81 @@
+@use "@material/theme" with (
+    $primary: theme('colors.primary.light.500'),
+    $secondary: theme('colors.primary.light.500'),
+);
+
+@use "@material/select/icon";
+
+@include icon.icon-core-styles;
+
+select-icon {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    outline: none;
+}
+
+.mdc-select {
+    .mdc-select__icon {
+        line-height: 1;
+        height: 24px;
+        margin-left: 16px;
+        margin-right: 8px;
+    }
+    .mdc-list-item {
+        .mdc-select__icon {
+            margin-left: 0px;
+            margin-right: 8px;
+        }
+    }
+    &.mdc-select--disabled {
+        @include icon.disabled-icon-color(rgba(0, 0, 0, theme.text-emphasis(disabled)));
+    }
+    &:not(.mdc-select--invalid):not(.mdc-select--disabled) {
+        @include icon.icon-color(primary);
+        .mdc-list-item {
+            @include icon.icon-color(rgba(0, 0, 0, theme.text-emphasis(disabled)));
+            &.mdc-list-item--selected {
+                @include icon.icon-color(primary);
+            }
+        }
+    }
+}
+
+.mdc-select--invalid {
+    @include icon.icon-color(theme('colors.critical.base'));
+    .mdc-list-item {
+        @include icon.icon-color(rgba(0, 0, 0, theme.text-emphasis(disabled)));
+        &.mdc-list-item--selected {
+            @include icon.icon-color(primary);
+        }
+    }
+}
+
+[data-theme='dark'] {
+    .mdc-select {
+        &.mdc-select--disabled {
+            @include icon.disabled-icon-color(rgba(0, 0, 0, theme.text-emphasis(disabled)));
+        }
+
+        &:not(.mdc-select--invalid):not(.mdc-select--disabled) {
+            @include icon.icon-color(primary);
+            .mdc-list-item {
+                @include icon.icon-color(theme('colors.grayscale.400'));
+                &.mdc-list-item--selected {
+                    @include icon.icon-color(theme('colors.grayscale.400'));
+                }
+            }
+        }
+    }
+
+    .mdc-select--invalid {
+        @include icon.icon-color(theme('colors.critical.base'));
+        .mdc-list-item {
+            @include icon.icon-color(theme('colors.grayscale.400'));
+            &.mdc-list-item--selected {
+                @include icon.icon-color(theme('colors.grayscale.400'));
+            }
+        }
+    }
+}

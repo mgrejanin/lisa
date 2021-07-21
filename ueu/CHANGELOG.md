@@ -1,0 +1,2383 @@
+# PicPay Frontend
+
+
+<a name="v2.1.0"></a>
+
+## [v2.1.0] - 03/05/2021
+
+### Bug Fixes
+
+- **core:** removing auto-generated file
+- **core:** updating migrations.md
+- **core:** fixing buil react
+- **core:** add buildable configs
+- **core:** fix package-lock.json
+- **design-system:** bug fix para value null do src
+- **design-system:** correção de estilo da propriedade type para o apollo-button em navegadores
+- **design-system:** fix(design-system): adjusts ícon invalid textfield
+- **design-system:** fix ValueAcessor inject in design-system-angular
+- **design-system:** fix for reset value in apollo-textfield
+- **design-system:** fixing warnings
+- **design-system:** atualizando circular-progress, theme do material para versão 8
+- **design-system:** fix mutable prop
+- **design-system:** doc label position
+- **design-system:** mutable prop
+- **design-system:** mutable prop
+- **design-system:** fix d eum bug que duplicava o label no snackbar
+- **design-system:** warning mutable prop apollo-button
+- **design-system:** test branch
+- **dev-portal:** fix conflict package-lock
+- **dev-portal:** atualizando caminhos dos imports das libs
+- **dev-portal:** adicionando o botao de contato em ecommerce
+- **dev-portal:** wip - merge with dev
+- **dev-portal:** merge with develop
+- **dev-portal:** wip - adding missing files
+- **dev-portal:** renaming all files to english
+- **dev-portal:** wip: working migration issues of dev-portal
+- **dev-portal:** merge with develop - resolving conflicts
+- **dev-portal:** corigindo snippets response do Swagger, code snippet e responsivo de tabelas e espaçamentos
+- **dev-portal:** removendo comentarios
+- **dev-portal:** wip - mudancas nao atualizadas
+- **event-tracking:** fixed the getConfig method freezing the original object
+- **event-tracking:** fix in ET payload
+- **event-tracking:** fix circular dependency injection in event-tracking lib
+- **event-tracking:** fix in event-tracking tests
+- **event-tracking:** fix in ET PROD URL protocol
+- **event-tracking:** somes fixes about eventTracking
+- **event-tracking:** some fixes about event-tracking
+- **event-tracking:** fix in global var declaration and validation
+- **feature-flag:** now properly initializing with all squads after a search
+- **feature-flag:** fix para a altura padronizada nas páginas e adicionado o header como um componente compartilhado
+- **feature-flag:** added apollo avatar, fixing users without a profile picture
+- **feature-flag:** correção do merge
+- **finance-dash:** retirado código não utilizado
+- **keycloak:** removing console.log
+- **keycloak:** fix in keycloak post callback
+- **keycloak:** rollback keycloak publish config and publish lib
+- **keycloak:** fix roles validatio in keycloak and picpayIfRolesDirective
+- **keycloak:** removing unnused import
+- **keycloak:** removing unnused interface
+- **keycloak-demo:** removing unnused css
+- **lab-components:** remove min-width
+- **lab-components:** remove width from Story
+- **lab-components:** removing alert()
+- **ops-dash:** url keycloak prod
+- **picpay-lab:** retirando lint não usado
+- **picpay-lab:** correções nos testes unitários que estavam quebrados
+- **picpay-lab:** merge branch 'develop' into feat/picpay-lab/dragAndDrop
+- **picpay-lab:** correção de testes do sidemenu na home
+- **picpay-lab:** correção de teste da home
+- **picpay-lab:** merge branch 'develop' into feat/picpay-lab/dragAndDrop
+- **picpay-lab:** fix duplicated imports
+- **picpay-lab:** fix conflict
+- **picpay-lab:** fix conflict
+- **picpay-lab:** correção de conflito
+- **picpedia:** removendo async await das requests do home component e corrigindo resultado incorreto no teste
+- **picpedia:** corrigindo bug de BIND de descricao no componente de BADGE e adicionando testes para isso
+- **seller-panel:** fix bug change account type & auto open side nav - manage accounts
+- **seller-panel:** changing date on table extract page
+- **seller-panel:** charge component - ChargeTransaction import & unexpected any type
+- **seller-panel:** changing vtex token labels
+- **seller-panel:** forgot-password RequestPasswordComponent unexpected any
+- **seller-panel:** settings - files with unused parameters/classes and unexpected any
+- **seller-panel:** fix message checking banking account
+- **seller-panel:** .toString()
+- **seller-panel:** removendo ID do mock de extract e tornando opcional no extract-item
+- **seller-panel:** cancelTransactionComponent unused parameter
+- **seller-panel:** revert redirect
+- **seller-panel:** retirando toString()
+- **seller-panel:** retirando toString()
+- **seller-panel:** delete isOnboarding
+- **seller-panel:** changed local of classes recaptcha
+- **seller-panel:** fix show account error
+- **seller-panel:** removing ID from extract table
+- **seller-panel:** corrigindo problemas identificados
+- **seller-panel:** auth interceptors unexpected any type
+- **seller-panel:** warning generate-new-token unexpected any
+- **seller-panel:** operator_ids wrong and currentOperators username wrong
+- **seller-panel:** fix coverage directory path from some libs
+- **seller-panel:** test branch
+- **seller-panel:** bank-accounts unexpected any and unused vars warnings
+- **seller-panel:** remocao do item ID da interface ExtractRow
+- **seller-panel:** sortDescription increase number to 12
+- **seller-panel:** loginComponent unexpected any
+- **seller-panel:** importing new interface InputTokens correctly
+- **seller-panel:** shared - unused vars and unexpected anys
+- **seller-panel:** só comentar a funcao do redirect
+- **seller-panel:** services - unused vars, unexpected anys and changing timeout for timeOut
+- **seller-panel:** applying design tokens to the table-extract component scss file & removing ID from spec file
+- **seller-panel:** httpRequestInterceptor - removendo o Injector e corrigindo código redundante
+- **seller-panel:** correção no intercept do HttpRequestInterceptor
+- **seller-panel:** trocando AuthService por SellerPanelAuthService conforme develop
+- **seller-panel:** tirando o codigo
+- **seller-panel:** my Documents import ChangeImageProfileComponent
+- **seller-panel:** renomeando RequestPasswordComponent para FormForgotPasswordComponent
+- **seller-panel:** add zendeskAddEmailAfterLogin type string delete timer
+- **seller-panel:** add type of data in login
+- **seller-panel:** delete login
+- **seller-panel:** ngx e rxjs
+- **seller-panel:** adicionando o unsubscribe - comentários do Lucas Simões
+- **seller-panel:** value being a number not string
+- **seller-panel:** warnings from lint, test and build
+- **seller-panel:** test onBoarding redirect
+- **seller-panel:** button position
+- **seller-panel:** onboarding redirect with message to user
+- **seller-panel:** type void
+- **seller-panel:** resolvendo conflitos com a branch develop
+- **seller-panel:** modalCropComponent & ChangeImageProfileComponent from lib shared to lib settings
+- **seller-panel:** test retirando id do mock
+- **shared:** fix in picpayTrackClick directive tests
+
+### Code Refactoring
+
+- **core:** replaced "git add" for "git update index" on the pre commit hook
+- **core:** remove .sdk and fix lint warnings
+- **design-system:** change spacing to .1 in close button
+- **design-system:** refactor(design-system): refactor componente stack
+- **design-system:** refactor(design-system): refactor components and docs
+- **design-system:** transform a prop into state and refactor methods and tests
+- **design-system:** change icon close dialog and fix dialog when dont have icon
+- **design-system:** comentários nas funções
+- **design-system:** refactor(design-system): refactor architecture docs
+- **design-system:** estágio 1 da refatoração das masks do inputtext
+- **event-tracking:** change event-tracking alias to [@picpay](https://github.com/picpay)/event-tracking
+- **event-tracking:** rmoving EventTracking.init from others projects tests
+- **event-tracking:** removing date creation from event-tracking
+- **event-tracking:** review of projects that use event-tracking
+- **event-tracking:** updating prod url
+- **event-tracking:** new event-tracking lib
+- **event-tracking:** adjusting track parameters
+- **event-tracking:** removing unnecessary async/await int event-tracking methods
+- **feature-flag:** added fall-back logic to avoid errors
+- **feature-flag:** changed to update instead of reset
+- **feature-flag:** removed unused resettable from squad store config
+- **feature-flag:** fixed lint type errors
+- **feature-flag:** removed unused property
+- **feature-flag:** fixed files with lint errors
+- **feature-flag:** removed unused imports
+- **feature-flag:** changed "interfaces" folder to "models"
+- **feature-flag:** fixed lint warnings
+- **feature-flag:** updated models imports to come from a barrel file
+- **finance-dash:** ajuste para evitar memory leak no datasource
+- **finance-dash:** implementado serviço de notificações da shared
+- **finance-dash:** substituido MatSnackBar pelo Apollo Snackbar
+- **finance-dash:** ajustes solicitados no codereview
+- **keycloak:** updating dependecie, remove unnused config and update published version
+- **keycloak:** refacroting keycloak for implementing good practices
+- **keycloak-demo:** removingo unnused CSS includes and adding default-screens assets
+- **lab-components:** add header storybook and modify style
+- **ops-dash:** merge branch 'develop' into refactor/ops-dash/create-env
+- **ops-dash:** ajuste texto readme
+- **ops-dash:** ajuste readmes
+- **ops-dash:** ajustes de lint
+- **ops-dash:** ajustes de lint
+- **ops-dash:** ajuste PR - readme lib help
+- **ops-dash:** refactor deploy envs para akita
+- **ops-dash:** ajustes PR
+- **ops-dash:** fixed ds test errors
+- **ops-dash:** correção texto readme
+- **ops-dash:** erro aws webhook git
+- **ops-dash:** refactor create e delete de envs para akita
+- **ops-dash:** refactor - ajustes DS e Readme
+- **ops-dash:** refactor arquitetura - ajustes PR
+- **ops-dash:** refactor - arquitetura
+- **ops-dash:** erro aws webhook git
+- **ops-dash:** ajuste no teste
+- **ops-dash:** refactor tests ds e deployar envs para akita
+- **picpay-lab:** refactor na utilização de breakpoints do DS e nos testes unitários
+- **picpay-lab:** alteração do nome da página
+- **picpay-lab:** refactoring the same pattern to set props at apollo-icon tag
+- **picpay-lab:** alteração na doc da lib dashboard
+- **picpay-lab:** refactor no título
+- **picpay-lab:** fix lint error
+- **picpay-lab:** ajuste no Readme da Lib Dashboard
+- **picpay-lab:** removendo itens que não serão utilizados no desenvolvimento
+- **picpay-lab:** alteração do teste unitário de renderizar a lista de options di menu
+- **picpay-lab:** apollo-button variant use and removing LabComponents import
+- **picpedia:** adicionando tipagem no retorno dos métodos e tornando variables readonly em Home, tags e bookmarks
+- **picpedia:** ajustes solicitados pelo Jean na aprovacao da PR
+- **picpedia:** adicionando ajustes solicitados pelo Guilherme BC na PR
+- **picpedia:** melhoria nos testes e práticas utilizadas nos serviços e components de Home, Tags e Bookmarks
+- **picpedia:** remoção de libs nao utilizadas
+- **picpedia:** removendo async dos services e testes e trabalhando com observables
+- **picpedia:** realizando os ajustes solicitados na PR
+- **seller-panel:** button
+- **seller-panel:** tests
+- **seller-panel:** remove circular dependencies
+- **seller-panel:** retirando warning
+- **seller-panel:** tirando comentarios
+- **seller-panel:** canActive change to CanLoad
+- **seller-panel:** font-size and font-weight
+- **seller-panel:** canActivate pra canLoad
+- **seller-panel:** canLoad
+- **seller-panel:** integrations mock design system
+- **seller-panel:** input
+- **seller-panel:** --api-link secondary
+- **seller-panel:** tex-decoration
+- **seller-panel:** theme grayscale
+- **seller-panel:** style h2
+- **seller-panel:** fontsize weight input-apis
+- **seller-panel:** remove GenericApi abstrat class and endpoints.ts file
+- **seller-panel:** title
+- **seller-register:** seller-register base structure refactor
+- **seller-register:** correcoes do review
+- **seller-register:** adjustments
+- **seller-register:** change of inputs for Apollo
+- **seller-register:** aPI request adjustments
+- **seller-register:** adjustments
+- **seller-register:** merge branch 'develop'
+- **seller-register:** include intercept
+- **seller-register:** correcao de erros de lint
+- **seller-register:** adjustments styles in PR
+- **seller-register:** new test flows and adjustments in PR
+- **seller-register:** indentation monorepo
+- **seller-register:** correcoes Review
+- **seller-register:** remocao do codigo comentado dentro da pagina Welcome
+- **seller-register:** merge branch 'develop' of github.com:PicPay/picpay-frontend into feat/seller-register/AQUI-362
+- **seller-register:** apply a reverse style on footer buttons to improve accessibility
+- **seller-register:** adjustments
+- **seller-register:** merge branch 'develop' of github.com:PicPay/picpay-frontend
+- **seller-register:** refactor functions and fix tests
+- **seller-register:** adjustments
+- **seller-register:** merge develop
+- **seller-register:** apply DS tokens where possible
+- **seller-register:** trigger CI
+- **shared:** refactoring and add docs for shared-track-events
+- **shared:** refactor of the event tracking lib + tests
+- **shared:** updating tools alias name
+- **shared:** updating payload from page event
+- **shared:** updating payload for page events
+- **shared:** changed "interface" folder to "models"
+- **shared:** replaced styles with new tokens
+- **shared:** refactor in routeChangeListenerService
+
+### Features
+
+- **core:** adding webview architecture
+- **core:** add token in nx cloud config
+- **core:** implementation of webpack hooks
+- **design-system:** card full width no mobile
+- **design-system:** feat(design-system): create component container
+- **design-system:** correção nome [@use](https://github.com/use)
+- **design-system:** create component box
+- **design-system:** breakpoints mixins storybook docs
+- **design-system:** alterando figures de PNG para SVG
+- **design-system:** feat(design-system): create props componente container
+- **design-system:** change token structure in all projects
+- **design-system:** feat(design-system): insert props based on
+- **design-system:** progress bar componente structure, style, functionality and documentation
+- **design-system:** split sass config files into new published libraries
+- **design-system:** improve token architecture
+- **design-system:** feat(design-system): create componente center
+- **design-system:** merge branch 'feat/design-system/component-box' conflict
+- **design-system:** feat(design-system): create componente heading
+- **design-system:** trigger CI
+- **design-system:** dialog com icon custom e botão de fechar dialog
+- **design-system:** feat(design-system): load tailwind themes
+- **design-system:** merge branch 'develop' into test/feature-flag/cypress-cucumber
+- **design-system:** feat(design-system): Apply style props
+- **design-system:** dialog e feedback-dialog
+- **design-system:** feat(design-system): create component box
+- **design-system:** trigger CI
+- **design-system:** feat(design-system): create component base
+- **design-system:** new design tokens structure
+- **design-system:** feat(design-system): remove validation component textfield
+- **design-system:** trigger CI
+- **design-system:** input text-field tests
+- **design-system:** readME update
+- **design-system:** feat(design-system): add mask component textfield
+- **design-system:** feat(design-system): create component link and documentation storybook
+- **design-system:** feat(design-system): include components in module angular
+- **design-system:** feat(design-system): create componente container
+- **design-system:** feat(design-system): create componnt text and adjusts docs
+- **design-system:** ajustes Storybook
+- **design-system:** atualização branch
+- **design-system:** template para Currency mask
+- **design-system:** alteração comentário Prop para teste build na AWS
+- **design-system:** atualização storybook
+- **design-system:** unmaskedValue liberado para todas masks templates
+- **design-system:** feat(design-system): Fix typing for Design Tokens values
+- **design-system:** testes de input e currency mask - coverage atual 75%
+- **design-system:** feat(design-system): create component grid
+- **dev-portal:** version selection button
+- **dev-portal:** merge branch 'develop' of github.com:PicPay/picpay-frontend into feat/dev-portal/ecommerce-links
+- **dev-portal:** wip - logic of documentation load depending on version
+- **dev-portal:** adjusting code review suggestions
+- **dev-portal:** add links and type codeMock and e-commerce.component.scss update and add destroy postman script
+- **dev-portal:** adding missing files
+- **dev-portal:** fixing prefix for dev portal
+- **event-tracking:** adding publish command for packages libs
+- **event-tracking:** lib event-tracking publishing settings
+- **feature-flag:** added application and squad name to feature details
+- **feature-flag:** added notification feedback to user role changes
+- **feature-flag:** merge branch 'develop' into test/feature-flag/cypress-cucumber
+- **feature-flag:** implementação da exibição de conteúdo baseado na permissão
+- **finance-dash:** merge develop
+- **finance-dash:** merge
+- **finance-dash:** ajuste no unsubscribe e remocao de parametros nao usados
+- **finance-dash:** merge
+- **finance-dash:** adicionando a listagem de recargas
+- **finance-dash:** ajuste no if consumer e conta
+- **finance-dash:** menu de ações na tabela de recargas e Modal para alteração de valor de uma recarga
+- **finance-dash:** ajuste no export da funcao createInitialState, remocao do of()
+- **finance-dash:** merge
+- **finance-dash:** merge develop
+- **keycloak:** adding isLoggedIn function in PicpayKeycloakService and workaround to add id in userProfile
+- **keycloak:** addding getToken function
+- **keycloak:** adding loadUserProfile option in keycloakConfigs and getUserProfile method in PicpayKeycloakService
+- **keycloak:** criando model genérico para mapeamento de atributos do usuário
+- **keycloak:** adding getToken function
+- **keycloak-demo:** creating a demo app for keycloak
+- **lab-components:** install popperjs
+- **lab-components:** creates lab-popover component
+- **lab-components:** verifica quando componente é vazio
+- **lab-components:** adds LabPopover on LabComponentsAngularModule
+- **lab-components:** adding emit click and component state (editing)
+- **new-event-tracking:** migrate new-event-tracking
+- **ops-dash:** ajuste PR, exclusão de módulos
+- **ops-dash:** ajuste de pasta
+- **ops-dash:** alteração de client id do keycloak para prod
+- **ops-dash:** ajustes PR
+- **ops-dash:** ajustes PR
+- **ops-dash:** ajuste test
+- **ops-dash:** notificação referente VPN e download de certificado
+- **ops-dash:** ajuste teste
+- **ops-dash:** alteração de login google para keycloak
+- **ops-dash:** merge branch 'develop' into feat/ops-dash/login-keycloak-new
+- **ops-dash:** exclusão da lib users
+- **ops-dash:** exclusão do módulo HttpClientModule
+- **ops-dash:** ajuste para fechar dialog após criar uma env
+- **ops-dash:** url prod environment
+- **ops-dash:** webhook git (erro aws)
+- **ops-dash:** alteração de id e role do keycloak
+- **ops-dash:** refactor opsdash
+- **ops-dash:** erro aws webhook git
+- **ops-dash:** ajuste roles
+- **picpay-lab:** adds images assets
+- **picpay-lab:** add sections components
+- **picpay-lab:** device component
+- **picpay-lab:** adds accessibility
+- **picpay-lab:** testes unitários para isOpen do sidepanel
+- **picpay-lab:** addSection button was added in device component
+- **picpay-lab:** prefixo correto para o componente sidepanel
+- **picpay-lab:** ajuste de estilos
+- **picpay-lab:** merge branch 'develop' into feat/picpay-lab/dashboard
+- **picpay-lab:** device component
+- **picpay-lab:** addSection button was added in device component
+- **picpay-lab:** put the header on the device
+- **picpay-lab:** estrutura inicial do transformer
+- **picpay-lab:** onEdit header was improved
+- **picpay-lab:** mostrar painel
+- **picpay-lab:** primeira estrutura da home
+- **picpay-lab:** criação da lib de dashboard do picpay-lab
+- **picpay-lab:** inclusão da lógica para abrir o componente correto de acordo com a opcao do menu selecionada
+- **picpay-lab:** i adapted the device for smaller desktop
+- **picpay-lab:** add popover on menu and header
+- **picpay-lab:** remove left space
+- **picpay-lab:** merge develop
+- **picpay-lab:** adição da diretiva de drag and drop nos items de adicionar seçao e do device
+- **picpay-lab:** alteração dos estilos dos componentes arrástáveis, tanto na lista de destino quanto na de origem
+- **picpay-lab:** alteração no menu para telas pequenas
+- **picpay-lab:** adds modal-use-example component and service
+- **picpay-lab:** put the header on the device
+- **picpay-lab:** correção de testes e lint
+- **picpay-lab:** correção lint
+- **picpay-lab:** testes unitários
+- **picpay-lab:** disabled actions and ready to submit states implementation
+- **picpay-lab:** tokens do ds
+- **picpay-lab:** sidepanel direito
+- **picpay-lab:** onEdit header was improved
+- **picpay-lab:** criação do componente sidemenu para o PPlab
+- **picpay-lab:** estilização
+- **picpay-lab:** template do sidepanel
+- **picpay-lab:** componente sidebar - typescript
+- **picpay-lab:** open sidepanel by device button click
+- **picpay-lab:** mudança de nomes na section para fins de testes
+- **picpay-lab:** transformer na home para o device
+- **picpay-lab:** dashboard header component
+- **picpay-lab:** texto fake no markdown para melhor visualização na renderização
+- **picpay-lab:** add effects on menu
+- **picpay-lab:** add sample images
+- **picpay-lab:** merge branch 'develop' into feat/picpay-lab/PL-247/sideMenu
+- **picpedia:** business glossary page
+- **picpedia:** ajuste nomenclatura test
+- **picpedia:** refactor da minha PR que ficou de fora da nova arquitetura.
+- **picpedia:** implementando recursos que antes estavam com bug por conta do design-system
+- **picpedia:** ajuste no for de cards - página glossário de negócios
+- **picpedia:** ajuste tipagem - página glossário de negócios
+- **picpedia:** ajustes PR - página glossário de negócios
+- **picpedia:** implementando funcionalidade de consulta de favoritos
+- **picpedia:** teste de existência de inputs e renderização no html - glossário de negócios
+- **picpedia:** implementando consultas de tags e favoritos na home page
+- **picpedia:** novo componente de header, substituindo o do DS
+- **seller-panel:** adjust bug button export report
+- **seller-panel:** preserve document PF
+- **seller-panel:** merge branch 'develop' of https://github.com/PicPay/picpay-frontend
+- **seller-panel:** loading bank account error block manual withdrawal
+- **seller-panel:** merge branch 'feat/seller-panel/COPJ-996/bank-accounts-and-withdrawals'
+- **seller-panel:** migrate modal account-error to seller-panel-extract
+- **seller-panel:** zendesk mock
+- **seller-panel:** changing  name service, file mock folder, environments file
+- **seller-panel:** criação do componente de confirmação de pagamento e ajustes na estilização
+- **seller-panel:** correções no responsivo nos steps e modal de confirmação
+- **seller-panel:** zendesk config
+- **seller-panel:** zendesk comentado
+- **seller-panel:** removed console.log and adjust date in DetailsTransactionsComponent
+- **seller-panel:** - Alterando o set color do apollo button de remover arquivo | - Inserindo no-select no ui-styles
+- **seller-panel:** add .data property in result
+- **seller-panel:** redirect if not completed onboarding to old panel
+- **seller-panel:** retirando comentários
+- **seller-panel:** - Adicionando fluxo de ordem de pagamento em progresso | - Correção do noselect
+- **seller-panel:** showAccountError & test dynamic form - bank-account
+- **seller-panel:** fix call func
+- **seller-panel:** chargeContent in error case
+- **seller-panel:** removed component SendEmailComponent
+- **seller-panel:** removed comments
+- **seller-panel:** adjust layout to  export report to email
+- **seller-panel:** checking-bank-account
+- **seller-panel:** delete enviroments
+- **seller-panel:** adjust payload change-password
+- **seller-panel:** created mock
+- **seller-panel:** removed url sandbox
+- **seller-panel:** adjust unit test AccountDynamicForm
+- **seller-panel:** adjust of bug when edit account
+- **seller-panel:** merge
+- **seller-panel:** login open old panel
+- **seller-panel:** delete this. and aysnc
+- **seller-panel:** zendesk config
+- **seller-panel:** change models endpoint tests
+- **seller-panel:** environment
+- **seller-panel:** adjust debounceTIme to 1000 ms
+- **seller-panel:** method zendeskAddEmailAfterLogin call zendesk service
+- **seller-panel:** delete windowsSpy
+- **seller-panel:** resolve conflit
+- **seller-panel:** hotjar
+- **seller-panel:** adjust unit test
+- **seller-panel:** unit tests
+- **seller-panel:** hotjar
+- **seller-panel:** adjust export report in extract page
+- **seller-panel:** removed code tracking page
+- **seller-panel:** send report to other email
+- **seller-panel:** adjust event name
+- **seller-panel:** adjust of token eventTracking PROD
+- **seller-panel:** renamed HttpRequestInterceptor for SellerPanelHttpRequestInterceptor
+- **seller-panel:** renamed AuthService for SellerPanelAuthService
+- **seller-panel:** renamed AuthenticationGuard for SellerPanelAuthGuard
+- **seller-panel:** renamed SessionGuard for SellerPanelSessionGuard
+- **seller-panel:** adjust unit test authService
+- **seller-panel:** created documentation for lib auth
+- **seller-panel:** unit tests DownloadReportsComponent
+- **seller-panel:** login redirect to old painel if doesnt have onboarding
+- **seller-panel:** migration and adjust after migration
+- **seller-register:** inclusion of access data
+- **seller-register:** range-slider component structure, style, implementation and testing
+- **seller-register:** progress bar component initial structure and style
+- **seller-register:** [AQUI 352] Cell Validation Page
+- **seller-register:** seller-register refactor release branch
+- **seller-register:** image button structure, style and functionality
+- **seller-register:** page responsible-data
+- **seller-register:** image button component structure, style and functionality
+- **seller-register:** readd mockup component in seller-register-form lib
+- **seller-register:** merge with develop and migrating to new tokens
+- **shared:** snack bar DS
+- **shared:** updated the notifications service to use the DS snackbar
+- **shared:** updating hooks for async execution
+- **ui:** create a wrap to put a content on the side-menu
+- **webviews:** adding ChakraUI with picpay tokens
+- **webviews:** adding sass vars modules
+- **webviews:** adding sass themes function and tokens
+- **webviews:** removing styled components
+- **webviews:** rebase
+- **webviews:** adding sass themes function and tokens
+
+### Performance Improvements
+
+- **dev-portal:** fix enforce boundaries in dev-portal app.module
+- **seller-panel:** remove ngx-toastr
+- **seller-panel:** remove notifications service to use core notifications
+
+### Style
+
+- **design-system:** identação
+- **design-system:** fix apollo-card background
+- **dev-portal:** fixed name class
+- **dev-portal:** fix darkmode apollo-card
+- **dev-portal:** delete classes not using and fix BEM
+- **dev-portal:** adicionando doc do ecommerce
+- **dev-portal:** removendo class na utilizada e orgazinando component
+- **dev-portal:** fix e-commerce link color
+- **dev-portal:** fix color link and move interface file
+- **feature-flag:** changed order of user name auto complete input and squad access role select
+- **lab-components:** running build
+- **lab-components:** running build
+- **lab-components:** removing space
+- **picpay-lab:** removing margin auto and refactoring
+- **picpay-lab:** correções de estilo
+- **picpay-lab:** alteração de estilo do cdKDragPlaceholder dos components
+- **picpay-lab:** alinhamento dos itens do drop-area
+- **picpay-lab:** removing margin auto and refactoring
+- **picpay-lab:** alteração no estilo do placeholder na lista de origem
+- **picpay-lab:** criação do estilo da área de drop no componente de device
+- **picpay-lab:** alterando a altura mínima do scroll-content
+- **picpay-lab:** estilo do componente shadow para ser visualizado ao realizar o drag and drop
+- **picpay-lab:** alteração de estilo da drop area no device e no section component
+- **picpay-lab:** altura do header para rem
+- **picpedia:** ajuste de pastas pra organizar melhor alguns arquivos
+- **picpedia:** utilizando as bordas, box-shadow e radius do design system
+- **picpedia:** removendo custom utilities
+- **picpedia:** adicionando estilização customizada
+- **seller-panel:** format code style
+- **seller-register:** alteracao do spacing além e correcao da diretiva
+- **shared:** updating lint fixes
+
+### Pull Requests
+
+- Merge pull request [#632](https://github.com/PicPay/picpay-frontend/issues/632) from PicPay/feat/design-system/component-box
+- Merge pull request [#739](https://github.com/PicPay/picpay-frontend/issues/739) from PicPay/refactor/seller-register/include-intercept
+- Merge pull request [#727](https://github.com/PicPay/picpay-frontend/issues/727) from PicPay/feature/design-system/card-full-on-mobile
+- Merge pull request [#732](https://github.com/PicPay/picpay-frontend/issues/732) from PicPay/fix/seller-panel/circular-dependency
+- Merge pull request [#726](https://github.com/PicPay/picpay-frontend/issues/726) from PicPay/feat/feature-flag/application-and-squad-name
+- Merge pull request [#736](https://github.com/PicPay/picpay-frontend/issues/736) from PicPay/fix/event-tracking/circular-dependency
+- Merge pull request [#731](https://github.com/PicPay/picpay-frontend/issues/731) from PicPay/fix/seller-panel/remove-generic-api
+- Merge pull request [#716](https://github.com/PicPay/picpay-frontend/issues/716) from PicPay/feat/seller-register/AQUI-362/personal-address-page
+- Merge pull request [#724](https://github.com/PicPay/picpay-frontend/issues/724) from PicPay/cell-validation
+- Merge pull request [#729](https://github.com/PicPay/picpay-frontend/issues/729) from PicPay/refactor/picpay-lab/fix-lint-errors
+- Merge pull request [#684](https://github.com/PicPay/picpay-frontend/issues/684) from PicPay/fix/seller-panel/warnings-fix
+- Merge pull request [#725](https://github.com/PicPay/picpay-frontend/issues/725) from PicPay/refactor/ops-dash/adjustments-lint
+- Merge pull request [#717](https://github.com/PicPay/picpay-frontend/issues/717) from PicPay/feat/picpedia/glossario-page
+- Merge pull request [#690](https://github.com/PicPay/picpay-frontend/issues/690) from PicPay/fix/seller-panel/remove-redirect
+- Merge pull request [#723](https://github.com/PicPay/picpay-frontend/issues/723) from PicPay/feat/picpay-lab/PL-271/menu-effect
+- Merge pull request [#711](https://github.com/PicPay/picpay-frontend/issues/711) from PicPay/DSGNEW-130-testing-menu
+- Merge pull request [#718](https://github.com/PicPay/picpay-frontend/issues/718) from PicPay/fix/feature-flag/no-header-no-avatar
+- Merge pull request [#719](https://github.com/PicPay/picpay-frontend/issues/719) from PicPay/fix/design-system/avatar-null-src
+- Merge pull request [#715](https://github.com/PicPay/picpay-frontend/issues/715) from PicPay/refactor/seller-panel/integrations-add-DS-and-canLoad
+- Merge pull request [#709](https://github.com/PicPay/picpay-frontend/issues/709) from PicPay/fix/feature-flag/no-header-no-avatar
+- Merge pull request [#708](https://github.com/PicPay/picpay-frontend/issues/708) from PicPay/feat/ops-dash/notification-certificate
+- Merge pull request [#698](https://github.com/PicPay/picpay-frontend/issues/698) from PicPay/feat/feature-flag/content-access-levels
+- Merge pull request [#691](https://github.com/PicPay/picpay-frontend/issues/691) from PicPay/docs/design-system-angular/readme
+- Merge pull request [#705](https://github.com/PicPay/picpay-frontend/issues/705) from PicPay/feat/feature-flag/user-roles-notifications
+- Merge pull request [#707](https://github.com/PicPay/picpay-frontend/issues/707) from PicPay/feat/seller-panel/SD-132/adjust-lib-auth
+- Merge pull request [#702](https://github.com/PicPay/picpay-frontend/issues/702) from PicPay/refactor/design-system/input-masks
+- Merge pull request [#704](https://github.com/PicPay/picpay-frontend/issues/704) from PicPay/DSGNEW-131-testing-list
+- Merge pull request [#694](https://github.com/PicPay/picpay-frontend/issues/694) from PicPay/DSGNEW-110-testing-avatar
+- Merge pull request [#703](https://github.com/PicPay/picpay-frontend/issues/703) from PicPay/style/feature-flag/create-user
+- Merge pull request [#666](https://github.com/PicPay/picpay-frontend/issues/666) from PicPay/fix/seller-panel/button-position
+- Merge pull request [#699](https://github.com/PicPay/picpay-frontend/issues/699) from PicPay/fix/feature-flag/squad-user-picture
+- Merge pull request [#700](https://github.com/PicPay/picpay-frontend/issues/700) from PicPay/refactor/seller-register/refactoring-inputs
+- Merge pull request [#697](https://github.com/PicPay/picpay-frontend/issues/697) from PicPay/feat/picpay-lab/transformer-on-device
+- Merge pull request [#701](https://github.com/PicPay/picpay-frontend/issues/701) from PicPay/feat/ops-dash/id-keycloak-prod
+- Merge pull request [#693](https://github.com/PicPay/picpay-frontend/issues/693) from PicPay/fix/feature-flag/squad-search
+- Merge pull request [#696](https://github.com/PicPay/picpay-frontend/issues/696) from PicPay/feat/picpay-lab/PL-269/add-section
+- Merge pull request [#689](https://github.com/PicPay/picpay-frontend/issues/689) from PicPay/feat/picpay-lab/dragAndDrop
+- Merge pull request [#695](https://github.com/PicPay/picpay-frontend/issues/695) from PicPay/fix/event-tracking/payload-adjusments
+- Merge pull request [#653](https://github.com/PicPay/picpay-frontend/issues/653) from PicPay/feat/picpay-lab/PL-254/header-improve
+- Merge pull request [#692](https://github.com/PicPay/picpay-frontend/issues/692) from PicPay/feat/ops-dash/id-keycloak-prod
+- Merge pull request [#688](https://github.com/PicPay/picpay-frontend/issues/688) from PicPay/feat/seller-panel/SD-210/adjust-mixpanel
+- Merge pull request [#665](https://github.com/PicPay/picpay-frontend/issues/665) from PicPay/feat/lab-components/PL-260/add-popover-on-menu
+- Merge pull request [#687](https://github.com/PicPay/picpay-frontend/issues/687) from PicPay/fix/core/architect-build-commands
+- Merge pull request [#685](https://github.com/PicPay/picpay-frontend/issues/685) from PicPay/feat/ops-dash/close-dialog-create
+- Merge pull request [#686](https://github.com/PicPay/picpay-frontend/issues/686) from PicPay/fix/packages/event-tracking-prod-url
+- Merge pull request [#638](https://github.com/PicPay/picpay-frontend/issues/638) from PicPay/feat/core/webpack-hooks
+- Merge pull request [#676](https://github.com/PicPay/picpay-frontend/issues/676) from PicPay/feat/seller-panel/SD-205/remove-code-tracking-page
+- Merge pull request [#652](https://github.com/PicPay/picpay-frontend/issues/652) from PicPay/feat/design-system/input-currency-mask
+- Merge pull request [#675](https://github.com/PicPay/picpay-frontend/issues/675) from PicPay/feat/ops-dash/roles-keycloak
+- Merge pull request [#583](https://github.com/PicPay/picpay-frontend/issues/583) from PicPay/feat/KEF-369/change-recharges-value
+- Merge pull request [#668](https://github.com/PicPay/picpay-frontend/issues/668) from PicPay/test/seller-panel/integrations-page-test
+- Merge pull request [#669](https://github.com/PicPay/picpay-frontend/issues/669) from PicPay/chore/seller-panel/remessa-de-credito
+- Merge pull request [#644](https://github.com/PicPay/picpay-frontend/issues/644) from PicPay/feat/shared/sidebar
+- Merge pull request [#661](https://github.com/PicPay/picpay-frontend/issues/661) from PicPay/DSGNEW-97-testing-icon-button
+- Merge pull request [#667](https://github.com/PicPay/picpay-frontend/issues/667) from PicPay/DSGNEW-106-testing-swicth-toggle
+- Merge pull request [#662](https://github.com/PicPay/picpay-frontend/issues/662) from PicPay/feat/seller-panel/add-hotjar
+- Merge pull request [#664](https://github.com/PicPay/picpay-frontend/issues/664) from PicPay/DSGNEW-104-testing-radio
+- Merge pull request [#633](https://github.com/PicPay/picpay-frontend/issues/633) from PicPay/feat/feature-flag/access-levels-utils-migration
+- Merge pull request [#663](https://github.com/PicPay/picpay-frontend/issues/663) from PicPay/feat/seller-panel/SD-200/adjust-export-report-extract
+- Merge pull request [#658](https://github.com/PicPay/picpay-frontend/issues/658) from PicPay/feat/lab-components/PL-264/popover
+- Merge pull request [#654](https://github.com/PicPay/picpay-frontend/issues/654) from PicPay/feat/picpaylab/pl-262/transformer-component
+- Merge pull request [#659](https://github.com/PicPay/picpay-frontend/issues/659) from PicPay/feat/picpay-lab/PL-268/device-improves
+- Merge pull request [#657](https://github.com/PicPay/picpay-frontend/issues/657) from PicPay/feat/picpay-lab/SelectOption
+- Merge pull request [#655](https://github.com/PicPay/picpay-frontend/issues/655) from PicPay/fix/seller-panel/ecommerce-token-labels
+- Merge pull request [#645](https://github.com/PicPay/picpay-frontend/issues/645) from PicPay/DSGNEW-84-Testing-circular-progress
+- Merge pull request [#646](https://github.com/PicPay/picpay-frontend/issues/646) from PicPay/DSGNEW-85-testing-dialog
+- Merge pull request [#650](https://github.com/PicPay/picpay-frontend/issues/650) from PicPay/feat/design-system/progress-bar
+- Merge pull request [#621](https://github.com/PicPay/picpay-frontend/issues/621) from PicPay/feat/seller-panel/add-zendesk
+- Merge pull request [#641](https://github.com/PicPay/picpay-frontend/issues/641) from PicPay/feat/seller-panel/redirect-to-old-panel
+- Merge pull request [#651](https://github.com/PicPay/picpay-frontend/issues/651) from PicPay/chore/seller-panel/remessa-de-credito
+- Merge pull request [#647](https://github.com/PicPay/picpay-frontend/issues/647) from PicPay/fix/design-system/apollo-button-type
+- Merge pull request [#643](https://github.com/PicPay/picpay-frontend/issues/643) from PicPay/chore/seller-panel/remessa-de-credito
+- Merge pull request [#636](https://github.com/PicPay/picpay-frontend/issues/636) from PicPay/fix/seller-panel/remove-extract-id
+- Merge pull request [#639](https://github.com/PicPay/picpay-frontend/issues/639) from PicPay/DSGNEW-82-Testing-ApolloButton
+- Merge pull request [#640](https://github.com/PicPay/picpay-frontend/issues/640) from PicPay/DSGNEW-83-Testing-apollo-checkbox
+- Merge pull request [#619](https://github.com/PicPay/picpay-frontend/issues/619) from PicPay/refactor/shared-track-evenets/route-change-listener-service
+- Merge pull request [#642](https://github.com/PicPay/picpay-frontend/issues/642) from PicPay/feat/shared/notifications-ds
+- Merge pull request [#617](https://github.com/PicPay/picpay-frontend/issues/617) from PicPay/refactor/seller-register/base-structure
+- Merge pull request [#635](https://github.com/PicPay/picpay-frontend/issues/635) from PicPay/feat/seller-panel/remessa-de-credito
+- Merge pull request [#637](https://github.com/PicPay/picpay-frontend/issues/637) from PicPay/fix/design-system/snackbar-label
+- Merge pull request [#628](https://github.com/PicPay/picpay-frontend/issues/628) from PicPay/feat/picpedia/tags-and-bookmark
+- Merge pull request [#627](https://github.com/PicPay/picpay-frontend/issues/627) from PicPay/feat/keycloak/adjusments
+- Merge pull request [#634](https://github.com/PicPay/picpay-frontend/issues/634) from PicPay/docs/picpay-lab/DocDashboard
+- Merge pull request [#631](https://github.com/PicPay/picpay-frontend/issues/631) from PicPay/feat/picpay-lab/PL-252/device
+- Merge pull request [#630](https://github.com/PicPay/picpay-frontend/issues/630) from PicPay/origin/fix/seller-panel/table-extract-date
+- Merge pull request [#623](https://github.com/PicPay/picpay-frontend/issues/623) from PicPay/feat/seller-panel/COPJ-996/bank-account-error
+- Merge pull request [#625](https://github.com/PicPay/picpay-frontend/issues/625) from PicPay/feat/dashboard-page
+- Merge pull request [#629](https://github.com/PicPay/picpay-frontend/issues/629) from PicPay/feat/picpay-lab/PL-250/section-component
+- Merge pull request [#626](https://github.com/PicPay/picpay-frontend/issues/626) from PicPay/feat/design-system/breakpoints-docs
+- Merge pull request [#616](https://github.com/PicPay/picpay-frontend/issues/616) from PicPay/feat/picpay-lab/PL-247/sideMenu
+- Merge pull request [#624](https://github.com/PicPay/picpay-frontend/issues/624) from PicPay/feat/core/add-eslint-ignore
+- Merge pull request [#622](https://github.com/PicPay/picpay-frontend/issues/622) from PicPay/refactor/core/pre-commit
+- Merge pull request [#591](https://github.com/PicPay/picpay-frontend/issues/591) from PicPay/feat/seller-panel/COPJ-996/bank-accounts-and-withdrawals
+- Merge pull request [#618](https://github.com/PicPay/picpay-frontend/issues/618) from PicPay/fix/packages/event-tracking-config-freezing
+- Merge pull request [#614](https://github.com/PicPay/picpay-frontend/issues/614) from PicPay/refactor/ops-dash/fixing-ds-tests
+- Merge pull request [#613](https://github.com/PicPay/picpay-frontend/issues/613) from PicPay/feat/keycloak/adding-getToken-function
+- Merge pull request [#575](https://github.com/PicPay/picpay-frontend/issues/575) from PicPay/feat/event-tracking/migration
+- Merge pull request [#612](https://github.com/PicPay/picpay-frontend/issues/612) from PicPay/feat/picpay-lab/PL-251/modal-use-example
+- Merge pull request [#605](https://github.com/PicPay/picpay-frontend/issues/605) from PicPay/fix/design-system/circular-progress
+- Merge pull request [#611](https://github.com/PicPay/picpay-frontend/issues/611) from PicPay/fix/seller-panel/name-operators
+- Merge pull request [#608](https://github.com/PicPay/picpay-frontend/issues/608) from PicPay/feat/lab/sidepanel-component
+- Merge pull request [#558](https://github.com/PicPay/picpay-frontend/issues/558) from PicPay/feat/picpedia/home-page
+- Merge pull request [#597](https://github.com/PicPay/picpay-frontend/issues/597) from PicPay/fix/design-system/textfield-reset
+- Merge pull request [#610](https://github.com/PicPay/picpay-frontend/issues/610) from PicPay/feat/picpay-lab/PL-246/header
+- Merge pull request [#592](https://github.com/PicPay/picpay-frontend/issues/592) from PicPay/fix/seller-panel/name-operators
+- Merge pull request [#607](https://github.com/PicPay/picpay-frontend/issues/607) from PicPay/refactor/packages-keycloak/change-method-calls
+- Merge pull request [#606](https://github.com/PicPay/picpay-frontend/issues/606) from PicPay/style/design-system/apollo-card
+- Merge pull request [#601](https://github.com/PicPay/picpay-frontend/issues/601) from PicPay/refactor/ops-dash/ajustments
+- Merge pull request [#587](https://github.com/PicPay/picpay-frontend/issues/587) from PicPay/feat/dev-portal/ecommerce-links
+- Merge pull request [#586](https://github.com/PicPay/picpay-frontend/issues/586) from PicPay/feat/seller-register/AQUI-372/image-button-component
+- Merge pull request [#600](https://github.com/PicPay/picpay-frontend/issues/600) from PicPay/DSGNEW-68/feat/design-system/changes-dialog
+- Merge pull request [#557](https://github.com/PicPay/picpay-frontend/issues/557) from PicPay/feat/core/react-webviews
+- Merge pull request [#602](https://github.com/PicPay/picpay-frontend/issues/602) from PicPay/refactor/seller-register/AQUI-620/range-slider-component-adjustment
+- Merge pull request [#599](https://github.com/PicPay/picpay-frontend/issues/599) from PicPay/feat/dev-portal/version-button
+- Merge pull request [#594](https://github.com/PicPay/picpay-frontend/issues/594) from PicPay/feat/picpay-lab/dashboard
+- Merge pull request [#595](https://github.com/PicPay/picpay-frontend/issues/595) from PicPay/refactor/ops-dash/arquitetura
+- Merge pull request [#577](https://github.com/PicPay/picpay-frontend/issues/577) from PicPay/fix/dev-portal/nx-migrate
+- Merge pull request [#593](https://github.com/PicPay/picpay-frontend/issues/593) from PicPay/refactor/core/feature-flag-package
+- Merge pull request [#588](https://github.com/PicPay/picpay-frontend/issues/588) from PicPay/refactor/design-system/figures-to-svg
+- Merge pull request [#590](https://github.com/PicPay/picpay-frontend/issues/590) from PicPay/fix/core/react
+- Merge pull request [#581](https://github.com/PicPay/picpay-frontend/issues/581) from PicPay/fix/seller-panel/increase-number-of-caracteres-id
+- Merge pull request [#589](https://github.com/PicPay/picpay-frontend/issues/589) from PicPay/chore/dev-portal/contact-form
+- Merge pull request [#585](https://github.com/PicPay/picpay-frontend/issues/585) from PicPay/docs/core/add-how-to-create-branch
+- Merge pull request [#582](https://github.com/PicPay/picpay-frontend/issues/582) from PicPay/fix/seller-panel/coverage-directory
+- Merge pull request [#580](https://github.com/PicPay/picpay-frontend/issues/580) from PicPay/feat/design-system/dialog
+- Merge pull request [#579](https://github.com/PicPay/picpay-frontend/issues/579) from PicPay/feat/seller-panel/SD-118/adjust-bug-button-send-report
+- Merge pull request [#563](https://github.com/PicPay/picpay-frontend/issues/563) from PicPay/feat/seller-register/AQUI-374/range-slider-component
+- Merge pull request [#578](https://github.com/PicPay/picpay-frontend/issues/578) from PicPay/refactor/ops-dash/create-env
+- Merge pull request [#562](https://github.com/PicPay/picpay-frontend/issues/562) from PicPay/feat/design-system/textfield-mask
+- Merge pull request [#530](https://github.com/PicPay/picpay-frontend/issues/530) from PicPay/develop
+- Merge pull request [#576](https://github.com/PicPay/picpay-frontend/issues/576) from PicPay/fix/dev-portal/snippets-swagger
+- Merge pull request [#555](https://github.com/PicPay/picpay-frontend/issues/555) from PicPay/test/feature-flag/cypress-cucumber
+- Merge pull request [#574](https://github.com/PicPay/picpay-frontend/issues/574) from PicPay/feat/seller-panel/fix-call-check-accounts
+- Merge pull request [#573](https://github.com/PicPay/picpay-frontend/issues/573) from PicPay/fix/packages/keycloak-publish-config
+- Merge pull request [#572](https://github.com/PicPay/picpay-frontend/issues/572) from PicPay/fix/packages/keycloak-post-callback
+- Merge pull request [#568](https://github.com/PicPay/picpay-frontend/issues/568) from PicPay/feat/seller-panel/checking-bank-account-new-project
+- Merge pull request [#569](https://github.com/PicPay/picpay-frontend/issues/569) from PicPay/feat/seller-panel/SD-115/change-layout-export-report
+- Merge pull request [#570](https://github.com/PicPay/picpay-frontend/issues/570) from PicPay/chore/core/codeowners
+- Merge pull request [#567](https://github.com/PicPay/picpay-frontend/issues/567) from PicPay/feat/seller-panel/SD-104/adjust-bug-reset-password
+- Merge pull request [#571](https://github.com/PicPay/picpay-frontend/issues/571) from PicPay/fix/dev-portal/ecommerce-template
+- Merge pull request [#550](https://github.com/PicPay/picpay-frontend/issues/550) from PicPay/feat/ops-dash/login-keycloak-new
+- Merge pull request [#566](https://github.com/PicPay/picpay-frontend/issues/566) from PicPay/wip/seller-panel/SD-95/adjust-edit-account
+- Merge pull request [#564](https://github.com/PicPay/picpay-frontend/issues/564) from PicPay/docs/lab-components/initial-page
+- Merge pull request [#561](https://github.com/PicPay/picpay-frontend/issues/561) from PicPay/docs/picpay-lab/PL-229/docsMarkdown
+- Merge pull request [#560](https://github.com/PicPay/picpay-frontend/issues/560) from PicPay/doc/lab-components/PL-231/title
+- Merge pull request [#559](https://github.com/PicPay/picpay-frontend/issues/559) from PicPay/fix/seller-panel/value-type-number
+- Merge pull request [#553](https://github.com/PicPay/picpay-frontend/issues/553) from PicPay/doc/lab-components/PL-226/card-button
+- Merge pull request [#554](https://github.com/PicPay/picpay-frontend/issues/554) from PicPay/docs/picpay-lab/PL-228/StroyBookInput
+- Merge pull request [#552](https://github.com/PicPay/picpay-frontend/issues/552) from PicPay/docs/picpay-lab/simple-header
+- Merge pull request [#556](https://github.com/PicPay/picpay-frontend/issues/556) from PicPay/feat/ops-dash/refactor-update-new
+- Merge pull request [#538](https://github.com/PicPay/picpay-frontend/issues/538) from PicPay/feat/keycloak-demo/create-keycloak-demo
+- Merge pull request [#551](https://github.com/PicPay/picpay-frontend/issues/551) from PicPay/refactor/lab-components/header
+- Merge pull request [#549](https://github.com/PicPay/picpay-frontend/issues/549) from PicPay/feat/seller-panel/SD-94/onboarding-error-handling
+- Merge pull request [#540](https://github.com/PicPay/picpay-frontend/issues/540) from PicPay/feat/seller-panel/SD-103/migration
+- Merge pull request [#546](https://github.com/PicPay/picpay-frontend/issues/546) from PicPay/feat/finance-dash/migrate-recharges
+- Merge pull request [#537](https://github.com/PicPay/picpay-frontend/issues/537) from PicPay/feat/seller-register/migrate
+- Merge pull request [#544](https://github.com/PicPay/picpay-frontend/issues/544) from PicPay/feat/dev-portal/ecommerce-docs
+- Merge pull request [#533](https://github.com/PicPay/picpay-frontend/issues/533) from PicPay/feat/packages/doc-update-keycloak-new
+- Merge pull request [#541](https://github.com/PicPay/picpay-frontend/issues/541) from PicPay/TRAN-665-change-endpoint-to-ppcode
+- Merge pull request [#547](https://github.com/PicPay/picpay-frontend/issues/547) from PicPay/fix/design-system/apollo-icon-get-types
+- Merge pull request [#545](https://github.com/PicPay/picpay-frontend/issues/545) from PicPay/fix/design-system/value-accessor-injectable
+- Merge pull request [#542](https://github.com/PicPay/picpay-frontend/issues/542) from PicPay/feat/dev-portal/ecommerce-docs
+- Merge pull request [#539](https://github.com/PicPay/picpay-frontend/issues/539) from PicPay/core/nx/assets-design-system
+- Merge pull request [#536](https://github.com/PicPay/picpay-frontend/issues/536) from PicPay/fix/packages/picpay-keycloak-roles-validation
+- Merge pull request [#535](https://github.com/PicPay/picpay-frontend/issues/535) from PicPay/fix/core/update-mirgationmd
+- Merge pull request [#534](https://github.com/PicPay/picpay-frontend/issues/534) from PicPay/core/nx/update-gitignore
+- Merge pull request [#531](https://github.com/PicPay/picpay-frontend/issues/531) from PicPay/fix/design-system/warnings
+- Merge pull request [#464](https://github.com/PicPay/picpay-frontend/issues/464) from PicPay/AQUI-323/welcome-tips-page
+- Merge pull request [#451](https://github.com/PicPay/picpay-frontend/issues/451) from PicPay/feat/seller-register/welcome-page
+- Merge pull request [#442](https://github.com/PicPay/picpay-frontend/issues/442) from PicPay/feat/seller-register/AQUI-326/progress-bar-component
+
+
+<a name="v2.0.0"></a>
+
+## [v2.0.0] - 24/02/2021
+
+### Bug Fixes
+
+- **core:** fix all lint errors
+- **core:** fix(core) removing 'npx' from post-install
+- **core:** adding preinstall command
+- **dev-portal:** remove async jest method and skip wrong unit tests
+- **feature-flag:** remove async method of beforeEach that run sets of configureTestingModule
+- **ops-dash:** skip some tests - pending refactor
+- **seller-panel:** fix tslint failures
+- **seller-panel:** solve conflicts
+- **seller-panel:** remove unused vars in spec files
+- **seller-panel:** bug fixed when close modal without send to email
+- **seller-panel:** remove console log
+- **seller-panel:** fix request params
+- **seller-panel:** remove download option and add warning message in export transactions and extract
+- **seller-panel:** code review
+- **seller-panel:** code review
+- **seller-panel:** remove nested subscribers
+
+### Code Refactoring
+
+- **core:** removing unnused lib from package.json
+- **core:** migrate jest configs from jest.config.js to jest.preset.js
+- **design-system:** Adjusts icons in apps and documentations and remove test compionent select
+- **dev-portal:** refatoração do code snippet para suportar outros tipos de linguagem
+- **ops-dash:** alteraçao de label
+- **ops-dash:** refactor aba lateral
+- **ops-dash:** refactor aba lateral para akita - update envs e serviços associados
+- **ops-dash:** refactor aba lateral
+- **ops-dash:** refactor aba lateral para akita
+- **ops-dash:** refactor aba lateral para akita
+- **ops-dash:** refactor aba lateral para akita
+- **seller-panel:** new model naming pattern
+
+### Features
+
+- **core:** prevent old folder structure in gitignore
+- **design-system:** add improvements on header component
+- **design-system:** card-button component was created (for picpay-lab use)
+- **design-system:** inclui o componente lab-header
+- **design-system:** inclui componente de title/subtitle
+- **design-system:** change to p tag
+- **design-system:** simple-header component was created (for picpay-lab use)
+- **dev-portal:** adapatação do componente notice para mensagens/alertas destacados na página
+- **finance-dash:** ajust directive-selector in lint
+- **finance-dash:** criacao da estrutura da lib de recargas
+- **finance-dash:** adicionado botoes de acoes e tabs
+- **finance-dash:** adjustment to use mixins and removal of unused parts
+- **finance-dash:** merge
+- **finance-dash:** merge
+- **ops-dash:** exportar arquivo csv de usuários com endpoint
+- **ops-dash:** exportar csv de usuários, endpoint
+- **ops-dash:** alterações: map e patchValue
+- **picpay-lab:** inclui token do design system
+- **picpay-lab:** merge develop
+- **picpay-lab:** altera background-size
+- **picpay-lab:** inclui class header editing
+- **picpay-lab:** lógica para button link
+- **picpay-lab:** inclui hover no header
+- **picpay-lab:** inclui readme e usa o token border
+- **picpay-lab:** add input component
+- **picpay-lab:** build do componente e testes unitários
+- **picpay-lab:** merge develop
+- **picpay-lab:** estrutura básica para botão
+- **picpay-lab:** estrutura do componente markdown e testes unitários
+
+### Performance Improvements
+
+- **core:** remove extra async jest method from apps spec
+- **feature-flag:** remove extra async jet method and ignore some test to be refactored
+- **finance-dash:** remove async jest method from finance-dash-recharges lib
+- **picpay-lab:** remove async jest method from picpay-lab-shared lib
+- **seller-panel:** perf in seller-panel-extract specs
+- **seller-panel:** remove async jest method from seller-panel-integrations
+- **seller-panel:** remove async jest method from seller-panel-home
+- **seller-panel:** remove unused vars from seller-panel-services unit tests
+- **seller-panel:** remove async jest method from seller-panel-charge lib
+- **seller-panel:** remove async jest method from seller-panel-bank-accounts lib
+- **seller-panel:** remove async jest method from seller-panel-settings lib
+- **seller-panel:** perf at unit tests from seller-panel-shared
+- **seller-panel:** perf at seller-panel-transactions lib
+- **seller-register:** remove async jest method from seller-register-form
+- **ui:** perf unit tests
+
+### Pull Requests
+
+- Merge pull request [#525](https://github.com/PicPay/picpay-frontend/issues/525) from PicPay/feat/core/nx-migrate
+- Merge pull request [#495](https://github.com/PicPay/picpay-frontend/issues/495) from PicPay/wip/picpedia/finishing-project-configuration
+- Merge pull request [#518](https://github.com/PicPay/picpay-frontend/issues/518) from PicPay/feat/ops-dash/export-csv-api
+- Merge pull request [#520](https://github.com/PicPay/picpay-frontend/issues/520) from PicPay/feat/finance-dash/KEF-146/recharges-solicitations
+- Merge pull request [#516](https://github.com/PicPay/picpay-frontend/issues/516) from PicPay/feat/finance-dash/KEF-146/recharge
+- Merge pull request [#517](https://github.com/PicPay/picpay-frontend/issues/517) from PicPay/feat/picpay-lab/header-component
+- Merge pull request [#515](https://github.com/PicPay/picpay-frontend/issues/515) from PicPay/feat/design-system/lab-simple-header
+- Merge pull request [#513](https://github.com/PicPay/picpay-frontend/issues/513) from PicPay/feat/picpay-lab/markdown-component
+- Merge pull request [#512](https://github.com/PicPay/picpay-frontend/issues/512) from PicPay/feat/picpay-lab/input-component
+- Merge pull request [#505](https://github.com/PicPay/picpay-frontend/issues/505) from PicPay/fix/seller-panel/new-models-pattern
+- Merge pull request [#503](https://github.com/PicPay/picpay-frontend/issues/503) from PicPay/refactor/dev-portal/code-snippet
+- Merge pull request [#497](https://github.com/PicPay/picpay-frontend/issues/497) from PicPay/feat/picpay-lab/component-button
+- Merge pull request [#509](https://github.com/PicPay/picpay-frontend/issues/509) from PicPay/feat/ops-dash/refactor-update
+- Merge pull request [#504](https://github.com/PicPay/picpay-frontend/issues/504) from PicPay/feat/dev-portal/panel-notices
+- Merge pull request [#501](https://github.com/PicPay/picpay-frontend/issues/501) from PicPay/ci/core/update-codeowners
+- Merge pull request [#510](https://github.com/PicPay/picpay-frontend/issues/510) from PicPay/fix/seller-panel/download-reports
+- Merge pull request [#506](https://github.com/PicPay/picpay-frontend/issues/506) from PicPay/feat/picpay-lab/title-component
+- Merge pull request [#508](https://github.com/PicPay/picpay-frontend/issues/508) from PicPay/fix/seller-panel/download-reports
+- Merge pull request [#507](https://github.com/PicPay/picpay-frontend/issues/507) from PicPay/fix/seller-panel/download-reports
+- Merge pull request [#498](https://github.com/PicPay/picpay-frontend/issues/498) from PicPay/feat/picpay-lab/header-component
+- Merge pull request [#494](https://github.com/PicPay/picpay-frontend/issues/494) from PicPay/feat/design-system/lab-card-button
+- Merge pull request [#502](https://github.com/PicPay/picpay-frontend/issues/502) from PicPay/fix/seller-panel/bank-accounts-list
+
+
+<a name="v1.0.4"></a>
+
+## [v1.0.4] - 04/02/2021
+
+### Bug Fixes
+
+- **core:** updating README from picpay-create-lib schematics
+- **core:** fix Schematcis app.component.spec.ts and update schematic name
+- **core:** fix the import of material icons font
+- **design-system:** refactor Tokens Skeleton
+- **design-system:** textarea label bug fix
+- **dev-portal:** fix render swagger ui
+- **dev-portal:** remover codigos desnecessarios
+- **dev-portal:** correção de styles, validações e removendo variaveis não utilizadas
+- **feature-flag:** changed anything to trigger the codacy pipeline ¯\_(ツ)_/¯
+- **feature-flag:** small fixes
+- **feature-flag:** small fixes
+- **feature-flag:** small fixes
+- **feature-flag:** fixed select role interface bug
+- **feature-flag:** removed unnecessary map on squad-users query
+- **packages:** removing picpayIfRoles from Keycloak
+- **picpay-lab:** removendo script de sandbox do package.json
+- **seller-panel:** account list and form value comparator
+- **seller-panel:** code review
+- **seller-panel:** bank-list states
+- **seller-panel:** remove all custom payload by front errors
+- **seller-panel:** hotfix name of methods in HTML
+- **seller-panel:** remove unused variable
+- **seller-panel:** rollback check accounts
+- **seller-panel:** recaptcha key
+- **seller-panel:** update api url qa
+- **seller-panel:** integration with change profile endpoint that lists all childrens
+- **seller-panel:** fix endpoint again
+- **seller-panel:** fix unit test with v2 endpoint
+- **seller-panel:** new endpoint to change profiles
+- **seller-panel:** add flexible display on bank-withdrawals cards
+- **seller-panel:** add https protocol in api url qa
+- **seller-panel:** apiUrl was reverted to the correct
+- **seller-panel:** check token expires value
+- **seller-panel:** updating picpayIfRoles imports
+- **seller-panel:** remove change-panel lib
+- **seller-panel:** charge componente - onShowShareLinksModal method
+- **seller-panel:** removing hover from the modal close button
+- **ui:** import keycloak module in ui-components module
+
+### Code Refactoring
+
+- **design-system:** utilizando a local variable para setar o elevation no feedbackcard
+- **design-system:** removendo rgba fixo para utilização dos tokens
+- **design-system:** refactor dos mixins de elevation
+- **design-system:** removendo [@debug](https://github.com/debug) do scss
+- **dev-portal:** add alias para subscribeUntil
+- **dev-portal:** refactoring dev-portal swagger-scroll component
+- **dev-portal:** remover validação de documentations
+- **dev-portal:** alterar Logo do Studio PicPay
+- **dev-portal:** updating comment
+- **dev-portal:** add alias para SubscribeUntil
+- **feature-flag:** changed the base url of the environments
+- **ops-dash:** delete files
+- **ops-dash:** tests
+- **ops-dash:** refactoring home page
+- **ops-dash:** tests
+- **ops-dash:** refactor código home e nomenclatura libs
+- **ops-dash:** refactor loading akita
+- **ops-dash:** updating store to use the right idKey
+- **ops-dash:** refactor in home and update
+- **ops-dash:** items per page
+- **ops-dash:** refactor home model
+- **ops-dash:** ajustes PR - adicionado trim
+- **ops-dash:** refactor to akita service
+- **packages:** adjust request to cancel previous requests
+- **packages:** adjust methods, tests and documentation
+- **packages:** removing unused class
+- **packages:** removing picpayIfRolesDirective from Keycloak
+- **packages:** adjusts project config
+- **packages:** adjusts package and documentation
+- **picpay-lab:** changed Event Emitter next by emit
+- **picpay-lab:** bumblebee refactored and a directive was created to make the component more dy
+- **seller-panel:** unit test TableExtractComponent
+- **seller-panel:** correction of writing in the store service unit test
+- **seller-panel:** code review changes
+- **seller-panel:** consuming space, border and shadow items from the design system
+- **seller-panel:** refactoring unit test ChangeImageProfileComponent
+- **seller-panel:** ajdust in all method
+- **seller-panel:** removing css class and adding bootstrap class
+- **seller-panel:** akita implementation adjustments and method parameterization
+- **seller-panel:** changing component to use the design system
+- **seller-panel:** merge branch
+- **seller-panel:** refactoring unit tests AccountsService
+- **seller-panel:** unit test ModalDynamicComponent
+- **seller-panel:** removing menu-conditionals in favor of picpay estructural directive
+- **seller-panel:** changing method name for better understanding
+- **seller-panel:** removing unused style
+- **seller-panel:** adjusting style nomenclature
+- **seller-panel:** change-profile component and service
+- **seller-panel:** unit test CancelTransactionComponent
+- **seller-panel:** refactoring uni tests ChargeService
+- **seller-panel:** resolving conflicts with develop
+- **seller-panel:** fixing code indentation
+- **seller-panel:** unit test RequestWitudrawalComponent
+- **seller-panel:** unit test ModalChargeValueComponent
+- **seller-panel:** refactor of form value comparator
+- **seller-panel:** refactoring unit tests OperatorsService
+
+### Features
+
+- **core:** creating schematics for lib creation
+- **core:** adding prompt to define if the app is fully authenticated or not
+- **core:** schematics for create lib with docs
+- **core:** schematics for lib creation
+- **core:** adding default parameters in app creation command
+- **design-system:** template Skeleton
+- **design-system:** apollo-textfield type search
+- **design-system:** type search storybook e readme
+- **design-system:** atualizando tokens no scss do textfield
+- **design-system:** spec test
+- **design-system:** ajustes margin-bottom
+- **design-system:** skeleton Fix e Stories
+- **design-system:** utiliando design tokens
+- **design-system:** readme md
+- **dev-portal:** criação da página de Plataforma Aberta e Code Snippet
+- **dev-portal:** alterações nas tabelas mobile do Swagger e botão de PAV
+- **dev-portal:** retirando arquivos de configuracao package-lock e typing.json
+- **dev-portal:** minificando imagens da página de plataforma aberta
+- **dev-portal:** retirando import theming do code-snippet e PAV | Retirando var no Swagger Scroll
+- **dev-portal:** merge branch refactor/dev-portal/swagger-scroll.component.ts into feat/dev-portal/
+- **dev-portal:** add Plataforma Aberta ao projeto
+- **dev-portal:** adicao de menu estatico na doc baseado no slug
+- **dev-portal:** correções de estilo na doc do Swagger e de ecommerce e troca do link do painel de
+- **dev-portal:** merge branch 'feat/dev-portal/menu-descritivo' into 'feat/dev-portal/code-snippet'
+- **dev-portal:** atualizando o snackbar do code snippet para o ApolloSnackBar
+- **dev-portal:** adicionando botao de faq no header e footer
+- **dev-portal:** add tracking para GA
+- **dev-portal:** criando componente de code snipper
+- **dev-portal:** retirando estilo do snackbar material
+- **dev-portal:** menu Lateral com Static Items
+- **feature-flag:** inclusao da pagina de manuseio de usuarios da squad
+- **feature-flag:** inclusao de adicao de usuario
+- **ops-dash:** adicionado opção para deployar serviços de uma env
+- **ops-dash:** test loading button DS
+- **ops-dash:** interceptor
+- **ops-dash:** loading button DS
+- **ops-dash:** alterado para button link DS
+- **ops-dash:** adicionado opção para deployar serviços de uma env
+- **ops-dash:** alteração para environmentService, excluído id do button DS
+- **packages:** adding getUserRoles method in PicpayKeyclaokService
+- **packages:** adding assets of PicpayKeycloak lib in publish and update version
+- **packages:** create library
+- **packages:** adding support for a service with a callback in keycloak init
+- **packages:** add methods
+- **packages:** add tests
+- **picpay-lab:** nova aplicação para o picpay-lab
+- **picpay-lab:** change selector to picpay-lab-bumblebee
+- **picpay-lab:** create shared lib and bumblebee component with models
+- **picpay-lab:** add project.config.json and rename the interface folder for templates
+- **seller-panel:** tracking
+- **seller-panel:** implementing unlocks with unit tests
+- **seller-panel:** adapting sellerQuery to use with PicpayIfRolesDirective
+- **seller-panel:** fix code review
+- **seller-panel:** add IStore on seller.store.ts
+- **seller-panel:** adjust modal to be generic and implement error case
+- **seller-panel:** account locked flag and warning modes
+- **seller-panel:** test tracking
+- **seller-panel:** store filter added
+- **seller-panel:** pull develop and solve conflicts
+- **seller-panel:** adding enableProdMode from EventTracking
+- **seller-panel:** adding doc from route `inicio`
+- **seller-panel:** updating the parent component to remove the blocking warning
+- **seller-panel:** blocking card and API implementation
+- **seller-panel:** stores service mock was declared for unit tests
+- **seller-panel:** add btn to change panel
+- **seller-panel:** layout suitable for unlocking and adjusting code
+- **seller-panel:** onboarding modal at first access in new seller panel
+- **seller-panel:** adding documentation from extract/future-releases
+- **seller-panel:** add store input search
+- **seller-register:** fixing PR
+- **seller-register:** adding project
+- **seller-register:** rebase branch
+- **shared:** adding a default service to be a default injectionToken
+
+### Performance Improvements
+
+- **seller-panel:** implementing akita in the lock verification variable
+- **seller-panel:** adding unsubscribe to the api return
+
+### Style
+
+- **dev-portal:** [plataforma-aberta] - alinhar itens da pagina
+- **dev-portal:** add tokens do ds
+- **dev-portal:** trocar tokens scss para ds
+- **dev-portal:** fix Spacing
+- **seller-panel:** adjustments of spacing and imports
+
+### Pull Requests
+
+- Merge pull request [#500](https://github.com/PicPay/picpay-frontend/issues/500) from PicPay/develop
+- Merge pull request [#499](https://github.com/PicPay/picpay-frontend/issues/499) from PicPay/fix/feature-flag/interface-not-updating-on-error
+- Merge pull request [#493](https://github.com/PicPay/picpay-frontend/issues/493) from PicPay/refactor/feature-flag/changing-apiUrl-configurations
+- Merge pull request [#492](https://github.com/PicPay/picpay-frontend/issues/492) from PicPay/fix/seller-panel/share-links-method
+- Merge pull request [#489](https://github.com/PicPay/picpay-frontend/issues/489) from PicPay/docs/core/data-access
+- Merge pull request [#491](https://github.com/PicPay/picpay-frontend/issues/491) from PicPay/hotfix/seller-panel/login-error-mobile
+- Merge pull request [#487](https://github.com/PicPay/picpay-frontend/issues/487) from PicPay/feat/seller-panel/tracking-prodmode
+- Merge pull request [#490](https://github.com/PicPay/picpay-frontend/issues/490) from PicPay/hotfix/seller-panel/login-error-mobile
+- Merge pull request [#488](https://github.com/PicPay/picpay-frontend/issues/488) from PicPay/fix/design-system/textarea-label
+- Merge pull request [#454](https://github.com/PicPay/picpay-frontend/issues/454) from PicPay/feat/seller-panel/bank-accounts-form-account-value-comparator
+- Merge pull request [#485](https://github.com/PicPay/picpay-frontend/issues/485) from PicPay/feat/seller-panel-extract-documentation
+- Merge pull request [#486](https://github.com/PicPay/picpay-frontend/issues/486) from PicPay/fix/seller-panel/add-https-apiurl-qa
+- Merge pull request [#479](https://github.com/PicPay/picpay-frontend/issues/479) from PicPay/feat/core/schematics
+- Merge pull request [#482](https://github.com/PicPay/picpay-frontend/issues/482) from PicPay/docs/core/update-readme
+- Merge pull request [#483](https://github.com/PicPay/picpay-frontend/issues/483) from PicPay/hotfix/seller-panel/api-url-qa
+- Merge pull request [#480](https://github.com/PicPay/picpay-frontend/issues/480) from PicPay/fix/seller-panel/remove-custom-error-messages
+- Merge pull request [#478](https://github.com/PicPay/picpay-frontend/issues/478) from PicPay/feat/seller-panel/modal-onboarding
+- Merge pull request [#481](https://github.com/PicPay/picpay-frontend/issues/481) from PicPay/docs/seller-panel/SD-27/doc-auto-withdrawal
+- Merge pull request [#462](https://github.com/PicPay/picpay-frontend/issues/462) from PicPay/feat/feature-flag/user-management-access
+- Merge pull request [#458](https://github.com/PicPay/picpay-frontend/issues/458) from PicPay/docs/seller-panel/SD-21/doc-page-transactions
+- Merge pull request [#465](https://github.com/PicPay/picpay-frontend/issues/465) from PicPay/docs/seller-panel/integrations
+- Merge pull request [#475](https://github.com/PicPay/picpay-frontend/issues/475) from PicPay/fix/dev-portal/style-plataforma-aberta
+- Merge pull request [#452](https://github.com/PicPay/picpay-frontend/issues/452) from PicPay/feat/dev-portal/code-snippet
+- Merge pull request [#463](https://github.com/PicPay/picpay-frontend/issues/463) from PicPay/docs/seller-panel/configurations
+- Merge pull request [#457](https://github.com/PicPay/picpay-frontend/issues/457) from PicPay/docs/seller-panel/SD-5/development-guide
+- Merge pull request [#434](https://github.com/PicPay/picpay-frontend/issues/434) from PicPay/feat/ops-dash/deploy-envs
+- Merge pull request [#453](https://github.com/PicPay/picpay-frontend/issues/453) from PicPay/feat/design-system/template-skeleton
+- Merge pull request [#445](https://github.com/PicPay/picpay-frontend/issues/445) from PicPay/feat/picpay-lab/lib-shared
+- Merge pull request [#450](https://github.com/PicPay/picpay-frontend/issues/450) from PicPay/docs/seller-panel/bank-accounts
+- Merge pull request [#449](https://github.com/PicPay/picpay-frontend/issues/449) from PicPay/feat/seller-panel/home-documentation
+- Merge pull request [#448](https://github.com/PicPay/picpay-frontend/issues/448) from PicPay/docs/seller-panel/charge-page
+- Merge pull request [#447](https://github.com/PicPay/picpay-frontend/issues/447) from PicPay/docs/seller-panel/how-to-collabore
+- Merge pull request [#444](https://github.com/PicPay/picpay-frontend/issues/444) from PicPay/refactor/design-system/elevation-types
+- Merge pull request [#432](https://github.com/PicPay/picpay-frontend/issues/432) from PicPay/ci/core/coverage-threshold
+- Merge pull request [#372](https://github.com/PicPay/picpay-frontend/issues/372) from PicPay/feat/design-system/search-field
+- Merge pull request [#446](https://github.com/PicPay/picpay-frontend/issues/446) from PicPay/test/dev-portal/app-interceptor
+- Merge pull request [#429](https://github.com/PicPay/picpay-frontend/issues/429) from PicPay/fix/seller-panel/change-profile
+- Merge pull request [#443](https://github.com/PicPay/picpay-frontend/issues/443) from PicPay/refactor/seller-panel/SD-32/pending-unit-tests
+- Merge pull request [#436](https://github.com/PicPay/picpay-frontend/issues/436) from PicPay/refactor/seller-panel/SD-19/refactor-change-image-profile
+- Merge pull request [#441](https://github.com/PicPay/picpay-frontend/issues/441) from PicPay/docs/packages/keycloak
+- Merge pull request [#425](https://github.com/PicPay/picpay-frontend/issues/425) from PicPay/feat/seller-panel/COPJ-630/tracking-edit-account
+- Merge pull request [#427](https://github.com/PicPay/picpay-frontend/issues/427) from PicPay/feat/design-system/skeleton-loading
+- Merge pull request [#437](https://github.com/PicPay/picpay-frontend/issues/437) from PicPay/feat/picpay-lab/new-app
+- Merge pull request [#426](https://github.com/PicPay/picpay-frontend/issues/426) from PicPay/feat/packages/keycloak
+- Merge pull request [#431](https://github.com/PicPay/picpay-frontend/issues/431) from PicPay/test/seller-panel/seller-panel-home
+- Merge pull request [#438](https://github.com/PicPay/picpay-frontend/issues/438) from PicPay/hotfix/seller-panel/charge-page-methods
+- Merge pull request [#421](https://github.com/PicPay/picpay-frontend/issues/421) from PicPay/test/shared/directives
+- Merge pull request [#435](https://github.com/PicPay/picpay-frontend/issues/435) from PicPay/hotfix/seller-panel/check-accounts
+- Merge pull request [#430](https://github.com/PicPay/picpay-frontend/issues/430) from PicPay/wix/picpedia/CreatePicpediaAppOnMonorepo
+- Merge pull request [#433](https://github.com/PicPay/picpay-frontend/issues/433) from PicPay/hotfix/seller-panel/recaptcha-key
+- Merge pull request [#424](https://github.com/PicPay/picpay-frontend/issues/424) from PicPay/docs/seller-panel/main-readme
+- Merge pull request [#423](https://github.com/PicPay/picpay-frontend/issues/423) from PicPay/feat/dev-portal/event-tracking
+- Merge pull request [#419](https://github.com/PicPay/picpay-frontend/issues/419) from PicPay/feat/seller-panel/store-filter
+- Merge pull request [#411](https://github.com/PicPay/picpay-frontend/issues/411) from PicPay/feat/packages/keycloak-callback
+- Merge pull request [#332](https://github.com/PicPay/picpay-frontend/issues/332) from PicPay/wix/picpedia/CreatePicpediaAppOnMonorepo
+- Merge pull request [#422](https://github.com/PicPay/picpay-frontend/issues/422) from PicPay/feat/seller-panel/JIRA-176/ajuste-display
+- Merge pull request [#420](https://github.com/PicPay/picpay-frontend/issues/420) from PicPay/feat/core/schematics
+- Merge pull request [#418](https://github.com/PicPay/picpay-frontend/issues/418) from PicPay/refactor/dev-portal/logo
+- Merge pull request [#417](https://github.com/PicPay/picpay-frontend/issues/417) from PicPay/feat/dev-portal/faq-button
+- Merge pull request [#281](https://github.com/PicPay/picpay-frontend/issues/281) from PicPay/feat/packages/feature-flag
+- Merge pull request [#403](https://github.com/PicPay/picpay-frontend/issues/403) from PicPay/feat/seller-panel/JIRA-176/trava-de-domicilio
+- Merge pull request [#415](https://github.com/PicPay/picpay-frontend/issues/415) from PicPay/feat/ops-dash/refactor-libs
+- Merge pull request [#413](https://github.com/PicPay/picpay-frontend/issues/413) from PicPay/feat/dev-portal/faq-button
+- Merge pull request [#416](https://github.com/PicPay/picpay-frontend/issues/416) from PicPay/feat/shared/picpay-if-roles-default-provider
+- Merge pull request [#412](https://github.com/PicPay/picpay-frontend/issues/412) from PicPay/test/packages/keycloak-guard
+- Merge pull request [#409](https://github.com/PicPay/picpay-frontend/issues/409) from PicPay/feat/seller-panel/SPA-404/aditional-info-store
+- Merge pull request [#410](https://github.com/PicPay/picpay-frontend/issues/410) from PicPay/refactor/seller-panel/removing-menu-conditionals
+- Merge pull request [#407](https://github.com/PicPay/picpay-frontend/issues/407) from PicPay/refactor/packages/picpay-structural-directive
+- Merge pull request [#408](https://github.com/PicPay/picpay-frontend/issues/408) from PicPay/feat/seller-panel/SPA-406/input-search-store
+- Merge pull request [#400](https://github.com/PicPay/picpay-frontend/issues/400) from PicPay/feat/seller-panel/cross-navigation-panels
+- Merge pull request [#394](https://github.com/PicPay/picpay-frontend/issues/394) from PicPay/feat/seller-register/adding-project
+- Merge pull request [#404](https://github.com/PicPay/picpay-frontend/issues/404) from PicPay/refactor/seller-panel/PLOJ-118/refactor-operators-service
+- Merge pull request [#402](https://github.com/PicPay/picpay-frontend/issues/402) from PicPay/refactor/seller-panel/PLOJ-111/refactor-charge-service
+- Merge pull request [#406](https://github.com/PicPay/picpay-frontend/issues/406) from PicPay/fix/ui/componentes-keycloak
+- Merge pull request [#405](https://github.com/PicPay/picpay-frontend/issues/405) from PicPay/test/seller-panel/seller-group-service
+- Merge pull request [#383](https://github.com/PicPay/picpay-frontend/issues/383) from PicPay/develop
+
+
+<a name="v1.0.3"></a>
+
+## [v1.0.3] - 17/12/2020
+
+### Bug Fixes
+
+removed unnecessary and cleaned test files
+removed readme junk
+- **core:** fix codeowners para squad com apenas 1 integrante
+- **core:** fix CODEOWNERS
+- **core:** github token environment in action yaml
+- **core:** update financeDash codeOwner
+- **core:** fixed pre-push hook
+- **core:** fIx base branch name in the affected commands
+- **core:** color funcitons on ui-components
+- **core:** fix .prettierignore for schematics templates files
+- **core:** updating rxjs version
+- **core:** package-lock fix
+- **core:** fix keycloak imports
+- **core:** removing sentry props from envs
+- **core:** adicionando suporte ao canActivateChild no AuthGuard
+- **core:** fix package-lock.json
+- **design-system:** correção de letter-spacing do button para normal style
+- **design-system:** fix files
+- **design-system:** fix label in card storybook
+- **design-system:** merge branch 'develop' into fix/design-system/apollo-icon
+- **design-system:** stencil.config componentCorePackage path
+- **design-system:** linting fix
+- **design-system:** alterando cor default do icon na visualização do storybook
+- **design-system:** fix style in snackbar component
+- **design-system:** config dos projetos para exportar os novos assets do DS
+- **design-system:** merge branch 'develop' into fix/design-system/apollo-icon
+- **design-system:** removendo o arquivo .vscode/settings gerado automaticamente pelo live server
+- **design-system:** removendo arquivos da dist e ignorando
+- **design-system:** merge branch 'develop' into fix/design-system/apollo-icon
+- **design-system:** contrast colar outline color textfield
+- **design-system:** re-commit lint-fix
+- **design-system:** removendo a pasta base-components
+- **design-system:** fix tag name do Card Action Button
+- **design-system:** tab para focus no Button
+- **design-system:** removendo arquivos que estão no .gitignore
+- **design-system:** merge branch 'develop' into fix/design-system/apollo-icon
+- **design-system:** utilização do mixin typography no button
+- **design-system:** re-commit build lint-fix
+- **design-system:** merge develop
+- **design-system:** merge branch 'develop' into fix/design-system/apollo-icon
+- **design-system:** correção do alta emphasis e testes
+- **design-system:** ajustes no storybook
+- **design-system:** merge branch 'develop' into fix/design-system/snackbar-emphasis
+- **design-system:** alteração na estrutura de assets do ds para exportar corretamente para as libs/a
+- **design-system:** correção da utilização dos apollo-icon-button dentro do Header
+- **design-system:** fix icon size
+- **design-system:** correções icon-button
+- **design-system:** ajustes stories buttons e icon-buttons
+- **design-system:** removendo a pasta dist
+- **design-system:** correção atributo aria-pressed quando existe aria-label-toggle
+- **design-system:** stories in tsx
+- **design-system:** correção da border-radius do textfield
+- **design-system:** corrigindo warns e documentações dos icones
+- **dev-portal:** ajustando integracao para nova regra de validacao do backend
+- **dev-portal:** scroll to element e render no change doc url
+- **dev-portal:** adicionando ids unicos que faltaram
+- **dev-portal:** removendo warnings
+- **dev-portal:** mudanca no slug de b2p
+- **dev-portal:** aLterando tipo dos ids dos models de produto
+- **dev-portal:** fixing resolver to call api only once
+- **dev-portal:** fix no environment e akita no resolve da rota
+- **feature-flag:** removing auth lib from feature-flag
+- **feature-flag:** mudança de capitalizacao de texto
+- **feature-flag:** added logic to handle the conditions id
+- **feature-flag:** added a ignore coverage for filteredSquads$ query
+- **feature-flag:** rollback implementation for tests
+- **feature-flag:** inclusao de melhorias
+- **finance-dash:** correcao da rota para o primeiro acesso
+- **menu:** updated method name
+- **ops-dash:** fixed broken tests
+- **ops-dash:** api url prod
+- **packages:** update image url in README.me
+- **packages:** fix EventTracking config bug
+- **packages:** fixed useGA property on init
+- **seller-panel:** fix unit tests and mocks
+- **seller-panel:** updateAccount store
+- **seller-panel:** account stepper
+- **seller-panel:** accessibility fixes
+- **seller-panel:** remove comments
+- **seller-panel:** unsubscribeUntil import
+- **seller-panel:** unsubscriber helper index
+- **seller-panel:** title and subtitle steps
+- **seller-panel:** fix some tests from auto withdrawal
+- **seller-panel:** api url
+- **seller-panel:** accounts store lifecycle
+- **seller-panel:** solve conflict
+- **seller-panel:** solve conflicts and event tracking import
+- **seller-panel:** bank img_url and name fields at account confirm
+- **seller-panel:** fix dark mode
+- **seller-panel:** fix resume balance layout & table-extract wallet
+- **seller-panel:** wait until operators list request done
+- **seller-panel:** revert close button in bank list error state
+- **seller-panel:** filter transactions by operators param name
+- **seller-panel:** remove duplicated balance paragraph
+- **seller-panel:** wallet css and interceptor test
+- **seller-panel:** operator_ids as param array
+- **seller-panel:** my plan route
+- **seller-panel:** contact data section description
+- **seller-panel:** always show button Gerenciar contas bancárias
+- **seller-panel:** fix layout
+- **seller-panel:** label button
+- **seller-panel:** adjust icon in list of future releases
+- **seller-panel:** use spacing scss function
+- **seller-panel:** adjust icon in list of future releases and removed variable currentBalance
+- **seller-panel:** remove apiurl sandbox
+- **seller-panel:** fix tests in accounts stepper and list
+- **seller-panel:** adjustment in logic of button new withdrawal
+- **seller-panel:** confirm at remove account and code review
+- **seller-panel:** code review
+- **seller-panel:** fix toggle form with bank list selecting
+- **seller-panel:** auto tab directive listener type
+- **seller-panel:** code review
+- **seller-panel:** code review lint
+- **seller-panel:** use RouteChangeListenerService to track page events
+- **seller-panel:** change plan modal code review layout mobile
+- **seller-panel:** remove ds web-c dist folder
+- **seller-panel:** remove .vscode launch.json unnecessary file
+- **seller-panel:** remove moment fron table-future-releases component and uninstall moment from mono
+- **seller-panel:** withdrawalsService import
+- **seller-panel:** code review header componente
+- **seller-panel:** removed (--staged) of package.json
+- **seller-panel:** ecommerce model
+- **seller-panel:** menu-conditionals
+- **seller-panel:** fix withdrawalsService imports
+- **seller-panel:** fix imports
+- **seller-panel:** lint
+- **seller-panel:** remove DS files changes
+- **seller-panel:** menu-conditionals and callback guard routes
+- **seller-panel:** change-profile
+- **seller-panel:** remove DS files
+- **seller-panel:** remove DS files changes
+- **seller-panel:** account-error component seller info
+- **seller-panel:** run format check
+- **seller-panel:** change panel service - cookie config
+- **seller-panel:** account error ajusts
+- **seller-panel:** fix export pipes module
+- **seller-panel:** fix get attr in auto-tab directive
+- **seller-panel:** sidenav with sidenavService
+- **seller-panel:** imports in extract and transactions
+- **seller-panel:** bank-accounts fixes by copj-841 task
+- **seller-panel:** bank list rendering
+- **seller-panel:** future-releases page fix layout
+- **seller-panel:** fix and tests future-releases
+- **seller-panel:** extract accounts component fix unit tests
+- **seller-panel:** bank accounts - list of banks error state
+- **seller-panel:** solve pull develop conflicts
+- **shared:** fix option parameter and remove unused interfaces
+- **shared:** lint fixes
+- **shared:** fixed track-events unit tests
+- **shared:** lint fix
+- **shared:** fix lib shared e2e
+- **shared:** exportando helpers que não estavam sendo devidamente exportados
+- **shared:** adding authGuard as a provide
+- **shared:** remove and update assets of auth lib
+- **shared:** remove and update assets of auth lib
+- **shared:** set new param to be optional
+- **shared:** atualizando authGuard
+- **shared:** adding type for constructor param
+- **shared:** fix redirectUri for canLoad case
+- **shared:** fix redirectUri for canLoad case
+- **shared:** fix for panel that does not need keycloak in initialization
+- **shared:** fix keycloak tests
+- **shared:** export class and functions for keycloak build
+- **shared:** remove private flag from package.json
+- **shared:** adding new param in financeDash keycloagConfig
+- **shared:** fixed test description
+- **ui:** remove unnecessary prop
+- **ui:** add routerLinkActive and remove activeUrl
+
+### Code Refactoring
+
+- **auth:** criando enum para tipificar a prop identificationType
+- **auth:** refactor auth to use the enum for identificationType
+- **button:** rewrite stories with TypeScript and JSX
+- **core:** adding a interface for route role mapping
+- **core:** coreDataAcces, seller-panel and dev-portal refactor
+- **core:** adding a default type for CoreDataAccessConfig
+- **core:** removendo sentry
+- **core:** removing external-transfer from monorepo
+- **core:** refactor in the CoreKeycloakConfig param name
+- **core:** refactor coreDataAccessService to receive a generic type
+- **core:** removendo serviço desnecessário e usando um InjectionToken
+- **design-system:** list sub components change
+- **dev-portal:** removendo logica do component e deixando no servico
+- **dev-portal:** reescrevendo integracao das apis de documentacao
+- **dev-portal:** dataAccess refactor
+- **dev-portal:** testes finalizados
+- **dev-portal:** alteracao organizacional de integracao por entidade
+- **dev-portal:** inicio de refactor do menu latel do swagger
+- **dev-portal:** estilizacao e mecanica do menu lateral
+- **dev-portal:** refator de testes e codigo para review
+- **dev-portal:** adicionar o subscribeUntil do monorepo nos subscribes da aplicacao
+- **dev-portal:** separar templates dos produtos por página
+- **dev-portal:** refactor do menu lateral do swagger
+- **feature-flag:** updating keycloak guard import
+- **feature-flag:** moving auth lib to feature-flag scope
+- **feature-flag:** updating to use the new keycloak structure
+- **financeDash:** removing auth lib from financeDash
+- **packages:** moving keycloak lib to libs/packages
+- **packages:** alterando nome da lib de SDK do eventTracking
+- **seller-panel:** refactor services lib
+- **seller-panel:** adjust button new withdrawal
+- **seller-panel:** refactoring unit teste DetailsComponent
+- **seller-panel:** remove unused validators, enum and lib
+- **seller-panel:** pipes migration to shared global
+- **seller-panel:** refactor DetailsTransactionsComponent
+- **seller-panel:** models files and transaction operators model
+- **seller-panel:** seller service remove unused methods and complete integration of sellerQuery
+- **seller-panel:** shared lib code review
+- **seller-panel:** refactoring unit test CancelTransactionComponent
+- **seller-panel:** share-links component by picpay/seller-panel/shared lib
+- **seller-panel:** tests header
+- **seller-panel:** change panel lifecycle
+- **seller-panel:** adjust variable and changelog
+- **seller-panel:** renamed component
+- **seller-panel:** adjust and rename no-result to feed-back
+- **seller-panel:** removed files change  DS
+- **seller-panel:** refactoring unit test TableTransactionsComponent
+- **seller-panel:** remove old tracking service and replace with EventTracking
+- **seller-panel:** add missing spec files
+- **seller-panel:** adjusting  method onChangePassword
+- **seller-panel:** refactoring unit test ChangePasswordComponent
+- **seller-panel:** refact
+- **seller-panel:** refactoring unit test TransactionsComponent
+- **seller-panel:** added threshold prop on input search and take until destroy component
+- **seller-panel:** refactoring unit test TransactionsFilterComponent
+- **seller-panel:** bank accounts - accounts store code review testing
+- **seller-panel:** refactoring unit test LoadingButtonComponent
+- **seller-panel:** auto-trim directive refactor and tests
+- **seller-panel:** refactor and tests
+- **seller-panel:** remove moment from validDate.ts
+- **seller-panel:** refactoring unit test ChangeProfileComponent
+- **seller-panel:** adjust refresh method
+- **seller-panel:** refactoring unit tests RequestPasswordComponent
+- **seller-panel:** extract and withdrawal models
+- **seller-panel:** refact
+- **seller-panel:** adicionando melhorias gerais visuais do extrato
+- **seller-panel:** refactoring unit tets lib integrations
+- **seller-panel:** refactoring unit tests ChargeComponent
+- **seller-panel:** refactoring unit tests DownloadReportsComponent
+- **seller-panel:** extract service and page
+- **seller-panel:** remove subject from searchOperators
+- **seller-panel:** refactoring unit tests HomeComponent
+- **seller-panel:** removed apiUrl sandbox
+- **seller-panel:** refatoring unit tests WithdrawalsService
+- **seller-panel:** refactoring unit tests EcommerceService
+- **seller-panel:** refactoring unit tests TransactionsService
+- **seller-panel:** http interceptor - refresh token
+- **seller-panel:** operators request inside filter only
+- **seller-panel:** refactoring unit tests ModalCropComponent
+- **shared:** remove unnecessary prop
+- **shared:** change keycloak guard name to keep the pattern
+- **shared:** change the redirectUri
+- **shared:** removing unnecessary param
+- **shared:** removing unnecessary params
+- **shared:** adjusting keycloak params
+- **shared:** refact custom decorator
+- **shared:** reafactor in keycloak: from libs/shared/core to libs/shared
+- **shared:** updating keycloak names and imports
+- **shared:** changing the directive name
+- **shared:** update test case name in keycloakDirective
+- **shared:** refactor in keycloak module for provide all keycloak methods
+- **shared:** moving auth lib from libs/ to libs/shared/
+- **shared:** removing unused interface
+
+### Features
+
+added babel config to transform jsx
+- **auth:** first tests with keycloak published
+- **base-components:** created base menu component
+- **core:** removing the '^' from package.json
+- **core:** route change listener and and directive for tracking
+- **core:** removing required roles from poc
+- **core:** adding keycloakAngularModule in keycloak lib imports array
+- **core:** updating readme.md of Keycloak lib
+- **core:** melhora de performance na verificação do login do keycloak
+- **core:** stylelint configs
+- **core:** schematics for app creation
+- **core:** criação da lib para inicialização do keycloak
+- **core:** added isProd property to the core data access config
+- **core:** add design system dist to repository
+- **core:** organizando lib para trackeamento de eventos
+- **core:** adding service to recognize route events and track data
+- **design-system:** implementação manual de um sentinel/trap para validar o scroll via sticky
+- **design-system:** add elevation mixin
+- **design-system:** icon-button & avatar improves
+- **design-system:** design tokens typescript models
+- **design-system:** inclusao dos tokens de Opacity
+- **design-system:** ajustes de Design do Header
+- **design-system:** adicionando readme.md para o header
+- **design-system:** adjustment if typography body
+- **design-system:** elevates maps
+- **design-system:** merge com a develop
+- **design-system:** adjusting spaces and remove unnecessary button
+- **design-system:** adicionando os atributos nativos name e value ao apollo-buttton
+- **design-system:** toggles e Feedbacks Buttons
+- **design-system:** code improvements
+- **design-system:** snackbar with tests and docs
+- **design-system:** adicionando os atributos nativos name e value ao apollo-button
+- **design-system:** ajustes no padding do button
+- **design-system:** alteração padding button link para atender requisitos de design
+- **design-system:** implement svg icon
+- **design-system:** snackbar Apollo DS
+- **design-system:** merge Develop
+- **design-system:** adicionado check e warn para types de snackbar
+- **design-system:** tratativa manual do sticky on scroll
+- **design-system:** implement icons by types
+- **design-system:** stories in JSX
+- **design-system:** loading Animation no Button
+- **design-system:** implementação do sticky no header
+- **design-system:** adicionado os testes do snackbar
+- **design-system:** correções visuais no snackbar
+- **design-system:** re-escrevendo os testes unitários do snackbar
+- **design-system:** ajustes no teste disconnectedCallBack
+- **design-system:** melhorando os expects dos testes
+- **design-system:** review requests e Ajustes stacked version para mobile
+- **design-system:** merge develop
+- **design-system:** merge develop
+- **design-system:** merge branch 'develop' into feat/design-system/snackbar
+- **design-system:** merge branch 'develop' into feat/design-system/feedback-card
+- **design-system:** remove design-system dist from repository
+- **design-system:** add design-system dist to gitignore
+- **design-system:** bump design-system-web-components version
+- **design-system:** ajustes stories e escrita do readme.md
+- **design-system:** utilização dos ícones svg do apollo
+- **design-system:** merge branch 'develop' into feat/design-system/snackbar
+- **design-system:** atualização dos ícons de material para ícones do apollo
+- **design-system:** merge branch 'feat/design-system/snackbar' into feat/design-system/snackbar
+- **design-system:** adicionado o background de surface do apollo
+- **design-system:** merge develop
+- **design-system:** atualizacao das stories
+- **design-system:** merge develop
+- **design-system:** test unitário de build
+- **design-system:** merge Develop
+- **design-system:** adicionada a devDepencies do react e react-dom para funcionamento do storybook
+- **design-system:** merge branch 'develop' into feat/design-system/feedback-card
+- **design-system:** adicionando minLength ao textfield
+- **design-system:** merge branch 'develop' into feat/design-system/feedback-card
+- **design-system:** created stack component
+- **design-system:** merge branch 'develop' into feat/design-system/feedback-card
+- **design-system:** ajustes cor de enfase
+- **design-system:** change ds package from node_modules to local lib output
+- **design-system:** merge branch 'develop' into feat/design-system/feedback-card
+- **design-system:** Apollo Card
+- **design-system:** alterando stories de js para tsx
+- **design-system:** criação dos tests specs
+- **design-system:** custom validator message
+- **design-system:** correção label dismis button story
+- **design-system:** implementação do sticky no header
+- **design-system:** removendo comentários dos arquivos de testes
+- **design-system:** feedback Page Component
+- **design-system:** feedback page readme.md
+- **design-system:** adicionado design tokens ao helper-text
+- **design-system:** masks Input Textfield
+- **design-system:** merge branch 'develop' into feat/design-system/input-mask
+- **design-system:** adicionado maskMoney default e maskMoneyOptions
+- **design-system:** poc testing animation on header
+- **design-system:** select component
+- **design-system:** ajuste na cor do icone da seta
+- **design-system:** elevations
+- **design-system:** ajuste da altura, apollo-icon,spacing e removendo slot a mais
+- **design-system:** elevation surface colors
+- **design-system:** definições de elevation, surface e alteração no feedback-card
+- **design-system:** readme.md
+- **design-system:** merge
+- **design-system:** merge
+- **design-system:** merge
+- **design-system:** merge
+- **design-system:** merge develop
+- **dev-portal:** akita ui e inicio de testes
+- **dev-portal:** feedback de nao carragamento das apis
+- **dev-portal:** integracao da pagina de docs
+- **dev-portal:** criação da estrutura incicial
+- **dev-portal:** menu swagger fecha na selecao de um endpoint
+- **dev-portal:** docs com variavel de ambiente e ajustes visuais
+- **dev-portal:** nova integracao de contato
+- **dev-portal:** instalacao do plugin swagger-ui
+- **dev-portal:** templates de documentacao descricao
+- **dev-portal:** implementar home no dev-portal
+- **feature-flag:** inclusao de servico de busca da squad
+- **feature-flag:** mudança de componente de lista
+- **feature-flag:** inclusao de estrutura inicial
+- **feature-flag:** updating keycloak configs
+- **feature-flag:** inclusao da rota da visualizacao de grupos de acessos
+- **feature-flag:** added squads to feature editing and creation
+- **feature-flag:** exemplo de utilização da lib do keycloak
+- **feature-flag:** added access-levels lib
+- **feature-flag:** mundanças visuais de campo
+- **feature-flag:** using login-required initialization option for keycloak
+- **feature-flag:** inclusao do filtro do topo da pagina de grupos de acessos
+- **feature-flag:** mudança do filtro para componentes
+- **feature-flag:** inclusao do modulo de edicao de acesso dos usuario do grupo e mundança da busca
+- **feature-flag:** incluindo serviço de integraçao e tests
+- **feature-flag:** updating example
+- **feature-flag:** updating keycloak config
+- **feature-flag:** updating test branch
+- **feature-flag:** inclusao de busca para squads e mudanca do metodo de exibicao de dados da store
+- **feature-flag:** troca de texto de acordo com analise de usabilidade
+- **feature-flag:** example of how to use keycloak
+- **finance-dash:** adding the finance-dash project and login screen
+- **finance-dash:** merge with develop
+- **finance-dash:** config Keycloak
+- **finance-dash:** merge
+- **finance-dash:** adding the finance-dash project
+- **ops-dash:** alphabetic order and filter in users page
+- **ops-dash:** adjustment show version
+- **ops-dash:** show select roles
+- **ops-dash:** adjustment alias
+- **ops-dash:** adjustment-tabGroup
+- **ops-dash:** adjustment form-control-users
+- **ops-dash:** drawer-adjustments
+- **ops-dash:** search - filter options
+- **ops-dash:** string value adjustment of type secret
+- **ops-dash:** firefox adjustment
+- **ops-dash:** search paginator
+- **ops-dash:** help page for variables
+- **ops-dash:** ajuste na busca de envs
+- **ops-dash:** tests
+- **ops-dash:** tests
+- **ops-dash:** adjustment firtName
+- **ops-dash:** delete import
+- **ops-dash:** adjustmens service list
+- **ops-dash:** adjustments
+- **ops-dash:** elements design system
+- **ops-dash:** adjustment select version
+- **ops-dash:** adjustment pattern validator
+- **ops-dash:** adjustment delete
+- **ops-dash:** ajustments layout
+- **ops-dash:** change api url prod
+- **ops-dash:** adjustments interface and tests
+- **ops-dash:** variables environments
+- **ops-dash:** delete files
+- **ops-dash:** adjustments PR
+- **ops-dash:** change alias
+- **ops-dash:** melhoria na tela de login
+- **ops-dash:** exportar tabela de usuarios em arquivo csv
+- **ops-dash:** modal 403 adjustment and duplicates requests
+- **ops-dash:** melhoria na exibição do type secret
+- **ops-dash:** lint
+- **ops-dash:** ajuste nome do botão
+- **ops-dash:** feature reports, certificate download
+- **ops-dash:** adjustment delete button
+- **ops-dash:** responsive adjustment
+- **ops-dash:** ignore para arquivos DS
+- **ops-dash:** ordenação roles página users
+- **packages:** fix getConfiguration error and remove commented code
+- **seller-panel:** test & design tokens
+- **seller-panel:** merge
+- **seller-panel:** account data confirmation or error templates
+- **seller-panel:** pull develop and solve some test bugs and imports file
+- **seller-panel:** removing folder dist
+- **seller-panel:** account error test & remove mock
+- **seller-panel:** bank accounts list
+- **seller-panel:** pull and solve conflicts
+- **seller-panel:** pull develop
+- **seller-panel:** individualEntrepreuner & set cpfCnpj input by type account select
+- **seller-panel:** bank-accounts - setAsPrincipal, Edit and Remove account methods. Menu item actio
+- **seller-panel:** removing dist webcomponents
+- **seller-panel:** adding unit tests && Spinner component
+- **seller-panel:** adding wallet balance service
+- **seller-panel:** fixing unit tests
+- **seller-panel:** alteração x
+- **seller-panel:** extract list with integration
+- **seller-panel:** adding transactions o new homepage
+- **seller-panel:** removing unecessary file
+- **seller-panel:** adding new homepage
+- **seller-panel:** future releases
+- **seller-panel:** mobile layout list
+- **seller-panel:** fixing unit tests
+- **seller-panel:** extract list (scroll to topo feature)
+- **seller-panel:** download reports modal in extract page
+- **seller-panel:** openExtractDetails method
+- **seller-panel:** account error
+- **seller-panel:** pull develop
+- **seller-panel:** bank-accounts list
+- **seller-panel:** bank-accounts lib and create new page - bank-withdrawals in settings page
+- **seller-panel:** input search operators filter transactions
+- **seller-panel:** banks-list component callback cases
+- **seller-panel:** add account when finish stepper new account
+- **seller-panel:** merge
+- **seller-panel:** pull develop
+- **seller-panel:** pull develop
+- **seller-panel:** adicionando link no botão de gerenciar contas bancarias
+- **seller-panel:** change plan confirm modal
+- **seller-panel:** fixes
+- **seller-panel:** merge
+- **seller-panel:** pull develop and solve conflicts
+- **seller-panel:** improve coverage - unit test
+- **seller-panel:** recaptcha on login
+- **seller-panel:** adjust changes request, unit test and user acessibility
+- **seller-panel:** pull develop
+- **seller-panel:** my plan page
+- **seller-panel:** adjust changes request, unit test and user accessibility
+- **seller-panel:** migration old branch
+- **seller-panel:** merge
+- **seller-panel:** adjust class name  CSS
+- **seller-panel:** created structure of pastes (mocks/interfaces) akita
+- **seller-panel:** adjust status name
+- **seller-panel:** adjust in dialog"responsive" and hidden button new withdrawal
+- **seller-panel:** judicial blocked balance - home
+- **seller-panel:** created file _colors
+- **seller-panel:** adjust changes request
+- **seller-panel:** adjust of icons in list transactions
+- **seller-panel:** desabilitando temporariamente as rotas de extrato e home
+- **seller-panel:** created stepper state
+- **seller-panel:** merge
+- **seller-panel:** user validation for withdraw
+- **seller-panel:** adjust select account and unit test
+- **seller-panel:** adjust button and template auto-withdrawal
+- **seller-panel:** created exclamation.svg and renamed file of error (error_auto-withdrawal.svg)
+- **seller-panel:** adjust select account and unit test
+- **seller-panel:** adjust endpoint for new version (autoWithdrawal)
+- **seller-panel:** unit test method autoWithdrawal
+- **seller-panel:** home message
+- **seller-panel:** pull develop and solve conflicts
+- **seller-panel:** unit test
+- **seller-panel:** bank-accounts states bank and account created and integrated
+- **seller-panel:** pull develop
+- **seller-panel:** pR request fixing
+- **seller-panel:** fixing lint problem
+- **seller-panel:** adding refresh button on transactions
+- **seller-panel:** removido o estado de desabilitado do botão de integrações quando não há tokens
+- **seller-panel:** logo-beta and move menu-config to helpers lib
+- **seller-panel:** unit tests RequestWithdrawalComponent, AccountsComponent and NewWithDrawalCompon
+- **seller-panel:** integration with endpoint and flow new withdraw
+- **seller-panel:** implementing check account
+- **seller-panel:** created my plan page
+- **seller-panel:** bank/accounts v2
+- **seller-panel:** pull develop
+- **seller-panel:** Components migration  ResumerBalanceAvaliable and ResumeFutureRealeases
+- **seller-panel:** merge develop and solve conflicts
+- **seller-panel:** pull develop
+- **seller-panel:** implementing list accounts
+- **seller-panel:** adding ENUM and fixing home layout
+- **seller-panel:** new api URL
+- **seller-panel:** change event tracking calls to use new Lib
+- **seller-panel:** extract and Features Releases with integration
+- **seller-panel:** adding ENUM and fixing home layout
+- **seller-panel:** new api URL
+- **seller-panel:** extract and Features Releases with integration
+- **seller-panel:** pull develop
+- **seller-panel:** adding routes
+- **seller-panel:** modal account error
+- **seller-panel:** account dynamic form integration and bank-accounts interfaces
+- **seller-panel:** finalizando lançamentos futuros e ajustes gerais
+- **seller-panel:** adjust in component request-withdraw
+- **seller-panel:** integration endpoint withdraw
+- **seller-panel:** adjust of implementing of service  SellerAccessService
+- **seller-panel:** implementing browser cookie and installation lib ngx-cookie-service
+- **seller-panel:** adjust component of loading, help icon in header and refactoring of changePanel
+- **seller-panel:** unit tests of change-panel component
+- **seller-panel:** from old panel to new panel
+- **seller-panel:** change panel (step one)
+- **seller-panel:** fixing PR requests
+- **seller-panel:** refactor sellerService in header component
+- **seller-panel:** adding tagmanager code
+- **seller-panel:** implementing MaskCurrency
+- **seller-panel:** created modal for new withdrawal
+- **seller-panel:** pull develop
+- **seller-panel:** showCloseButton in sidenav
+- **seller-panel:** input auto tab and only numeric type input - bank-accounts
+- **seller-panel:** merge
+- **seller-panel:** add recaptcha v3
+- **seller-panel:** pull develop and solve conflicts
+- **seller-panel:** pull develop and update apollo vars in bank-accounts lib
+- **seller-panel:** merge
+- **seller-panel:** adjust in disabled button
+- **seller-panel:** pull develop
+- **seller-panel:** tracking withdraw account error
+- **seller-panel:** improves account form
+- **seller-panel:** judicial blocked balance transferred
+- **seller-panel:** removendo sentry da aplicação
+- **seller-panel:** auto-trim, numeric, accountTypeLabel to confirm and several tests in dynamic for
+- **seller-panel:** merge
+- **seller-panel:** check account error
+- **seller-panel:** judicial blocked extract header
+- **seller-panel:** adicionando integração do tracking service com o backend
+- **seller-panel:** events account error home
+- **seller-panel:** adicionando melhorias gerais no css de extrato
+- **seller-panel:** update stepper texts by layout
+- **seller-panel:** pull develop
+- **seller-panel:** iStepperTextMode
+- **seller-panel:** create template, new withdraw and account list
+- **seller-panel:** pull develop
+- **seller-panel:** uncomment PasswordCheckerGuard
+- **shared:** updating keycloak-js version
+- **shared:** creating a project for default errors screens
+- **shared:** create method to provide a keycloak instance
+- **shared:** lib e2e
+- **shared:** unsubscriberUntil
+- **shared:** created unsubscriber decorator and helpers
+- **shared:** adding configs to publish keycloak
+- **shared:** creating a directive to hide elements based on keycloak user roles
+- **shared:** parameterizing the keycloak initialization method
+- **shared:** adding param for defaultRoute
+- **shared:** implementing logic for keycloak redirectUri
+- **shared:** adding keycloak authGuard and new parameters for post login redirect
+- **shared:** exemplo de implementação keycloak
+- **shared:** ajustando config da lib keycloak pra simplificar o uso
+- **shared:** mudando a forma de inicialização do keycloak
+- **shared:** adding an interface to track route change even
+- **shared:** adding required file for silent check sso on keycloak
+- **stencil-config:** added moduleNameMapper at testing config
+- **storybook:** added typescript support
+- **ui:** adding support for roles validation in side menu items
+- **web-components:** added jsx typings
+
+### Performance Improvements
+
+- **seller-panel:** refactor dos imports e melhoria do tempo de teste da pagina meus documentos
+- **seller-panel:** add validateAllFormFields when login form is invalid
+
+### Style
+
+- **core:** adjust in schematcis templates identation
+- **core:** update pull request template
+- **core:** add material icons outlined in google font
+- **design-system:** storybook components folder structure
+- **dev-portal:** merge branch 'develop' of github.com:PicPay/picpay-frontend into style/dev-portal
+- **dev-portal:** corrigindo colunas em resolução de tablet até 768px
+- **dev-portal:** remover outline apos clique nos cards
+- **packages:** update README.md
+- **packages:** add image and improve JsDoc
+- **seller-panel:** fix some styles
+- **seller-panel:** button text label
+- **seller-panel:** add DS tokens and mixins
+
+### Pull Requests
+
+- Merge pull request [#387](https://github.com/PicPay/picpay-frontend/issues/387) from PicPay/feat/shared/layout-default-roles
+- Merge pull request [#401](https://github.com/PicPay/picpay-frontend/issues/401) from PicPay/refactor/seller-panel/PLOJ-120/refactor-transactions-service
+- Merge pull request [#399](https://github.com/PicPay/picpay-frontend/issues/399) from PicPay/refactor/seller-panel/PLOJ-140/refactor-ecommerce-service
+- Merge pull request [#396](https://github.com/PicPay/picpay-frontend/issues/396) from PicPay/refactor/seller-panel/PLOJ-121/refactor-withdrawal-service
+- Merge pull request [#398](https://github.com/PicPay/picpay-frontend/issues/398) from PicPay/feat/core/schematics
+- Merge pull request [#384](https://github.com/PicPay/picpay-frontend/issues/384) from PicPay/fix/seller-panel/timeline-future-releases
+- Merge pull request [#397](https://github.com/PicPay/picpay-frontend/issues/397) from PicPay/feat/shared/default-screens
+- Merge pull request [#393](https://github.com/PicPay/picpay-frontend/issues/393) from PicPay/style/dev-portal/mobile-ajustes
+- Merge pull request [#395](https://github.com/PicPay/picpay-frontend/issues/395) from PicPay/feat/ops-dash/adjustment-firstName
+- Merge pull request [#388](https://github.com/PicPay/picpay-frontend/issues/388) from PicPay/refactor/packages/picpay-keycloak
+- Merge pull request [#390](https://github.com/PicPay/picpay-frontend/issues/390) from PicPay/feat/ops-dash/adjustment-search-envs
+- Merge pull request [#392](https://github.com/PicPay/picpay-frontend/issues/392) from PicPay/refactor/seller-panel/PLOJ-251/home-component
+- Merge pull request [#391](https://github.com/PicPay/picpay-frontend/issues/391) from PicPay/fix/seller-panel/bank-accounts
+- Merge pull request [#381](https://github.com/PicPay/picpay-frontend/issues/381) from PicPay/feat/design-system/button-toggle
+- Merge pull request [#389](https://github.com/PicPay/picpay-frontend/issues/389) from PicPay/refactor/dev-portal/doc-por-pagina
+- Merge pull request [#368](https://github.com/PicPay/picpay-frontend/issues/368) from PicPay/refactor/shared/auth
+- Merge pull request [#382](https://github.com/PicPay/picpay-frontend/issues/382) from PicPay/refactor/external-transfer/remove-external-transfer
+- Merge pull request [#369](https://github.com/PicPay/picpay-frontend/issues/369) from PicPay/feat/shared/keycloak-not-authorized-navigation
+- Merge pull request [#378](https://github.com/PicPay/picpay-frontend/issues/378) from PicPay/refactor/seller-panel/PLOJ-242/download-reports-component
+- Merge pull request [#386](https://github.com/PicPay/picpay-frontend/issues/386) from PicPay/refactor/seller-panel/PLOJ-250/charge-component
+- Merge pull request [#380](https://github.com/PicPay/picpay-frontend/issues/380) from PicPay/feat/osp-dash/adjustment-login
+- Merge pull request [#385](https://github.com/PicPay/picpay-frontend/issues/385) from PicPay/refactor/seller-panel/PLOJ-249/lib-integrations
+- Merge pull request [#379](https://github.com/PicPay/picpay-frontend/issues/379) from PicPay/refactor/seller-panel/PLOJ-243/request-password-component
+- Merge pull request [#376](https://github.com/PicPay/picpay-frontend/issues/376) from PicPay/refactor/seller-panel/PLOJ-107/change-profile-component
+- Merge pull request [#377](https://github.com/PicPay/picpay-frontend/issues/377) from PicPay/test/seller-panel/validation-messages
+- Merge pull request [#373](https://github.com/PicPay/picpay-frontend/issues/373) from PicPay/test/seller-panel/directives
+- Merge pull request [#359](https://github.com/PicPay/picpay-frontend/issues/359) from PicPay/feat/seller-panel/COPJ-777/home-message
+- Merge pull request [#375](https://github.com/PicPay/picpay-frontend/issues/375) from PicPay/feat/seller-panel/remove-sentry
+- Merge pull request [#374](https://github.com/PicPay/picpay-frontend/issues/374) from PicPay/fix/seller-panel/bank-accounts-confirmation
+- Merge pull request [#370](https://github.com/PicPay/picpay-frontend/issues/370) from PicPay/refactor/seller-panel/PLOJ-125/loading-button-component
+- Merge pull request [#371](https://github.com/PicPay/picpay-frontend/issues/371) from PicPay/feat/osp-dash/update-secret
+- Merge pull request [#364](https://github.com/PicPay/picpay-frontend/issues/364) from PicPay/test/seller-panel/guards
+- Merge pull request [#363](https://github.com/PicPay/picpay-frontend/issues/363) from PicPay/docs/dev-portal/readme
+- Merge pull request [#349](https://github.com/PicPay/picpay-frontend/issues/349) from PicPay/refactor/seller-panel/ploj-203/seller-service
+- Merge pull request [#362](https://github.com/PicPay/picpay-frontend/issues/362) from PicPay/origin/feat/seller-panel/COPJ-751/modal-account-error
+- Merge pull request [#357](https://github.com/PicPay/picpay-frontend/issues/357) from PicPay/refactor/shared/keycloak
+- Merge pull request [#367](https://github.com/PicPay/picpay-frontend/issues/367) from PicPay/refactor/seller-panel/PLOJ-235/refactor-transaction-filter-component
+- Merge pull request [#365](https://github.com/PicPay/picpay-frontend/issues/365) from PicPay/refactor/seller-panel/PLOJ-234/refactor-transaction-component
+- Merge pull request [#366](https://github.com/PicPay/picpay-frontend/issues/366) from PicPay/fix/dev-portal/products-model
+- Merge pull request [#361](https://github.com/PicPay/picpay-frontend/issues/361) from PicPay/feat/ops-dash/file-csv
+- Merge pull request [#354](https://github.com/PicPay/picpay-frontend/issues/354) from PicPay/feat/seller-panel/PLOJ-215/display-rule
+- Merge pull request [#358](https://github.com/PicPay/picpay-frontend/issues/358) from PicPay/refactor/seller-panel/PLOJ-151/refactor-table-transactions-component
+- Merge pull request [#355](https://github.com/PicPay/picpay-frontend/issues/355) from PicPay/feat/seller-panel/PLOJ-150/refactor-details-component
+- Merge pull request [#356](https://github.com/PicPay/picpay-frontend/issues/356) from PicPay/revert/dev-portal/slug
+- Merge pull request [#350](https://github.com/PicPay/picpay-frontend/issues/350) from PicPay/refactor/seller-panel/ploj-164/share-links-component
+- Merge pull request [#352](https://github.com/PicPay/picpay-frontend/issues/352) from PicPay/feat/seller-panel/PLOJ-149/refactor-cancel-component
+- Merge pull request [#347](https://github.com/PicPay/picpay-frontend/issues/347) from PicPay/feat/shared/keycloak-directive
+- Merge pull request [#345](https://github.com/PicPay/picpay-frontend/issues/345) from PicPay/feat/seller-panel/PLOJ-148/refactor-no-result-component
+- Merge pull request [#351](https://github.com/PicPay/picpay-frontend/issues/351) from PicPay/feat/ops-dash/users-roles-order
+- Merge pull request [#348](https://github.com/PicPay/picpay-frontend/issues/348) from PicPay/feat/finance-dash/login-keycloak
+- Merge pull request [#346](https://github.com/PicPay/picpay-frontend/issues/346) from PicPay/feat/core/keycloak-refactor
+- Merge pull request [#343](https://github.com/PicPay/picpay-frontend/issues/343) from PicPay/feat/ops-dash/adjustment-select-version
+- Merge pull request [#341](https://github.com/PicPay/picpay-frontend/issues/341) from PicPay/feat/core/keycloak
+- Merge pull request [#344](https://github.com/PicPay/picpay-frontend/issues/344) from PicPay/fix/dev-portal/slug
+- Merge pull request [#339](https://github.com/PicPay/picpay-frontend/issues/339) from PicPay/feat/design-system/button-loading
+- Merge pull request [#342](https://github.com/PicPay/picpay-frontend/issues/342) from PicPay/feat/seller-panel/PLOJ-146/refactor-change-password-component
+- Merge pull request [#303](https://github.com/PicPay/picpay-frontend/issues/303) from PicPay/feat/seller-panel/recaptcha-v3
+- Merge pull request [#256](https://github.com/PicPay/picpay-frontend/issues/256) from PicPay/refactor/seller-panel/ploj-144/remove-moment-lib-from-date-validator
+- Merge pull request [#338](https://github.com/PicPay/picpay-frontend/issues/338) from PicPay/feat/core/keycloak
+- Merge pull request [#340](https://github.com/PicPay/picpay-frontend/issues/340) from PicPay/fix/feature-flag/added-condition-id
+- Merge pull request [#328](https://github.com/PicPay/picpay-frontend/issues/328) from PicPay/refactor/core/data-access
+- Merge pull request [#336](https://github.com/PicPay/picpay-frontend/issues/336) from PicPay/feat/ops-dash/alphabetic-order
+- Merge pull request [#319](https://github.com/PicPay/picpay-frontend/issues/319) from PicPay/feat/feature-flag/access-levels
+- Merge pull request [#337](https://github.com/PicPay/picpay-frontend/issues/337) from PicPay/fix/seller-panel/lexical-error
+- Merge pull request [#335](https://github.com/PicPay/picpay-frontend/issues/335) from PicPay/fix/ui/layout-mark-menu-item-by-route
+- Merge pull request [#331](https://github.com/PicPay/picpay-frontend/issues/331) from PicPay/fix/seller-panel/integration-button
+- Merge pull request [#334](https://github.com/PicPay/picpay-frontend/issues/334) from PicPay/feat/seller-panel/PLOJ-210/adjust-button-new-withdrawal
+- Merge pull request [#333](https://github.com/PicPay/picpay-frontend/issues/333) from PicPay/style/seller-panel/logo-beta
+- Merge pull request [#316](https://github.com/PicPay/picpay-frontend/issues/316) from PicPay/chore/seller-panel/change-docs-url
+- Merge pull request [#330](https://github.com/PicPay/picpay-frontend/issues/330) from PicPay/chore/dev-portal/mvp-improvement
+- Merge pull request [#329](https://github.com/PicPay/picpay-frontend/issues/329) from PicPay/fix/seller-panel/bank-accounts-button
+- Merge pull request [#327](https://github.com/PicPay/picpay-frontend/issues/327) from PicPay/feat/seller-panel/PLOJ-205/adjust-extract-page
+- Merge pull request [#298](https://github.com/PicPay/picpay-frontend/issues/298) from PicPay/chore/dev-portal/mvp-improvement
+- Merge pull request [#326](https://github.com/PicPay/picpay-frontend/issues/326) from PicPay/fix/seller-panel/settings-page-description
+- Merge pull request [#324](https://github.com/PicPay/picpay-frontend/issues/324) from PicPay/fix/seller-panel/bank-accounts-buttons
+- Merge pull request [#323](https://github.com/PicPay/picpay-frontend/issues/323) from PicPay/fix/seller-panel/transactions-by-operators
+- Merge pull request [#318](https://github.com/PicPay/picpay-frontend/issues/318) from PicPay/feat/seller-panel/PLOJ-47/dark-mode
+- Merge pull request [#322](https://github.com/PicPay/picpay-frontend/issues/322) from PicPay/feat/ops-dash/adjustment-tabGroup
+- Merge pull request [#321](https://github.com/PicPay/picpay-frontend/issues/321) from PicPay/feat/ops-dash/form-control-users
+- Merge pull request [#320](https://github.com/PicPay/picpay-frontend/issues/320) from PicPay/feat/ops-dash/drawer-adjustments
+- Merge pull request [#297](https://github.com/PicPay/picpay-frontend/issues/297) from PicPay/refactor/core/remove-sentry
+- Merge pull request [#309](https://github.com/PicPay/picpay-frontend/issues/309) from PicPay/chore/core/coverage-threshold
+- Merge pull request [#271](https://github.com/PicPay/picpay-frontend/issues/271) from PicPay/refactor/seller-panel/ploj-175/authentication
+- Merge pull request [#311](https://github.com/PicPay/picpay-frontend/issues/311) from PicPay/fix/design-system/texxtfield-ajust-textarea
+- Merge pull request [#314](https://github.com/PicPay/picpay-frontend/issues/314) from PicPay/feat/design-system/textfield-minlength
+- Merge pull request [#317](https://github.com/PicPay/picpay-frontend/issues/317) from PicPay/fix/design-system/storybook-dependencies
+- Merge pull request [#302](https://github.com/PicPay/picpay-frontend/issues/302) from PicPay/test/core/core-data-access-service
+- Merge pull request [#315](https://github.com/PicPay/picpay-frontend/issues/315) from PicPay/feat/seller-panel/PLOJ-47/adjust-new-withdraw
+- Merge pull request [#313](https://github.com/PicPay/picpay-frontend/issues/313) from PicPay/fix/seller-panel/balance-paragraph
+- Merge pull request [#301](https://github.com/PicPay/picpay-frontend/issues/301) from PicPay/feat/seller-panel/COPJ-568/judicial-blocked
+- Merge pull request [#305](https://github.com/PicPay/picpay-frontend/issues/305) from PicPay/fix/seller-panel/fixing-button-extract
+- Merge pull request [#312](https://github.com/PicPay/picpay-frontend/issues/312) from PicPay/fix/seller-panel/transactions-filter-operators
+- Merge pull request [#306](https://github.com/PicPay/picpay-frontend/issues/306) from PicPay/feat/ops-dash/git-report
+- Merge pull request [#308](https://github.com/PicPay/picpay-frontend/issues/308) from PicPay/fix/seller-panel/banks-step
+- Merge pull request [#304](https://github.com/PicPay/picpay-frontend/issues/304) from PicPay/test/ui/ui-layouts
+- Merge pull request [#300](https://github.com/PicPay/picpay-frontend/issues/300) from PicPay/feat/design-system/elevation
+- Merge pull request [#273](https://github.com/PicPay/picpay-frontend/issues/273) from PicPay/feat/seller-panel/PLOJ-47/request-withdrawal
+- Merge pull request [#299](https://github.com/PicPay/picpay-frontend/issues/299) from PicPay/feat/seller-panel/css-fixes-extract
+- Merge pull request [#296](https://github.com/PicPay/picpay-frontend/issues/296) from PicPay/feat/ops-dash/adjustment-delete
+- Merge pull request [#295](https://github.com/PicPay/picpay-frontend/issues/295) from PicPay/feat/seller-panel/tracking-integration
+- Merge pull request [#290](https://github.com/PicPay/picpay-frontend/issues/290) from PicPay/chore/core/codeowners
+- Merge pull request [#291](https://github.com/PicPay/picpay-frontend/issues/291) from PicPay/fix/seller-panel/bank-accounts-img-url
+- Merge pull request [#284](https://github.com/PicPay/picpay-frontend/issues/284) from PicPay/feat/design-system/select-component
+- Merge pull request [#285](https://github.com/PicPay/picpay-frontend/issues/285) from PicPay/feat/seller-panel/enums-extract
+- Merge pull request [#126](https://github.com/PicPay/picpay-frontend/issues/126) from PicPay/feat/seller-panel/PLOJ-166/bank-withdrawals
+- Merge pull request [#288](https://github.com/PicPay/picpay-frontend/issues/288) from PicPay/refactor/packages/event-tracking
+- Merge pull request [#287](https://github.com/PicPay/picpay-frontend/issues/287) from PicPay/docs/design-system/apollo-card
+- Merge pull request [#289](https://github.com/PicPay/picpay-frontend/issues/289) from PicPay/fix/shared/helpers
+- Merge pull request [#286](https://github.com/PicPay/picpay-frontend/issues/286) from PicPay/chore/dev-portal/mvp-improvement
+- Merge pull request [#279](https://github.com/PicPay/picpay-frontend/issues/279) from PicPay/fix/dev-portal/zendesk
+- Merge pull request [#280](https://github.com/PicPay/picpay-frontend/issues/280) from PicPay/feat/ops-dash/filter-options
+- Merge pull request [#282](https://github.com/PicPay/picpay-frontend/issues/282) from PicPay/fix/packages/use-ga
+- Merge pull request [#252](https://github.com/PicPay/picpay-frontend/issues/252) from PicPay/feat/seller-panel/PLOJ-45/auto-withdrawals
+- Merge pull request [#278](https://github.com/PicPay/picpay-frontend/issues/278) from PicPay/feat/design-system/input-mask
+- Merge pull request [#277](https://github.com/PicPay/picpay-frontend/issues/277) from PicPay/feat/core/isProd
+- Merge pull request [#276](https://github.com/PicPay/picpay-frontend/issues/276) from PicPay/refactor/auth/identificationType
+- Merge pull request [#275](https://github.com/PicPay/picpay-frontend/issues/275) from PicPay/chore/dev-portal/mvp-improvement
+- Merge pull request [#274](https://github.com/PicPay/picpay-frontend/issues/274) from PicPay/feat/design-system/input-mask
+- Merge pull request [#268](https://github.com/PicPay/picpay-frontend/issues/268) from PicPay/feat/design-system/feedback-page
+- Merge pull request [#272](https://github.com/PicPay/picpay-frontend/issues/272) from PicPay/chore/dev-portal/mvp-improvement
+- Merge pull request [#269](https://github.com/PicPay/picpay-frontend/issues/269) from PicPay/feat/ops-dash/tests-search-paginator
+- Merge pull request [#270](https://github.com/PicPay/picpay-frontend/issues/270) from PicPay/chore/dev-portal/mvp-improvement
+- Merge pull request [#263](https://github.com/PicPay/picpay-frontend/issues/263) from PicPay/feat/seller-panel/e2e
+- Merge pull request [#257](https://github.com/PicPay/picpay-frontend/issues/257) from PicPay/feat/dev-portal/mvp
+- Merge pull request [#265](https://github.com/PicPay/picpay-frontend/issues/265) from PicPay/fix/finance-dash/bug-first-access
+- Merge pull request [#259](https://github.com/PicPay/picpay-frontend/issues/259) from PicPay/chore/core/monorepo-coverage
+- Merge pull request [#262](https://github.com/PicPay/picpay-frontend/issues/262) from PicPay/feat/feature-flag/usability-improvements
+- Merge pull request [#258](https://github.com/PicPay/picpay-frontend/issues/258) from PicPay/feat/seller-panel/disable-extract
+- Merge pull request [#245](https://github.com/PicPay/picpay-frontend/issues/245) from PicPay/feat/seller-panel/PLOJ-172/input-search-operators-filter
+- Merge pull request [#261](https://github.com/PicPay/picpay-frontend/issues/261) from PicPay/feat/shared/keycloak
+- Merge pull request [#255](https://github.com/PicPay/picpay-frontend/issues/255) from PicPay/refactor/seller-panel/PLOJ-147/my-documents-test
+- Merge pull request [#253](https://github.com/PicPay/picpay-frontend/issues/253) from PicPay/fix/core/base-branch-hooks
+- Merge pull request [#250](https://github.com/PicPay/picpay-frontend/issues/250) from PicPay/feat/feature-flag/squad-on-feature
+- Merge pull request [#254](https://github.com/PicPay/picpay-frontend/issues/254) from PicPay/feat/ops-dash/api-url-prod
+- Merge pull request [#240](https://github.com/PicPay/picpay-frontend/issues/240) from PicPay/feat/design-system/apollo-card
+- Merge pull request [#234](https://github.com/PicPay/picpay-frontend/issues/234) from PicPay/fix/event-tracking/get-configurations
+- Merge pull request [#248](https://github.com/PicPay/picpay-frontend/issues/248) from PicPay/feat/feature-flag/textual-changes
+- Merge pull request [#251](https://github.com/PicPay/picpay-frontend/issues/251) from PicPay/fix/core/pre-push-fix
+- Merge pull request [#235](https://github.com/PicPay/picpay-frontend/issues/235) from PicPay/feat/design-system/apollo-dialog
+- Merge pull request [#249](https://github.com/PicPay/picpay-frontend/issues/249) from PicPay/feat/design-system/stories-to-tsx
+- Merge pull request [#219](https://github.com/PicPay/picpay-frontend/issues/219) from PicPay/test/feature-flag/teste-automatizado-cypress
+- Merge pull request [#246](https://github.com/PicPay/picpay-frontend/issues/246) from PicPay/fix/seller-panel/my-plan-route
+- Merge pull request [#244](https://github.com/PicPay/picpay-frontend/issues/244) from PicPay/fix/design-system/button-letter-spacing
+- Merge pull request [#242](https://github.com/PicPay/picpay-frontend/issues/242) from PicPay/feat/shared/decorators
+- Merge pull request [#237](https://github.com/PicPay/picpay-frontend/issues/237) from PicPay/fix/design-system/header-icons
+- Merge pull request [#217](https://github.com/PicPay/picpay-frontend/issues/217) from PicPay/feat/seller-panel/PLOJ-55/my-plan
+- Merge pull request [#233](https://github.com/PicPay/picpay-frontend/issues/233) from PicPay/feat/seller-panel/COPJ-715/account-error
+- Merge pull request [#241](https://github.com/PicPay/picpay-frontend/issues/241) from PicPay/fix/design-system/textfield-border-radius
+- Merge pull request [#236](https://github.com/PicPay/picpay-frontend/issues/236) from PicPay/fix/design-system/icon-button-svg
+- Merge pull request [#238](https://github.com/PicPay/picpay-frontend/issues/238) from PicPay/feat/ops-dash/adjustments-layout
+- Merge pull request [#232](https://github.com/PicPay/picpay-frontend/issues/232) from PicPay/fix/design-system/snackbar-emphasis
+- Merge pull request [#231](https://github.com/PicPay/picpay-frontend/issues/231) from PicPay/update-readme
+- Merge pull request [#136](https://github.com/PicPay/picpay-frontend/issues/136) from PicPay/feat/seller-panel/PLOJ-42/extract-list
+- Merge pull request [#216](https://github.com/PicPay/picpay-frontend/issues/216) from PicPay/fix/design-system/apollo-icon
+- Merge pull request [#211](https://github.com/PicPay/picpay-frontend/issues/211) from PicPay/feat/finance-dash/create-project
+- Merge pull request [#226](https://github.com/PicPay/picpay-frontend/issues/226) from PicPay/feat/design-system/stack
+- Merge pull request [#230](https://github.com/PicPay/picpay-frontend/issues/230) from PicPay/feat/design-system/custom-validator-message
+- Merge pull request [#220](https://github.com/PicPay/picpay-frontend/issues/220) from PicPay/refactor/seller-panel/event-tracking
+- Merge pull request [#222](https://github.com/PicPay/picpay-frontend/issues/222) from PicPay/feat/design-system/feedback-card
+- Merge pull request [#229](https://github.com/PicPay/picpay-frontend/issues/229) from PicPay/feat/design-system/package-location
+- Merge pull request [#214](https://github.com/PicPay/picpay-frontend/issues/214) from PicPay/feat/ops-dash/elements-design-system
+- Merge pull request [#210](https://github.com/PicPay/picpay-frontend/issues/210) from PicPay/feat/seller-panel/PLOJ-161/status-transactions
+- Merge pull request [#190](https://github.com/PicPay/picpay-frontend/issues/190) from PicPay/feat/design-system/menu-component
+- Merge pull request [#159](https://github.com/PicPay/picpay-frontend/issues/159) from PicPay/feat/design-system/snackbar
+- Merge pull request [#221](https://github.com/PicPay/picpay-frontend/issues/221) from PicPay/fix/design-system/dist-folder
+- Merge pull request [#189](https://github.com/PicPay/picpay-frontend/issues/189) from PicPay/feat/packages/event-trackings
+- Merge pull request [#212](https://github.com/PicPay/picpay-frontend/issues/212) from PicPay/feat/seller-panel/PLOJ-162/botao-trocar-painel
+- Merge pull request [#178](https://github.com/PicPay/picpay-frontend/issues/178) from PicPay/feat/seller-panel/PLOJ-184/reload-transactions
+- Merge pull request [#208](https://github.com/PicPay/picpay-frontend/issues/208) from PicPay/feat/seller-panel/PLOJ-162/botao-trocar-painel
+- Merge pull request [#199](https://github.com/PicPay/picpay-frontend/issues/199) from PicPay/feat/design-system/icon-svg-symbols
+- Merge pull request [#207](https://github.com/PicPay/picpay-frontend/issues/207) from PicPay/feat/ops-dash/show-select-roles
+- Merge pull request [#186](https://github.com/PicPay/picpay-frontend/issues/186) from PicPay/feat/design-system/angular
+- Merge pull request [#198](https://github.com/PicPay/picpay-frontend/issues/198) from PicPay/feat/ops-dash/help-page
+- Merge pull request [#200](https://github.com/PicPay/picpay-frontend/issues/200) from PicPay/develop
+- Merge pull request [#166](https://github.com/PicPay/picpay-frontend/issues/166) from PicPay/feat/seller-panel/PLOJ-162/botao-trocar-painel
+- Merge pull request [#191](https://github.com/PicPay/picpay-frontend/issues/191) from PicPay/feat/ops-dash/adjustments-service-list
+- Merge pull request [#169](https://github.com/PicPay/picpay-frontend/issues/169) from PicPay/feat/design-system/apollo-header-sticky
+- Merge pull request [#174](https://github.com/PicPay/picpay-frontend/issues/174) from PicPay/feat/design-system/menu-component
+- Merge pull request [#175](https://github.com/PicPay/picpay-frontend/issues/175) from PicPay/fix/core/update-rxjs
+- Merge pull request [#176](https://github.com/PicPay/picpay-frontend/issues/176) from PicPay/feat/seller-panel/tagmanager-code
+- Merge pull request [#173](https://github.com/PicPay/picpay-frontend/issues/173) from PicPay/feat/design-system/button-attributes
+- Merge pull request [#167](https://github.com/PicPay/picpay-frontend/issues/167) from PicPay/feat/design-system/storybook-jsx
+- Merge pull request [#161](https://github.com/PicPay/picpay-frontend/issues/161) from PicPay/feat/design-system/ads-opacity
+- Merge pull request [#153](https://github.com/PicPay/picpay-frontend/issues/153) from PicPay/feat/design-system/apollo-grid
+- Merge pull request [#177](https://github.com/PicPay/picpay-frontend/issues/177) from PicPay/feat/ops-dash/variables-environments
+- Merge pull request [#165](https://github.com/PicPay/picpay-frontend/issues/165) from PicPay/feat/core/tracking
+- Merge pull request [#171](https://github.com/PicPay/picpay-frontend/issues/171) from PicPay/feat/ops-dash/api-url
+- Merge pull request [#170](https://github.com/PicPay/picpay-frontend/issues/170) from PicPay/feat/core/package-json
+- Merge pull request [#164](https://github.com/PicPay/picpay-frontend/issues/164) from PicPay/feat/core/migrate-custom-properties
+
+
+<a name="v1.0.2"></a>
+
+## [v1.0.2] - 02/09/2020
+
+### Features
+
+- **core:** github action test
+- **ops-dash:** environment url prod
+
+### Pull Requests
+
+- Merge pull request [#163](https://github.com/PicPay/picpay-frontend/issues/163) from PicPay/develop
+- Merge pull request [#162](https://github.com/PicPay/picpay-frontend/issues/162) from PicPay/feat/ops-dash/environment-url-prod
+
+
+<a name="v1.0.1"></a>
+
+## [v1.0.1] - 01/09/2020
+
+### Bug Fixes
+
+- **design-system:** include icon-button package in dependencies
+- **design-system:** updating test snapshot
+- **feature-flag:** removed unnecessary function
+- **feature-flag:** lint fix
+- **feature-flag:** removed number from FeatureTypes
+- **shared:** fixed pipes not being included on the code coverage
+- **shared:** fixed broken tests...
+- **shared:** shared-pipes lint fixes
+- **ui:** fixed a bug when opening modals on default layout
+
+### Features
+
+- **core:** stylelint
+- **design-system:** create apollo-header invalid state
+- **design-system:** icon Button component
+- **design-system:** componente de Radio
+- **design-system:** adicionado storybook de radio group
+- **design-system:** adicionando atributo nativo type no button
+- **feature-flag:** added a toggle function to the segmentation details on the sidesheet
+- **feature-flag:** added a shared pipes library with a truncate pipe
+- **feature-flag:** added success notifications to get, delete and update feature
+- **ops-dash:** adjustments mat-spinner diameter
+- **ops-dash:** login adjustments id qa + tests
+- **ops-dash:** loading
+- **ops-dash:** delete option prod
+- **ops-dash:** paginator test, modal update users
+- **ops-dash:** loading deploy
+- **ops-dash:** loading deploy
+- **ops-dash:** loading deploy
+- **ops-dash:** alias adjustments
+- **ops-dash:** tests
+- **ops-dash:** roles users
+- **ops-dash:** adjustment mat-spinner diameter
+- **ops-dash:** tests
+- **ops-dash:** authentication
+
+### Style
+
+- **feature-flag:** changed 'feature' to 'funcionalidade'
+
+### Pull Requests
+
+- Merge pull request [#158](https://github.com/PicPay/picpay-frontend/issues/158) from PicPay/develop
+- Merge pull request [#155](https://github.com/PicPay/picpay-frontend/issues/155) from PicPay/feat/ops-dash/loading
+- Merge pull request [#138](https://github.com/PicPay/picpay-frontend/issues/138) from PicPay/feat/design-system/icon-button
+- Merge pull request [#151](https://github.com/PicPay/picpay-frontend/issues/151) from PicPay/style/feature-flag/style-fixes
+- Merge pull request [#152](https://github.com/PicPay/picpay-frontend/issues/152) from PicPay/fix/feature-flag/remove-number-from-feat-type
+- Merge pull request [#148](https://github.com/PicPay/picpay-frontend/issues/148) from PicPay/feat/feature-flag/segmentations-on-sidenav
+- Merge pull request [#150](https://github.com/PicPay/picpay-frontend/issues/150) from PicPay/feat/ops-dash/login-adjustments
+- Merge pull request [#149](https://github.com/PicPay/picpay-frontend/issues/149) from PicPay/feat/feature-flag/success-notifications
+- Merge pull request [#147](https://github.com/PicPay/picpay-frontend/issues/147) from PicPay/feat/design-system/apollo-radio
+- Merge pull request [#145](https://github.com/PicPay/picpay-frontend/issues/145) from PicPay/feat/core/stylelint
+- Merge pull request [#143](https://github.com/PicPay/picpay-frontend/issues/143) from PicPay/feat/design-system/button-type
+- Merge pull request [#144](https://github.com/PicPay/picpay-frontend/issues/144) from PicPay/feat/ops-dash/login-google
+
+
+<a name="v1.0.0"></a>
+
+## [v1.0.0] - 20/08/2020
+
+### Bug Fixes
+
+- **design-system:** storybook canvas view fix
+- **feature-flag:** fixed confirmation modal logic on feature-workbench
+- **seller-panel:** fixing test problem
+- **seller-panel:** input type email and numeric at login and request-password pages
+- **seller-panel:** charge copyLink message error
+- **seller-panel:** charge page charge value margin botton
+- **seller-panel:** fixing menu mobile conditionals
+- **seller-panel:** pull develop and some fixes
+- **ui:** return to old mixins
+
+### Code Refactoring
+
+- **design-system:** folder structures
+- **design-system:** switch-toggle folder struncture
+- **design-system:** alteração de altura no apollo-button
+- **design-system:** atualização da altura do apollo-button no size sm
+- **design-system:** helpers e tokens packages integration
+- **feature-flag:** removed unecessary provider on feature-flag-features
+- **feature-flag:** removed the action button from the table (now on the feature details sidenav
+- **seller-panel:** charge page mobile layout
+- **seller-panel:** social networks modal
+- **seller-panel:** charge page set value modal
+- **seller-panel:** o-button text-transform capitalize
+- **seller-panel:** charge page refactor desk layout
+- **seller-panel:** extract page spacing pattern
+- **seller-panel:** refact tracking
+- **seller-panel:** transaction table and no-result component
+- **seller-panel:** transactions page layout
+- **seller-panel:** ajustado nome dos teste e deletado pasta design-system-web
+- **seller-panel:** transactions layout refactor
+- **seller-panel:** ajuste método SellerService
+- **seller-panel:** integrations page refactor layout
+- **seller-panel:** ajust imports
+
+### Features
+
+- **core:** stenciljs custom builder
+- **core:** added notifications interceptor
+- **design-system:** add stories to switch toggle component
+- **design-system:** storybook Viewport e Light / Dark mode Addons
+- **design-system:** merge with develop
+- **design-system:** circular progress component
+- **design-system:** adding css rule in checkbox component
+- **design-system:** adding a click listen method in the button component
+- **design-system:** adding form-field reference in checkbox component
+- **design-system:** adjust checkbox styles and rename component files
+- **design-system:** adjust checkbox disabled colors
+- **design-system:** adding checkbox component
+- **design-system:** criação dos slots apollo-icons leading/trailing
+- **design-system:** criação da Home e atualização de estilo no storybook
+- **design-system:** migrate storybook
+- **design-system:** switch-toggle-component
+- **design-system:** remove use of history API from button component
+- **design-system-web:** textfield components lazy load
+- **design-system-web:** rebase to develop
+- **feature-flag:** added sandbox environment config
+- **feature-flag:** added confirmation modal to remove segmentation (feature-workbench)
+- **feature-flag:** added confirmation modal component, logic and service
+- **ops-dash:** test
+- **ops-dash:** adjustments general
+- **ops-dash:** test adjusted
+- **ops-dash:** request service list in click tab
+- **ops-dash:** adjustments general
+- **seller-panel:** adding change profile
+- **seller-panel:** check tokens
+- **seller-panel:** merge
+- **seller-panel:** merge
+- **seller-panel:** fixing conflict
+- **seller-panel:** pR fixing
+- **seller-panel:** pR fixing
+- **seller-panel:** merge
+- **seller-panel:** adding change profile feature
+- **seller-panel:** created file to params.mock
+- **seller-panel:** tracking & refact charge menu
+- **seller-panel:** tracking
+- **seller-panel:** tracking login
+
+### Style
+
+- **core:** code format
+- **design-system:** remove page slot in component definition
+- **design-system:** removing unnecessary comment
+- **design-system:** adding a note for explain the used logic
+- **design-system:** custom properties improves
+- **feature-flag:** fixed sidesheet on mobile
+
+### Pull Requests
+
+- Merge pull request [#141](https://github.com/PicPay/picpay-frontend/issues/141) from PicPay/develop
+- Merge pull request [#140](https://github.com/PicPay/picpay-frontend/issues/140) from PicPay/feat/design-system/link-button
+- Merge pull request [#129](https://github.com/PicPay/picpay-frontend/issues/129) from PicPay/feat/seller-panel/PLOJ-114/testes-unitarios-withdrawals
+- Merge pull request [#137](https://github.com/PicPay/picpay-frontend/issues/137) from PicPay/feat/design-system/storybook-addons
+- Merge pull request [#135](https://github.com/PicPay/picpay-frontend/issues/135) from PicPay/feat/design-system/circular-progress-component
+- Merge pull request [#134](https://github.com/PicPay/picpay-frontend/issues/134) from PicPay/feat/core/notifications
+- Merge pull request [#133](https://github.com/PicPay/picpay-frontend/issues/133) from PicPay/feat/design-system/checkbox-component
+- Merge pull request [#132](https://github.com/PicPay/picpay-frontend/issues/132) from PicPay/develop
+- Merge pull request [#131](https://github.com/PicPay/picpay-frontend/issues/131) from PicPay/feat/design-system/custom-properties-improves
+- Merge pull request [#127](https://github.com/PicPay/picpay-frontend/issues/127) from PicPay/feat/seller-panel/change-profile
+- Merge pull request [#130](https://github.com/PicPay/picpay-frontend/issues/130) from PicPay/feat/design-system/switch-toggle-component
+- Merge pull request [#122](https://github.com/PicPay/picpay-frontend/issues/122) from PicPay/feat/design-system/storybook-visual-updates
+- Merge pull request [#123](https://github.com/PicPay/picpay-frontend/issues/123) from PicPay/refactor/design-system/apollo-button
+- Merge pull request [#128](https://github.com/PicPay/picpay-frontend/issues/128) from PicPay/feat/feature-flag/delete-feature
+- Merge pull request [#125](https://github.com/PicPay/picpay-frontend/issues/125) from PicPay/feat/design-system/migrate-storybook
+- Merge pull request [#119](https://github.com/PicPay/picpay-frontend/issues/119) from PicPay/feat/ops-dash/request-service-list
+- Merge pull request [#120](https://github.com/PicPay/picpay-frontend/issues/120) from PicPay/fix/seller-panel/PLOJ-152/page-container
+- Merge pull request [#112](https://github.com/PicPay/picpay-frontend/issues/112) from PicPay/feat/design-system/DS-Button
+- Merge pull request [#118](https://github.com/PicPay/picpay-frontend/issues/118) from PicPay/feat/seller-panel/PLOJ-114/testes-unitarios-auth
+- Merge pull request [#114](https://github.com/PicPay/picpay-frontend/issues/114) from PicPay/feat/design-system/ds-avatar
+- Merge pull request [#116](https://github.com/PicPay/picpay-frontend/issues/116) from PicPay/fix/seller-panel/mobile-menu
+- Merge pull request [#106](https://github.com/PicPay/picpay-frontend/issues/106) from PicPay/feat/seller-panel/tracking
+- Merge pull request [#113](https://github.com/PicPay/picpay-frontend/issues/113) from PicPay/feat/ops-dash/adjustments
+- Merge pull request [#111](https://github.com/PicPay/picpay-frontend/issues/111) from PicPay/feat/seller-panel/PLOJ-120/testes-unitarios-transactions
+- Merge pull request [#110](https://github.com/PicPay/picpay-frontend/issues/110) from PicPay/feat/core/custom-builders
+- Merge pull request [#107](https://github.com/PicPay/picpay-frontend/issues/107) from PicPay/feat/ops-dash/adjustments-general
+
+
+<a name="v1.0.0-rc"></a>
+
+## v1.0.0-rc - 27/07/2020
+
+### Bug Fixes
+
+- **core:** rollback config files do default template
+- **core:** adding shebang to shell script (fix codacy issue)
+- **core:** fix ci build problem
+- **feature-flag:** changed the logic of update feature
+- **feature-flag:** fixed production API URL's
+- **feature-flag:** added the correct error messages on create feature condition inputs
+- **feature-flag:** changed the min value for the percentage field
+- **feature-flag:** added the correct error messages on create feature condition inputs
+- **feature-flag:** changed the min value for the percentage field
+- **feature-flag:** changed the logic of update feature
+- **ops-dash:** remove settimeout from update component
+- **ops-dash:** add closeAll to test mock
+- **seller-panel:** seller-panel logo fix, change-password form before submit field fix, confirm-moda
+- **seller-panel:** fix decimal value
+- **seller-panel:** download-reports params
+- **seller-panel:** transaction solve conflicts
+- **seller-panel:** download reports style button and disabled when dont have transactions list
+- **seller-panel:** phone mask
+- **seller-panel:** update field name from category and site of my-documents component
+- **seller-panel:** fix layout modal
+- **seller-panel:** fixing menu conditionals on login
+- **seller-panel:** pull develop
+- **seller-panel:** fix margin layout
+- **seller-panel:** pull merge solve conflicts
+- **seller-panel:** transactions filter when click in close modal
+- **seller-panel:** fix payload value
+- **seller-panel:** update package-lock
+- **seller-panel:** btn-generate-token style
+- **seller-panel:** solve conflicts
+- **seller-panel:** error message at login
+- **seller-panel:** ecommerce service title message error
+- **seller-panel:** ecommerce service solve conflict
+- **shared:** fix in project.config.json from shared/core/data-access
+
+### Code Refactoring
+
+- **core:** change hook to run ignore config files command
+- **core:** rollback config files do default template
+- **core:** change hook to run ignore config files command
+- **feature-flag:** added greater_or_equal and lesser_or_equal app version comparator options
+- **feature-flag:** update prod environments
+- **feature-flag:** refactor in feature-flag to use core injectionToken
+- **feature-flag:** removed create-feature and update-feature pages
+- **feature-flag:** changed the version interval logic to match the business logic
+- **seller-panel:** withdrawal cast options model
+- **seller-panel:** trocando o SellerPanelSharedModule por mockModule
+- **seller-panel:** criação detaislTransactionMock
+- **seller-panel:** create transaction-filter and user-seller interface
+- **seller-panel:** transaction models and remove unused method in service
+- **seller-panel:** loadOperators only type biz users and some style fixes
+- **seller-panel:** remove unused icons from old seller panel
+- **seller-panel:** styles and files review
+- **seller-panel:** code review
+- **seller-panel:** services
+- **seller-panel:** helpers name file pattern
+- **seller-panel:** generic-api folder in helpers
+- **seller-panel:** tipagem ICancelTransaction
+- **seller-panel:** remove comments
+- **seller-panel:** some refactor at transactions list
+- **seller-panel:** tipagem ICancelTransaction
+- **seller-panel:** notification title and message
+- **seller-panel:** review libs and delete unused
+- **shared:** migrate some helpers to global monorepo shared lib
+
+### Features
+
+- **core:** add pretty quick to husky pre-commit ([#15](https://github.com/PicPay/picpay-frontend/issues/15))
+- **core:** lib config rules web
+- **design-system-web:** migrate design system web
+- **design-system-web:** fix tslint to eslint rules
+- **design-system-web:** add readme to compoents
+- **design-system-web:** upgrade version config rules web
+- **design-system-web:** downgrade prettier
+- **design-system-web:** tslint rule upgrade
+- **design-system-web:** config linting and fix build on monorepo
+- **design-system-web:** upgrade prettier linting support to version 2.0.5
+- **design-system-web:** design system dependencies and textfield fix
+- **external-transfer:** external transfer project migrate ([#29](https://github.com/PicPay/picpay-frontend/issues/29))
+- **feature-flag:** now we can create features with conditions (segmentations)
+- **feature-flag:** added app version to feature conditions
+- **feature-flag:** adding Sentry error tracking to feature-flag
+- **feature-flag:** now we can create features with conditions (segmentations)
+- **feature-flag:** added tracking service and validation menus
+- **global:** add commitlint & commitizen
+- **ops-dash:** adjustments-list-variables
+- **ops-dash:** adjustments
+- **ops-dash:** ajustments-list-variables-and-models
+- **ops-dash:** change backend in payload
+- **ops-dash:** secret-type, versions and rollback
+- **ops-dash:** merge
+- **ops-dash:** search field in Api
+- **ops-dash:** adjustments PR
+- **ops-dash:** merge
+- **ops-dash:** desassociate service in key
+- **ops-dash:** pagination
+- **ops-dash:** configs core environment
+- **ops-dash:** environments dropdown and services
+- **ops-dash:** adjustments tests and modal
+- **ops-dash:** environment urls
+- **ops-dash:** adjustments headers
+- **ops-dash:** adjustments PR: onDestroy and test
+- **ops-dash:** adjustments login and table css of environments variables list
+- **ops-dash:** adjustment PR - private
+- **ops-dash:** adjustment PR: parameters on method
+- **seller-panel:** implementação testes unitários NoResultComponent
+- **seller-panel:** implementação testes unitários página detalhes
+- **seller-panel:** request cancelTransaction
+- **seller-panel:** pull develop
+- **seller-panel:** extract coming soon layout and my-documents ajusts
+- **seller-panel:** fixing PR requests
+- **seller-panel:** request-password modal
+- **seller-panel:** request cancelTransaction
+- **seller-panel:** loader download qrcode desktop
+- **seller-panel:** add copy url & fix layout
+- **seller-panel:** deeplinks modal & add loading  download pdf
+- **seller-panel:** add header in all pages
+- **seller-panel:** removing ngx-print & adding print qrcode
+- **seller-panel:** implementação tratamento para buscar transações
+- **seller-panel:** implementação do método buscar transações, ordenação, mudança do endpoint e ajus
+- **seller-panel:** teste unitários TableComponent
+- **seller-panel:** request cancelTransaction
+- **seller-panel:** header component
+- **seller-panel:** rebase develop
+- **seller-panel:** download transactions modal integration
+- **seller-panel:** rebase
+- **seller-panel:** download qrcode
+- **seller-panel:** solve merge conflits
+- **seller-panel:** remove device share
+- **seller-panel:** adding MockModule
+- **seller-panel:** transactions filters by period, status and operators
+- **seller-panel:** setup global analytics
+- **seller-panel:** scss & .gitignore
+- **seller-panel:** ajustes timeZone UTC
+- **seller-panel:** deeplink facebook
+- **seller-panel:** deeplink twitter & whatsapp
+- **seller-panel:** change ng-copy to cdkCopy
+- **seller-panel:** fix layout
+- **seller-panel:** fix test
+- **seller-panel:** ng-copy & ngx-print & scss refactor
+- **seller-panel:** ignore package-lock and google analytics
+- **seller-panel:** rebasing and Fixing test
+- **seller-panel:** align center text charge value input
+- **seller-panel:** mensagem erro no nofity
+- **seller-panel:** charge page
+- **seller-panel:** unit test, mobile & dark mode
+- **seller-panel:** charge-page
+- **seller-panel:** conflitos resolvidos e ajuste path image do component no-result
+- **seller-panel:** refatoração HTML e CSS e image empty-state add ao projeto
+- **seller-panel:** complexidade ciclomática
+- **seller-panel:** refatoração component cancel-transaction
+- **seller-panel:** ajuste variaveis de cores
+- **seller-panel:** refatoração details-transactions
+- **seller-panel:** refatoração table-transactions
+- **seller-panel:** correção do bug infinity scroll e refatoração do HTML e CSS
+- **seller-panel:** merge com estrutura mais atual do projeto
+- **seller-panel:** integration services
+- **seller-panel:** fixing conflictd and adding biz guard
+- **seller-panel:** password checker guard
+- **seller-panel:** unsaved-changes guard to my-documents component
+- **seller-panel:** pull develop
+- **seller-panel:** implementação testes unitários página detalhes
+- **seller-panel:** implementação do método buscar transações, ordenação, mudança do endpoint e ajus
+- **seller-panel:** tipagem ITransactionService
+- **seller-panel:** update status transaction
+- **seller-panel:** ajustes testes e tipagem reajustada
+- **seller-panel:** rebase develop
+- **seller-panel:** extract title and header style
+- **seller-panel:** exibir botão (cancelar transação) para o status 'Aprovada'
+- **seller-panel:** implementação tratamento para buscar transações
+
+### Style
+
+- **feature-flag:** changed create feature input errors and made minor layout changes
+- **feature-flag:** changed create feature input errors and made minor layout changes
+- **seller-panel:** ajuste input search
+- **seller-panel:** login layout and picpay empresas logo
+- **seller-panel:** add new favicon
+- **seller-panel:** forgot-password and generate-new-password layout
+- **seller-panel:** ajuste change request
+- **seller-panel:** logo update
+- **seller-panel:** login new layout
+- **seller-panel:** ajustes mobile, CSS e HTML
+- **seller-panel:** filter button order and change text name aplicar to filtrar
+- **seller-panel:** ajuste dark mode
+- **seller-panel:** header transactions toolbar-row
+- **seller-panel:** aJustes CSS
+- **seller-panel:** ajuste CSS component no-result
+
+### Pull Requests
+
+- Merge pull request [#109](https://github.com/PicPay/picpay-frontend/issues/109) from PicPay/develop
+- Merge pull request [#103](https://github.com/PicPay/picpay-frontend/issues/103) from PicPay/feat/seller-panel/PLOJ-112/testes-unitarios-ecommerce
+- Merge pull request [#102](https://github.com/PicPay/picpay-frontend/issues/102) from PicPay/feat/ops-dash/login-session
+- Merge pull request [#101](https://github.com/PicPay/picpay-frontend/issues/101) from PicPay/refactor/seller-panel/PLOJ-110/services
+- Merge pull request [#100](https://github.com/PicPay/picpay-frontend/issues/100) from PicPay/feat/ops-dash/headers
+- Merge pull request [#99](https://github.com/PicPay/picpay-frontend/issues/99) from PicPay/feat/ops-dash/environment-urls
+- Merge pull request [#97](https://github.com/PicPay/picpay-frontend/issues/97) from PicPay/feat/design-system-web/migrate-project
+- Merge pull request [#98](https://github.com/PicPay/picpay-frontend/issues/98) from PicPay/feat/seller-panel/PLOJ-111/testes-unitarios-charge
+- Merge pull request [#96](https://github.com/PicPay/picpay-frontend/issues/96) from PicPay/feat/feature-flag/edit-conditions
+- Merge pull request [#93](https://github.com/PicPay/picpay-frontend/issues/93) from PicPay/feat/seller-panel/PLOJ-106/refinamento
+- Merge pull request [#94](https://github.com/PicPay/picpay-frontend/issues/94) from PicPay/ci/core/codeowners
+- Merge pull request [#92](https://github.com/PicPay/picpay-frontend/issues/92) from PicPay/feat/seller-panel/PLOJ-137/login-page-add-sign-up-link
+- Merge pull request [#91](https://github.com/PicPay/picpay-frontend/issues/91) from PicPay/refactor/seller-panel/PLOJ-107/files-and-styles-review
+- Merge pull request [#90](https://github.com/PicPay/picpay-frontend/issues/90) from PicPay/develop
+- Merge pull request [#89](https://github.com/PicPay/picpay-frontend/issues/89) from PicPay/fix/seller-panel/menu-conditionals
+- Merge pull request [#88](https://github.com/PicPay/picpay-frontend/issues/88) from PicPay/develop
+- Merge pull request [#85](https://github.com/PicPay/picpay-frontend/issues/85) from PicPay/feat/ops-dash/desassociate-service
+- Merge pull request [#87](https://github.com/PicPay/picpay-frontend/issues/87) from PicPay/feat/seller-panel/login-new-layout
+- Merge pull request [#86](https://github.com/PicPay/picpay-frontend/issues/86) from PicPay/develop
+- Merge pull request [#84](https://github.com/PicPay/picpay-frontend/issues/84) from PicPay/feat/seller-panel/PLOJ-31/transactions-page
+- Merge pull request [#83](https://github.com/PicPay/picpay-frontend/issues/83) from PicPay/develop
+- Merge pull request [#73](https://github.com/PicPay/picpay-frontend/issues/73) from PicPay/fix/core/config-files
+- Merge pull request [#82](https://github.com/PicPay/picpay-frontend/issues/82) from PicPay/develop
+- Merge pull request [#81](https://github.com/PicPay/picpay-frontend/issues/81) from PicPay/feat/seller-panel/PLOJ-31/transactions-page
+- Merge pull request [#80](https://github.com/PicPay/picpay-frontend/issues/80) from PicPay/fix/seller-panel/menu-cobrar-modal
+- Merge pull request [#77](https://github.com/PicPay/picpay-frontend/issues/77) from PicPay/feat/seller-panel/PLOJ-31/transactions-page
+- Merge pull request [#79](https://github.com/PicPay/picpay-frontend/issues/79) from PicPay/fix/seller-panel/transaction-filter-button-style
+- Merge pull request [#78](https://github.com/PicPay/picpay-frontend/issues/78) from PicPay/fix/seller-panel/team-review
+- Merge pull request [#76](https://github.com/PicPay/picpay-frontend/issues/76) from PicPay/develop
+- Merge pull request [#75](https://github.com/PicPay/picpay-frontend/issues/75) from PicPay/origin/fix/seller-panel/menu-cobrar
+- Merge pull request [#74](https://github.com/PicPay/picpay-frontend/issues/74) from PicPay/develop
+- Merge pull request [#72](https://github.com/PicPay/picpay-frontend/issues/72) from PicPay/feat/seller-panel/has-unsaved-changes-modal-in-settings-page
+- Merge pull request [#71](https://github.com/PicPay/picpay-frontend/issues/71) from PicPay/feat/seller-panel/request-password-integration-settings-page
+- Merge pull request [#70](https://github.com/PicPay/picpay-frontend/issues/70) from PicPay/feat/ops-dash/paginator
+- Merge pull request [#66](https://github.com/PicPay/picpay-frontend/issues/66) from PicPay/feat/seller-panel/PLOJ-31/transactions-page
+- Merge pull request [#65](https://github.com/PicPay/picpay-frontend/issues/65) from PicPay/feat/seller-panel/integration-page
+- Merge pull request [#68](https://github.com/PicPay/picpay-frontend/issues/68) from PicPay/fix/core/config-files
+- Merge pull request [#67](https://github.com/PicPay/picpay-frontend/issues/67) from PicPay/ci/core/fix_ci_build
+- Merge pull request [#64](https://github.com/PicPay/picpay-frontend/issues/64) from PicPay/refactor/seller-panel/env-api-url-data-access
+- Merge pull request [#63](https://github.com/PicPay/picpay-frontend/issues/63) from PicPay/feat/seller-panel/request-password-to-settings-page
+- Merge pull request [#62](https://github.com/PicPay/picpay-frontend/issues/62) from PicPay/feat/seller-panel/tracking-service
+- Merge pull request [#59](https://github.com/PicPay/picpay-frontend/issues/59) from PicPay/refactor/feature-flag/features
+- Merge pull request [#60](https://github.com/PicPay/picpay-frontend/issues/60) from PicPay/feat/seller-panel/PLOJ-64/menu-cobrar-v2
+- Merge pull request [#55](https://github.com/PicPay/picpay-frontend/issues/55) from PicPay/feat/seller-panel/PLOJ-31/transactions-page
+- Merge pull request [#58](https://github.com/PicPay/picpay-frontend/issues/58) from PicPay/feat/seller-panel/header
+- Merge pull request [#57](https://github.com/PicPay/picpay-frontend/issues/57) from PicPay/feat/feature-flag/conditions
+- Merge pull request [#51](https://github.com/PicPay/picpay-frontend/issues/51) from PicPay/feat/ops-dash/environments-dropdown-and-services
+- Merge pull request [#53](https://github.com/PicPay/picpay-frontend/issues/53) from PicPay/feat/seller-panel/export-transactions-integration
+- Merge pull request [#44](https://github.com/PicPay/picpay-frontend/issues/44) from PicPay/chore/core/git-ignore
+- Merge pull request [#50](https://github.com/PicPay/picpay-frontend/issues/50) from PicPay/feat/seller-panel/merge-branches-to-develop
+- Merge pull request [#38](https://github.com/PicPay/picpay-frontend/issues/38) from PicPay/feat/shared/sentry
+- Merge pull request [#42](https://github.com/PicPay/picpay-frontend/issues/42) from PicPay/refactor/seller-panel/libs-review
+- Merge pull request [#33](https://github.com/PicPay/picpay-frontend/issues/33) from PicPay/feat/seller-panel/PLOJ-64/menu-cobrar
+- Merge pull request [#37](https://github.com/PicPay/picpay-frontend/issues/37) from PicPay/feat/seller-panel/PLOJ-31/transactions
+- Merge pull request [#31](https://github.com/PicPay/picpay-frontend/issues/31) from PicPay/feat/ops-dash/secret-type
+- Merge pull request [#27](https://github.com/PicPay/picpay-frontend/issues/27) from PicPay/feat/ops-dash/adjustments-list-variables
+- Merge pull request [#17](https://github.com/PicPay/picpay-frontend/issues/17) from PicPay/feat/ops-dash/payload-change
+- Merge pull request [#1](https://github.com/PicPay/picpay-frontend/issues/1) from PicPay/feature/layouts
+- Merge pull request [#7](https://github.com/PicPay/picpay-frontend/issues/7) from PicPay/feature/data-dropdown
+
+
+[Unreleased]: https://github.com/PicPay/picpay-frontend/compare/v2.1.0...HEAD
+[v2.1.0]: https://github.com/PicPay/picpay-frontend/compare/v2.0.0...v2.1.0
+[v2.0.0]: https://github.com/PicPay/picpay-frontend/compare/v1.0.4...v2.0.0
+[v1.0.4]: https://github.com/PicPay/picpay-frontend/compare/v1.0.3...v1.0.4
+[v1.0.3]: https://github.com/PicPay/picpay-frontend/compare/v1.0.2...v1.0.3
+[v1.0.2]: https://github.com/PicPay/picpay-frontend/compare/v1.0.1...v1.0.2
+[v1.0.1]: https://github.com/PicPay/picpay-frontend/compare/v1.0.0...v1.0.1
+[v1.0.0]: https://github.com/PicPay/picpay-frontend/compare/v1.0.0-rc...v1.0.0

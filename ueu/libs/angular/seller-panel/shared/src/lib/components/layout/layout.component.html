@@ -1,0 +1,29 @@
+<picpay-layout-default>
+    <div slot="logo-wrap" class="c-layout">
+        <div [ngClass]="{ 'c-layout__image': (isOpen$ | async) === true }">
+            <img
+                slot="logo-wrap"
+                src="{{
+                    (isOpen$ | async) === true
+                        ? '/assets/seller-panel/logo-empresas-aberto.svg'
+                        : '/assets/seller-panel/logo-empresas-fechado.svg'
+                }}"
+            />
+        </div>
+        <div class="c-layout__box" *ngIf="(isOpen$ | async) === true">
+            <span class="c-layout__box-span">
+                Versão beta
+                <apollo-icon
+                    matTooltip="Por que versão Beta?
+                    Isso significa que estamos na fase de testes do novo Painel de Vendas, e ao usar,
+                    você nos ajuda a melhorar ainda mais as funções dele."
+                    matTooltipClass="tooltipHelp"
+                    [matTooltipPosition]="'right'"
+                    svgIcon="interface-info-circle"
+                    size="sm"
+                >
+                </apollo-icon>
+            </span>
+        </div>
+    </div>
+</picpay-layout-default>

@@ -1,0 +1,129 @@
+/**
+* @prop --apollo-skeleton-height: Skeleton height: Default: 20px for the row, 40px for the circle
+* @prop --apollo-skeleton-width: Skeleton width: Default: 100% for the row, 40px for the circle
+* @prop --apollo-skeleton-margin-bottom: Skeleton margin-bottom: Default: 10px for the row, 5px for the circle
+* @prop --apollo-skeleton-border-radius: Skeleton border-radius: Default: 4px for the row, 50% for the circle
+* @prop --apollo-skeleton-background: Skeleton background: Default: #e5e5e5
+* @prop --apollo-skeleton-shimmer: Skeleton shimmer: Default: #f2f2f2
+*/
+apollo-skeleton {
+    width: var(--apollo-skeleton-width, 100%);
+}
+
+.apollo-skeleton {
+    box-sizing: border-box;
+    outline: none;
+    overflow: hidden;
+    position: relative;
+
+    background: var(--apollo-skeleton-background, theme('colors.grayscale.100')) no-repeat;
+
+    border-radius: var(--apollo-skeleton-border-radius, theme('borderRadius.medium'));
+    width: var(--apollo-skeleton-width, 100%);
+    height: var(--apollo-skeleton-height, theme('spacing.5'));
+    display: block;
+    margin-bottom: var(--apollo-skeleton-margin-bottom, theme('spacing.1'));
+    will-change: transform;
+
+    &:after,
+    &:before {
+        box-sizing: border-box;
+    }
+
+    &.apollo-skeleton--circle {
+        width: var(--apollo-skeleton-width, theme('spacing.5'));
+        height: var(--apollo-skeleton-height, theme('spacing.5'));
+        margin-bottom: var(--apollo-skeleton-margin-bottom, theme('spacing.half'));
+        border-radius: var(--apollo-skeleton-border-radius, theme('borderRadius.full'));
+    }
+
+    &.apollo-skeleton--rect {
+        border-radius: var(--apollo-skeleton-border-radius, theme('borderRadius.none'));
+    }
+
+    &.apollo-skeleton--pill {
+        border-radius: var(--apollo-skeleton-border-radius, theme('borderRadius.pill'));
+    }
+
+    &.apollo-skeleton--progress,
+    &.apollo-skeleton--progress-dark {
+        animation: progress 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        background-size: 200px 100%;
+    }
+
+    &.apollo-skeleton--progress {
+        background-image: linear-gradient(
+            90deg,
+            rgba(theme('colors.white'), theme('opacity.none')),
+            var(--apollo-skeleton-shimmer, rgba(theme('colors.grayscale.light.50'), theme('opacity.strong'))),
+            rgba(theme('colors.white'), theme('opacity.none'))
+        );
+    }
+
+    &.apollo-skeleton--progress-dark {
+        background-image: linear-gradient(
+            90deg,
+            transparent,
+            rgba(theme('colors.black'), theme('opacity.light')),
+            transparent
+        );
+    }
+
+    &.apollo-skeleton--pulse {
+        animation: pulse 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        animation-delay: 0.5s;
+    }
+
+    // Removing animation if user enabled the `Reduce Motion` option
+    // via operational system and/or browser
+    // More details about `prefers-reduced-motion` in https://web.dev/prefers-reduced-motion/
+    @media (prefers-reduced-motion: reduce) {
+        &.apollo-skeleton--pulse,
+        &.apollo-skeleton--progress-dark,
+        &.apollo-skeleton--progress {
+            animation: none;
+        }
+
+        &.apollo-skeleton--progress,
+        &.apollo-skeleton--progress-dark {
+            background-image: none;
+        }
+    }
+}
+
+.apollo-skeleton--template-width:nth-child(2n + 0) {
+    width: 100%;
+}
+
+.apollo-skeleton--template-width:nth-child(2n + 0) {
+    width: 80%;
+}
+
+.apollo-skeleton--template-width:nth-child(3n + 0) {
+    width: 90%;
+}
+
+.apollo-skeleton--template-width:nth-child(4n + 0) {
+    width: 75%;
+}
+
+@keyframes progress {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: theme('opacity.full');
+    }
+    50% {
+        opacity: theme('opacity.medium');
+    }
+    100% {
+        opacity: theme('opacity.full');
+    }
+}

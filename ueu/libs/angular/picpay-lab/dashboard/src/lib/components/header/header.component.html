@@ -1,0 +1,34 @@
+<header class="header" [ngClass]="{ 'header--disabled-actions': disabledActions }">
+    <div class="row justify-content-center align-items-center">
+        <apollo-icon-button
+            class="header__back-button"
+            color="#00AC4A"
+            [disabled]="disabledActions"
+            iconPack="arrows"
+            icon="arrows-angle-left-b"
+            (click)="onBackRoute()"
+        ></apollo-icon-button>
+        <img class="header__logo" src="./assets/images/logo_builder.svg" alt="PicPay | Builder" width="180" />
+    </div>
+    <div class="row justify-content-center align-items-center">
+        <p class="header__info" *ngIf="savedIn">{{ savedIn }}</p>
+        <apollo-button class="header__save-btn" [disabled]="disabledActions" variant="link" (click)="onSave()"
+            >Salvar</apollo-button
+        >
+        <apollo-tooltip
+            placement="bottom-end"
+            title-text="Enviar para aprovação"
+            offset="30"
+            size="lg"
+            description="Ao terminar de montar sua loja, clique aqui. O PicPay verificará as informações e se estiver tudo
+         ok, postaremos sua loja na nossa Store."
+            link-url="http://"
+            link-label="Saiba mais"
+            is-external="false"
+        >
+            <apollo-button [disabled]="disabledActions || !readyToSubmit" (click)="onSendForApproval()">
+                Enviar para aprovação
+            </apollo-button>
+        </apollo-tooltip>
+    </div>
+</header>

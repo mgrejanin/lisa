@@ -1,0 +1,287 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-variables-update {
+    &.disabled-section {
+        pointer-events: none;
+
+        select,
+        input,
+        textarea,
+        h1 {
+            opacity: 30%;
+        }
+
+        ::ng-deep {
+            .mat-tab-header,
+            .mat-list {
+                opacity: 30%;
+            }
+        }
+
+        .c-variables-update__button-drawer {
+            opacity: 30%;
+        }
+    }
+
+    .itemDisabled {
+        pointer-events: none;
+        color: rgba(var(--apollo-on-background-rgb), 0.4);
+    }
+
+    &__h1 {
+        @include typography.title(small);
+        color: $gray-700;
+        padding: 1.2rem 0rem 1.8rem 0;
+        text-align: center;
+        word-break: break-all;
+    }
+
+    &__button-drawer {
+        display: block;
+        margin: 0 auto;
+        width: 60%;
+    }
+
+    &__button-help {
+        display: flex;
+    }
+
+    &__box-help {
+        cursor: pointer;
+    }
+
+    &__button-deploy {
+        display: block;
+        margin: theme('spacing.2') auto;
+        width: 60%;
+    }
+
+    ::ng-deep &__tooltip-help {
+        font-size: 14px;
+        min-width: 18rem;
+    }
+
+    &__icon-help {
+        color: rgba(var(--apollo-primary-rgb));
+        font-size: 1.8rem;
+        position: absolute;
+        right: 5%;
+        bottom: 0.7rem;
+    }
+
+    &__version-form-field {
+        width: 200px;
+        margin: 0 auto;
+        display: block;
+        height: 48px;
+
+        ::ng-deep {
+            .mat-form-field-infix {
+                padding: 0.4rem 0;
+            }
+
+            .mat-form-field-label-wrapper {
+                top: -1.5rem;
+            }
+        }
+    }
+
+    &__version-select {
+        top: -1.3rem;
+    }
+
+    &__form-textarea {
+        min-height: 110px;
+        padding-top: theme('spacing.1');
+    }
+
+    &__item-option {
+        text-transform: capitalize;
+    }
+
+    &__item-value {
+        min-height: 11rem;
+    }
+
+    &__created {
+        @include typography.body(secondary, default);
+        color: $gray-500;
+        margin: 1rem 0;
+        text-align: center;
+    }
+
+    &__show-button {
+        @include typography.body(secondary, default);
+        color: rgba(var(--apollo-primary-rgb));
+        cursor: pointer;
+        position: absolute;
+        top: 6rem;
+        right: 0.5rem;
+    }
+
+    &__message-error,
+    &__message-success {
+        @include typography.body(secondary, highlight);
+        line-height: normal;
+        text-align: center;
+        margin-bottom: 1rem;
+    }
+
+    &__message-success {
+        color: rgba(var(--apollo-primary-rgb));
+        margin-top: theme('spacing.2');
+    }
+
+    &__message-error {
+        color: $red;
+    }
+
+    &__buttons {
+        margin-top: 5px;
+    }
+
+    &__list {
+        margin-top: theme('spacing.3');
+    }
+
+    &__item-list {
+        @include typography.body(primary, default);
+        border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.100');
+        height: auto !important;
+    }
+
+    &__item-text {
+        word-break: break-all;
+        width: 70%;
+        padding-right: 1rem;
+    }
+
+    &__item-service,
+    &__item-alias {
+        @include typography.body(secondary, default);
+        display: block;
+        line-height: normal;
+    }
+
+    &__item-alias {
+        color: $gray-500;
+        margin-left: 3.3rem;
+    }
+
+    &__loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.2rem;
+    }
+
+    &__loading-text {
+        @include typography.body(primary, highlight);
+        color: rgba(var(--apollo-primary-rgb));
+        margin-left: 1rem;
+    }
+
+    &__environments-dropdown {
+        width: 230px;
+        position: absolute;
+        top: 1.2rem;
+        right: 0;
+        z-index: 2;
+    }
+
+    ::ng-deep &__dropdown-button-selected {
+        @include typography.body(secondary, default);
+        width: 85%;
+        height: 2.2rem;
+        background-color: rgba(var(--apollo-error-rgb)) !important;
+        padding: 0 1rem;
+        border-radius: 100px !important;
+        color: #fff !important;
+        text-align: left !important;
+        display: flex !important;
+        font-weight: bold;
+        line-height: 2rem;
+
+        span {
+            flex: 1;
+        }
+    }
+
+    &__dropdown-icon-arrow {
+        float: right;
+        margin-top: 0.3rem;
+    }
+
+    ::ng-deep &__dropdown-menu-content {
+        width: 195px;
+    }
+
+    &__dropdown-menu-button {
+        @include typography.body(secondary, default);
+        font-weight: bold;
+        display: flex !important;
+        align-items: center;
+        padding: 0 !important;
+        background-color: #fff;
+    }
+
+    &__dropdown-menu-button:nth-of-type(2) {
+        background-color: #eaf7f0;
+    }
+
+    &__dropdown-circle {
+        border-radius: 50%;
+        height: 24px;
+        margin-right: 1rem;
+        margin-left: 1rem;
+        flex: 0 0 24px;
+    }
+
+    &__dropdown-circle-prod {
+        background-color: theme('colors.primary.base') !important;
+    }
+
+    &__dropdown-circle-preprod {
+        background-color: theme('colors.warning.base') !important;
+    }
+
+    &__dropdown-circle-qa {
+        background-color: rgba(var(--apollo-error-rgb)) !important;
+    }
+
+    ::ng-deep {
+        .mat-list-item-content {
+            padding: theme('spacing.1') 0 !important;
+        }
+
+        .mat-tab-header {
+            margin-bottom: 1rem;
+        }
+
+        .mat-tab-label {
+            opacity: 100 !important;
+        }
+
+        .mat-tab-label-active {
+            color: rgba(var(--apollo-primary-rgb));
+        }
+
+        .mat-tab-label.mat-tab-disabled {
+            color: rgb(var(--apollo-background-z3-rgb));
+        }
+
+        .mat-tab-group.mat-primary .mat-ink-bar {
+            background-color: rgba(var(--apollo-primary-rgb));
+        }
+
+        .mat-tab-list {
+            border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.100');
+            margin-bottom: 1rem;
+        }
+
+        .mat-form-field-label {
+            margin-top: -0.25em;
+        }
+    }
+}

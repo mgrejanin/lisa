@@ -1,0 +1,121 @@
+import { Meta, Story, Canvas, Description } from '@storybook/addon-docs/blocks';
+import dedent from 'ts-dedent';
+
+import readme from './readme.md';
+
+<Meta
+    title="Components/Tooltip"
+    parameters={{
+        previewTabs: {
+            canvas: { hidden: false },
+        },
+    }}
+/>
+
+export const tooltipArgs = {
+    titleText: 'Telas',
+    position: 'right',
+    margin: 20,
+    size: 'lg',
+    description: 'Lorem Ipsum is simply dummy text of the printing Lorem Ipsum is simply dummy text of the printing.',
+    linkUrl: 'http://example.com',
+    linkLabel: 'Label',
+    isExternal: true,
+};
+
+export const Template = props => (
+    <div style={{ height: 500, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <apollo-tooltip
+            placement={props.position}
+            title-text={props.titleText}
+            offset={props.margin}
+            size={props.size}
+            description={props.description}
+            link-url={props.linkUrl}
+            link-label={props.linkLabel}
+            is-external={props.isExternal}
+        >
+            <apollo-button type="button">button</apollo-button>
+        </apollo-tooltip>
+    </div>
+);
+
+# Tooltip
+
+## Default
+
+<Canvas>
+    <Story
+        name="All Props"
+        args={tooltipArgs}
+        argTypes={{
+            position: {
+                control: {
+                    type: 'select',
+                    options: [
+                        'top',
+                        'top-start',
+                        'top-end',
+                        'bottom',
+                        'bottom-start',
+                        'bottom-end',
+                        'right',
+                        'right-start',
+                        'right-end',
+                        'left',
+                        'left-start',
+                        'left-end',
+                    ],
+                },
+            },
+            titleText: {
+                name: 'title-text',
+            },
+            margin: {
+                name: 'margin',
+            },
+            size: {
+                control: {
+                    type: 'select',
+                    options: ['sm', 'md', 'lg'],
+                },
+            },
+            description: {
+                name: 'description',
+            },
+            linkUrl: {
+                name: 'link-url',
+            },
+            linkLabel: {
+                name: 'link-label',
+            },
+            isExternal: {
+                name: 'is-external',
+            },
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: dedent`
+                    <apollo-tooltip
+                        placement="${tooltipArgs.position}"
+                        title-text="${tooltipArgs.titleText}"
+                        offset="${tooltipArgs.margin}"
+                        size="${tooltipArgs.size}"
+                        description="${tooltipArgs.description}"
+                        is-external="${tooltipArgs.isExternal}"
+                        >
+                                <apollo-button type="button">
+                                    button
+                                </apollo-button>
+                    </apollo-tooltip>
+                           `,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Description markdown={readme} />

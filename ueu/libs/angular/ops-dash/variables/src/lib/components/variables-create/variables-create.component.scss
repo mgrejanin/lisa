@@ -1,0 +1,27 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-variables-create {
+    width: 400px;
+
+    &__container-buttons {
+        border-top: theme('borderWidth.light') solid theme('colors.grayscale.50');
+        margin-top: theme('spacing.4');
+    }
+
+    &__input {
+        margin-top: theme('spacing.5');
+    }
+
+    &__button {
+        width: auto;
+        margin-left: theme('spacing.4');
+        margin-top: theme('spacing.2');
+    }
+
+    &__cancel {
+        text-decoration: underline;
+        line-height: theme('spacing.6');
+        margin-top: theme('spacing.2');
+    }
+}

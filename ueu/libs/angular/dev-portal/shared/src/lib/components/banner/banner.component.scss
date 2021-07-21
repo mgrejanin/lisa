@@ -1,0 +1,73 @@
+@use "mixins/typography";
+
+apollo-grid {
+    padding: 0;
+}
+
+.container {
+    max-width: 1220px;
+}
+
+.banner {
+    display: flex;
+    place-items: center;
+    position: relative;
+
+    &--business {
+        background-color: #0a353c;
+    }
+
+    &__row {
+        height: 100%;
+
+        &.reverse {
+            direction: rtl;
+
+            * {
+                direction: ltr;
+            }
+        }
+    }
+    &__background {
+        width: 100%;
+        height: 100%;
+        background-position: right bottom;
+        background-repeat: no-repeat;
+        opacity: 0.1;
+        position: absolute;
+    }
+    ::ng-deep {
+        img {
+            animation: 0.3s ease-in-out both fade-in;
+            max-width: 100%;
+        }
+        .infos {
+            animation: 0.3s ease-in-out both fade-in;
+            h1 {
+                @include typography.title(xlarge);
+                color: theme('colors.white');
+                position: relative;
+                padding-bottom: theme('spacing.4');
+                &::after {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    bottom: 0;
+                    height: theme('borderWidth.light');
+                    width: 75px;
+                    border-bottom: theme('borderWidth.strong') solid theme('colors.primary.base');
+                }
+            }
+            p {
+                @include typography.title(small);
+                color: theme('colors.white');
+                padding-top: theme('spacing.4');
+            }
+            .actions {
+                apollo-button + apollo-button {
+                    margin-left: theme('spacing.2');
+                }
+            }
+        }
+    }
+}

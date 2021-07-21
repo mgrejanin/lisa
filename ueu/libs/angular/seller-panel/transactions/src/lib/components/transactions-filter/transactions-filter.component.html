@@ -1,0 +1,216 @@
+<div class="c-transactions-filter">
+    <div class="c-transactions-filter__header">
+        <h2 class="c-transactions-filter__header--title">Filtrar</h2>
+        <button mat-icon-button class="c-transactions-filter__header--close-button" (click)="onClose()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <form class="c-transactions-filter__body" [formGroup]="form">
+        <apollo-flex direction="column">
+            <apollo-box p="2">
+                <span class="c-transactions-filter__section--title">Período</span>
+                <div class="c-transactions-filter__section--wrapper">
+                    <ng-container *ngFor="let period of periodsList; let i = index">
+                        <label
+                            class="c-transactions-filter__item--radio"
+                            [class.active]="currentPeriod === period.value"
+                            tabindex="0"
+                            (keyup)="onKeyUp($event)"
+                            >{{ period.name }}
+                            <input
+                                hidden
+                                type="radio"
+                                formControlName="period"
+                                [value]="period.value"
+                                (change)="onChangePeriod(period.value)"
+                            />
+                        </label>
+                    </ng-container>
+                </div>
+            </apollo-box>
+
+            <apollo-box p="2">
+                <apollo-flex>
+                    <apollo-box p="1">
+                        <label>de</label>
+                        <mat-form-field appearance="outline">
+                            <input
+                                matInput
+                                [max]="dateMax"
+                                formControlName="dateFrom"
+                                [matDatepicker]="dateFrom"
+                                placeholder="dd/mm/aaaa"
+                                (dateChange)="activeDataPicker()"
+                                (click)="activeDataPicker(); dateFrom.open()"
+                                readonly
+                            />
+                            <mat-datepicker-toggle matSuffix [for]="dateFrom"></mat-datepicker-toggle>
+                            <mat-datepicker #dateFrom></mat-datepicker>
+                        </mat-form-field>
+                    </apollo-box>
+
+                    <apollo-box p="1">
+                        <label>até</label>
+                        <mat-form-field appearance="outline">
+                            <input
+                                matInput
+                                formControlName="dateTo"
+                                [matDatepicker]="dateTo"
+                                placeholder="dd/mm/aaaa"
+                                [max]="dateMax"
+                                (dateChange)="activeDataPicker()"
+                                (click)="activeDataPicker(); dateTo.open()"
+                                readonly
+                            />
+                            <mat-datepicker-toggle matSuffix [for]="dateTo"></mat-datepicker-toggle>
+                            <mat-datepicker #dateTo></mat-datepicker>
+                        </mat-form-field>
+                    </apollo-box>
+                </apollo-flex>
+            </apollo-box>
+
+            <apollo-box p="2">
+                <span class="c-transactions-filter__section--title">Status</span>
+                <div class="c-transactions-filter__section--wrapper">
+                    <ng-container *ngFor="let statusItem of statusList; let i = index">
+                        <label
+                            class="c-transactions-filter__item--radio"
+                            [class.active]="currentStatus === statusItem.value"
+                            tabindex="0"
+                            (keyup)="onKeyUp($event)"
+                            >{{ statusItem.name }}
+                            <input
+                                hidden
+                                type="radio"
+                                formControlName="status"
+                                [value]="statusItem.value"
+                                (change)="onChangeStatus(statusItem.value)"
+                            />
+                        </label>
+                    </ng-container>
+                </div>
+            </apollo-box>
+
+            <apollo-box p="2">
+                <ng-container *ngIf="isSellerBiz && !isStore">
+                    <div *ngIf="operatorsLoaded; else loadingOperators">
+                        <span class="c-transactions-filter__section--title">Operador</span>
+                        <div class="c-transactions-filter__section--search">
+                            <apollo-textfield
+                                label="Digite para buscar o operador"
+                                class="mt-2"
+                                size="md"
+                                threshold="400"
+                                leading-icon
+                                trailingClearIcon
+                                (apolloChange)="onSearchOperators($event.detail)"
+                            >
+                                <apollo-textfield-icon slot="leading-icon">
+                                    <apollo-icon svgIcon="interface-search"></apollo-icon>
+                                </apollo-textfield-icon>
+                            </apollo-textfield>
+                        </div>
+                        <div class="c-transactions-filter__section--wrapper">
+                            <ng-container *ngIf="operators.length > 0; else emptySearch">
+                                <mat-grid-list [cols]="colBreakpoint" rowHeight="32px">
+                                    <mat-grid-tile
+                                        formArrayName="operators"
+                                        *ngFor="let operator of form.controls.operators.value; let i = index"
+                                    >
+                                        <mat-checkbox
+                                            color="primary"
+                                            class="c-transactions-filter__item--checkbox o-checkbox"
+                                            [checked]="operator"
+                                            (change)="onChangeOperator(i)"
+                                            >{{ operators[i].username | titlecase }}
+                                        </mat-checkbox>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </ng-container>
+                            <ng-template #emptySearch>
+                                <p class="text-center">Ops! Não foi encontrado nenhum operador.</p>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <ng-template #loadingOperators>
+                        <div class="c-transactions-filter__section">
+                            <seller-panel-loading-spinner
+                                size="20"
+                                stroke="2"
+                                text="Carregando operadores..."
+                            ></seller-panel-loading-spinner>
+                        </div>
+                    </ng-template>
+                </ng-container>
+
+                <ng-container *ngIf="isStore">
+                    <div class="c-transactions-filter__section" *ngIf="storesLoaded; else loadingStores">
+                        <span class="c-transactions-filter__section--title">Loja</span>
+                        <div class="c-transactions-filter__section--search">
+                            <apollo-textfield
+                                label="Digite para buscar a loja"
+                                class="mt-2"
+                                size="md"
+                                threshold="400"
+                                leading-icon
+                                trailingClearIcon
+                                (apolloChange)="onSearchStores($event.detail)"
+                            >
+                                <apollo-textfield-icon slot="leading-icon">
+                                    <apollo-icon svgIcon="interface-search"></apollo-icon>
+                                </apollo-textfield-icon>
+                            </apollo-textfield>
+                        </div>
+                        <div class="c-transactions-filter__section--wrapper">
+                            <ng-container *ngIf="stores.length > 0; else emptySearch">
+                                <mat-grid-list [cols]="colBreakpoint" rowHeight="32px">
+                                    <mat-grid-tile
+                                        formArrayName="stores"
+                                        *ngFor="let store of form.controls.stores.value; let i = index"
+                                    >
+                                        <mat-checkbox
+                                            color="primary"
+                                            class="c-transactions-filter__item--checkbox o-checkbox"
+                                            [checked]="store"
+                                            (change)="onChangeStore(i)"
+                                            >{{ stores[i].name }}
+                                        </mat-checkbox>
+                                    </mat-grid-tile>
+                                </mat-grid-list>
+                            </ng-container>
+                            <ng-template #emptySearch>
+                                <p class="text-center">Ops! Não foi encontrada nenhuma loja com este nome.</p>
+                            </ng-template>
+                        </div>
+                    </div>
+                    <ng-template #loadingStores>
+                        <div class="c-transactions-filter__section">
+                            <seller-panel-loading-spinner
+                                size="20"
+                                stroke="2"
+                                text="Carregando lojas..."
+                            ></seller-panel-loading-spinner>
+                        </div>
+                    </ng-template>
+                </ng-container>
+            </apollo-box>
+        </apollo-flex>
+    </form>
+    <div class="c-transactions-filter__footer">
+        <button
+            mat-flat-button
+            class="c-transactions-filter__footer--btn-cancel o-button o-button__link"
+            (click)="onClose(true)"
+        >
+            Limpar filtros
+        </button>
+        <button
+            mat-button
+            color="primary"
+            class="c-transactions-filter__footer--btn-apply o-button o-button__solid"
+            (click)="onFilterApply()"
+        >
+            Aplicar filtros
+        </button>
+    </div>
+</div>

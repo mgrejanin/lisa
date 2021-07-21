@@ -1,0 +1,7 @@
+<div class="loading">
+    <span class="text text--left" *ngIf="textAlign === 'left'">{{ text }}</span>
+    <div>
+        <mat-spinner [diameter]="size" [strokeWidth]="stroke" mode="indeterminate"></mat-spinner>
+    </div>
+    <span class="text text--right" *ngIf="textAlign === 'right'">{{ text }}</span>
+</div>

@@ -1,0 +1,9 @@
+.o-page {
+    background-color: rgb(var(--apollo-background-rgb));
+
+    padding: 1rem 2rem;
+
+    @include media-breakpoint-down(sm) {
+        padding: 1rem 1rem 4rem;
+    }
+}

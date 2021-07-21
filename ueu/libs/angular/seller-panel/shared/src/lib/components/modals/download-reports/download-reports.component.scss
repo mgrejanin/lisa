@@ -1,0 +1,94 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-download-reports {
+    display: flex;
+    flex-direction: column;
+
+    background-color: rgb(var(--apollo-background-rgb));
+    color: rgb(var(--apollo-on-background-rgb));
+    border-radius: 8px;
+    box-shadow: 0px 4.07198px 9.17946px rgba(0, 0, 0, 0.0223701), 0px 4.66238px 10.4242px rgba(0, 0, 0, 0.0328177),
+        0px 6px 16px rgba(0, 0, 0, 0.06);
+
+    &__header,
+    &__body,
+    &__footer {
+        padding: theme('spacing.half');
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: row;
+
+        &--title {
+            text-align: center;
+            align-self: center;
+            flex: 1;
+            margin: 0;
+            @include typography.title(medium);
+        }
+
+        &--close-button {
+            color: rgba(var(--apollo-primary-rgb)) !important;
+        }
+    }
+
+    &__body {
+        label {
+            margin: theme('spacing.none');
+            font-size: theme('fontSize.sm');
+            text-transform: uppercase;
+            color: rgba(var(--apollo-on-background-rgb), 0.72);
+        }
+
+        &--toggle-format {
+            margin: theme('spacing.2') theme('spacing.none');
+            display: flex;
+            flex-direction: column;
+        }
+
+        mat-button-toggle-group {
+            margin: theme('spacing.1') theme('spacing.none');
+        }
+
+        .container .row:nth-child(2) {
+            justify-content: center;
+            .c-send-email {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+        border-top: theme('borderWidth.light') solid rgba(var(--apollo-on-background-rgb), 0.2);
+        padding: theme('spacing.3') theme('spacing.2') theme('spacing.2');
+        &--btn-email {
+            text-align: left;
+            color: rgba(var(--apollo-on-background-rgb), 0.72);
+            font-size: theme('fontSize.base');
+            max-width: 275px;
+
+            &:first-of-type {
+                margin-top: theme('spacing.none');
+            }
+        }
+    }
+
+    &__warning {
+        margin: theme('spacing.2') theme('spacing.3');
+    }
+
+    @media screen and (max-width: 768px) {
+        height: 100%;
+
+        &__body {
+            height: 100%;
+        }
+    }
+}

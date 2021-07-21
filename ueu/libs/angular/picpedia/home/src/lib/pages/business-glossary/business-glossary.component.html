@@ -1,0 +1,9 @@
+<picpedia-navbar-header [title]="titleGlossary"></picpedia-navbar-header>
+
+<section class="c-glossary container-fluid">
+    <div class="c-glossary__container">
+        <div *ngFor="let item of cardsGlossary">
+            <picpedia-cards [title]="item.title" [icon]="item.icon" [routerLink]="'/' + item.link"></picpedia-cards>
+        </div>
+    </div>
+</section>

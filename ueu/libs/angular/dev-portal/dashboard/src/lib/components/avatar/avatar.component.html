@@ -1,0 +1,26 @@
+<div class="avatar" (click)="changeAvatar()">
+    <div class="avatar__icon">
+        <apollo-avatar
+            class="avatar__icon--custom"
+            size="xlarge"
+            [border]="'none'"
+            radius="full"
+            [src]="image"
+            alt="test"
+            *ngIf="image; else noAvatar"
+        ></apollo-avatar>
+        <ng-template #noAvatar>
+            <div class="avatar__icon--default">
+                <span *ngIf="name">
+                    {{ getInitials(name) }}
+                </span>
+                <div *ngIf="!name">
+                    <apollo-icon svg-icon="interface-plus" size="md"></apollo-icon>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+    <div class="avatar__title">
+        <span>{{ creating ? 'INSIRA UMA IMAGEM' : 'EDITAR IMAGEM' }}</span>
+    </div>
+</div>

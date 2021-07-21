@@ -1,0 +1,80 @@
+import { Story, Status } from './../../../.storybook/components';
+import { Props } from '@storybook/addon-docs/blocks';
+
+# Menu
+
+<Status />
+
+<Story id="components-menu--base" />
+
+<Props id="components-menu--base" />
+
+## With Group
+
+<Story id="components-menu--with-group" />
+
+## Events
+
+| Event        | Description                                            | Type                                                             |
+| ------------ | ------------------------------------------------------ | ---------------------------------------------------------------- |
+| `itemSelect` | Evento disparado quando um item da lista é selecionado | `CustomEvent<{ value: any; index: number; item: HTMLElement; }>` |
+
+### Orientações:
+
+Para ter acesso ao valor do evento emitido deve ser usada a propriedade `detail` do objeto `CustomEvent` que é emitido nos métodos.
+
+## Methods
+
+### `close() => Promise<void>`
+
+Fecha o menu
+
+#### Returns
+
+Type: `Promise<void>`
+
+### `open() => Promise<void>`
+
+Abre o menu
+
+#### Returns
+
+Type: `Promise<void>`
+
+### `toggle() => Promise<void>`
+
+Alterna o estado do menu entre aberto/fechado
+
+#### Returns
+
+Type: `Promise<void>`
+
+### Orientações para angular:
+
+Para utilizar os métodos do componente utilize o @ViewChild() conforme exemplo a seguir:
+
+Html:
+
+```html
+<apollo-menu #menu>
+    <apollo-button slot="anchor">Open Menu</apollo-button>
+    <apollo-list>
+        <apollo-list-item>Item 1</apollo-list-item>
+        <apollo-list-item>Item 2</apollo-list-item>
+        <apollo-list-item>Item 3</apollo-list-item>
+        <apollo-list-item>Item 4</apollo-list-item>
+    </apollo-list>
+</apollo-menu>
+```
+
+Ts:
+
+```javascript
+@ViewChild('menu') menu: ApolloMenu;
+
+//...
+
+open() {
+    this.menu.open();
+}
+```

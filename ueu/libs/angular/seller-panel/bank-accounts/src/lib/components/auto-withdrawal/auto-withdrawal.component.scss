@@ -1,0 +1,95 @@
+@use 'mixins/typography';
+
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-auto-withdrawal {
+    display: flex;
+    flex-direction: column;
+    padding: theme('spacing.3');
+    justify-content: center;
+    align-items: center;
+
+    &__header,
+    &__body {
+        flex: 1;
+        width: 100%;
+        max-width: 400px;
+        color: theme('colors.grayscale.base');
+    }
+
+    &__header {
+        &--text {
+            margin: 0;
+            position: relative;
+            display: inline-block;
+            left: theme('spacing.3');
+
+            span {
+                @include typography.body(primary, normal);
+                color: rgb(var(--apollo-on-background-rgb), 0.72);
+                font-weight: bold;
+                font-size: theme('fontSize.sm');
+                line-height: 24px;
+            }
+        }
+
+        &--description {
+            @include typography.body(primary, normal);
+            margin-top: 4px;
+            font-size: theme('fontSize.sm');
+        }
+    }
+
+    &__divisor {
+        width: 100%;
+        height: 0.5px;
+        margin: theme('spacing.4') 0;
+        border: none;
+        background: rgba(var(--apollo-on-background-rgb), 0.1);
+    }
+
+    &__body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &--description {
+            @include typography.body(primary, normal);
+            font-size: theme('fontSize.sm');
+        }
+
+        &--content {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
+            padding: 0px theme('spacing.2');
+
+            h3 {
+                font-weight: 500;
+                line-height: normal;
+                margin: theme('spacing.2') 0;
+                color: rgb(var(--apollo-on-background-rgb));
+            }
+        }
+
+        &--spinner {
+            margin: 4px 0px;
+        }
+
+        &--btn-retry {
+            height: 40px;
+        }
+    }
+
+    &__loading-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        margin: theme('spacing.4') 0;
+        min-width: 350px;
+    }
+}

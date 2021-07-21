@@ -1,0 +1,117 @@
+<seller-panel-header (logout)="onLogout()"></seller-panel-header>
+<section class="c-transactions o-page">
+    <!-- Header actions -->
+    <div class="c-transactions__header">
+        <h1 class="c-transactions__title">Transações</h1>
+        <div class="c-transactions__actions" [hidden]="indexTab !== 0">
+            <div class="c-transactions__actions c-transactions__actions--search">
+                <mat-form-field appearance="outline">
+                    <span matPrefix>
+                        <mat-icon class="mr-2">search</mat-icon>
+                    </span>
+                    <mat-label>
+                        <span>
+                            {{ this.namePlaceholderSearch }}
+                        </span>
+                    </mat-label>
+                    <input #inputTransaction matInput type="text" [disabled]="isLoading" />
+                </mat-form-field>
+            </div>
+            <div class="c-transactions__actions c-transactions__actions--buttons">
+                <button
+                    mat-button
+                    color="primary"
+                    class="c-transactions-open-refresh o-button"
+                    [class.o-button__link]="isMobile$ | async"
+                    [disabled]="isLoading"
+                    (click)="refreshTransactions()"
+                >
+                    <mat-icon>refresh</mat-icon>
+                    <ng-container *ngIf="(isMobile$ | async) === false"
+                        ><span class="ml-2">Atualizar</span></ng-container
+                    >
+                </button>
+
+                <button
+                    mat-button
+                    color="primary"
+                    class="c-transactions-open-filter o-button"
+                    [class.o-button__link]="isMobile$ | async"
+                    [disabled]="isLoading"
+                    (click)="openTransactionsFilter()"
+                >
+                    <mat-icon>tune</mat-icon>
+                    <ng-container *ngIf="(isMobile$ | async) === false"><span class="ml-2">Filtro</span></ng-container>
+                </button>
+                <button
+                    mat-button
+                    color="primary"
+                    class="c-transactions-download-reports o-button"
+                    [class.o-button__link]="isMobile$ | async"
+                    [disabled]="transactions.length === 0"
+                    (click)="openDownloadReports()"
+                >
+                    <mat-icon disableRipple>save_alt</mat-icon>
+                    <ng-container *ngIf="(isMobile$ | async) === false"
+                        ><span class="ml-2">Exportar relatório</span></ng-container
+                    >
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <mat-tab-group (selectedTabChange)="receiverTab($event.index)" #tabs class="c-transactions__mat-tab">
+        <ng-container>
+            <mat-tab label="Transações">
+                <ng-container *ngTemplateOutlet="transaction"></ng-container>
+            </mat-tab>
+            <mat-tab label="Link externo" *picpayIfRoles="['biz']">
+                <ng-container *ngTemplateOutlet="transaction"></ng-container>
+            </mat-tab>
+        </ng-container>
+    </mat-tab-group>
+
+    <ng-template #transaction>
+        <ng-container *ngIf="transactions.length > 0">
+            <div class="c-transactions__table">
+                <seller-panel-table-transactions
+                    [listTransactions]="transactions"
+                    [displayedColumns]="columsTable"
+                    [page]="'transacoes'"
+                ></seller-panel-table-transactions>
+            </div>
+        </ng-container>
+
+        <!-- Load more -->
+        <ng-container *ngIf="transactions?.length > 0">
+            <div class="c-transactions__load-more">
+                <button mat-button class="o-button o-button__link" (click)="onLoadMoreTransactions()">
+                    <ng-container *ngIf="isLoading && transactions.length > 0">
+                        <seller-panel-loading-spinner [size]="30" [stroke]="3"></seller-panel-loading-spinner>
+                    </ng-container>
+                    <span *ngIf="!isLoading">Carregar mais</span>
+                </button>
+            </div>
+        </ng-container>
+
+        <!-- Loading -->
+        <ng-container *ngIf="isLoading && transactions.length <= 0">
+            <div class="c-transactions__loading">
+                <div class="c-transactions__loading--content">
+                    <seller-panel-loading-spinner></seller-panel-loading-spinner>
+                </div>
+            </div>
+        </ng-container>
+
+        <!-- No results -->
+        <ng-container *ngIf="transactions.length === 0 && !isLoading">
+            <div class="c-transactions__feedback">
+                <seller-panel-feedback
+                    [imagePath]="emptyStateData.svgPath"
+                    [title]="emptyStateData.title"
+                    [description]="emptyStateData.description"
+                ></seller-panel-feedback>
+            </div>
+        </ng-container>
+    </ng-template>
+</section>

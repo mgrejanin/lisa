@@ -1,0 +1,147 @@
+@use "mixins/breakpoint";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-home {
+    min-height: 100vh;
+    height: 100%;
+    overflow: auto;
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    &__transactions {
+        margin-top: 60px;
+        @include breakpoint.down(small) {
+            margin-top: 30px;
+        }
+
+        &--header {
+            display: flex;
+            justify-content: space-between;
+            @include breakpoint.down(small) {
+                flex-direction: column-reverse;
+            }
+        }
+
+        &--title {
+            font-size: theme('fontSize.5xl');
+            line-height: 48px;
+            font-weight: 700;
+        }
+
+        &--btn-shipment {
+            @include breakpoint.down(small) {
+                text-align: center;
+            }
+        }
+
+        &--loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 16px;
+
+            ::ng-deep {
+                mat-spinner {
+                    circle {
+                        stroke: rgba(var(--apollo-primary-rgb), 1);
+                    }
+                }
+            }
+        }
+
+        &--see-more {
+            width: 100%;
+            max-width: 250px;
+            margin: 30px auto 0;
+        }
+    }
+
+    &__feedback {
+        margin: 20px 0;
+    }
+
+    &__actions {
+        display: flex;
+        width: 100%;
+        outline: none;
+        padding: 0 30px 0 0;
+
+        &--box {
+            margin-right: 60px;
+            width: 50%;
+
+            &:last-child {
+                margin: 0;
+            }
+        }
+
+        &--buttons {
+            flex-grow: 1;
+            align-items: flex-start;
+            justify-content: flex-end;
+
+            button {
+                margin-left: 32px;
+            }
+        }
+    }
+
+    @media (max-width: 1460px) {
+        &__actions {
+            &--box {
+                margin: 0 20px;
+            }
+        }
+    }
+
+    @media (max-width: 1000px) {
+        padding-bottom: 130px;
+
+        &__transactions {
+            &--title {
+                font-size: theme('fontSize.3xl');
+            }
+        }
+
+        &__actions {
+            display: block;
+
+            &--box {
+                width: 100%;
+                margin: 20px 0;
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        &__title {
+            display: none;
+        }
+
+        &__actions {
+            padding: 0;
+            flex-direction: column;
+
+            &--buttons {
+                order: 1;
+                flex-direction: row;
+                align-items: flex-end;
+                margin-bottom: 16px;
+
+                button {
+                    margin-left: 0;
+                }
+            }
+
+            &--future-releases {
+                max-width: 100%;
+                order: 2;
+            }
+        }
+    }
+}

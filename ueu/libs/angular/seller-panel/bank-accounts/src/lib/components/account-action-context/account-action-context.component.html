@@ -1,0 +1,45 @@
+<ng-container
+    [ngSwitch]="getTemplate((organizationQuery$ | async)?.pessoaFisica, (organizationQuery$ | async)?.individual)"
+>
+    <ng-template [ngSwitchCase]="'physicalPerson'">
+        <div class="c-account-action-context">
+            <div class="c-account-action-context__section">
+                <mat-icon class="i-icon">portrait</mat-icon>
+                <p>A conta bancária precisa <b>ser do CPF do responsável legal dessa conta PicPay</b></p>
+            </div>
+            <div class="c-account-action-context__section">
+                <mat-icon class="i-icon">how_to_reg</mat-icon>
+                <p>Só será possível cadastrar conta do <b>tipo pessoa física </b></p>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'individual'">
+        <div class="c-account-action-context">
+            <div class="c-account-action-context__section">
+                <mat-icon class="i-icon">portrait</mat-icon>
+                <p>A conta bancária pode ser <b>pessoa física ou jurídica</b></p>
+            </div>
+            <div class="c-account-action-context__section">
+                <mat-icon class="i-icon">how_to_reg</mat-icon>
+                <p>
+                    A conta bancária
+                    <b>deve ser do CPF da pessoa responsável legal pela empresa ou do CNPJ da empresa</b>
+                </p>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template [ngSwitchCase]="'legalPerson'">
+        <div class="c-account-action-context">
+            <div class="c-account-action-context__section">
+                <mat-icon class="i-icon" fontSet="material-icons-outlined">storefront</mat-icon>
+                <p>A conta bancária precisa ser do <b>tipo pessoa jurídica</b></p>
+            </div>
+            <div class="c-account-action-context__section">
+                <mat-icon class="i-icon">shopping_bag</mat-icon>
+                <p>A conta bancária precisa ser do <b>mesmo CNPJ da empresa</b></p>
+            </div>
+        </div>
+    </ng-template>
+</ng-container>

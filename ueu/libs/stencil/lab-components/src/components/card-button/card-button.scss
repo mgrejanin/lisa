@@ -1,0 +1,45 @@
+.card-button {
+    display: flex;
+    align-items: center;
+    padding: theme('spacing.2');
+    background-color: theme('colors.white');
+    border: theme('borderWidth.light') solid theme('colors.white');
+    box-shadow: theme('boxShadow.light');
+    border-radius: theme('borderRadius.strong');
+    cursor: pointer;
+
+    &--editing {
+        cursor: default;
+    }
+
+    &-content {
+        flex: 1;
+        margin-left: theme('spacing.2');
+
+        &__spotlight {
+            display: inline-flex;
+            margin-bottom: theme('spacing.1');
+            padding: theme('spacing.half') theme('spacing.2');
+            background-color: theme('colors.neutral.600');
+            border-radius: theme('borderRadius.medium');
+            color: theme('colors.white');
+            font-size: theme('fontSize.xs');
+            line-height: theme('lineHeight.xs');
+        }
+
+        &__value {
+            margin: theme('spacing.none');
+            color: theme('colors.grayscale.700');
+            font-weight: theme('fontWeight.extrabold');
+            font-size: theme('fontSize.sm');
+            line-height: theme('lineHeight.sm');
+        }
+
+        &__description {
+            margin: theme('spacing.none');
+            color: theme('colors.grayscale.700');
+            font-size: theme('fontSize.xs');
+            line-height: theme('lineHeight.xs');
+        }
+    }
+}

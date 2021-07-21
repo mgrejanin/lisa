@@ -1,0 +1,81 @@
+@use "mixins/typography";
+
+.c-onboarding {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    background-color: rgb(var(--apollo-background-rgb));
+    color: theme('colors.grayscale.base');
+    border-radius: theme('spacing.2');
+
+    &__close-btn {
+        color: theme('colors.primary') !important;
+        position: absolute;
+        top: theme('spacing.1');
+        right: theme('spacing.1');
+    }
+
+    &__header {
+        padding: theme('spacing.4');
+        padding-bottom: theme('spacing.2');
+
+        h2 {
+            @include typography.title(medium);
+        }
+
+        p {
+            padding-top: theme('spacing.half');
+        }
+    }
+
+    &__body {
+        padding: 0 theme('spacing.4');
+        padding-bottom: theme('spacing.2');
+        max-height: 500px;
+        overflow-y: auto;
+
+        &--section {
+            display: flex;
+            flex-direction: row;
+            padding-bottom: theme('spacing.2');
+
+            &:first-of-type {
+                padding-top: theme('spacing.1');
+            }
+
+            mat-icon {
+                font-size: theme('fontSize.6xl');
+                margin-right: theme('spacing.2');
+            }
+        }
+
+        &--question {
+            padding-bottom: theme('spacing.1');
+
+            h5 {
+                @include typography.body(primary, highlight);
+            }
+
+            mat-icon {
+                position: relative;
+                top: 6px;
+            }
+        }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+        padding: theme('spacing.2');
+        border-top: 1px solid theme('colors.grayscale.100');
+    }
+
+    @media screen and (max-width: 480px) {
+        height: 100%;
+
+        &__body {
+            flex: 1;
+        }
+    }
+}

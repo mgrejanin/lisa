@@ -1,0 +1,19 @@
+.c-first-access {
+    &__container {
+        margin-top: 12%;
+    }
+
+    &__heading {
+        font-size: theme('fontSize.2xl');
+        margin: theme('spacing.3') theme('spacing.none');
+    }
+
+    &__text {
+        width: 70%;
+    }
+
+    &__button {
+        width: 300px;
+        margin-top: theme('spacing.3');
+    }
+}

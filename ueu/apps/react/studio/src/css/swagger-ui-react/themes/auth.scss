@@ -1,0 +1,87 @@
+@use "mixins/typography";
+
+.auth-btn-wrapper {
+    display: flex;
+    padding: theme('spacing.half') theme('spacing.4');
+    justify-content: center;
+
+    .btn-done {
+        margin-right: theme('spacing.2');
+    }
+}
+
+.auth-wrapper {
+    display: none;
+
+    flex: 1;
+    justify-content: flex-end;
+
+    .authorize {
+        padding-right: theme('spacing.3');
+        margin-right: theme('spacing.1');
+    }
+}
+
+.auth-container {
+    margin: theme('spacing.none') theme('spacing.none') theme('spacing.1');
+    padding: theme('spacing.1') theme('spacing.3');
+
+    border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.200');
+
+    &:last-of-type {
+        margin: theme('spacing.none');
+        padding: theme('spacing.1') theme('spacing.3');
+
+        border: theme('borderWidth.none');
+    }
+
+    h4 {
+        margin: theme('spacing.half') theme('spacing.none') theme('spacing.1');
+    }
+
+    .wrapper {
+        margin: theme('spacing.none');
+        padding: theme('spacing.none');
+    }
+
+    input[type='text'],
+    input[type='password'] {
+        min-width: 230px;
+    }
+
+    .errors {
+        font-size: theme('fontSize.xs');
+        padding: theme('spacing.1');
+        border-radius: theme('borderRadius.light');
+        background-color: #fee;
+        color: theme('colors.critical.base');
+        margin: theme('spacing.2');
+
+        @include text_code();
+
+        b {
+            text-transform: capitalize;
+            margin-right: theme('spacing.2');
+        }
+    }
+}
+
+.scopes {
+    h2 {
+        font-size: theme('fontSize.base');
+
+        @include text_headline();
+
+        a {
+            font-size: theme('fontSize.xs');
+            color: theme('colors.grayscale.200');
+            cursor: pointer;
+            padding-left: theme('spacing.1');
+            text-decoration: underline;
+        }
+    }
+}
+
+.scope-def {
+    padding: theme('spacing.none') theme('spacing.none') theme('spacing.3');
+}

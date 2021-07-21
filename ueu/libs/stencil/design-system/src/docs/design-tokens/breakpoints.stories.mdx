@@ -1,0 +1,36 @@
+import { Meta, Description, Canvas, Story } from '@storybook/addon-docs/blocks';
+
+<Meta title="Design Tokens/Breakpoints" />
+
+# Breakpoints
+
+Breakpoints are useful when you want to modify your application depending on the user’s screen size.
+
+Import and use the following SCSS mixin onto your class/component.
+
+```scss
+@use "mixins/breakpoint";
+```
+
+<br />
+
+## Breakpoints Params
+
+| Alias    | Value    |
+| -------- | -------- |
+| `xsmall` | `0px`    |
+| `small`  | `600px`  |
+| `medium` | `1024px` |
+| `large`  | `1440px` |
+| `xlarge` | `1920px` |
+
+<br />
+
+### Mixins
+
+| Mixin Name                                                |
+| --------------------------------------------------------- |
+| `@include breakpoint.down($param_alias)`                  |
+| `@include breakpoint.up($param_alias)`                    |
+| `@include breakpoint.media-breakpoint-only($param_alias)` |
+| `@include breakpoint.between($lower_param, $upper_param)` |

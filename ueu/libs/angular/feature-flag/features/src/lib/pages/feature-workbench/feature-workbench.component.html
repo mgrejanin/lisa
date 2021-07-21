@@ -1,0 +1,400 @@
+<section class="c-feature-workbench">
+    <!-- HEADER -->
+    <feature-flag-features-header [showReturnBtn]="true"></feature-flag-features-header>
+
+    <div class="container o-page">
+        <!-- TITLE -->
+        <h1 class="c-feature-workbench__title col">
+            {{ isEditing ? 'Editar funcionalidade' : 'Criar funcionalidade' }}
+        </h1>
+
+        <!-- FORM -->
+        <form class="c-feature-workbench__form" [formGroup]="form" (ngSubmit)="onSubmit()">
+            <section class="c-feature-workbench__details">
+                <h2 class="c-feature-workbench__details--title col">Detalhes da funcionalidade</h2>
+
+                <!-- NAME INPUT -->
+                <mat-form-field class="c-feature-workbench__form--input col" appearance="outline">
+                    <mat-label>Chave da funcionalidade</mat-label>
+                    <input matInput formControlName="name" placeholder="Ex.: feature_123" />
+
+                    <!-- HINT -->
+                    <mat-hint>Use apenas letras, números e _</mat-hint>
+
+                    <!-- REQUIRED ERROR -->
+                    <mat-error *ngIf="form.controls.name.errors?.required">
+                        Defina um nome para a funcionalidade
+                    </mat-error>
+
+                    <!-- PATTERN ERROR -->
+                    <mat-error *ngIf="form.controls.name.errors?.pattern">
+                        O nome deve ser composto apenas por letras, números e underline
+                    </mat-error>
+
+                    <!-- MIN LENGTH ERROR -->
+                    <mat-error *ngIf="form.controls.name.errors?.minlength">
+                        O nome deve possuir no mínimo 3 caracteres
+                    </mat-error>
+
+                    <!-- MAXLENGTH ERROR -->
+                    <mat-error *ngIf="form.controls.name.errors?.maxlength">
+                        O nome deve possuir no máximo 100 caracteres
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- DESCRIPTION INPUT -->
+                <mat-form-field class="c-feature-workbench__form--input col" appearance="outline">
+                    <mat-label>Descrição</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+
+                    <!-- REQUIRED ERROR -->
+                    <mat-error *ngIf="form.controls.description.errors?.required">
+                        Descreva a funcionalidade
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- SQUAD INPUT -->
+                <mat-form-field class="c-feature-workbench__form--input col-md-6" appearance="outline">
+                    <mat-label>Squad</mat-label>
+                    <mat-select formControlName="squad">
+                        <mat-option *ngFor="let squad of squads$ | async" [value]="squad.id">
+                            {{ squad.name }}
+                        </mat-option>
+                    </mat-select>
+
+                    <!-- REQUIRED ERROR -->
+                    <mat-error *ngIf="form.controls.squad.errors?.required"> Selecione uma squad </mat-error>
+                </mat-form-field>
+
+                <!-- APPLICATION INPUT -->
+                <mat-form-field class="c-feature-workbench__form--input col-md-6" appearance="outline">
+                    <mat-label>Destino</mat-label>
+                    <mat-select formControlName="application" (selectionChange)="getAppClientGroups($event.value)">
+                        <mat-option *ngFor="let app of applications$ | async" [value]="app.id">
+                            {{ app.name }}
+                        </mat-option>
+                    </mat-select>
+
+                    <!-- REQUIRED ERROR -->
+                    <mat-error *ngIf="form.controls.application.errors?.required"> Selecione uma aplicação </mat-error>
+                </mat-form-field>
+
+                <!-- TYPE INPUT -->
+                <mat-form-field class="c-feature-workbench__form--input col-md-6" appearance="outline">
+                    <mat-label>Tipo do valor</mat-label>
+                    <mat-select formControlName="type" (selectionChange)="updateValidators($event.value)">
+                        <mat-option *ngFor="let type of featureTypes | keyvalue" [value]="type.value">{{
+                            type.key
+                        }}</mat-option>
+                    </mat-select>
+
+                    <!-- REQUIRED ERROR -->
+                    <mat-error *ngIf="form.controls.type.errors?.required">
+                        Selecione um tipo de funcionalidade
+                    </mat-error>
+                </mat-form-field>
+
+                <!-- VALUE INPUT -->
+                <ng-container *ngIf="form.controls.type.value !== featureTypes.BOOLEAN; else boolean">
+                    <mat-form-field
+                        class="c-feature-workbench__form--input col c-feature-workbench__form-value-input"
+                        appearance="outline"
+                    >
+                        <mat-label>Valor padrão</mat-label>
+                        <textarea matInput [matTextareaAutosize]="true" formControlName="value"></textarea>
+
+                        <!-- REQUIRED ERROR -->
+                        <mat-error *ngIf="form.controls.value.errors?.required">
+                            Defina um valor para a funcionalidade
+                        </mat-error>
+
+                        <!-- INVALID JSON ERROR -->
+                        <mat-error
+                            *ngIf="!form.controls.value.errors?.required && form.controls.value.errors?.invalidJson"
+                        >
+                            JSON inválido
+                        </mat-error>
+                    </mat-form-field>
+                </ng-container>
+
+                <ng-template #boolean>
+                    <mat-form-field
+                        class="c-feature-workbench__form--input col c-feature-workbench__form-boolean-input"
+                        appearance="outline"
+                    >
+                        <mat-label>Valor padrão</mat-label>
+
+                        <mat-select formControlName="value">
+                            <mat-option value="true">true</mat-option>
+                            <mat-option value="false">false</mat-option>
+                        </mat-select>
+
+                        <!-- REQUIRED ERROR -->
+                        <mat-error *ngIf="form.controls.value.errors?.required">
+                            Defina um valor para a funcionalidade
+                        </mat-error>
+                    </mat-form-field>
+                </ng-template>
+            </section>
+
+            <section class="c-feature-workbench__conditions">
+                <h2 class="c-feature-workbench__conditions--title col">Segmentações</h2>
+
+                <section
+                    class="c-feature-workbench__condition-group"
+                    *ngFor="let condition of conditions.controls; let i = index"
+                    [formGroup]="condition"
+                >
+                    <div class="c-feature-workbench__condition-group--header">
+                        <!-- CONDITION TITLE -->
+                        <h3 class="c-feature-workbench__condition-group--title">{{ getConditionName(i) }}</h3>
+
+                        <!-- REMOVE BUTTON -->
+                        <button
+                            mat-icon-button
+                            aria-label="Remover segmentação"
+                            class="c-feature-workbench__condition-group--remove-btn"
+                            type="button"
+                            (click)="onRemoveCondition(i)"
+                        >
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+
+                    <!-- NAME INPUT -->
+                    <mat-form-field class="c-feature-workbench__form--input col" appearance="outline">
+                        <mat-label>Nome</mat-label>
+                        <input matInput formControlName="name" />
+
+                        <!-- REQUIRED ERROR -->
+                        <mat-error *ngIf="getConditionGroup(i).controls.name.errors?.required">
+                            Defina um nome para a segmentação
+                        </mat-error>
+
+                        <!-- MIN LENGTH ERROR -->
+                        <mat-error *ngIf="getConditionGroup(i).controls.name.errors?.minlength">
+                            O nome deve possuir no mínimo 3 caracteres
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- VALUE INPUT -->
+                    <ng-container *ngIf="form.controls.type.value !== featureTypes.BOOLEAN; else booleanCondition">
+                        <mat-form-field
+                            class="c-feature-workbench__form--input col c-feature-workbench__form-condition-value-input"
+                            appearance="outline"
+                        >
+                            <mat-label>Valor para a segmentação</mat-label>
+                            <textarea matInput [matTextareaAutosize]="true" formControlName="value"></textarea>
+
+                            <!-- REQUIRED ERROR -->
+                            <mat-error *ngIf="getConditionGroup(i).controls.value.errors?.required">
+                                Defina um valor para a segmentação
+                            </mat-error>
+
+                            <!-- INVALID JSON ERROR -->
+                            <mat-error
+                                *ngIf="
+                                    !getConditionGroup(i).controls.value.errors?.required &&
+                                    getConditionGroup(i).controls.value.errors?.invalidJson
+                                "
+                            >
+                                JSON inválido
+                            </mat-error>
+                        </mat-form-field>
+                    </ng-container>
+
+                    <ng-template #booleanCondition>
+                        <mat-form-field
+                            class="c-feature-workbench__form--input col c-feature-workbench__form-condition-boolean-input"
+                            appearance="outline"
+                        >
+                            <mat-label>Valor para a segmentação</mat-label>
+
+                            <mat-select formControlName="value">
+                                <mat-option value="true">true</mat-option>
+                                <mat-option value="false">false</mat-option>
+                            </mat-select>
+
+                            <!-- REQUIRED ERROR -->
+                            <mat-error *ngIf="getConditionGroup(i).controls.value.errors?.required">
+                                Defina um valor para a segmentação
+                            </mat-error>
+                        </mat-form-field>
+                    </ng-template>
+
+                    <!-- PERCENTAGE INPUT -->
+                    <mat-form-field class="c-feature-workbench__form--input col-md-6" appearance="outline">
+                        <mat-label>Porcentagem da base</mat-label>
+                        <input
+                            matInput
+                            formControlName="percentage"
+                            type="text"
+                            mask="000%"
+                            suffix="%"
+                            [showMaskTyped]="true"
+                            placeHolderCharacter=""
+                        />
+
+                        <!-- REQUIRED ERROR -->
+                        <mat-error *ngIf="getConditionGroup(i).controls.percentage.errors?.required">
+                            Defina uma porcentagem da base
+                        </mat-error>
+
+                        <!-- MIN VALUE ERROR -->
+                        <mat-error *ngIf="getConditionGroup(i).controls.percentage.errors?.min">
+                            Valor mínimo: 0
+                        </mat-error>
+
+                        <!-- MAX VALUE ERROR -->
+                        <mat-error *ngIf="getConditionGroup(i).controls.percentage.errors?.max">
+                            Valor máximo: 100
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- SYSTEM INPUT -->
+                    <mat-form-field class="c-feature-workbench__form--input col-md-6" appearance="outline">
+                        <mat-label>Sistema</mat-label>
+                        <mat-select formControlName="system">
+                            <mat-option value="android"> Android </mat-option>
+
+                            <mat-option value="ios"> iOS </mat-option>
+                        </mat-select>
+
+                        <!-- REQUIRED ERROR -->
+                        <mat-error *ngIf="getConditionGroup(i).controls.system.errors?.required">
+                            Selecione o sistema
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- VERSION MATCH INPUT -->
+                    <mat-form-field class="c-feature-workbench__form--input col" appearance="outline">
+                        <mat-label>Para as versões (opcional)</mat-label>
+                        <mat-select formControlName="versionComparator">
+                            <mat-option>----</mat-option>
+
+                            <mat-option value="greater"> Maiores que </mat-option>
+
+                            <mat-option value="less"> Menores que </mat-option>
+
+                            <mat-option value="greater-or-equal"> Maiores ou iguais a </mat-option>
+
+                            <mat-option value="less-or-equal"> Menores ou iguais a </mat-option>
+
+                            <mat-option value="equal"> Que correspondem exatamente a </mat-option>
+
+                            <mat-option value="between"> No intervalo entre </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <!-- VERSION INPUT -->
+                    <mat-form-field
+                        class="c-feature-workbench__form--input col"
+                        appearance="outline"
+                        *ngIf="getConditionGroup(i).controls.version"
+                    >
+                        <mat-label>Versão do app</mat-label>
+                        <input matInput formControlName="version" />
+
+                        <!-- REQUIRED ERROR -->
+                        <mat-error *ngIf="getConditionGroup(i).controls.version.errors?.required">
+                            Defina uma versão
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- MIN VERSION INPUT -->
+                    <mat-form-field
+                        class="c-feature-workbench__form--input col-md-6"
+                        appearance="outline"
+                        *ngIf="getConditionGroup(i).controls.minVersion"
+                    >
+                        <mat-label>Versão do app</mat-label>
+                        <input matInput formControlName="minVersion" />
+
+                        <!-- REQUIRED ERROR -->
+                        <mat-error *ngIf="getConditionGroup(i).controls.minVersion.errors?.required">
+                            Defina uma versão
+                        </mat-error>
+                    </mat-form-field>
+
+                    <!-- MAX VERSION INPUT -->
+                    <mat-form-field
+                        class="c-feature-workbench__form--input col-md-6"
+                        appearance="outline"
+                        *ngIf="getConditionGroup(i).controls.maxVersion"
+                    >
+                        <mat-label>Versão do app</mat-label>
+                        <input matInput formControlName="maxVersion" />
+
+                        <!-- REQUIRED ERROR -->
+                        <mat-error *ngIf="getConditionGroup(i).controls.maxVersion.errors?.required">
+                            Defina uma versão
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="c-feature-workbench__form--input col" appearance="outline">
+                        <mat-label>Grupos de usuários (opcional)</mat-label>
+                        <mat-select formControlName="clientGroup">
+                            <mat-option *ngFor="let clientGroup of clientGroups$ | async" [value]="clientGroup.id">
+                                {{ clientGroup.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </section>
+            </section>
+
+            <div class="c-feature-workbench__btn-wrapper col">
+                <button
+                    mat-flat-button
+                    [disabled]="!form.controls.application.value || !form.controls.type.value"
+                    class="c-feature-workbench__add-condition-btn o-button o-button__link"
+                    type="button"
+                    (click)="onAddCondition()"
+                >
+                    Criar segmentação
+                </button>
+            </div>
+
+            <section class="c-update-feature__details c-update-feature__commit-message" *ngIf="isEditing">
+                <h2 class="c-feature-workbench__details--title col">Motivo da alteração</h2>
+
+                <!-- COMMIT MESSAGE INPUT -->
+                <mat-form-field class="c-login-page__form--input col" appearance="outline">
+                    <mat-label>Por que você está fazendo isso?</mat-label>
+                    <textarea matInput formControlName="message"></textarea>
+
+                    <!-- REQUIRED ERROR -->
+                    <mat-error *ngIf="form.controls.message.errors?.required"> Campo obrigatório </mat-error>
+
+                    <!-- MIN LENGTH ERROR -->
+                    <mat-error *ngIf="form.controls.message.errors?.minlength">
+                        A justificativa deve possuir no mínimo 10 caracteres
+                    </mat-error>
+                </mat-form-field>
+            </section>
+
+            <div class="c-feature-workbench__btn-wrapper col">
+                <button
+                    mat-flat-button
+                    class="c-feature-workbench__cancel-btn o-button o-button__link"
+                    type="button"
+                    (click)="onReturn()"
+                >
+                    cancelar
+                </button>
+
+                <button
+                    mat-flat-button
+                    class="c-feature-workbench__apply-btn o-button o-button__solid"
+                    type="submit"
+                    [disabled]="isLoading$ | async"
+                >
+                    <ng-container *ngIf="isLoading$ | async; else text">
+                        <mat-progress-spinner mode="indeterminate" class="o-button__loading"></mat-progress-spinner>
+                    </ng-container>
+
+                    <ng-template #text> aplicar </ng-template>
+                </button>
+            </div>
+        </form>
+    </div>
+</section>

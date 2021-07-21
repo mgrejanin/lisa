@@ -1,0 +1,208 @@
+<section class="container c-shipment o-page" *ngIf="step$ | async as step">
+    <ng-container [ngSwitch]="step">
+        <form class="c-shipment__form" [formGroup]="form" (ngSubmit)="openConfirmPayment()" autocomplete="off">
+            <div class="c-shipment__progress-bar" *ngIf="step < 3">
+                <apollo-progress-bar [total]="2" [fraction]="step === 1 ? 0 : 1"></apollo-progress-bar>
+            </div>
+            <fieldset *ngSwitchCase="1" formGroupName="upload">
+                <div class="c-shipment__title">
+                    <span class="c-shipment__title__step">1</span>
+                    <h1 class="c-shipment__title__text u-no-select">
+                        Faça o upload do arquivo .CSV para o pagamento dos valores
+                    </h1>
+                </div>
+                <p class="c-shipment__paragraph">
+                    Ao subir o arquivo no formato de csv, a nossa API processará os dados e os pagamentos serão
+                    realizados de acordo com valor informado no arquivo. Para que esse procedimento aconteça
+                    corretamente certifique-se de que:
+                </p>
+                <ol class="c-shipment__list">
+                    <li>No arquivo há o cpf (apenas números)</li>
+                    <li>Valor a ser pago (usar o ponto para separar a casa decimal. Ex: 10.25)</li>
+                    <li>Os dados estão organizados na ordem cpf e valor (tudo minúsculo)</li>
+                </ol>
+                <p class="c-shipment__paragraph">
+                    Se os dados estiverem corretos, você conseguirá passar para o próximo passo. Caso contrário, remova
+                    o arquivo e selecione o correto.
+                </p>
+                <p class="c-shipment__paragraph">
+                    Obs: verifique se o campo de cpf é um campo de texto, pois cpfs que iniciam com o número 0 podem ser
+                    alterados automaticamente, descartando esse número.
+                </p>
+                <p class="c-shipment__paragraph">
+                    Ficou com dúvidas?
+                    <apollo-button variant="link" href="./assets/files/shipment/exemplo_lote.csv" target="_blank">
+                        <apollo-icon slot="leading-icon" svg-icon="interface-import" size="sm"></apollo-icon>
+                        Baixe arquivo de exemplo
+                    </apollo-button>
+                </p>
+                <div class="c-shipment__upload">
+                    <input
+                        #fileInput
+                        hidden
+                        tabindex="-1"
+                        formControlName="file"
+                        id="file"
+                        type="file"
+                        class="form-control"
+                        accept=".csv"
+                        (change)="onFileChange($event)"
+                    />
+                    <div class="c-shipment__upload--label-name">
+                        <apollo-textfield
+                            label="Arquivo para pagamento"
+                            class="form-control"
+                            [value]="formUploadRef.value.name ? formUploadRef.value.name : ' '"
+                            required
+                            disabled
+                        >
+                        </apollo-textfield>
+                        <p class="c-shipment__input--helper-description">Apenas formato CSV</p>
+                    </div>
+                    <div class="c-shipment__upload--btn">
+                        <div *ngIf="!formUploadRef.value" class="c-shipment__upload--btn-select">
+                            <apollo-button variant="link" (click)="fileInput.click()" type="button">
+                                <apollo-icon svg-icon="file-file-upload-alt" size="sm"></apollo-icon>
+                                Selecionar arquivo
+                            </apollo-button>
+                        </div>
+                        <div *ngIf="formUploadRef.value" class="c-shipment__upload--btn-remove">
+                            <apollo-button variant="link" (click)="onRemoveFile()" type="button">
+                                <apollo-icon svg-icon="interface-trash-alt" size="sm"></apollo-icon>
+                                Remover arquivo
+                            </apollo-button>
+                        </div>
+                    </div>
+                </div>
+                <div class="c-shipment__actions">
+                    <apollo-button class="c-shipment__actions__goback" type="button" variant="link" routerLink="/">
+                        Cancelar
+                    </apollo-button>
+                    <apollo-button
+                        class="c-shipment__actions__next"
+                        [block]="true"
+                        size="md"
+                        type="button"
+                        (click)="setStep(2)"
+                        [disabled]="formUploadRef.errors"
+                    >
+                        Próximo
+                    </apollo-button>
+                </div>
+            </fieldset>
+            <fieldset *ngSwitchCase="2">
+                <div class="c-shipment__title">
+                    <span class="c-shipment__title__step">2</span>
+                    <h1 class="c-shipment__title__text u-no-select">Defina os parâmetros do pagamento</h1>
+                </div>
+                <div class="c-shipment__form-group">
+                    <p class="c-shipment__paragraph">
+                        Selecione a data final de pagamento, isso fará com que a API interrompa as tentativas de
+                        pagamento. <span class="c-shipment__paragraph--alert">Somente</span> após essa data você poderá
+                        realizar outros pagamentos.
+                    </p>
+                    <mat-form-field class="c-shipment__input--date" appearance="outline">
+                        <mat-label>Data final de pagamento</mat-label>
+                        <input
+                            matInput
+                            [matDatepicker]="picker"
+                            [min]="minDatePayment"
+                            [max]="maxDatePayment"
+                            (focus)="picker.open()"
+                            name="end_date"
+                            idElement="end_date"
+                            formControlName="end_date"
+                            readonly
+                            required
+                        />
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                    <div
+                        *ngIf="formRef.end_date.invalid && (formRef.end_date.dirty || formRef.end_date.touched)"
+                        class="c-shipment__input--error"
+                    >
+                        <span *ngIf="formRef.end_date.errors.required">
+                            <apollo-icon
+                                slot="leading-icon"
+                                svg-icon="feedback-exclamation-circle"
+                                size="sm"
+                            ></apollo-icon>
+                            Este campo é requerido!
+                        </span>
+                    </div>
+                    <p class="c-shipment__input--helper-description">Min. 15 dias e máx. 30 dias</p>
+                </div>
+
+                <div class="c-shipment__form-group">
+                    <p>O valor pode ser sacado pelos usuários?</p>
+                    <mat-radio-group
+                        aria-label="Selecione uma opção"
+                        formControlName="withdrawable"
+                        class="c-shipment__input--withdrawable"
+                    >
+                        <mat-radio-button [value]="true" checked>Sim, o usuário pode sacar o valor</mat-radio-button>
+                        <mat-radio-button [value]="false">Não, o usuário não pode sacar</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="c-shipment__form-group">
+                    <p class="c-shipment__paragraph">
+                        Para sua organização, você pode adicionar um identificador de pagamento para o arquivo enviado.
+                        Como por exemplo: “Pagamento do primeiro lote”.
+                    </p>
+                    <apollo-textfield
+                        name="name"
+                        idElement="name"
+                        formControlName="name"
+                        type="text"
+                        label="Identificador de pagamento (opcional)"
+                        max-length="35"
+                        character-counter="true"
+                    ></apollo-textfield>
+                </div>
+                <div class="c-shipment__actions">
+                    <apollo-button
+                        class="c-shipment__actions__goback"
+                        variant="link"
+                        type="button"
+                        (click)="setStep(1); event.preventDefault()"
+                        >Voltar</apollo-button
+                    >
+                    <apollo-button
+                        class="c-shipment__actions__submit"
+                        [block]="true"
+                        size="md"
+                        type="submit"
+                        [disabled]="form.invalid"
+                        >Realizar o pagamento</apollo-button
+                    >
+                </div>
+            </fieldset>
+            <ng-container *ngSwitchCase="3">
+                <div class="c-shipment__feedback u-no-select">
+                    <div class="c-shipment__feedback__content">
+                        <img src="./assets/images/feedback-like.svg" alt="pagamento" />
+                        <h1>Ordem de pagamento feita com sucesso!</h1>
+                        <p class="c-shipment__paragraph">
+                            Recebemos sua solicitação e já estamos processando os pagamentos. Você pode acompanhar os
+                            pagamentos na aba <strong>Extrato do Painel de Vendas</strong>.
+                        </p>
+                        <apollo-button routerLink="/" type="button">Ok, entendi</apollo-button>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="4">
+                <div class="c-shipment__feedback u-no-select">
+                    <div class="c-shipment__feedback__content">
+                        <img src="./assets/images/feedback-attention.svg" alt="pagamento em progresso" />
+                        <h1>Há uma ordem de pagamento em progresso</h1>
+                        <p class="c-shipment__paragraph">
+                            Por isso isso não é possível criar uma nova solicitação. Aguarde até a finalização dela.
+                        </p>
+                        <apollo-button type="button" routerLink="/">Ok, entendi</apollo-button>
+                    </div>
+                </div>
+            </ng-container>
+        </form>
+    </ng-container>
+</section>

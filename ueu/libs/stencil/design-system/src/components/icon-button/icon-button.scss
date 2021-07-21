@@ -1,0 +1,60 @@
+@use "@material/theme" with (
+    $primary: theme('colors.primary.base'),
+    $on-primary: theme('colors.white')
+);
+@use "@material/theme/custom-properties";
+@use "@material/icon-button";
+@use "@material/ripple";
+
+$button-sizes: (
+    'sm': (
+        40px,
+    ),
+    'md': (
+        48px,
+    ),
+);
+
+apollo-icon-button {
+    @include icon-button.core-styles;
+    display: inline-block;
+
+    .mdc-icon-button {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        @include theme.property(color, custom-properties.create(--apollo-primary, theme('colors.primary.base')));
+
+        &::after,
+        &::before {
+            @include theme.property(
+                background-color,
+                custom-properties.create(--apollo-primary, theme('colors.primary.base'))
+            );
+        }
+
+        &.mdc-icon-button--invalid {
+            @include theme.property(color, custom-properties.create(--apollo-error, theme('colors.critical.base')));
+
+            &::after,
+            &::before {
+                @include theme.property(
+                    background-color,
+                    custom-properties.create(--apollo-error, theme('colors.critical.base'))
+                );
+            }
+        }
+    }
+}
+
+apollo-icon-button[disabled] .mdc-icon-button {
+    @include icon-button.disabled-ink-color(theme('colors.grayscale.300'));
+}
+
+@each $size, $props in $button-sizes {
+    $default-size: nth($props, 1);
+
+    apollo-icon-button[size='#{$size}'] button {
+        @include icon-button.size($default-size);
+    }
+}

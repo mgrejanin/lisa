@@ -1,0 +1,71 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-integrations {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    background-color: rgb(var(--apollo-background-rgb));
+
+    &--title {
+        @include typography.title(large);
+        line-height: theme('lineHeight.6xl');
+        margin: theme('spacing.none');
+    }
+
+    &--text {
+        color: rgba(var(--apollo-on-background-rgb), 0.6);
+        font-size: theme('fontSize.sm');
+        font-weight: theme('fontWeight.semibold');
+        margin: theme('spacing.2') theme('spacing.none');
+    }
+
+    &--divider {
+        color: theme('colors.grayscale.200');
+        margin: theme('spacing.3') theme('spacing.none');
+    }
+
+    &__generate-token-btn {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    &--api-link {
+        @include typography.link(secondary);
+        color: rgba(var(--apollo-primary-rgb));
+    }
+
+    &__loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    ::ng-deep .mat {
+        &-tab-header {
+            border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.200');
+        }
+
+        &-tab-label {
+            font-size: theme('fontSize.sm');
+            font-weight: theme('fontWeight.semibold');
+            opacity: theme('opacity.full');
+            color: rgba(var(--apollo-primary-rgb)) !important;
+        }
+
+        &-tab-label-active {
+            color: rgba(var(--apollo-primary-rgb)) !important;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .c-integrations {
+        .o-button {
+            &--solid {
+                max-width: 100%;
+            }
+        }
+    }
+}

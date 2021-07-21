@@ -1,0 +1,56 @@
+<picpedia-navbar-header [title]="titleDashboardsList$ | async"></picpedia-navbar-header>
+
+<section class="c-dashboards-list container-fluid">
+    <apollo-flex justify="center" class="c-dashboards-list__loading" *ngIf="isLoadingDashboards$ | async">
+        <apollo-circular-progress radius="35" stroke="6"></apollo-circular-progress>
+    </apollo-flex>
+
+    <div class="c-dashboards-list__container">
+        <div *ngFor="let item of dashboardsList$ | async">
+            <apollo-list [routerLink]="item.name | lowercase">
+                <div class="c-dashboards-list__list">
+                    <apollo-icon
+                        [svgIcon]="iconDashboards"
+                        size="md"
+                        class="c-dashboards-list__list-icon"
+                    ></apollo-icon>
+                    {{ item.description }}
+
+                    <div class="c-dashboards-list__list-items">
+                        <div class="c-dashboards-list__list-badge">{{ item.dataDomain }}</div>
+                        <div class="c-dashboards-list__list-badge c-dashboards-list__list-badge--item">
+                            {{ item.tag }}
+                        </div>
+                        <picpedia-badge-certification [badgeLabel]="item.badge">{{
+                            item.badge
+                        }}</picpedia-badge-certification>
+
+                        <div class="c-dashboards-list__list-favorite">
+                            <ng-container *ngIf="item.favorite; else favoriteOutlined">
+                                <apollo-icon
+                                    class="material-icons c-dashboards-list__list-favorite-icon"
+                                    (click)="updateDashboardsListFavorite(false, item.idFavorite)"
+                                    >grade</apollo-icon
+                                >
+                            </ng-container>
+
+                            <ng-template #favoriteOutlined>
+                                <apollo-icon
+                                    class="material-icons-outlined"
+                                    (click)="updateDashboardsListFavorite(true, item.idFavorite)"
+                                    >grade</apollo-icon
+                                >
+                            </ng-template>
+                        </div>
+                        <div class="c-dashboards-list__list-arrow">
+                            <apollo-icon class="material-icons-outlined">chevron_right</apollo-icon>
+                        </div>
+                    </div>
+                </div>
+                <div class="c-dashboards-list__list-divider">
+                    <apollo-list-divider></apollo-list-divider>
+                </div>
+            </apollo-list>
+        </div>
+    </div>
+</section>

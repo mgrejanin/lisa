@@ -1,0 +1,82 @@
+<section class="c-features-list">
+    <mat-drawer-container class="c-features-list__container vh-100" autosize>
+        <!-- SIDENAV -->
+        <mat-drawer #drawer class="c-features-list__sidenav" mode="over" position="end">
+            <feature-flag-features-feature-details
+                class="c-features-list__sidenav--details"
+                [feature]="activeFeature$ | async"
+                [commits]="activeCommits$ | async"
+                (close)="onClose()"
+                (edit)="onEditFeature($event)"
+                (delete)="onDeleteFeature($event)"
+            ></feature-flag-features-feature-details>
+        </mat-drawer>
+
+        <!-- HEADER -->
+        <feature-flag-features-header></feature-flag-features-header>
+
+        <!-- CONTENT -->
+        <section class="c-features-list__content container o-page">
+            <!-- TITLE -->
+            <h1 class="c-features-list__title">Funcionalidades</h1>
+
+            <section class="c-features-list__action-bar">
+                <!-- FILTER -->
+                <mat-form-field appearance="outline" class="c-features-list__filter">
+                    <mat-icon class="o-filter__icon">search</mat-icon>
+                    <mat-label class="o-filter__label">Buscar por chave da funcionalidade ou descrição</mat-label>
+                    <input matInput (keyup)="applyFilter($event.target.value)" class="o-filter__input" />
+                </mat-form-field>
+
+                <!-- CREATE BUTTON -->
+                <button
+                    *featureFlagIfRoles="canShow"
+                    mat-flat-button
+                    class="c-features-list__create-btn o-button"
+                    (click)="onCreateFeature()"
+                >
+                    <mat-icon class="o-button__icon">add</mat-icon> Funcionalidade
+                </button>
+            </section>
+
+            <!-- TABLE -->
+            <table mat-table [dataSource]="dataSource$ | async" class="c-features-list__table o-table">
+                <!-- NAME -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef class="c-features-list__table-title o-table__title">
+                        Funcionalidade
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="o-table__item">{{ element.name | truncate: 50 }}</td>
+                </ng-container>
+
+                <!-- DESCRIPTION -->
+                <ng-container matColumnDef="description">
+                    <th mat-header-cell *matHeaderCellDef class="c-features-list__table-title o-table__title">
+                        Descrição
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="o-table__item">
+                        {{ element.description | truncate: 70 }}
+                    </td>
+                </ng-container>
+
+                <!-- TYPE -->
+                <ng-container matColumnDef="type">
+                    <th mat-header-cell *matHeaderCellDef class="c-features-list__table-title o-table__title">Tipo</th>
+                    <td mat-cell *matCellDef="let element" class="o-table__item">
+                        <span class="o-chip">
+                            {{ this.getTypeName(element.type) }}
+                        </span>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr
+                    mat-row
+                    *matRowDef="let row; columns: displayedColumns"
+                    class="o-table__row"
+                    (click)="onSeeDetails(row)"
+                ></tr>
+            </table>
+        </section>
+    </mat-drawer-container>
+</section>

@@ -1,0 +1,13 @@
+{
+    "name": "lab-components",
+    "version": "1",
+    "main": "../../../dist/libs/stencil/lab-components/dist/index.js",
+    "module": "../../../dist/libs/stencil/lab-components/dist/index.mjs",
+    "es2015": "../../../dist/libs/stencil/lab-components/dist/esm/index.mjs",
+    "es2017": "../../../dist/libs/stencil/lab-components/dist/esm/index.mjs",
+    "types": "../../../dist/libs/stencil/lab-components/dist/types/index.d.ts",
+    "collection": "../../../dist/libs/stencil/lab-components/dist/collection/collection-manifest.json",
+    "collection:main": "../../../dist/libs/stencil/lab-components/dist/collection/index.js",
+    "unpkg": "../../../dist/libs/stencil/lab-components/dist/lab-components/lab-components.js",
+    "files": ["../../../dist/libs/stencil/lab-components/dist/", "../../../dist/libs/stencil/lab-components/loader/"]
+}

@@ -1,0 +1,66 @@
+.c-calculator {
+    &--btn {
+        .apollo-button__label {
+            font-weight: 800 !important;
+            font-size: 23px !important;
+        }
+    }
+
+    &--label {
+        font-size: 10px;
+    }
+
+    .chakra-select {
+        padding-left: 15px;
+    }
+
+    &__selects {
+        min-height: 80px;
+
+        .mdc-text-field {
+            span,
+            input {
+                font-family: 'Montserrat', sans-serif;
+            }
+        }
+
+        .mdc-notched-outline__notch {
+            border-left: 0;
+            border-right: 0;
+        }
+    }
+
+    &__list {
+        padding: 0;
+        margin: 0;
+
+        &--total {
+            font-weight: 600;
+        }
+
+        .mdc-list {
+            padding: 0;
+
+            &-item {
+                height: 30px;
+                text-align: center;
+                font-size: 14px;
+                display: flex;
+                justify-content: center;
+
+                &__text {
+                    padding-right: 0;
+                    font-size: 14px;
+                }
+
+                small {
+                    font-size: 11px;
+                }
+
+                &__ripple {
+                    display: none;
+                }
+            }
+        }
+    }
+}

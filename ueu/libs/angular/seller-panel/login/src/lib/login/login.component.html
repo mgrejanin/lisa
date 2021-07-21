@@ -1,0 +1,59 @@
+<div class="f-panel-centralized c-login">
+    <div class="f-panel-centralized__logo picpay-empresas-logo pipay-empresas-background"></div>
+    <div class="f-panel-centralized__container">
+        <div class="f-panel-centralized__header">
+            <h2 class="f-panel-centralized__title">Painel de vendas</h2>
+            <p class="f-panel-centralized__description">Utilize sua conta PicPay para acessar.</p>
+        </div>
+        <div class="f-panel-centralized__form">
+            <form [formGroup]="form" (submit)="onReCaptchaAction()">
+                <mat-form-field appearance="outline">
+                    <mat-label>CPF ou CNPJ</mat-label>
+                    <input
+                        matInput
+                        sellerPanelCpfCnpjFormatter
+                        type="text"
+                        formControlName="cnpj"
+                        inputmode="numeric"
+                        maxlength="18"
+                    />
+                    <mat-error validation-message [control]="form.controls.cnpj"></mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="mat-form-field-email">
+                    <mat-label>Digite seu e-mail</mat-label>
+                    <input matInput type="email" formControlName="email" />
+                    <mat-error validation-message [control]="form.controls.email"></mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="mat-form-field-password">
+                    <mat-label>Digite sua senha</mat-label>
+                    <input matInput type="password" formControlName="password" />
+                    <mat-error validation-message [control]="form.controls.password"></mat-error>
+                </mat-form-field>
+
+                <button type="submit" mat-flat-button class="c-login__btn-submit o-button o-button__solid">
+                    <seller-panel-loading-button
+                        [action]="loginAction"
+                        normalText="Entrar"
+                        loadingText="Entrando..."
+                    ></seller-panel-loading-button>
+                </button>
+            </form>
+            <div class="f-panel-centralized__forgot-password">
+                <a class="o-button o-button__link" [routerLink]="['/esqueci-a-senha']">Esqueceu sua senha?</a>
+            </div>
+        </div>
+    </div>
+    <div class="f-panel-centralized__external-container">
+        <p>Ainda não tem uma conta?</p>
+        <a
+            class="o-button o-button__link"
+            href="https://lojista.picpay.com/registro/form"
+            target="_blank"
+            rel="noopener external"
+        >
+            Faça seu cadastro
+        </a>
+    </div>
+</div>

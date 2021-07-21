@@ -1,0 +1,51 @@
+@import 'libs/ui/styles/src/lib/theming';
+
+$sidenav-width: 390px;
+
+.c-sidenav-details {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: -$sidenav-width;
+    bottom: 0;
+    background-color: rgb(var(--apollo-background-rgb));
+    transition: ease-in-out all 0.3s;
+    z-index: -1;
+
+    &.active {
+        right: 0;
+        box-shadow: theme('boxShadow.medium');
+        z-index: 10;
+    }
+
+    &__container {
+        width: $sidenav-width;
+        padding: 8px;
+        transition: ease-in-out all 0.3s;
+
+        &--close-btn {
+            display: flex;
+            align-self: flex-start;
+
+            .mat-icon {
+                font-size: 30px;
+            }
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        width: 100%;
+        right: -100%;
+
+        padding-bottom: 72px !important;
+
+        &__container {
+            width: 100%;
+        }
+
+        &.active {
+            box-shadow: none;
+        }
+    }
+}

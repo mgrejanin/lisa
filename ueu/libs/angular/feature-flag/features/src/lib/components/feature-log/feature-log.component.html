@@ -1,0 +1,24 @@
+<section class="c-feature-log">
+    <ng-container *ngIf="commits && commits.length > 0; else emptyMessage">
+        <div
+            class="c-feature-log__log"
+            *ngFor="let commit of commits; let i = index"
+            [ngClass]="{ 'no-after': i + 1 === commits.length }"
+        >
+            <span class="c-feature-log__log--circle"></span>
+
+            <span class="c-feature-log__log--message" *ngIf="commit.version > 1; else createdMessage">
+                Alteração <strong>realizada</strong>
+            </span>
+            <span class="c-feature-log__log--info">Por {{ commit.user.name }} em {{ commit.createdAt }}</span>
+        </div>
+    </ng-container>
+</section>
+
+<ng-template #createdMessage>
+    <span class="c-feature-log__log--message">Funcionalidade <strong>criada</strong></span>
+</ng-template>
+
+<ng-template #emptyMessage>
+    <span class="c-feature-log__empty-message"> Ops, não encontramos nenhum histórico de alterações. </span>
+</ng-template>

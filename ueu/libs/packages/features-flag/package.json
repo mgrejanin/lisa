@@ -1,0 +1,18 @@
+{
+    "name": "@picpay/features-flag",
+    "version": "1.0.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/PicPay/picpay-frontend.git"
+    },
+    "author": "PicPay",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/PicPay/picpay-frontend/issues"
+    },
+    "homepage": "https://github.com/PicPay/picpay-frontend#readme",
+    "dependencies": {
+        "tslib": "^2.0.0",
+        "rxjs": "~6.6.3"
+    }
+}

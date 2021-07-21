@@ -1,0 +1,87 @@
+import { Meta, Story, Canvas, Source, Description } from '@storybook/addon-docs/blocks';
+import dedent from 'ts-dedent';
+
+import readme from './../../components/toggle-button/readme.md';
+
+<Meta
+    title="Components/Toggle Button"
+    parameters={{
+        previewTabs: {
+            canvas: { hidden: false },
+        },
+    }}
+/>
+
+export const Template = props => (
+    <apollo-toggle-button
+        {...props}
+        toggle-off-label={props.toggleOffLabel}
+        toggle-on-label={props.toggleOnLabel}
+        toggle-off-icon={props.toggleIcon === 'none' ? '' : props.toggleIcon}
+        toggle-on-icon={props.toggleIcon === 'none' ? '' : props.toggleIcon}
+        size={props.size}
+    ></apollo-toggle-button>
+);
+
+# apollo-toggle-button
+
+## Default
+
+<Canvas>
+    <Story
+        name="All Props"
+        args={{
+            toggleOffLabel: 'Seguir',
+            toggleOnLabel: 'Deixar de seguir',
+            size: 'sm',
+            toggleIcon: 'none',
+        }}
+        argTypes={{
+            toggleOffLabel: {
+                name: 'toggle-off-label',
+            },
+            toggleOnLabel: {
+                name: 'toggle-on-label',
+            },
+            size: {
+                control: { type: 'select', options: ['sm', 'md'] },
+            },
+            toggleIcon: {
+                control: { type: 'select', options: ['none', 'objects-heart', 'objects-favorite', 'objects-trophy'] },
+                name: 'toggle-icon',
+            },
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<apollo-toggle-button toggle-off-label="Seguir" toggle-on-label="Deixar de seguir"></apollo-toggle-button>`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+## Toggle Icon
+
+<Canvas>
+    <Story
+        name="Toggle Icon"
+        parameters={{
+            docs: {
+                source: {
+                    code: dedent`
+                        <apollo-toggle-button 
+                            toggle-off-icon="objects-heart" 
+                            toggle-on-icon="objects-heart" 
+                        ></apollo-toggle-button>`,
+                },
+            },
+        }}
+    >
+        <apollo-toggle-button toggle-off-icon="objects-heart" toggle-on-icon="objects-heart"></apollo-toggle-button>
+    </Story>
+</Canvas>
+
+<Description markdown={readme} />

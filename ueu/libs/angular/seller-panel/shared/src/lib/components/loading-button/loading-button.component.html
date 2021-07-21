@@ -1,0 +1,17 @@
+<div class="wrapper">
+    <ng-container *ngIf="!action">
+        {{ normalText }}
+    </ng-container>
+
+    <ng-container *ngIf="action">
+        <ng-container *ngIf="side === 'left'">
+            <mat-spinner [ngClass]="side"></mat-spinner>
+            {{ loadingText }}
+        </ng-container>
+
+        <ng-container *ngIf="side === 'right'">
+            {{ loadingText }}
+            <mat-spinner [ngClass]="side"></mat-spinner>
+        </ng-container>
+    </ng-container>
+</div>

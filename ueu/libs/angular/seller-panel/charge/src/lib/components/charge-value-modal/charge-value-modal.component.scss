@@ -1,0 +1,25 @@
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-charge-value-modal {
+    display: flex;
+    flex-direction: column;
+    border-radius: 1rem;
+    background-color: rgb(var(--apollo-background-rgb));
+    padding: 1rem 1.5rem;
+
+    &__title {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    &__confirm {
+        margin: 8px 0;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+    }
+}

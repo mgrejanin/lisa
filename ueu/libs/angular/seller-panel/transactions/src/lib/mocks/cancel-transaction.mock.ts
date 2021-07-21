@@ -1,0 +1,21 @@
+export const cancelTransactionMock = {
+    image: 'https://picpay-dev.s3.amazonaws.com/profiles-processed-images/d00c2e62c189f9f05c773a09ee2895fd.200.jpg',
+    transaction_date: '2020-06-19 12:03:52.000000',
+    consumer: 'Test consumer',
+    id: 12345,
+    seller: 'Test seller',
+    status: 'Test status',
+    status_id: 'Test status id',
+    price: 10,
+    details: {
+        username: 'Test username',
+        cpf_cnpj: '49.447.667/0001-26',
+        transaction_date: '2020-06-19 12:03:52.000000',
+        id_transaction: 12345,
+        seller: 'Test seller',
+        id_seller: 1234,
+        operator: 'Teste operator',
+        price: 10,
+    },
+    checkout: false,
+};

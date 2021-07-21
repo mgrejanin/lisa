@@ -1,0 +1,234 @@
+@use "@material/theme" with (
+    $primary: theme('colors.primary.light.500'),
+    $secondary: theme('colors.primary.light.500'),
+);
+@use "@material/textfield" with (
+    $height: 52px,
+    $density-config: (
+        height: (
+            default: 52px,
+            maximum: 52px,
+            minimum: 36px,
+        ),
+    )
+);
+@use "@material/floating-label/mdc-floating-label";
+@use "@material/notched-outline/mdc-notched-outline";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/textfield/helper-text";
+@use "@material/textfield/character-counter";
+@use "@material/textfield/icon";
+
+$densities: (-4, -3, -2, -1);
+
+@include textfield.core-styles;
+@include helper-text.helper-text-core-styles;
+@include character-counter.character-counter-core-styles;
+
+apollo-textfield {
+    display: block;
+
+    --mdc-theme-primary: var(--apollo-primary);
+    --mdc-theme-on-primary: var(--apollo-on-primary);
+
+    label {
+        margin-bottom: 0rem;
+        position: relative;
+    }
+}
+
+.mdc-text-field {
+    width: 100%;
+
+    @include textfield.label-color(rgba(theme('colors.black'), theme.text-emphasis(medium)));
+    @include textfield.disabled-label-color(rgba(theme('colors.black'), 0.2));
+    @include textfield.disabled-outline-color(rgba(theme('colors.black'), 0.2));
+    @include textfield.outline-shape-radius(theme('borderRadius.medium'));
+    @include textfield.textarea-shape-radius(theme('borderRadius.medium'));
+
+    &.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-floating-label.mdc-floating-label--float-above {
+        color: rgba(var(--apollo-primary-rgb), theme.text-emphasis(high));
+    }
+
+    &.mdc-text-field--filled {
+        @include textfield.fill-color(rgba(0, 0, 0, 0.08));
+        @include textfield.disabled-fill-color(rgba(0, 0, 0, 0));
+    }
+
+    &.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline {
+        .mdc-notched-outline__notch {
+            .mdc-floating-label.mdc-floating-label--float-above {
+                color: rgba(theme('colors.critical.light.500'), theme.text-emphasis(high));
+            }
+        }
+    }
+
+    &.mdc-text-field--invalid {
+        @include textfield.label-color(rgba(0, 0, 0, theme.text-emphasis(medium)));
+        @include textfield.outline-color(theme('colors.critical.light.500'));
+        @include textfield.caret-color(theme('colors.critical.light.500'));
+        @include helper-text.helper-text-color(rgba(theme('colors.critical.light.500'), theme.text-emphasis(high)));
+    }
+
+    &.mdc-text-field--readonly {
+        pointer-events: none;
+    }
+}
+
+@each $density in $densities {
+    .mdc-text-field {
+        &.mdc-text-field--dense-#{$density}:not(.mdc-text-field--textarea) {
+            @include textfield.density($density);
+
+            &.mdc-text-field--outlined {
+                @include textfield.outlined-density($density);
+
+                &.mdc-text-field--with-leading-icon {
+                    @include textfield.outlined-with-leading-icon-density($density);
+                }
+
+                &,
+                &.mdc-text-field--with-leading-icon {
+                    .mdc-notched-outline .mdc-notched-outline__notch {
+                        padding-right: 0px;
+
+                        .mdc-floating-label {
+                            display: flex;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+apollo-textfield[type='search'] {
+    .mdc-text-field {
+        @include textfield.outline-shape-radius(48px);
+        padding-left: 0;
+    }
+
+    /* clears the 'X' from Internet Explorer */
+    ::-ms-clear,
+    ::-ms-reveal {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+
+    /* clears the 'X' from Chrome */
+    ::-webkit-search-decoration,
+    ::-webkit-search-cancel-button,
+    ::-webkit-search-results-button,
+    ::-webkit-search-results-decoration {
+        display: none;
+    }
+}
+
+[data-theme='dark'] {
+    .mdc-text-field {
+        /**
+      * label-color
+      */
+        @include textfield.label-color(rgba(255, 255, 255, theme.text-emphasis(high)));
+        @include textfield.disabled-label-color(rgba(255, 255, 255, theme.text-emphasis(disabled)));
+
+        /**
+      * ink-color
+      */
+        @include textfield.ink-color(rgba(255, 255, 255, theme.text-emphasis(high)));
+        @include textfield.disabled-ink-color(rgba(255, 255, 255, theme.text-emphasis(disabled)));
+
+        /**
+      * placeholder-color
+      */
+        @include textfield.placeholder-color(rgba(255, 255, 255, 0.46));
+        @include textfield.disabled-placeholder-color(rgba(255, 255, 255, theme.text-emphasis(disabled)));
+
+        /**
+      * prefix-color
+      */
+        @include textfield.prefix-color(rgba(255, 255, 255, theme.text-emphasis(medium)));
+        @include textfield.disabled-prefix-color(rgba(255, 255, 255, theme.text-emphasis(medium)));
+
+        /**
+      * sufix-color
+      */
+        @include textfield.suffix-color(rgba(255, 255, 255, theme.text-emphasis(medium)));
+        @include textfield.disabled-suffix-color(rgba(255, 255, 255, theme.text-emphasis(medium)));
+
+        /**
+      * character-counter-color
+      */
+        @include character-counter.character-counter-color(rgba(255, 255, 255, theme.text-emphasis(high)));
+        @include character-counter.disabled-character-counter-color(rgba(255, 255, 255, theme.text-emphasis(disabled)));
+
+        /**
+      * helper-text-color
+      */
+        @include helper-text.helper-text-color(rgba(255, 255, 255, theme.text-emphasis(high)));
+        @include helper-text.disabled-helper-text-color(rgba(255, 255, 255, theme.text-emphasis(disabled)));
+
+        /**
+      * icon color
+      */
+        @include icon.leading-icon-color(rgba(255, 255, 255, theme.text-emphasis(medium)));
+        @include icon.trailing-icon-color(rgba(255, 255, 255, theme.text-emphasis(medium)));
+        @include icon.disabled-icon-color(rgba(255, 255, 255, theme.text-emphasis(disabled)));
+
+        &.mdc-text-field--filled {
+            /**
+        * fill-color
+        */
+            @include textfield.fill-color(rgba(theme('colors.background.dark.tertiary'), theme.text-emphasis(high)));
+            @include textfield.disabled-fill-color(
+                rgba(theme('colors.background.dark.tertiary'), theme.text-emphasis(disabled))
+            );
+
+            /**
+        * bottom-line-color
+        */
+            @include textfield.bottom-line-color(rgba(255, 255, 255, theme.text-emphasis(high)));
+            @include textfield.disabled-bottom-line-color(rgba(255, 255, 255, theme.text-emphasis(disabled)));
+
+            &.mdc-text-field--focused:not(.mdc-text-field--disabled)
+                .mdc-floating-label.mdc-floating-label--float-above {
+                color: rgba(var(--apollo-primary-rgb), theme.text-emphasis(high));
+            }
+        }
+
+        &.mdc-text-field--outlined {
+            /**
+        * focused-outline-color
+        */
+            @include textfield.outline-color(rgba(255, 255, 255, theme.text-emphasis(medium)));
+            @include textfield.hover-outline-color(rgba(255, 255, 255, theme.text-emphasis(high)));
+            @include textfield.focused-outline-color(primary);
+            @include textfield.disabled-outline-color(rgba(255, 255, 255, theme.text-emphasis(disabled)));
+        }
+
+        &.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline {
+            .mdc-notched-outline__notch {
+                .mdc-floating-label.mdc-floating-label--float-above {
+                    color: rgba(var(--apollo-primary-rgb), theme.text-emphasis(high));
+                }
+            }
+        }
+
+        &.mdc-text-field--invalid.mdc-text-field--focused:not(.mdc-text-field--disabled) .mdc-notched-outline {
+            .mdc-notched-outline__notch {
+                .mdc-floating-label.mdc-floating-label--float-above {
+                    color: rgba(theme('colors.critical.light.500'), theme.text-emphasis(high));
+                }
+            }
+        }
+
+        &.mdc-text-field--invalid {
+            @include textfield.outline-color(theme('colors.critical.base'));
+            @include textfield.caret-color(theme('colors.critical.base'));
+            @include textfield.hover-outline-color(theme('colors.critical.base'));
+            @include textfield.focused-outline-color(rgba(theme('colors.critical.light.500'), 1));
+            @include helper-text.helper-text-color(rgba(theme('colors.critical.light.500'), theme.text-emphasis(high)));
+        }
+    }
+}

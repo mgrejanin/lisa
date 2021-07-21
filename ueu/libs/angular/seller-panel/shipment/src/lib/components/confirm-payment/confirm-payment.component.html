@@ -1,0 +1,60 @@
+<div class="c-confirm-payment-wrapper">
+    <div class="c-confirm-payment">
+        <mat-dialog-content>
+            <div class="c-confirm-payment__title">
+                <div class="c-confirm-payment__title__icon">
+                    <apollo-icon svg-icon="feedback-info" size="lg"></apollo-icon>
+                </div>
+                <div class="c-confirm-payment__title__text">
+                    <h2>Confirme os dados antes de realizar o pagamento</h2>
+                </div>
+            </div>
+            <div class="c-confirm-payment__content container" *ngIf="data">
+                <div class="c-confirm-payment__content--info">
+                    <h3 class="c-confirm-payment__content--info_title">Nome do documento:</h3>
+                    <p class="c-confirm-payment__content--info_text">{{ data.file.name }}</p>
+                </div>
+                <div class="c-confirm-payment__content--info">
+                    <h3 class="c-confirm-payment__content--info_title">Data de fim de pagamento:</h3>
+                    <p class="c-confirm-payment__content--info_text">{{ data.end_date | date: 'dd/MM/yyyy' }}</p>
+                </div>
+                <div class="c-confirm-payment__content--info">
+                    <h3 class="c-confirm-payment__content--info_title">O valor é sacável?</h3>
+                    <p class="c-confirm-payment__content--info_text">
+                        {{ data.withdrawable ? 'Sim, o usuário pode sacar o valor' : 'Não, o usuário não pode sacar' }}
+                    </p>
+                </div>
+                <div class="c-confirm-payment__content--info">
+                    <h3 class="c-confirm-payment__content--info_title">Identificador de pagamento (opcional):</h3>
+                    <p class="c-confirm-payment__content--info_text">{{ data.name }}</p>
+                </div>
+            </div>
+        </mat-dialog-content>
+        <mat-dialog-actions class="c-confirm-payment__actions">
+            <form (ngSubmit)="onSave()">
+                <div class="c-confirm-payment__actions__goback">
+                    <apollo-button
+                        class="c-confirm-payment__actions__goback-btn"
+                        type="button"
+                        (click)="onCancel()"
+                        variant="link"
+                        >Cancelar</apollo-button
+                    >
+                </div>
+                <div class="c-confirm-payment__actions__next">
+                    <apollo-button
+                        class="c-confirm-payment__actions__next-btn"
+                        size="md"
+                        type="submit"
+                        [disabled]="isLoading"
+                    >
+                        <ng-container *ngIf="!isLoading"> Confirmar e pagar </ng-container>
+                        <ng-container *ngIf="isLoading">
+                            <apollo-circular-progress></apollo-circular-progress> Processando arquivo
+                        </ng-container>
+                    </apollo-button>
+                </div>
+            </form>
+        </mat-dialog-actions>
+    </div>
+</div>

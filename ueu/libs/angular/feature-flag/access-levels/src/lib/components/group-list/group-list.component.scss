@@ -1,0 +1,27 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+@import 'libs/ui/components/src/styles/ui.scss';
+
+.c-group-container {
+    margin-right: -15px;
+
+    height: 100%;
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 15px 0;
+        padding-left: 0;
+        list-style: none;
+
+        &--item {
+            flex: 1 0 25%;
+            height: 168px;
+            flex-grow: initial;
+
+            padding-right: 16px;
+            margin-bottom: 24px;
+            min-width: 200px;
+        }
+    }
+}

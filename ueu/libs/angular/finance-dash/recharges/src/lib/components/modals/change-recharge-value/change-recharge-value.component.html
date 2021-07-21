@@ -1,0 +1,52 @@
+<section class="c-change-recharge-value">
+    <div class="c-change-recharge-value__header">
+        <h2 class="c-change-recharge-value__header-title">
+            <apollo-icon svgIcon="money_business-dollar-sign" label="Alterar valor da recarga" size="md" fill="#00ac4a">
+            </apollo-icon>
+            Alterar valor da recarga
+        </h2>
+
+        <button class="c-change-recharge-value__header-close-btn" type="button" (click)="onClose()">
+            <apollo-icon svgIcon="interface-times" label="Fechar" size="md" fill="#00ac4a"></apollo-icon>
+        </button>
+    </div>
+    <div class="c-change-recharge-value__body">
+        <div class="c-change-recharge-value__body-content">
+            <span class="c-change-recharge-value__body-content-item">
+                ID da recarga:
+                <strong class="c-change-recharge-value__body-content-item-id">{{ data?.rechargeIDCounter }}</strong>
+            </span>
+            <span class="c-change-recharge-value__body-content-item">
+                Valor Atual:
+                <strong class="c-change-recharge-value__body-content-item-value">{{
+                    data?.rechargeValue | currency: 'BRL'
+                }}</strong>
+            </span>
+        </div>
+        <hr class="mt-1 mb-4" />
+        <form class="c-change-recharge-value__form" [formGroup]="form" (ngSubmit)="onApplyChangeValue()">
+            <mat-form-field appearance="outline">
+                <mat-label>Valor (R$)</mat-label>
+                <input
+                    matInput
+                    currencyMask
+                    inputmode="numeric"
+                    [options]="{ align: 'center', prefix: 'R$ ', thousands: '.', decimal: ',' }"
+                    formControlName="rechargeValue"
+                />
+            </mat-form-field>
+        </form>
+
+        <div class="c-change-recharge-value__form-feedback" *ngIf="verifyAmountValue">
+            <apollo-feedback-card
+                label="O valor inserido é muito alto, deseja alterar mesmo assim?"
+                type="info"
+            ></apollo-feedback-card>
+        </div>
+
+        <apollo-button label="Cancelar" variant="link" (click)="onClose()"> Cancelar </apollo-button>
+        <apollo-button label="Alterar Valor" [loading]="isLoading" (click)="onApplyChangeValue()">
+            Alterar Valor
+        </apollo-button>
+    </div>
+</section>

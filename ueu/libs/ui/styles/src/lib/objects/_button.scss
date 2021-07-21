@@ -1,0 +1,103 @@
+@use "mixins/typography";
+
+@mixin flatButtonBase {
+    @include typography.body(primary, default);
+
+    border-radius: theme('borderRadius.pill') !important;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0.25rem 1rem;
+
+    &__icon {
+        margin-right: 0.5rem;
+    }
+}
+
+.o-button {
+    @include flatButtonBase();
+
+    color: rgba(var(--apollo-primary-rgb)) !important;
+
+    background-color: rgb(var(--apollo-background-rgb)) !important;
+
+    border: 2px solid rgba(var(--apollo-primary-rgb)) !important;
+
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+
+    &:disabled {
+        opacity: theme('opacity.light');
+    }
+
+    // DIFFERENT BUTTONS
+
+    &__solid {
+        color: #fff !important;
+
+        background-color: rgba(var(--apollo-primary-rgb)) !important;
+
+        border: theme('borderWidth.light') solid rgba(var(--apollo-primary-rgb)) !important;
+    }
+
+    &__link {
+        background-color: transparent !important;
+
+        border-color: transparent !important;
+
+        text-decoration: underline !important;
+    }
+
+    &__return {
+        border-color: transparent !important;
+    }
+
+    // LOADING STATE
+    &__loading {
+        height: 1.5rem !important;
+        width: 1.5rem !important;
+
+        svg {
+            height: 1.5rem !important;
+            width: 1.5rem !important;
+        }
+    }
+}
+
+.o-button {
+    &-submit,
+    &-rollback,
+    &-delete {
+        @include typography.body(secondary, highlight);
+        color: #fff !important;
+        height: 36px;
+        border-radius: 100px !important;
+        width: 100%;
+    }
+}
+
+.o-button-rollback {
+    background-color: theme('colors.warning.base') !important;
+}
+
+.o-button-delete {
+    background-color: rgba(var(--apollo-error-rgb)) !important;
+}
+
+.o-button-toggle {
+    color: rgba(var(--apollo-primary-rgb));
+    border: theme('borderWidth.medium') solid rgba(var(--apollo-primary-rgb));
+    flex: 1;
+
+    &.mat-button-toggle-checked {
+        background-color: rgba(var(--apollo-primary-rgb));
+        color: #fff;
+    }
+
+    .mat-button-toggle-focus-overlay {
+        border: 0 !important;
+    }
+}

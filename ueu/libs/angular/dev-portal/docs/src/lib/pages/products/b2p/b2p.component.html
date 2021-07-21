@@ -1,0 +1,87 @@
+<dev-portal-banner
+    backgroundColor="#172126"
+    reverse="true"
+    col_image="3"
+    [col_content]="(isMobile$ | async) ? 10 : 5"
+    offset="1"
+    justify_content="end"
+>
+    <div banner-image class="d-none d-md-block">
+        <img src="./assets/icons/icone-banner-b2p.png" alt="Produto B2P" />
+    </div>
+    <div banner-content>
+        <h1>Remessa de créditos</h1>
+        <p class="banner-text" class="mb-4">
+            O jeito mais fácil para você realizar pagamentos e distribuir créditos para usuários PicPay
+        </p>
+        <div banner-actions *ngIf="(isMobile$ | async) === false">
+            <apollo-button class="btn-white" (click)="openDialog()" id="btn_contact_b2p" role="button">
+                <apollo-icon class="panel__icon material-icon">vpn_key</apollo-icon> Usar esse produto
+            </apollo-button>
+        </div>
+    </div>
+</dev-portal-banner>
+
+<div class="api-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="info-api col-10">
+                <div class="api-content__intro" id="o-que-e">
+                    <h2 class="api-content__title">O que é Remessa de Créditos com PicPay?</h2>
+                    <div class="api-content__text">
+                        <p>
+                            É uma API que permite distribuição de dinheiro e créditos para usuários do app. De forma
+                            rápida e eficaz, você pode realizar integrações com o serviço e configurar as validações
+                            necessárias para o seu contexto.
+                        </p>
+                        <p>
+                            É mais segurança e fluidez na entrega dos valores, com todos os mecanismos necessários para
+                            monetizar prêmios, de forma regulamentada. O usuário ainda pode utilizar o benefício como
+                            forma de pagamento de contas, créditos no celular ou no cartão de transporte e com compras
+                            no PicPay.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="api-content__steps" id="comece-a-usar">
+                    <h2 class="api-content__title">Começar a usar é simples</h2>
+                    <div class="media mb-1">
+                        <span class="step align-self-center mr-3">1</span>
+                        <div class="media-body">
+                            <h3 class="step-title m-0">Solicite contato</h3>
+                            Entre em contato com nossa equipe
+                        </div>
+                    </div>
+                    <div class="arrow text-center">
+                        <img src="./assets/icons/arrow-step.svg" alt="Próximo Passo" class="text-center" />
+                    </div>
+                    <div class="media my-1">
+                        <span class="step align-self-center mr-3">2</span>
+                        <div class="media-body">
+                            <h3 class="step-title m-0">Configure a API</h3>
+                            Junto com a nossa equipe, configure a API e o valor a ser transacionado
+                        </div>
+                    </div>
+                    <div class="arrow text-center">
+                        <img src="./assets/icons/arrow-step.svg" alt="Próximo Passo" />
+                    </div>
+                    <div class="media mt-1">
+                        <span class="step align-self-center mr-3">3</span>
+                        <div class="media-body">
+                            <h3 class="step-title m-0">Comece a distribuir</h3>
+                            Consulte nesta página a documentação da API para configurar, e comece a distribuir
+                        </div>
+                    </div>
+                </div>
+
+                <div class="api-content__table" id="tarifa">
+                    <h2 class="api-content__title">Apenas uma tarifa para implantação</h2>
+                    <p class="api-content__text">
+                        A forma de pagamento é tão simples quanto a configuração da API! É cobrada apenas uma taxa sobre
+                        o valor total a ser transacionado.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

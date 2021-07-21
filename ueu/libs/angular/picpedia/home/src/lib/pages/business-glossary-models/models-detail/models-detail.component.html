@@ -1,0 +1,174 @@
+<picpedia-navbar-header [title]="titleModelsDetail$ | async"></picpedia-navbar-header>
+
+<section class="c-models-detail container-fluid">
+    <apollo-flex justify="center" class="c-models-detail__loading" *ngIf="isLoadingModels$ | async">
+        <apollo-circular-progress radius="35" stroke="6"></apollo-circular-progress>
+    </apollo-flex>
+
+    <div class="c-models-detail__container">
+        <div class="c-models-detail__container-menu">
+            <apollo-flex alignItems="center">
+                <picpedia-badge-certification [badgeLabel]="badgeModelsDetail$ | async">{{
+                    badgeModelsDetail$ | async
+                }}</picpedia-badge-certification>
+
+                <apollo-icon svgIcon="objects-favorite" size="md" class="c-models-detail__menu-icon"></apollo-icon>
+                <apollo-icon
+                    [matMenuTriggerFor]="infoMenuDropdown"
+                    svgIcon="interface-ellipsis-v"
+                    size="md"
+                    class="c-models-detail__icon"
+                ></apollo-icon>
+
+                <mat-menu #infoMenuDropdown="matMenu" class="c-models-detail__menu-content">
+                    <apollo-flex class="c-models-detail__menu-box">
+                        <apollo-icon
+                            svgIcon="interface-edit-alt"
+                            size="md"
+                            class="c-models-detail__menu-icon"
+                        ></apollo-icon>
+                        <apollo-text class="c-models-detail__menu-text">Editar informações</apollo-text>
+                    </apollo-flex>
+
+                    <apollo-flex class="c-models-detail__menu-box">
+                        <apollo-icon
+                            svgIcon="interface-times"
+                            size="md"
+                            class="c-models-detail__menu-icon"
+                        ></apollo-icon>
+                        <apollo-text class="c-models-detail__menu-text">Histórico</apollo-text>
+                    </apollo-flex>
+
+                    <apollo-flex class="c-models-detail__menu-box">
+                        <apollo-icon
+                            svgIcon="communication-comment-alt-lines"
+                            size="md"
+                            class="c-models-detail__menu-icon"
+                        ></apollo-icon>
+                        <apollo-text class="c-models-detail__menu-text">Incluir comentário</apollo-text>
+                    </apollo-flex>
+                </mat-menu>
+            </apollo-flex>
+        </div>
+
+        <mat-tab-group animationDuration="0ms">
+            <mat-tab label="Detalhes">
+                <apollo-flex spacer>
+                    <apollo-box class="c-models-detail__container-box">
+                        <apollo-box class="c-models-detail__box">
+                            <apollo-text class="c-models-detail__title"> Engajamento </apollo-text>
+                            <apollo-text font-size="sm">
+                                {{ descriptionModelsDetail$ | async }}
+                            </apollo-text>
+                        </apollo-box>
+
+                        <apollo-box class="c-models-detail__box">
+                            <apollo-text class="c-models-detail__title"> Resultado esperado </apollo-text>
+                            <apollo-text>
+                                {{ resultModelsDetail$ | async }}
+                            </apollo-text>
+                        </apollo-box>
+
+                        <apollo-box class="c-models-detail__box">
+                            <apollo-text class="c-models-detail__title"> Projeto relacionado </apollo-text>
+                            <apollo-text>
+                                {{ projectModelsDetail$ | async }}
+                            </apollo-text>
+                        </apollo-box>
+
+                        <apollo-flex>
+                            <apollo-box class="c-models-detail__box">
+                                <apollo-text class="c-models-detail__title"> Times de IA </apollo-text>
+                                <apollo-text>
+                                    {{ timesIaModelsDetail$ | async }}
+                                </apollo-text>
+                            </apollo-box>
+
+                            <apollo-box class="c-models-detail__box">
+                                <apollo-text class="c-models-detail__title"> Time impactado </apollo-text>
+                                <apollo-text>
+                                    {{ timeImpactedModelsDetail$ | async }}
+                                </apollo-text>
+                            </apollo-box>
+                        </apollo-flex>
+
+                        <apollo-box class="c-models-detail__box">
+                            <apollo-text class="c-models-detail__title"> Tags </apollo-text>
+
+                            <apollo-box border="light" border-radius="strong" p="2" border-color="grayscale.lightest">
+                                <apollo-text
+                                    *ngFor="let item of tagsModelsDetail$ | async"
+                                    class="c-models-detail__tag"
+                                >
+                                    {{ item.label }}
+                                </apollo-text>
+                            </apollo-box>
+                        </apollo-box>
+                    </apollo-box>
+
+                    <apollo-box class="c-models-detail__container-box-users">
+                        <apollo-box class="c-models-detail__box-users">
+                            <apollo-text class="c-models-detail__title c-models-detail__title--users">
+                                Data steward
+                            </apollo-text>
+                            <apollo-text
+                                *ngFor="let item of stewardModelsDetail$ | async"
+                                class="c-models-detail__text-users"
+                            >
+                                <apollo-flex>
+                                    <apollo-box>
+                                        <img src="{{ item.figure }}" class="c-models-detail__figure-users" />
+                                    </apollo-box>
+                                    <apollo-box>
+                                        <apollo-text font-weight="bold">{{ item.name }}</apollo-text>
+                                        <apollo-text class="c-models-detail__email-users">{{
+                                            item.email
+                                        }}</apollo-text>
+                                    </apollo-box>
+                                </apollo-flex>
+                            </apollo-text>
+                        </apollo-box>
+
+                        <apollo-box class="c-models-detail__box-users">
+                            <apollo-text class="c-models-detail__title c-models-detail__title--users">
+                                Business owner
+                            </apollo-text>
+                            <apollo-text
+                                *ngFor="let item of ownerModelsDetail$ | async"
+                                class="c-models-detail__text-users"
+                            >
+                                <apollo-flex>
+                                    <apollo-box>
+                                        <img src="{{ item.figure }}" class="c-models-detail__figure-users" />
+                                    </apollo-box>
+                                    <apollo-box>
+                                        <apollo-text font-weight="bold">{{ item.name }}</apollo-text>
+                                        <apollo-text class="c-models-detail__email-users">{{
+                                            item.email
+                                        }}</apollo-text>
+                                    </apollo-box>
+                                </apollo-flex>
+                            </apollo-text>
+                        </apollo-box>
+
+                        <apollo-box class="c-models-detail__box-users">
+                            <apollo-text class="c-models-detail__title c-models-detail__title--users">
+                                Usuários frequentes
+                            </apollo-text>
+                            <apollo-flex spacer>
+                                <apollo-box *ngFor="let item of usersModelsDetail$ | async">
+                                    <img src="{{ item.figure }}" class="c-models-detail__figure-users" />
+                                </apollo-box>
+                            </apollo-flex>
+                        </apollo-box>
+                    </apollo-box>
+                </apollo-flex>
+            </mat-tab>
+
+            <mat-tab label="Dashboards"></mat-tab>
+            <mat-tab label="Métricas"></mat-tab>
+            <mat-tab label="Fonte do dado"></mat-tab>
+            <mat-tab label="Informações técnicas"></mat-tab>
+        </mat-tab-group>
+    </div>
+</section>

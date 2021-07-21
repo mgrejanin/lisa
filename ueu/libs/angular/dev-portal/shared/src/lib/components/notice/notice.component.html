@@ -1,0 +1,48 @@
+<div
+    #notice
+    [ngClass]="{
+        notice: true,
+        info: theme === 'info',
+        warning: theme === 'warning',
+        error: theme === 'error',
+        success: theme === 'success',
+        simple: type === 'simple',
+        complete: type === 'complete'
+    }"
+>
+    <div class="notice__image">
+        <img
+            *ngIf="type === 'complete'"
+            class="feedback__header--image mx-auto d-block"
+            [src]="customImg === '' ? './assets/icons/notice/' + theme + '.svg' : customImg"
+        />
+        <apollo-icon
+            *ngIf="type === 'simple'"
+            [svgIcon]="
+                theme === 'info'
+                    ? 'feedback-info'
+                    : theme === 'warning'
+                    ? 'feedback-danger'
+                    : theme === 'success'
+                    ? 'feedback-success'
+                    : 'feedback-exclamation-circle'
+            "
+            size="md"
+            class="notice__icon"
+        >
+        </apollo-icon>
+    </div>
+    <div class="notice__content">
+        <ng-content select="[notice-content]"></ng-content>
+    </div>
+    <div class="notice__content--close" *ngIf="btnClosed">
+        <apollo-icon-button
+            size="sm"
+            color="#525f66"
+            class="notice__content--close-btn"
+            icon-pack="interface"
+            icon="interface-multiply"
+            (click)="onClose()"
+        ></apollo-icon-button>
+    </div>
+</div>

@@ -1,0 +1,181 @@
+<section class="c-my-documents container">
+    <form class="c-my-documents__form" [formGroup]="formDocuments" (ngSubmit)="onEditDocuments()">
+        <!-- IMAGE PROFILE -->
+        <div class="row no-gutters">
+            <div class="col-md-12 no-padding">
+                <div class="c-my-documents__photo-wrapper">
+                    <img
+                        class="c-my-documents__photo-wrapper--image"
+                        [src]="formDocuments.get('avatar_base64').value"
+                        width="80"
+                        alt="Foto de perfil"
+                    />
+                    <button
+                        mat-button
+                        color="primary"
+                        type="button"
+                        class="c-my-documents__photo-wrapper--change-image-btn o-button"
+                        (click)="openChangeImageModalAndCallEvent()"
+                    >
+                        Alterar imagem
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- COMPANY DATA -->
+        <div class="row no-gutters">
+            <div class="c-my-documents__content-box">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="c-my-documents__content-box--header">
+                            <h3>Dados da sua empresa</h3>
+                            <p>
+                                Os dados da sua empresa não podem ser alterados pelo Painel Lojista. Caso precise de
+                                alguma alteração, mande uma mensagem para o nosso suporte e entraremos em contato com
+                                você.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>CNPJ</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                formControlName="organization_cnpj"
+                                [specialCharacters]="['.', '\\', '-', '/']"
+                                mask="00.000.000/0000-00"
+                                [sellerPanelCharacterConcealer]="7"
+                            />
+                            <mat-error validation-message [control]="formDocuments.controls['organization_cnpj']">
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Razão Social</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                formControlName="organization_social_reason"
+                                sellerPanelCharacterConcealer
+                            />
+                            <mat-error
+                                validation-message
+                                [control]="formDocuments.controls['organization_social_reason']"
+                            ></mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nome Fantasia</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                formControlName="organization_fantasy_name"
+                                sellerPanelCharacterConcealer
+                            />
+                            <mat-error
+                                validation-message
+                                [control]="formDocuments.controls['organization_fantasy_name']"
+                            ></mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- CONTACT DATA -->
+        <div class="row no-gutters">
+            <div class="c-my-documents__content-box">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="c-my-documents__content-box--header">
+                            <h3>Dados para contato</h3>
+                            <p>Precisamos dos seus dados de contato para entrarmos em contato caso seja necessário.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Telefone para contato</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                inputmode="numeric"
+                                [specialCharacters]="['(', ')', '\\', '-', ' ']"
+                                mask="(00) 00000-0000"
+                                formControlName="responsible_phone"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Telefone comercial</mat-label>
+                            <input
+                                matInput
+                                type="text"
+                                inputmode="numeric"
+                                [specialCharacters]="['(', ')', '\\', '-', ' ']"
+                                mask="(00) 00000-0000"
+                                formControlName="organization_phone"
+                            />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>E-mail</mat-label>
+                            <input matInput type="email" formControlName="organization_email" />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- BUSINESS DATA -->
+        <div class="row no-gutters">
+            <div class="c-my-documents__content-box">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="c-my-documents__content-box--header">
+                            <h3>Dados do seu negócio</h3>
+                            <p>É assim que as pessoas verão o nome e as informações da sua loja no aplicativo.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Nome Comercial</mat-label>
+                            <input matInput type="text" formControlName="organization_name" />
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Categoria do negócio</mat-label>
+                            <mat-select formControlName="organization_mcc_category_id">
+                                <mat-option *ngFor="let category of businessCategories" [value]="category.value">
+                                    {{ category.name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline">
+                            <mat-label>Site (opcional)</mat-label>
+                            <input matInput type="text" formControlName="ecommerce_store_url" />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SAVE DATA BUTTON -->
+        <apollo-flex class="c-my-documents__footer" justify="flex-end">
+            <apollo-button
+                #saveBtn
+                type="submit"
+                size="md"
+                (click)="eventTrackingClicked('SALVAR_DADOS')"
+                [disabled]="!hasChangedDataForm || !formDocuments.valid"
+                [loading]="this.sellerQuery.isLoading$ | async"
+            >
+                Salvar alterações
+            </apollo-button>
+        </apollo-flex>
+    </form>
+</section>

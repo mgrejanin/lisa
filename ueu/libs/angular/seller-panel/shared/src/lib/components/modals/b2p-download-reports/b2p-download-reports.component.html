@@ -1,0 +1,219 @@
+<apollo-box height="auto" border-radius="medium" bg="background" class="c-download-report">
+    <apollo-flex direction="column" class="c-download-report--mobile">
+        <apollo-flex direction="row" class="c-download-report__header">
+            <apollo-heading class="c-download-report__title"> Baixe o seu relatório </apollo-heading>
+            <apollo-icon-button
+                size="md"
+                icon="interface-times"
+                icon-pack="interface-times"
+                class="c-download-report__close-button"
+                [hidden]="isHandset$ | async"
+                (click)="onClose()"
+            ></apollo-icon-button>
+        </apollo-flex>
+
+        <apollo-box class="c-download-report__content">
+            <apollo-flex direction="column" wrap="true" data-cy="modal-report">
+                <ng-container [ngTemplateOutlet]="templateStepper"></ng-container>
+                <apollo-feedback-card
+                    [hidden]="hiddenProjectWarning"
+                    [label]="warningProjectText"
+                    emphasis="false"
+                    class="c-download-report__warning"
+                    stacked="false"
+                    type="warning"
+                ></apollo-feedback-card>
+            </apollo-flex>
+        </apollo-box>
+
+        <apollo-flex justify="flex-end" class="c-download-report__footer">
+            <apollo-button size="md" variant="link" data-cy="btn-cancel" (click)="onClose()">
+                {{ cancelButtonText }}
+            </apollo-button>
+
+            <apollo-button
+                id="btn-next"
+                size="md"
+                variant="raised"
+                data-cy="btn-next"
+                [block]="isHandset$ | async"
+                [disabled]="isFormValid()"
+                (click)="isLastModalStepp() ? doReportDownload() : nextModalStepper()"
+            >
+                <seller-panel-loading-button
+                    [action]="isLoading"
+                    [normalText]="nextButtonText"
+                    side="left"
+                    loadingText="Acessando..."
+                ></seller-panel-loading-button>
+            </apollo-button>
+        </apollo-flex>
+    </apollo-flex>
+</apollo-box>
+
+<!-- Steppers -->
+<ng-template #selectingReport>
+    <apollo-text class="c-download-report__content--paragraph" font-size="base" text-align="left">
+        Os relatórios são referentes ao dia anterior do atual. Assim, garantimos que todas as informações estão
+        atualizadas.
+    </apollo-text>
+
+    <apollo-text
+        class="c-download-report__content--paragraph c-download-report__content--font-bold"
+        font-size="xs"
+        text-align="left"
+    >
+        NOME DO PROJETO OU IDENTIFICADOR DA REMESSA
+    </apollo-text>
+
+    <form [formGroup]="reportForm">
+        <mat-form-field
+            [ngClass]="
+                ((reportField.dirty && reportField.touched) || (!reportField.dirty && reportField.touched)) &&
+                reportField?.errors?.required
+                    ? 'c-download-report__content--field-error'
+                    : ''
+            "
+            appearance="outline"
+        >
+            <mat-label>Digite o nome do projeto ou da remessa</mat-label>
+            <input
+                type="text"
+                id="project"
+                data-cy="project-field"
+                aria-label="Digite o nome do projeto ou da remessa"
+                matInput
+                formControlName="report"
+                [formControl]="reportField"
+                [matAutocomplete]="auto"
+                (blur)="autoCompleteBlurHandler($event)"
+            />
+            <mat-autocomplete
+                #auto="matAutocomplete"
+                [displayWith]="showFilteredValue"
+                (optionSelected)="selectProjectHandler($event.option.value)"
+            >
+                <mat-option
+                    *ngFor="let project of projectsList$ | async"
+                    [value]="project"
+                    [disabled]="disableProjectListOptions(project)"
+                    (click)="selectProjectHandler(project)"
+                >
+                    {{ project.name }}
+                </mat-option>
+            </mat-autocomplete>
+            <mat-error class="c-download-report__content--text-error" *ngIf="reportField?.errors?.required">
+                Este campo é requerido!
+            </mat-error>
+        </mat-form-field>
+
+        <apollo-flex
+            [direction]="(isHandset$ | async) === false ? 'row' : 'column'"
+            justify="space-between"
+            class="c-download-report__content--nowrap"
+        >
+            <apollo-wrap
+                direction="column"
+                [ngClass]="(isHandset$ | async) === false ? 'c-download-report__content--margin-right' : ''"
+            >
+                <label>
+                    <apollo-text class="c-download-report__content--font-bold" font-size="xs" text-align="left">
+                        DE
+                    </apollo-text>
+                </label>
+                <mat-form-field appearance="outline">
+                    <input
+                        id="dateFrom-input"
+                        data-cy="dateFrom-input"
+                        readonly
+                        matInput
+                        formControlName="dateFrom"
+                        [min]="minDate"
+                        [max]="maxDate"
+                        [matDatepicker]="dateFrom"
+                        (click)="dateFrom.open()"
+                    />
+                    <mat-datepicker-toggle
+                        [for]="dateFrom"
+                        [disabled]="disableCalendarButton()"
+                        data-cy="dateFrom"
+                        matSuffix
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker
+                        id="dateFrom"
+                        #dateFrom
+                        [touchUi]="(isHandset$ | async) ? 'true' : 'false'"
+                        [disabled]="disableCalendarButton()"
+                    ></mat-datepicker>
+                </mat-form-field>
+            </apollo-wrap>
+
+            <apollo-wrap direction="column">
+                <label>
+                    <apollo-text class="c-download-report__content--font-bold" font-size="xs" text-align="left"
+                        >ATÉ
+                    </apollo-text>
+                </label>
+
+                <mat-form-field appearance="outline">
+                    <input
+                        matInput
+                        readonly
+                        data-cy="dateTo-input"
+                        formControlName="dateTo"
+                        [min]="minDate"
+                        [max]="maxDate"
+                        [matDatepicker]="dateTo"
+                        (click)="dateTo.open()"
+                    />
+                    <mat-datepicker-toggle
+                        [for]="dateTo"
+                        [disabled]="disableCalendarButton()"
+                        data-cy="dateTo"
+                        matSuffix
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker
+                        id="dateTo"
+                        #dateTo
+                        [touchUi]="(isHandset$ | async) ? 'true' : 'false'"
+                        [disabled]="disableCalendarButton()"
+                    ></mat-datepicker>
+                </mat-form-field>
+            </apollo-wrap>
+        </apollo-flex>
+    </form>
+</ng-template>
+
+<ng-template #accountPassword>
+    <form [formGroup]="downloadForm">
+        <apollo-flex
+            justify="center"
+            class="c-download-report__content__image"
+            [hidden]="(isHandset$ | async) === false"
+        >
+            <img
+                src="./assets/images/information.svg"
+                class="c-download-report__content__image--formatted"
+                alt="Imagem de observação"
+            />
+        </apollo-flex>
+
+        <apollo-text class="c-download-report__download" data-cy="download-subtitle" font-size="base" text-align="left">
+            Para garantir sua segurança, confirme sua senha antes de baixar o relatório.
+        </apollo-text>
+
+        <apollo-box
+            [ngClass]="
+                passwordField.dirty && passwordField?.errors?.required ? 'c-download-report__content--field-error' : ''
+            "
+        >
+            <apollo-textfield
+                formControlName="password"
+                data-cy="password-field"
+                label="Senha"
+                type="password"
+                size="md"
+            ></apollo-textfield>
+        </apollo-box>
+    </form>
+</ng-template>

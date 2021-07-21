@@ -1,0 +1,35 @@
+import { Meta, Story, Canvas, Source, Description } from '@storybook/addon-docs/blocks';
+import dedent from 'ts-dedent';
+
+import readme from './../../components/button/readme.md';
+
+<Meta title="Components/Button" />
+
+export const ButtonText = 'PicPay Lovers';
+
+export const Template = props => <lab-button {...props} isEditing={props.isEditing ? 'true' : undefined} />;
+
+# Button
+
+## Default
+
+<Canvas>
+    <Story
+        name="All Props"
+        args={{
+            label: ButtonText,
+            isEditing: false,
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<lab-button>${ButtonText}</lab-button>`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Description markdown={readme} />

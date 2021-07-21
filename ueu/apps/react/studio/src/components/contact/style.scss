@@ -1,0 +1,236 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.contact-form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.feedback {
+    border-radius: theme('borderRadius.strong');
+    background-color: var(--ifm-background-surface-color);
+    padding-bottom: theme('spacing.2');
+    max-width: 100%;
+    max-height: 100%;
+    overflow-y: auto;
+
+    &__header {
+        padding: theme('spacing.3');
+
+        &--image {
+            display: block;
+            margin: 0 auto;
+            width: 144px;
+        }
+    }
+
+    &__content {
+        padding: theme('spacing.none') theme('spacing.4');
+        margin: theme('spacing.none');
+
+        &--title {
+            @include typography.title(small);
+            font-size: theme('fontSize.2xl');
+            text-align: center;
+        }
+
+        &--disclaimer {
+            padding: theme('spacing.2') theme('spacing.7');
+            font-size: theme('fontSize.base');
+            text-align: center;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: theme('spacing.1');
+    }
+
+    @include media-breakpoint-down(sm) {
+        border-radius: theme('borderRadius.none');
+        padding-bottom: theme('spacing.5');
+    }
+}
+
+.contact-form {
+    border-radius: theme('borderRadius.strong');
+    background-color: var(--ifm-background-surface-color);
+    padding: theme('spacing.2');
+    max-width: 440px;
+    max-height: 90vh;
+    position: relative;
+
+    .contact-form__header {
+        display: flex;
+        justify-content: space-around;
+
+        &--title {
+            @include typography.title(small);
+            font-size: theme('fontSize.2xl');
+        }
+
+        &--button_close {
+            position: absolute;
+            top: theme('spacing.none');
+            right: theme('spacing.1');
+        }
+    }
+
+    .contact-form__disclaimer {
+        @include typography.title(xsmall);
+        text-align: center;
+        padding: theme('spacing.4') theme('spacing.none');
+    }
+
+    &__form {
+        color: rgba(theme('colors.black'), 0.6);
+
+        &--arrow {
+            position: absolute;
+            top: 14px;
+            right: 10px;
+            transition: all 150ms ease-out;
+        }
+
+        &--text-input:not(:first-child) {
+            margin-top: theme('spacing.2');
+        }
+
+        &--select-container {
+            margin-top: theme('spacing.2');
+            position: relative;
+        }
+
+        &-wrapper {
+            position: relative;
+        }
+
+        &--select-label {
+            position: absolute;
+            top: 12px;
+            left: 10px;
+            pointer-events: none;
+            background-color: var(--ifm-background-surface-color);
+            padding: 0 4px;
+            font-size: 1rem;
+            color: var(--ifm-color-emphasis-700);
+            will-change: opacity, transform, color;
+            transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        &--select-input {
+            -webkit-appearance: none;
+            padding: theme('spacing.2') 42px theme('spacing.2') 12px;
+            width: 100%;
+            border: 1px solid;
+            border-radius: theme('borderRadius.medium');
+            color: var(--ifm-font-color-base);
+            border-color: var(--ifm-color-emphasis-600);
+            outline: none;
+            background-color: var(--ifm-background-surface-color);
+            font-size: theme('fontSize.base');
+            margin-bottom: theme('spacing.2');
+
+            &:hover {
+                border-color: var(--ifm-font-color-base);
+            }
+
+            &:focus {
+                border-color: var(--ifm-color-primary);
+                outline-color: var(--ifm-color-primary);
+
+                & + label {
+                    color: var(--ifm-color-primary);
+                }
+            }
+
+            &:focus + label,
+            &:valid + label {
+                transform: translate(12px, -12px);
+                font-size: 0.75rem;
+                top: 0;
+                left: 0;
+            }
+
+            &-error,
+            &-error + label {
+                border-color: theme('colors.critical.600');
+                color: theme('colors.critical.600');
+                &:focus {
+                    border-color: theme('colors.critical.600');
+                    outline-color: theme('colors.critical.600');
+                    color: theme('colors.critical.600');
+                }
+            }
+        }
+
+        &--checkbox-field {
+            margin-top: theme('spacing.1');
+            position: relative;
+        }
+
+        &--checkbox-label {
+            margin: theme('spacing.none');
+            font-size: theme('fontSize.sm');
+            font-weight: theme('fontWeight.semibold');
+            color: var(--ifm-color-emphasis-600);
+
+            a {
+                text-decoration: underline;
+                color: var(--ifm-color-emphasis-600);
+            }
+
+            &-error,
+            &-error > a {
+                color: theme('colors.critical.600');
+            }
+        }
+
+        &--action-container {
+            position: relative;
+            margin-top: theme('spacing.3');
+            padding-top: theme('spacing.2');
+            text-align: right;
+            border-top: theme('borderWidth.light') solid theme('colors.grayscale.100');
+
+            .loading {
+                right: 10px;
+                top: 10px;
+                margin-left: theme('spacing.6');
+            }
+
+            .hidden {
+                opacity: theme('opacity.none');
+                pointer-events: none;
+            }
+        }
+
+        &--error {
+            position: absolute;
+            top: 48px;
+            left: 0;
+            color: theme('colors.critical.600');
+            padding-right: theme('spacing.2');
+            padding-left: theme('spacing.2');
+            font-size: theme('fontSize.xs');
+            font-weight: theme('fontWeight.normal');
+            letter-spacing: 0.0333333333em;
+        }
+    }
+
+    @include media-breakpoint-down(sm) {
+        border-radius: theme('borderRadius.none');
+        max-width: 95%;
+        max-height: 100vh;
+        height: 100vh;
+        padding-bottom: theme('spacing.4');
+
+        .contact-form__disclaimer {
+            font-size: theme('fontSize.base');
+        }
+    }
+}

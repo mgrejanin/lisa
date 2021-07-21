@@ -1,0 +1,75 @@
+<section class="c-section">
+    <div class="c-section__headline">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="c-section__title">{{ title }}</h1>
+
+                <p class="c-section__body-description c-section__body-paragraph">
+                    <strong>{{ nameSeller$ | async | firstName }}</strong
+                    >, enviamos um SMS para verificar o celular cadastrado. Para continuar, digite abaixo o código que
+                    enviamos para o número <strong>{{ cellSeller$ | async | mask: '(00) 00000-0000' }}</strong
+                    >.
+
+                    <span class="c-section__body-description--highlight" [routerLink]="['/form/responsavel']"
+                        >Número incorreto? Cadastre um novo número.</span
+                    >
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <form class="c-section__body-form" [formGroup]="cellForm" (ngSubmit)="onSubmit()">
+        <fieldset>
+            <div class="row">
+                <div class="col-md-6">
+                    <apollo-textfield
+                        class="c-section__body-field"
+                        label="Código de verificação"
+                        type="tel"
+                        inputmode="numeric"
+                        mask="9999"
+                        formControlName="user_code"
+                        required
+                        helper-text="Insira aqui o código de verificação"
+                    ></apollo-textfield>
+
+                    <div class="c-section__body-resend">
+                        <apollo-button
+                            class="c-section__body-resend__button"
+                            size="md"
+                            type="button"
+                            [disabled]="!resendCode"
+                            (click)="resendSMS(true)"
+                        >
+                            {{ resendCode ? 'Reenviar código' : 'Não recebeu? Aguarde ' + (displayTimer$ | async) }}
+                        </apollo-button>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</section>
+
+<footer class="c-footer c-footer--reverse">
+    <apollo-button
+        size="md"
+        type="button"
+        block
+        class="c-footer__button c-footer__button--next"
+        [disabled]="(isLoading$ | async) || cellForm.invalid"
+        [loading]="isLoading$ | async"
+        (click)="onSubmit()"
+    >
+        Continuar
+    </apollo-button>
+    <apollo-button
+        size="md"
+        type="button"
+        variant="link"
+        block
+        class="c-footer__button c-footer__button--previous"
+        [routerLink]="['/form/responsavel']"
+    >
+        Voltar
+    </apollo-button>
+</footer>

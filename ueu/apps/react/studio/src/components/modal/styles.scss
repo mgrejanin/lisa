@@ -1,0 +1,49 @@
+@use "@material/dialog";
+@import 'libs/ui/styles/src/lib/theming';
+@include dialog.core-styles;
+
+.mdc-dialog {
+    @include dialog.shape-radius(theme('borderRadius.strong'));
+    padding: theme('spacing.none');
+
+    &__content {
+        > * {
+            color: var(--ifm-font-color-base);
+        }
+        apollo-textfield {
+            color: var(--ifm-color-primary);
+        }
+    }
+
+    &__surface {
+        .material-icon {
+            user-select: none;
+        }
+    }
+}
+
+.mdc-dialog .mdc-dialog__surface {
+    background-color: var(--ifm-background-surface-color);
+    max-width: 440px;
+    max-height: 90vh;
+    @include media-breakpoint-down(sm) {
+        border-radius: theme('borderRadius.none');
+        width: 100%;
+        max-height: 100%;
+    }
+}
+
+.mdc-dialog .mdc-dialog__content {
+    padding: theme('spacing.2') theme('spacing.2') theme('spacing.1');
+}
+
+.mdc-circular-progress__determinate-circle,
+.mdc-circular-progress__indeterminate-circle-graphic {
+    stroke: var(--ifm-color-primary);
+}
+
+.mdc-dialog__content > :last-child {
+    @include media-breakpoint-down(sm) {
+        margin-bottom: theme('spacing.8');
+    }
+}

@@ -1,0 +1,31 @@
+.c-blocked-balance {
+    background-color: rgb(var(--apollo-background-z2-rgb));
+    overflow: hidden;
+    border-radius: 16px;
+
+    &__title {
+        font-weight: 800;
+        font-size: 24px;
+        padding-left: theme('spacing.4');
+        padding-top: theme('spacing.4');
+    }
+    &__content {
+        &--message {
+            font-weight: 400;
+            font-size: 16px;
+            color: rgba(var(--apollo-on-background-rgb), 0.86);
+            padding: 0 theme('spacing.4') !important;
+        }
+    }
+    &__separator {
+        margin-top: theme('spacing.4');
+        margin-bottom: 0;
+    }
+    &__footer {
+        margin-top: theme('spacing.1');
+        display: flex;
+        align-items: flex-end;
+        flex-direction: column;
+        padding: 1rem;
+    }
+}

@@ -1,0 +1,214 @@
+<section class="c-variables-update" [class.disabled-section]="disabledSection$ | async">
+    <section class="c-variables-update__environments-dropdown">
+        <button
+            mat-button
+            [matMenuTriggerFor]="menu"
+            class="c-variables-update__dropdown-button-selected"
+            [ngClass]="itemDropdownClass"
+        >
+            <span>{{ environment$ | async }}</span>
+            <mat-icon class="c-variables-update__dropdown-icon-arrow">arrow_drop_down</mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu" class="c-variables-update__dropdown-menu-content">
+            <button
+                mat-menu-item
+                (click)="menuDropdownClick('prod', 'c-variables-update__dropdown-circle-prod')"
+                class="c-variables-update__dropdown-menu-button"
+            >
+                <span class="c-variables-update__dropdown-circle c-variables-update__dropdown-circle-prod"></span> prod
+            </button>
+            <button
+                mat-menu-item
+                (click)="menuDropdownClick('pre prod', 'c-variables-update__dropdown-circle-preprod')"
+                class="c-variables-update__dropdown-menu-button"
+            >
+                <span class="c-variables-update__dropdown-circle c-variables-update__dropdown-circle-preprod"></span>
+                pre prod
+            </button>
+            <button
+                mat-menu-item
+                (click)="menuDropdownClick('qa', 'c-variables-update__dropdown-circle-qa')"
+                class="c-variables-update__dropdown-menu-button"
+            >
+                <span class="c-variables-update__dropdown-circle c-variables-update__dropdown-circle-qa"></span> qa
+            </button>
+        </mat-menu>
+    </section>
+
+    <h1 class="c-variables-update__h1">{{ activeKey }}</h1>
+
+    <div class="c-variables-update__version-form-field">
+        <div class="c-variables-update__loading" *ngIf="isLoadingVersion">
+            <apollo-circular-progress radius="10" stroke="3"></apollo-circular-progress>
+        </div>
+
+        <apollo-select
+            label="Versão"
+            (apolloChange)="changeVersion($event.detail)"
+            *ngIf="versionShow && this.versionVariable > 0"
+        >
+            <apollo-select-item *ngFor="let item of versions" [value]="item" [selected]="item === versionVariable">
+                {{ item }} <span *ngIf="item === versionChange">(Atual)</span>
+            </apollo-select-item>
+        </apollo-select>
+    </div>
+
+    <div class="c-variables-update__created">Criado por: {{ variables?.userId }}</div>
+
+    <mat-tab-group disablePagination="false" (selectedTabChange)="tabClick($event.index)" #tabs>
+        <mat-tab label="Informações">
+            <form [formGroup]="formUpdateVariable">
+                <mat-form-field appearance="outline" [ngClass]="itemDisabled ? itemDisabled : 'itemAbled'">
+                    <mat-label>Type</mat-label>
+                    <select matNativeControl required formControlName="type" class="c-variables-update__item-option">
+                        <option
+                            *ngFor="let item of variablesTypes"
+                            [value]="item.type"
+                            [selected]="item.type === typeVariable"
+                        >
+                            {{ item.type | lowercase }}
+                        </option>
+                    </select>
+                </mat-form-field>
+
+                <div class="c-variables-update__item-value">
+                    <div class="c-variables-update__loading-text" *ngIf="isLoadingValueVariableSecret$ | async">
+                        <mat-spinner mode="indeterminate" [diameter]="30"></mat-spinner>
+                    </div>
+
+                    <mat-form-field
+                        appearance="outline"
+                        [ngClass]="itemDisabled ? itemDisabled : 'itemAbled'"
+                        *ngIf="showValueVariableSecret$ | async"
+                    >
+                        <mat-label>Value</mat-label>
+                        <textarea
+                            matInput
+                            required
+                            maxlength="8192"
+                            type="text"
+                            formControlName="value"
+                            class="c-variables-update__form-textarea"
+                        ></textarea>
+                    </mat-form-field>
+                </div>
+
+                <div
+                    *ngIf="typeVariable === 'SECRET'"
+                    (click)="showValueVariableSecret()"
+                    class="c-variables-update__show-button"
+                >
+                    Mostrar
+                </div>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Version</mat-label>
+                    <input matInput type="text" [value]="versionVariable" [disabled]="true" />
+                </mat-form-field>
+
+                <div class="c-variables-update__loading" *ngIf="isLoadingUpdateVariable$ | async">
+                    <mat-spinner mode="indeterminate" [diameter]="30"></mat-spinner>
+                    <div class="c-variables-update__loading-text">Deploy em andamento</div>
+                </div>
+
+                <div class="c-variables-update__button-help">
+                    <apollo-button
+                        variant="unelevated"
+                        size="sm"
+                        block
+                        class="c-variables-update__button-drawer"
+                        *ngIf="buttonUpdate"
+                        [disabled]="buttonHelpSecret"
+                        (click)="updateVariable()"
+                    >
+                        Alterar
+                    </apollo-button>
+                    <div
+                        matTooltip="Para habilitar o botão clique no link Mostrar"
+                        matTooltipClass="c-variables-update__tooltip-help"
+                        class="c-variables-update__box-help"
+                        *ngIf="buttonHelpSecret && !buttonRollback"
+                    >
+                        <apollo-icon class="material-icon c-variables-update__icon-help">help</apollo-icon>
+                    </div>
+                </div>
+
+                <apollo-button
+                    variant="outlined"
+                    size="sm"
+                    block
+                    class="c-variables-update__button-drawer"
+                    *ngIf="buttonRollback"
+                    (click)="rollbackVariable()"
+                >
+                    Rollback
+                </apollo-button>
+            </form>
+        </mat-tab>
+
+        <mat-tab label="Serviços associados">
+            <form [formGroup]="formService">
+                <mat-form-field appearance="outline">
+                    <mat-label>Serviço</mat-label>
+                    <input matInput required type="text" formControlName="service" />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                    <mat-label>Alias</mat-label>
+                    <input matInput type="text" formControlName="alias" />
+                </mat-form-field>
+
+                <div class="c-variables-update__loading" *ngIf="isLoadingService$ | async">
+                    <apollo-circular-progress radius="12" stroke="3"></apollo-circular-progress>
+                    <div class="c-variables-update__loading-text">Deploy em andamento</div>
+                </div>
+
+                <apollo-button
+                    variant="unelevated"
+                    size="sm"
+                    block
+                    class="c-variables-update__button-drawer"
+                    (click)="associateService()"
+                >
+                    Associar
+                </apollo-button>
+            </form>
+
+            <form [formGroup]="formDeployService">
+                <mat-list role="list" class="c-variables-update__list">
+                    <mat-list-item
+                        role="listitem"
+                        *ngFor="let item of associatedServices$ | async"
+                        class="c-variables-update__item-list"
+                    >
+                        <div class="c-variables-update__item-text">
+                            <div class="c-variables-update__item-service">
+                                <apollo-checkbox (apolloChange)="onCheckboxChange($event.detail, item.service)">
+                                    {{ item.service }}
+                                </apollo-checkbox>
+                            </div>
+                            <div class="c-variables-update__item-alias" *ngIf="item.alias">{{ item.alias }}</div>
+                        </div>
+                        <apollo-button variant="link" size="sm" (click)="desassociateService(item.service)">
+                            desassociar
+                        </apollo-button>
+                    </mat-list-item>
+
+                    <apollo-button
+                        variant="outlined"
+                        size="sm"
+                        block
+                        class="c-variables-update__button-deploy"
+                        [disabled]="!formDeployService.valid"
+                        [loading]="isLoadingButtonDeploy$ | async"
+                        *ngIf="(associatedServices$ | async)?.length > 0"
+                        (click)="deployService()"
+                    >
+                        Deployar Envs
+                    </apollo-button>
+                </mat-list>
+            </form>
+        </mat-tab>
+    </mat-tab-group>
+</section>

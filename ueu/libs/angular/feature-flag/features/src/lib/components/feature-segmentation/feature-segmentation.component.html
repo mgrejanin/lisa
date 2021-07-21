@@ -1,0 +1,76 @@
+<section class="c-feature-segmentation">
+    <!-- NAME -->
+    <button class="c-feature-segmentation__title" (click)="toggleActive()">
+        {{ segmentation.name }}
+        <mat-icon class="c-feature-segmentation__title--triangle" [ngClass]="{ flipped: isActive }">
+            keyboard_arrow_down
+        </mat-icon>
+    </button>
+
+    <section class="c-feature-segmentation__content" [ngClass]="{ active: isActive }">
+        <!-- SYSTEM -->
+        <h2 class="c-feature-segmentation__content--key c-feature-segmentation__system-title">Sistema</h2>
+
+        <p class="c-feature-segmentation__content--value c-feature-segmentation__system-value">
+            {{ getSystem(segmentation.expressions) }}
+        </p>
+
+        <!-- VERSION -->
+        <h2 class="c-feature-segmentation__content--key c-feature-segmentation__version-title">Versão</h2>
+
+        <p class="c-feature-segmentation__content--value c-feature-segmentation__version-value">
+            {{ getVersion(segmentation.expressions) }}
+        </p>
+
+        <!-- CLIENT GROUP -->
+        <ng-container *ngIf="clientGroup">
+            <h2 class="c-feature-segmentation__content--key c-feature-segmentation__client-group-title">Grupo alvo</h2>
+
+            <p class="c-feature-segmentation__content--value c-feature-segmentation__client-group-value">
+                {{ clientGroup }}
+            </p>
+        </ng-container>
+
+        <!-- VALUE -->
+        <ng-container *ngIf="featureType !== featureTypes.JSON; else json">
+            <apollo-box mb="3">
+                <apollo-flex direction="column" class="c-feature-segmentation__content-default-value">
+                    <h2 class="c-feature-segmentation__content--key c-feature-segmentation__value-title">Valor</h2>
+
+                    <p class="c-feature-segmentation__content--value c-feature-segmentation__value-value">
+                        {{ segmentation.value }}
+                    </p>
+                </apollo-flex>
+            </apollo-box>
+        </ng-container>
+
+        <!-- PERCENTAGE -->
+        <h2 class="c-feature-segmentation__content--key c-feature-segmentation__percentage-title">
+            Porcentagem do público
+        </h2>
+
+        <p class="c-feature-segmentation__content--value c-feature-segmentation__percentage-value">
+            {{ segmentation.percentage + '%' }}
+        </p>
+    </section>
+    <ng-template #json>
+        <apollo-box class="c-feature-segmentation__content-json" [ngClass]="{ opened: isCollapsed }">
+            <apollo-text class="c-feature-segmentation__content--key c-feature-segmentation__value-title">
+                Valor
+                <apollo-icon
+                    svg-icon="arrows-angle-down-b"
+                    class="c-feature-segmentation__content-json--icon"
+                    [ngClass]="{ collapse: isCollapsed }"
+                    (click)="onCollapse()"
+                ></apollo-icon>
+            </apollo-text>
+            <apollo-collapse [collapsed]="isCollapsed">
+                <apollo-box slot="body">
+                    <pre class="c-feature-segmentation__content--value c-feature-segmentation__value-value">
+                        {{ segmentation.value | parse | json }}
+                    </pre>
+                </apollo-box>
+            </apollo-collapse>
+        </apollo-box>
+    </ng-template>
+</section>

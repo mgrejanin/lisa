@@ -1,0 +1,67 @@
+<section class="c-section">
+    <div class="c-section__headline">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="c-section__title">{{ title }}</h1>
+                <p class="c-section__body-description c-section__body-paragraph">
+                    Escolha em quanto tempo vai receber os pagamentos, e também o valor das taxas de suas vendas. Essa
+                    opção é flexível e você pode alterar quando quiser.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="c-section__feedback">
+                <apollo-feedback-card
+                    class="feedback-card"
+                    label="Estamos com as taxas zeradas nos primeiros 30 dias!"
+                    type="done"
+                >
+                    <apollo-button variant="link" size="sm" (click)="openCheckOutDialog()"> Saiba mais </apollo-button>
+                </apollo-feedback-card>
+            </div>
+        </div>
+    </div>
+
+    <apollo-box marginTop="10">
+        <seller-register-range-slider
+            class="range-slider"
+            (selectedValueEvent)="selectTax($event)"
+        ></seller-register-range-slider>
+    </apollo-box>
+</section>
+
+<footer class="c-footer c-footer--reverse">
+    <apollo-button
+        size="md"
+        type="button"
+        block
+        class="c-footer__button c-footer__button--next"
+        [disabled]="isLoading$ | async"
+        [loading]="isLoading$ | async"
+        (click)="onSubmit()"
+    >
+        Continuar
+    </apollo-button>
+    <apollo-button
+        size="md"
+        type="button"
+        variant="link"
+        block
+        class="c-footer__button c-footer__button--previous"
+        [routerLink]="['/form/empresa-detalhe']"
+    >
+        Voltar
+    </apollo-button>
+</footer>
+
+<apollo-dialog
+    #checkOutDialog
+    confirm-button-label="Ok, entendi"
+    dialog-subtitle="Queremos ajudar o seu negócio! Por isso, zeramos nossas taxas nos primeiros 30 dias, para você receber seus pagamentos digitalmente e com facilidade. Após os primeiros 30 dias, a taxa será de 1,99% por transação, e o recebimento em até 1 dia útil."
+    dialog-title="Taxas zeradas"
+    icon="feedback-success"
+>
+</apollo-dialog>

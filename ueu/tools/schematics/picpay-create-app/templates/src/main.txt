@@ -1,0 +1,22 @@
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
+
+<% if(stateManagement) { %>// akita
+import { enableAkitaProdMode, persistState } from '@datorama/akita';<% } %>
+
+if (environment.production) {
+    enableProdMode();
+    <% if(stateManagement) { %>enableAkitaProdMode();<% } %>
+}
+
+<% if(stateManagement) { %>// Method to persist state of some
+// akita stores. Add others as you see fit.
+persistState({});<% } %>
+
+
+platformBrowserDynamic()
+    .bootstrapModule(AppModule)
+    .catch(err => console.error(err));

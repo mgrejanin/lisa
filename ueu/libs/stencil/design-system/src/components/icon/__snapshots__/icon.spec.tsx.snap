@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconComponent must be able to apply the default size 1`] = `
+<apollo-icon class="apollo-icon--svg" svg-icon="arrows-arrow-circle-left">
+  <!---->
+  <svg class="css-1h3erg3" height="24" viewBox="0 0 24 24" width="24">
+    <use xlink:href="./assets/design-system/icons/arrows.svg#arrows-arrow-circle-left"></use>
+  </svg>
+</apollo-icon>
+`;
+
+exports[`IconComponent should be able to change the type and svg 1`] = `
+<apollo-icon class="apollo-icon--svg" svg-icon="arrows-arrow-circle-left">
+  <!---->
+  <svg class="css-1h3erg3" height="24" viewBox="0 0 24 24" width="24">
+    <use xlink:href="./assets/design-system/icons/arrows.svg#arrows-arrow-circle-left"></use>
+  </svg>
+</apollo-icon>
+`;
+
+exports[`IconComponent should build 1`] = `
+<apollo-icon class="apollo-icon--svg" svg-icon="arrows-arrow-circle-left">
+  <!---->
+  <svg class="css-1h3erg3" height="24" viewBox="0 0 24 24" width="24">
+    <use xlink:href="./assets/design-system/icons/arrows.svg#arrows-arrow-circle-left"></use>
+  </svg>
+</apollo-icon>
+`;
+
+exports[`IconComponent should have expected color and fill on <svg> 1`] = `
+<apollo-icon class="apollo-icon--svg" svg-icon="arrows-arrow-circle-left">
+  <!---->
+  <svg class="css-1h3erg3" height="24" viewBox="0 0 24 24" width="24">
+    <use xlink:href="./assets/design-system/icons/arrows.svg#arrows-arrow-circle-left"></use>
+  </svg>
+</apollo-icon>
+`;
+
+exports[`IconComponent should have expected label on <svg> 1`] = `
+<apollo-icon class="apollo-icon--svg" svg-icon="arrows-arrow-circle-left">
+  <!---->
+  <svg class="css-1h3erg3" height="24" viewBox="0 0 24 24" width="24">
+    <use xlink:href="./assets/design-system/icons/arrows.svg#arrows-arrow-circle-left"></use>
+  </svg>
+</apollo-icon>
+`;
+
+exports[`IconComponent should have expected role on <svg> 1`] = `
+<apollo-icon class="apollo-icon--svg" svg-icon="arrows-arrow-circle-left">
+  <!---->
+  <svg class="css-1h3erg3" height="24" viewBox="0 0 24 24" width="24">
+    <use xlink:href="./assets/design-system/icons/arrows.svg#arrows-arrow-circle-left"></use>
+  </svg>
+</apollo-icon>
+`;
+
+exports[`IconComponent should have expected viewBox on <svg> 1`] = `
+<apollo-icon class="apollo-icon--svg" svg-icon="arrows-arrow-circle-left">
+  <!---->
+  <svg class="css-1h3erg3" height="24" viewBox="0 0 24 24" width="24">
+    <use xlink:href="./assets/design-system/icons/arrows.svg#arrows-arrow-circle-left"></use>
+  </svg>
+</apollo-icon>
+`;
+
+exports[`IconComponent should have expected width, height on <svg> 1`] = `
+<apollo-icon class="apollo-icon--svg" svg-icon="arrows-arrow-circle-left">
+  <!---->
+  <svg class="css-1h3erg3" height="24" viewBox="0 0 24 24" width="24">
+    <use xlink:href="./assets/design-system/icons/arrows.svg#arrows-arrow-circle-left"></use>
+  </svg>
+</apollo-icon>
+`;
+
+exports[`IconComponent should render props 1`] = `
+<apollo-icon class="apollo-icon--svg" svg-icon="arrows-arrow-circle-left">
+  <!---->
+  <svg class="css-1h3erg3" height="24" viewBox="0 0 24 24" width="24">
+    <use xlink:href="./assets/design-system/icons/arrows.svg#arrows-arrow-circle-left"></use>
+  </svg>
+</apollo-icon>
+`;

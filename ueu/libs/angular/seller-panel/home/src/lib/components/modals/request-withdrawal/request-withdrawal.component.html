@@ -1,0 +1,51 @@
+<section class="c-request-withdrawal">
+    <ng-container *ngIf="data?.is_success && !isChangeAccount; then isSuccess"></ng-container>
+    <ng-container *ngIf="!isChangeAccount; then newWithdraw; else changeAccount"></ng-container>
+</section>
+
+<!-- TEMPLATE FOR NEW WITHDRAW -->
+<ng-template #newWithdraw>
+    <seller-panel-new-withdraw
+        [data]="infoWithdrawal$ | async"
+        [isError]="isErrorInfoWithdrawal$ | async"
+        [isLoading]="isLoadingInfoWithdrawal$ | async"
+        (goToListAccounts)="onToggleTemplates($event)"
+        [accountWithdraw]="isOtherAccount"
+    ></seller-panel-new-withdraw>
+</ng-template>
+
+<!-- TEMPLATE CHANGE ACCOUNT -->
+<ng-template #changeAccount>
+    <seller-panel-accounts
+        [data]="accountsList$ | async"
+        [selectedAccountId]="selectedAccountId"
+        [isError]="isErrorAccountsList$ | async"
+        [isLoading]="isLoadingAccountsList$ | async"
+        (backToNewWithdraw)="onToggleTemplates($event)"
+        (accountWithdraw)="onReceiveAccount($event)"
+        (selected)="selectedAccountId = $event"
+    ></seller-panel-accounts>
+</ng-template>
+
+<!-- TEMPLATE FEEDBACK SUCCESS -->
+<ng-template #isSuccess>
+    <div class="c-request-withdrawal__feedback">
+        <div class="c-request-withdrawal__feedback--header">
+            <button mat-icon-button class="c-request-withdrawal__feedback-header-close-button" (click)="onClose()">
+                <apollo-icon fill="#00ac4a" svgIcon="interface-times" size="md"> </apollo-icon>
+            </button>
+        </div>
+        <div class="c-request-withdrawal__feedback--content">
+            <seller-panel-feedback
+                imagePath="/assets/images/feedback-success.svg"
+                title="Boa! Saque solicitado"
+                description="O saque será realizado em até 2 dias úteis. Acompanhe o processamento do saque em ”Extrato” "
+                height="50vh"
+            ></seller-panel-feedback>
+
+            <div class="c-request-withdrawal__feedback-content-retry">
+                <apollo-button variant="unelevated" size="md" (click)="onPageExtract()">Ver em “Extrato”</apollo-button>
+            </div>
+        </div>
+    </div>
+</ng-template>

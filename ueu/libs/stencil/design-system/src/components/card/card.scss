@@ -1,0 +1,43 @@
+@use "mixins/breakpoint";
+
+@use "@material/card" with(
+    $action-icon-color: theme('colors.primary.base'),
+    $outline-color: theme('colors.grayscale.100'),
+);
+
+@use "@material/ripple";
+
+apollo-card {
+    display: flex;
+
+    @include card.core-styles;
+    --mdc-theme-on-surface: var(--apollo-on-background);
+    --mdc-theme-surface: var(--apollo-background);
+
+    @include breakpoint.down(small) {
+        width: 100%;
+    }
+
+    .mdc-card {
+        width: 100%;
+
+        &--radius-light {
+            border-radius: theme('borderRadius.light');
+        }
+
+        &--radius-medium {
+            border-radius: theme('borderRadius.medium');
+        }
+
+        &--radius-strong {
+            border-radius: theme('borderRadius.strong');
+        }
+    }
+}
+
+[data-theme='dark'] {
+    apollo-card .mdc-card {
+        --mdc-theme-on-surface: var(--apollo-on-background);
+        --mdc-theme-surface: var(--apollo-background-z2);
+    }
+}

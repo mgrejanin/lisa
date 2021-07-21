@@ -1,0 +1,64 @@
+<div class="c-change-plan">
+    <div class="c-change-plan__header">
+        <h2 class="c-change-plan__header--title">Alterar plano de recebimento</h2>
+        <button mat-icon-button class="c-change-plan__header--close-btn" type="button" (click)="onClose()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="c-change-plan__body">
+        <ng-container *ngIf="isReadyToChange; then changingPlan; else changedPlanCallback"></ng-container>
+    </div>
+    <div class="c-change-plan__footer">
+        <button
+            mat-flat-button
+            color="secondary"
+            class="c-change-plan__footer--btn-cancel o-button o-button__link"
+            type="button"
+            (click)="onClose()"
+        >
+            Cancelar
+        </button>
+        <button
+            mat-button
+            color="primary"
+            class="c-change-plan__footer--btn-confirm o-button o-button__solid"
+            type="button"
+            (click)="onConfirm()"
+        >
+            <seller-panel-loading-button
+                [action]="isChangingPlan"
+                side="left"
+                [normalText]="this.changeConfirmLabel"
+                loadingText="Alterando..."
+            ></seller-panel-loading-button>
+        </button>
+    </div>
+</div>
+
+<ng-template #changingPlan>
+    <img src="/assets/images/email-alert.svg" width="82" alt="E-mail alert" />
+    <h2>Ei, fique atento!</h2>
+    <p>
+        Ao mudar seu plano de recebimento, você <b>perderá sua taxa diferenciada</b>. Deseja realmente alterar seu
+        plano?
+    </p>
+</ng-template>
+
+<ng-template #changedPlanCallback>
+    <ng-container *ngIf="changePlanError; then changedPlanError; else changedPlanSuccess"></ng-container>
+</ng-template>
+
+<ng-template #changedPlanSuccess>
+    <img src="/assets/images/email-check.svg" width="82" alt="E-mail alert" />
+    <h2>Deu tudo certo!</h2>
+    <div class="c-change-plan__new-plan">
+        <p>Você alterou seu plano para:</p>
+        <h2>Receber em {{ data?.name }} com taxa de {{ data?.fee | number }}%</h2>
+    </div>
+</ng-template>
+
+<ng-template #changedPlanError>
+    <img src="/assets/images/empty_search.svg" width="120" alt="Falha ao trocar de plano" />
+    <h2>Ops, algo de errado aconteceu!</h2>
+    <p>Tente novamente ou volte mais tarde.</p>
+</ng-template>

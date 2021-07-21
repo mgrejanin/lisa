@@ -1,0 +1,10 @@
+{
+    "name": "@picpay/stencil-sass",
+    "version": "0.0.2",
+    "dependencies": {
+        "@stencil/core": "^2.3.0",
+        "@types/sass": "^1.16.0",
+        "sass": "^1.32.7"
+    },
+    "repository": "git://github.com/PicPay/picpay-frontend.git"
+}

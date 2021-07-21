@@ -1,0 +1,108 @@
+<header class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-xl-2 col-md-3">
+            <dev-portal-logo [spotlogo]="'header'"></dev-portal-logo>
+        </div>
+        <nav class="col content">
+            <ul class="content--list content--list-itens" role="menubar">
+                <li class="menu" role="menuitem">
+                    <a
+                        id="btn_header_home"
+                        class="menu--link"
+                        [routerLink]="['/']"
+                        [routerLinkActive]="['active']"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        title="Acessar a Home"
+                        (click)="eventTracking('header', 'studio')"
+                        >Home</a
+                    >
+                </li>
+                <li class="dropdown" [routerLinkActive]="['active']" role="menuitem">
+                    <a href="#" class="dropdown-menu">Produtos</a>
+                    <div class="dropdown-content">
+                        <ng-container *ngIf="products$ | async as products; else loading">
+                            <a
+                                class="menu--link"
+                                [id]="'btn_header_' + product.slug"
+                                *ngFor="let product of products"
+                                [routerLink]="['/docs/' + product.slug]"
+                                [routerLinkActive]="['active']"
+                                [routerLinkActiveOptions]="{ exact: true }"
+                                [title]="'Acessar ' + product.name"
+                                (click)="eventTracking('header', product.slug)"
+                                >{{ product.name }}</a
+                            >
+                        </ng-container>
+                    </div>
+                </li>
+                <li class="menu" role="menuitem">
+                    <a
+                        id="btn_header_home_open_banking"
+                        class="menu--link"
+                        [routerLink]="['/open-banking']"
+                        [routerLinkActive]="['active']"
+                        [routerLinkActiveOptions]="{ exact: true }"
+                        title="Acessar Open Banking"
+                        (click)="eventTracking('header', 'open_banking')"
+                        >Open Banking</a
+                    >
+                </li>
+                <li role="menuitem">
+                    <a
+                        class="menu--link"
+                        id="btn_header_faq"
+                        href="https://ajudaempresas.picpay.com/hc/pt-br/categories/360004972752-PicPay-Studio-"
+                        target="_blank"
+                        title="Central de Ajuda - FAQ"
+                        id="btn_header_faq"
+                        (click)="eventTracking('header', 'faq')"
+                        >Central de Ajuda</a
+                    >
+                </li>
+            </ul>
+        </nav>
+        <ng-container
+            *ngIf="{ isProduction: isProduction$ | async, user: user$ | async, logged: logged$ | async } as data"
+        >
+            <div class="col content content--actions" *ngIf="!data.isProduction">
+                <ul class="content--list align-items-center" *ngIf="!data.logged; else userLogged">
+                    <li>
+                        <apollo-button type="button" href="/download" target="_self" variant="link"
+                            >Cadastre-se</apollo-button
+                        >
+                    </li>
+                    <li><apollo-button type="button" href="/dashboard" target="_self">Entrar</apollo-button></li>
+                </ul>
+                <ng-template #userLogged>
+                    <picpay-user-dropdown
+                        [username]="data.user?.attributes.name"
+                        [userImage]="data.user?.attributes.picture[0]"
+                    >
+                        <button [routerLink]="['/dashboard']" mat-flat-button class="c-user-dropdown__menu-button">
+                            <apollo-icon
+                                class="c-user-dropdown__menu-icon"
+                                svg-icon="file-file-alt"
+                                size="md"
+                            ></apollo-icon>
+                            <span>Ver dashboard</span>
+                        </button>
+                        <button mat-flat-button class="c-user-dropdown__menu-button" (click)="onLogout()">
+                            <apollo-icon
+                                class="c-user-dropdown__menu-icon"
+                                svg-icon="interface-entry"
+                                size="md"
+                            ></apollo-icon>
+                            <span>Sair</span>
+                        </button>
+                    </picpay-user-dropdown>
+                </ng-template>
+            </div>
+        </ng-container>
+    </div>
+</header>
+
+<ng-template #loading>
+    <div class="loading">
+        <apollo-circular-progress></apollo-circular-progress>
+    </div>
+</ng-template>

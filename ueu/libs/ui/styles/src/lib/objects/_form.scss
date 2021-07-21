@@ -1,0 +1,101 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.f-panel-centralized {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0 8px;
+    background-color: rgb(var(--apollo-background-rgb));
+
+    &__logo {
+        margin-bottom: 32px;
+    }
+
+    &__header {
+        position: relative;
+        margin-bottom: 36px;
+        z-index: 1;
+    }
+
+    &__title {
+        @include typography.title(large);
+        font-size: 24px !important;
+        font-weight: bold !important;
+    }
+
+    &__container {
+        position: relative;
+        width: 100%;
+        max-width: 385px;
+        border-radius: 8px;
+        padding: 36px;
+        text-align: center;
+        background-color: theme('colors.primary.base');
+        box-shadow: 0px 4.07198px 8.15952px rgba(0, 0, 0, 0.0386), 0px -0.34px 9.26596px rgba(0, 0, 0, 0.027348),
+            0px 1px 8px rgba(0, 0, 0, 0.03);
+
+        &::before {
+            background-color: rgb(var(--apollo-background-rgb));
+            content: '';
+            position: absolute;
+            top: 7px;
+            left: 0;
+            width: 100%;
+            height: calc(100% - 6px);
+            border-radius: 8px;
+        }
+    }
+
+    &__form {
+        text-align: center;
+        max-width: 250px;
+        margin: 0 auto;
+
+        button[type='submit'] {
+            width: 100%;
+            margin: 16px auto;
+        }
+    }
+
+    &__forgot-password {
+        position: relative;
+        z-index: 1;
+
+        a {
+            text-transform: none !important;
+        }
+    }
+
+    &__external-container {
+        display: flex;
+        flex-direction: column;
+        margin: 32px 0;
+
+        p {
+            margin: 0;
+        }
+
+        a {
+            text-transform: none !important;
+        }
+    }
+
+    @include media-breakpoint-between(xs, sm) {
+        &__container {
+            padding: 24px 8px;
+        }
+    }
+}
+
+body[data-theme='dark'] {
+    .f-panel-centralized {
+        &__container {
+            &::before {
+                background-color: rgb(var(--apollo-background-z2-rgb)) !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,118 @@
+@use "mixins/breakpoint";
+
+@mixin feedback-card-fill-color($fill, $text, $border) {
+    color: $text;
+    border: theme('borderWidth.light') solid $border;
+    box-shadow: theme('boxShadow.light');
+    background: linear-gradient(180deg, rgba(theme('colors.white'), 0.08) 0%, rgba(theme('colors.white'), 0.08) 100%),
+        $fill;
+}
+
+apollo-feedback-card {
+    .feedback-card {
+        border-radius: theme('borderRadius.medium');
+        @include feedback-card-fill-color(
+            theme('colors.white'),
+            theme('colors.grayscale.600'),
+            theme('colors.grayscale.50')
+        );
+
+        @include breakpoint.up(small) {
+            margin: theme('spacing.none');
+        }
+
+        &__surface {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            padding: theme('spacing.half') theme('spacing.2');
+
+            @include breakpoint.up(small) {
+                flex-wrap: nowrap;
+            }
+
+            &__wrap__label {
+                flex-wrap: wrap;
+            }
+
+            &__container {
+                apollo-icon {
+                    user-select: none;
+                    max-width: 40px;
+                    margin: theme('spacing.none') theme('spacing.1');
+                    margin-left: 0;
+                }
+            }
+
+            &__container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: theme('spacing.6');
+            }
+
+            &__icon {
+                &--info {
+                    color: theme('colors.neutral.600');
+                }
+
+                &--done {
+                    color: theme('colors.primary.600');
+                }
+
+                &--warning {
+                    color: theme('colors.warning.600');
+                }
+
+                &--error {
+                    color: theme('colors.critical.600');
+                }
+            }
+        }
+
+        &__actions {
+            display: flex;
+            flex: 1;
+            justify-content: flex-end;
+
+            .apollo-button__label {
+                font-weight: theme('fontWeight.semibold');
+                white-space: nowrap;
+            }
+        }
+
+        &__label {
+            font-size: theme('spacing.2');
+            font-weight: theme('fontWeight.semibold');
+            padding-left: theme('spacing.half');
+        }
+
+        &--emphasis {
+            @include feedback-card-fill-color(
+                theme('colors.grayscale.900'),
+                theme('colors.grayscale.100'),
+                theme('colors.grayscale.700')
+            );
+        }
+    }
+}
+
+[data-theme='dark'] {
+    .feedback-card {
+        &--not-emphasis {
+            @include feedback-card-fill-color(
+                theme('colors.grayscale.900'),
+                theme('colors.grayscale.100'),
+                theme('colors.grayscale.700')
+            );
+        }
+
+        &--emphasis {
+            @include feedback-card-fill-color(
+                theme('colors.white'),
+                theme('colors.grayscale.600'),
+                theme('colors.grayscale.50')
+            );
+        }
+    }
+}

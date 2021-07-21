@@ -1,0 +1,26 @@
+<apollo-flex alignItems="center" justify="space-between" class="static-content" wrap>
+    <apollo-box maxW="445px">
+        <apollo-heading
+            size="lg"
+            textAlign="left"
+            class="static-content__title"
+            [ngClass]="{ 'static-content__title--responsive': responsiveTitle }"
+        >
+            {{ title }}
+        </apollo-heading>
+        <apollo-text size="base" textAlign="left" class="static-content__paragraph">
+            {{ firstParagraph }}
+        </apollo-text>
+        <apollo-text
+            size="base"
+            textAlign="left"
+            class="static-content__paragraph"
+            [fontWeight]="boldParagraph ? 'bold' : null"
+        >
+            {{ secondParagraph }}
+        </apollo-text>
+    </apollo-box>
+    <apollo-box class="static-content__illustration">
+        <img width="100%" [src]="illustration" [alt]="illustrationAlt" />
+    </apollo-box>
+</apollo-flex>

@@ -1,0 +1,28 @@
+import { Story, Status } from './../../../../.storybook/components';
+import { Props } from '@storybook/addon-docs/blocks';
+
+# Simple Grid
+
+<Status />
+
+O `apollo-simple-grid` fornece uma interface amigável para criar layouts de grid responsivos com facilidade. Ele renderiza um elemento com `display: grid`.
+
+Específica o número de colunas para o layout do grid passando a propriedade `columns`.
+
+<Story id="layouts-simplegrid--base" />
+
+<Props id="layouts-simplegrid--base" />
+
+## Spacing
+
+Basta passar um valor na propriedade `spacing` para alterar o espaçamento de linha e coluna entre os itens do grid.
+
+<Story id="layouts-simplegrid--spacing" />
+
+## Auto-responsive
+
+Para tornar o `apollo-simple-grid` responsivo e se ajustar automaticamente sem passar `columns`, basta passar a propriedade `minChildWidth` para especificar o que um filho deve ter `min-width`.
+
+Isso usa css grid `auto-fite minmax()` internamente.
+
+<Story id="layouts-simplegrid--auto-responsive" />

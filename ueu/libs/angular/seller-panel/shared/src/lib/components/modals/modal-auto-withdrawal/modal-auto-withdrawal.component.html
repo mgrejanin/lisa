@@ -1,0 +1,173 @@
+<section class="c-modal-auto-withdrawal">
+    <div class="c-modal-auto-withdrawal__header shadow-sm" [class.d-none]="isCheck && enablingConfirm">
+        <h2 class="c-modal-auto-withdrawal__header--title">
+            {{ isCheck || enablingConfirm ? 'Ativar saque automático' : 'Desabilitar saque automático' }}
+        </h2>
+
+        <button class="c-modal-auto-withdrawal__header--close-btn" type="button" (click)="onClose()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+
+    <div class="c-modal-auto-withdrawal__body">
+        <ng-container *ngIf="isError === false">
+            <ng-container *ngIf="isCheck && enablingConfirm === false; then enabling"></ng-container>
+            <ng-container *ngIf="isCheck && enablingConfirm; then confirmAutoWithdrawal"></ng-container>
+            <ng-container *ngIf="isCheck === false; then desabling"></ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="isError === true">
+            <ng-container *ngIf="isCheck && enablingConfirm === false; then tryAgain"></ng-container>
+            <ng-container *ngIf="isCheck === false; then tryAgain"></ng-container>
+        </ng-container>
+    </div>
+
+    <div class="c-modal-auto-withdrawal__footer" *ngIf="isError === false">
+        <ng-container *ngIf="enablingConfirm === false">
+            <button
+                mat-flat-button
+                color="secondary"
+                class="c-modal-auto-withdrawal__footer--btn-cancel o-button o-button__link"
+                type="button"
+                (click)="onClose()"
+            >
+                Cancelar
+            </button>
+        </ng-container>
+
+        <!-- In case of enable auto withdrawal -->
+        <ng-container *ngIf="isCheck">
+            <button
+                mat-button
+                color="primary"
+                class="c-modal-auto-withdrawal__footer--btn-confirm o-button o-button__solid"
+                type="button"
+                (click)="!enablingConfirm ? onNext() : onConfirm()"
+            >
+                <!-- Loader -->
+                <span class="c-modal-auto-withdrawal__footer--spinner" *ngIf="isLoading === true">
+                    <mat-spinner class="i-spinner__white" [diameter]="20"></mat-spinner>
+                </span>
+
+                <!-- Label -->
+                <span
+                    class="c-modal-auto-withdrawal__footer--label"
+                    *ngIf="isLoading === false && enablingConfirm === false"
+                    >Confirmar saque
+                </span>
+                <span class="c-modal-auto-withdrawal__footer--label" *ngIf="enablingConfirm === true">Ok, entendi</span>
+            </button>
+        </ng-container>
+
+        <!-- In case of disable auto withdrawal -->
+        <ng-container *ngIf="isCheck === false">
+            <button
+                mat-button
+                color="primary"
+                class="c-modal-auto-withdrawal__footer--btn-confirm o-button o-button__solid"
+                type="button"
+                (click)="onNext()"
+            >
+                <!-- Loader -->
+                <span class="c-modal-auto-withdrawal__footer--spinner" *ngIf="isLoading === true">
+                    <mat-spinner class="i-spinner__white" [diameter]="20"></mat-spinner>
+                </span>
+
+                <!-- Label -->
+                <span class="c-modal-auto-withdrawal__footer--label" *ngIf="isLoading === false">Confirmar</span>
+            </button>
+        </ng-container>
+    </div>
+</section>
+
+<!-- Template to enable auto withdrawal (step one) -->
+<ng-template #enabling>
+    <div class="c-modal-auto-withdrawal__body--subtitle">
+        <h3>Confirmar mudança para saque automático</h3>
+    </div>
+
+    <div class="c-modal-auto-withdrawal__body--caption">
+        <p>
+            O valor de <strong>{{ price | currency: 'BRL' }}</strong> disponíveis na sua Conta PicPay serão sacados para
+            sua conta bancária ao confirmar.
+        </p>
+    </div>
+</ng-template>
+
+<!-- Template to enable auto withdrawal (step end)-->
+<ng-template #confirmAutoWithdrawal>
+    <div class="c-modal-auto-withdrawal__body--image">
+        <img src="/assets/images/exclamation.svg" alt="Icone alertando confirmação" />
+    </div>
+
+    <div class="c-modal-auto-withdrawal__body--subtitle">
+        <h3>Finalizando</h3>
+    </div>
+
+    <div class="c-modal-auto-withdrawal__body--caption">
+        <p>Estamos concluindo as etapas restantes, pode levar até 1 dia útil para a realização do saque.</p>
+    </div>
+
+    <div class="c-modal-auto-withdrawal__wrapper">
+        <div class="c-modal-auto-withdrawal__wrapper--dotted">
+            <span class="i-icon material-icons"> check_circle </span>
+
+            <span class="i-icon__blue material-icons"> watch_later </span>
+        </div>
+
+        <div class="c-modal-auto-withdrawal__wrapper--text-check">
+            <span>Alteração para saque automático</span>
+        </div>
+
+        <div class="c-modal-auto-withdrawal__wrapper--text-watch">
+            <span>Saque do seu saldo PicPay</span>
+            <p>Quando o saque começar a ser processado, você poderá acompanhar direto no Extrato.</p>
+        </div>
+    </div>
+</ng-template>
+
+<!-- Template to desable auto withdrawal -->
+<ng-template #desabling>
+    <div class="c-modal-auto-withdrawal__body--subtitle">
+        <h3>Confirmar mudança para receber vendas direto no PicPay</h3>
+    </div>
+
+    <div class="c-modal-auto-withdrawal__body--caption">
+        <p>
+            Ao desabilitar o saque automático, você passa a receber os valores direto no PicPay Empresas. Será possível
+            sacar o dinheiro para sua conta bancária, sempre que quiser.
+        </p>
+    </div>
+</ng-template>
+
+<ng-template #tryAgain>
+    <div class="c-modal-auto-withdrawal__body--image">
+        <img src="/assets/images/feedback-error.svg" alt="Icone alertando confirmação" />
+    </div>
+
+    <div class="c-modal-auto-withdrawal__body--subtitle">
+        <h3>Opa! Erramos por aqui</h3>
+    </div>
+
+    <div class="c-modal-auto-withdrawal__body--caption">
+        <p>Tivemos uma falha no sistema e não conseguimos concluir.</p>
+    </div>
+
+    <div class="c-modal-auto-withdrawal__body--retry">
+        <button
+            mat-button
+            color="primary"
+            class="c-modal-auto-withdrawal__body-retry o-button o-button__solid"
+            type="button"
+            (click)="onNext()"
+        >
+            <!-- Loader -->
+            <span class="c-modal-auto-withdrawal__footer--spinner" *ngIf="isLoading === true">
+                <mat-spinner class="i-spinner__white" [diameter]="20"></mat-spinner>
+            </span>
+
+            <!-- Label -->
+            <span class="c-modal-auto-withdrawal__footer--label" *ngIf="isLoading === false">Tentar novamente</span>
+        </button>
+    </div>
+</ng-template>

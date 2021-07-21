@@ -1,0 +1,52 @@
+<picpedia-navbar-header [title]="titleMetricsList$ | async"></picpedia-navbar-header>
+
+<section class="c-metrics-list container-fluid">
+    <apollo-flex justify="center" class="c-metrics-list__loading" *ngIf="isLoadingMetrics$ | async">
+        <apollo-circular-progress radius="35" stroke="6"></apollo-circular-progress>
+    </apollo-flex>
+
+    <div class="c-metrics-list__container">
+        <div *ngFor="let item of metricsList$ | async">
+            <apollo-list [routerLink]="item.name | lowercase">
+                <div class="c-metrics-list__list">
+                    <apollo-icon [svgIcon]="iconMetrics" size="md" class="c-metrics-list__list-icon"></apollo-icon>
+                    {{ item.description }}
+
+                    <div class="c-metrics-list__list-items">
+                        <div class="c-metrics-list__list-badge">{{ item.dataDomain }}</div>
+                        <div class="c-metrics-list__list-badge c-metrics-list__list-badge--item">
+                            {{ item.tag }}
+                        </div>
+                        <picpedia-badge-certification [badgeLabel]="item.badge">{{
+                            item.badge
+                        }}</picpedia-badge-certification>
+
+                        <div class="c-metrics-list__list-favorite">
+                            <ng-container *ngIf="item.favorite; else favoriteOutlined">
+                                <apollo-icon
+                                    class="material-icons c-metrics-list__list-favorite-icon"
+                                    (click)="updateMetricsListFavorite(false, item.idFavorite)"
+                                    >grade</apollo-icon
+                                >
+                            </ng-container>
+
+                            <ng-template #favoriteOutlined>
+                                <apollo-icon
+                                    class="material-icons-outlined"
+                                    (click)="updateMetricsListFavorite(true, item.idFavorite)"
+                                    >grade</apollo-icon
+                                >
+                            </ng-template>
+                        </div>
+                        <div class="c-metrics-list__list-arrow">
+                            <apollo-icon class="material-icons-outlined">chevron_right</apollo-icon>
+                        </div>
+                    </div>
+                </div>
+                <div class="c-metrics-list__list-divider">
+                    <apollo-list-divider></apollo-list-divider>
+                </div>
+            </apollo-list>
+        </div>
+    </div>
+</section>

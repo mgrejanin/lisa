@@ -1,0 +1,58 @@
+import { Meta, Story, Canvas, Source, Description } from '@storybook/addon-docs/blocks';
+import readme from './../../components/feedback-button/readme.md';
+
+<Meta
+    title="Components/Feedback Button"
+    parameters={{
+        previewTabs: {
+            canvas: { hidden: false },
+        },
+    }}
+/>
+
+export const Template = props => (
+    <apollo-feedback-button
+        {...props}
+        toggle-off-label={props.toggleOffLabel}
+        toggle-on-label={props.toggleOnLabel}
+    ></apollo-feedback-button>
+);
+
+# Feedback Button
+
+## Default
+
+<Canvas>
+    <Story
+        name="All Props"
+        args={{
+            checked: false,
+            delay: 1.6,
+            toggleOffLabel: 'false',
+            toggleOnLabel: 'true',
+            size: 'sm',
+        }}
+        argTypes={{
+            size: {
+                control: { type: 'select', options: ['sm', 'md'] },
+            },
+            toggleOffLabel: {
+                name: 'toggle-off-label',
+            },
+            toggleOnLabel: {
+                name: 'toggle-on-label',
+            },
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<apollo-feedback-button size="sm" toggle-on-label="true" toggle-off-label="false"></apollo-feedback-button>`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Description markdown={readme} />

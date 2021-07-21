@@ -1,0 +1,102 @@
+@use "functions/color";
+
+@use "@material/theme" with (
+    $primary: theme('colors.primary.light.500'),
+    $secondary: theme('colors.primary.light.500'),
+);
+
+:root,
+:host {
+    --apollo-primary: #{theme('colors.primary')};
+    --apollo-primary-rgb: #{color.get-rgb-color(theme('colors.primary.light.500'))};
+
+    --apollo-on-primary: #{theme('colors.white')};
+    --apollo-on-primary-rgb: #{color.get-rgb-color(theme('colors.white'))};
+
+    --apollo-primary-lightest: #{theme('colors.primary.lightest.base')};
+    --apollo-primary-lightest-rgb: #{color.get-rgb-color(theme('colors.primary.light.50'))};
+
+    --apollo-primary-light: #{theme('colors.primary.light.base')};
+    --apollo-primary-light-rgb: #{color.get-rgb-color(theme('colors.primary.light.200'))};
+
+    --apollo-primary-dark: #{theme('colors.primary.dark.base')};
+    --apollo-primary-dark-rgb: #{color.get-rgb-color(theme('colors.primary.light.800'))};
+
+    --apollo-primary-darkest: #{theme('colors.primary.darkest.base')};
+    --apollo-primary-darkest-rgb: #{color.get-rgb-color(theme('colors.primary.light.900'))};
+
+    --apollo-error: #{theme('colors.critical.base')};
+    --apollo-error-rgb: #{color.get-rgb-color(theme('colors.critical.light.500'))};
+
+    --apollo-on-error: #{theme('colors.white')};
+    --apollo-on-error-rgb: #{color.get-rgb-color(theme('colors.white'))};
+
+    --apollo-font-family: #{theme('fontFamily.sans')};
+
+    --mdc-typography-font-family: var(--apollo-font-family);
+
+    --mdc-theme-primary: var(--apollo-primary);
+    --mdc-theme-secondary: var(--apollo-primary);
+    --mdc-theme-background: var(--apollo-background);
+    --mdc-theme-surface: var(--apollo-background-z2);
+    --mdc-theme-on-primary: var(--apollo-on-primary);
+    --mdc-theme-on-secondary: var(--apollo-on-primary);
+    --mdc-theme-on-surface: var(--apollo-on-primary);
+
+    --mdc-theme-text-primary-on-light: var(--apollo-primary);
+    --mdc-theme-text-primary-on-dark: var(--apollo-primary);
+
+    --mdc-theme-text-primary-on-background: var(--apollo-on-background);
+
+    --mdc-theme-text-secondary-on-light: var(--apollo-primary);
+    --mdc-theme-text-secondary-on-dark: var(--apollo-primary);
+
+    --mdc-theme-text-hint-on-light: rgba(var(--apollo-on-background-rgb), #{theme.text-emphasis(medium)});
+    --mdc-theme-text-hint-on-dark: rgba(var(--apollo-background-rgb), #{theme.text-emphasis(medium)});
+
+    --mdc-theme-text-disabled-on-light: rgba(var(--apollo-on-background-rgb), #{theme.text-emphasis(disabled)});
+    --mdc-theme-text-disabled-on-dark: rgba(var(--apollo-background-rgb), #{theme.text-emphasis(disabled)});
+
+    --mdc-theme-text-icon-on-light: rgba(var(--apollo-on-background-rgb), #{theme.text-emphasis(medium)});
+    --mdc-theme-text-icon-on-dark: rgba(var(--apollo-background-rgb), #{theme.text-emphasis(medium)});
+
+    --apollo-background: #{theme('colors.background.light.primary')};
+    --apollo-background-rgb: #{color.get-rgb-color(theme('colors.background.light.primary'))};
+
+    --apollo-background-z2: #{theme('colors.background.light.secondary')};
+    --apollo-background-z2-rgb: #{color.get-rgb-color(theme('colors.background.light.secondary'))};
+
+    --apollo-background-z3: #{theme('colors.background.light.tertiary')};
+    --apollo-background-z3-rgb: #{color.get-rgb-color(theme('colors.background.light.tertiary'))};
+
+    --apollo-background-z4: #{theme('colors.background.light.quaternary')};
+    --apollo-background-z4-rgb: #{color.get-rgb-color(theme('colors.background.light.quaternary'))};
+
+    --apollo-on-background: #{theme('colors.black')};
+    --apollo-on-background-rgb: #{color.get-rgb-color(theme('colors.black'))};
+}
+
+body[data-theme='dark'] {
+    --apollo-background: #{theme('colors.background.dark.primary')};
+    --apollo-background-rgb: #{color.get-rgb-color(theme('colors.background.dark.primary'))};
+
+    --apollo-background-z2: #{theme('colors.background.dark.secondary')};
+    --apollo-background-z2-rgb: #{color.get-rgb-color(theme('colors.background.dark.secondary'))};
+
+    --apollo-background-z3: #{theme('colors.background.dark.tertiary')};
+    --apollo-background-z3-rgb: #{color.get-rgb-color(theme('colors.background.dark.tertiary'))};
+
+    --apollo-background-z4: #{theme('colors.background.dark.quaternary')};
+    --apollo-background-z4-rgb: #{color.get-rgb-color(theme('colors.background.dark.quaternary'))};
+
+    --apollo-on-background: #{theme('colors.white')};
+    --apollo-on-background-rgb: #{color.get-rgb-color(theme('colors.white'))};
+}
+
+:root,
+:host,
+body {
+    background-color: var(--apollo-background);
+    color: rgba(var(--apollo-on-background-rgb), 0.86);
+    font-family: var(--apollo-font-family);
+}

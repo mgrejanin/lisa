@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+    front.feature-flag.front:
+        container_name: front.feature-flag.front
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - '80:80'

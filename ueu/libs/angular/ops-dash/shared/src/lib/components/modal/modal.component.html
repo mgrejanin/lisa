@@ -1,0 +1,9 @@
+<section>
+    <apollo-heading class="c-modal__title" *ngIf="data.title">
+        {{ data.title }}
+    </apollo-heading>
+
+    <div mat-dialog-content>
+        <ng-container *ngComponentOutlet="data.component"></ng-container>
+    </div>
+</section>

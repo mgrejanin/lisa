@@ -1,0 +1,22 @@
+@use "mixins/typography";
+@use "mixins/breakpoint";
+
+.c-section {
+    &__body-description {
+        display: block;
+
+        &--highlight {
+            cursor: pointer;
+            display: none;
+            @include typography.link(primary);
+
+            @include breakpoint.up(small) {
+                display: block;
+            }
+        }
+    }
+
+    &__body-resend {
+        margin-top: theme('spacing.3');
+    }
+}

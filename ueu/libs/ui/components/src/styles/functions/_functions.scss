@@ -1,0 +1,7 @@
+@function ui-get-color($color: --apollo-primary) {
+    @return rgb(var($color));
+}
+
+@function ui-get-color-alpha($color: --apollo-primary-rgb, $opacity: 1) {
+    @return rgba(var($color), $opacity);
+}

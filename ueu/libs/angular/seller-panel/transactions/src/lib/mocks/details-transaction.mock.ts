@@ -1,0 +1,26 @@
+export const detailTransactionMock = {
+    consumer: 'Diego de Morais Sana',
+    transaction_date: '2020-06-19 12:03:52.000000',
+    details: {
+        cpf_cnpj: '49.447.667/0001-26',
+        transaction_date: '2020-06-19 12:03:52.000000',
+        id_seller: 475,
+        id_transaction: 66228,
+        operator: '-',
+        price: 1.1,
+        seller: 'Rotativo Vitória',
+        username: 'diego',
+    },
+    id: 66228,
+    image: '/assets/images/avatar.svg',
+    price: 1.1,
+    seller: 'Rotativo Vitória',
+    status: 'Completada',
+    status_id: 'check_circle_outline',
+    store_details: {
+        store_name: 'Uber',
+        product_description: 'product_description_123',
+        picpay_nsu: 198239182392381238213,
+    },
+    checkout: false,
+};

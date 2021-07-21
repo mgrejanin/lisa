@@ -1,0 +1,67 @@
+<ng-container *ngIf="loadingPlans === false && hasErrorPlans === false; else callbackTemplate">
+    <section class="c-my-plan container">
+        <div class="c-my-plan__header">
+            <p>Escolha um plano de recebimento:</p>
+            <!-- PENDING BACKEND IMPROVES -->
+            <!-- <div class="c-my-plan__header--badge">
+                <p><b>Teste grátis:</b> Não serão cobradas taxas para os {{ gracePeriodPlan }} primeiros dias.</p>
+            </div> -->
+        </div>
+        <div class="c-my-plan__body">
+            <form class="c-my-plan__form" [formGroup]="formPlan" (ngSubmit)="onSubmitPlan()">
+                <div class="c-my-plan__form--wrapper">
+                    <mat-radio-group aria-label="Escolha um plano de recebimento">
+                        <ng-container *ngFor="let plan of allPlans">
+                            <mat-radio-button
+                                #planItem
+                                class="c-my-plan__form--item"
+                                ngDefaultControl
+                                formControlName="plan_id"
+                                [class.active]="currentPlan?.id === plan?.id"
+                                [value]="plan?.id"
+                                [checked]="currentPlan?.id === plan?.id"
+                                (change)="onChangePlan(plan)"
+                            >
+                                <b>{{ plan?.name }}</b>
+                                <p>Taxa de {{ plan?.fee | number }}%</p>
+                            </mat-radio-button>
+                        </ng-container>
+                        <mat-error validation-message [control]="formPlan.controls['id']"></mat-error>
+                    </mat-radio-group>
+                </div>
+                <div class="c-my-plan__form--submit">
+                    <button
+                        mat-button
+                        color="primary"
+                        type="submit"
+                        class="c-my-plan__change-plan-btn o-button o-button__solid"
+                        [disabled]="loadingPlans || formPlan.invalid"
+                    >
+                        Alterar plano
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+</ng-container>
+<ng-template #callbackTemplate>
+    <ng-container *ngIf="loadingPlans">
+        <div class="c-my-plan__loading">
+            <mat-spinner class="i-spinner" [diameter]="40"></mat-spinner>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="hasErrorPlans">
+        <div class="c-my-plan__error">
+            <img src="/assets/images/empty_search.svg" width="150" alt="Erro ao carregar os planos" />
+            <h2>Ops, não foi possível carregar os planos disponíveis.</h2>
+            <p>Tente novamente ou volte mais tarde.</p>
+        </div>
+    </ng-container>
+</ng-template>
+<ng-template #emptyPlans>
+    <div class="c-my-plan__empty">
+        <img src="/assets/images/empty_search.svg" width="150" alt="Não há planos disponíveis" />
+        <h2>Não há planos disponíveis</h2>
+        <p>Tente novamente ou volte mais tarde.</p>
+    </div>
+</ng-template>

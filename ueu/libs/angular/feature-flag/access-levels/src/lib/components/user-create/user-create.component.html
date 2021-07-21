@@ -1,0 +1,55 @@
+<section class="c-user-create o-modal-content">
+    <button mat-icon-button aria-label="Fechar" class="c-user-create__close-btn o-modal__close-btn" (click)="onClose()">
+        <mat-icon>close</mat-icon>
+    </button>
+
+    <h1 class="c-user-create__title o-modal__title">{{ data.title }}</h1>
+
+    <div class="c-user-create__message o-modal__message">
+        {{ data.message }}
+    </div>
+    <form class="c-user-create__form" [formGroup]="form">
+        <!-- USER INPUT -->
+        <mat-form-field>
+            <input
+                type="text"
+                placeholder="Usuário"
+                matInput
+                formControlName="user"
+                [matAutocomplete]="auto"
+                class="c-user-create__input--search"
+            />
+            <!-- AUTOCOMPLETE OPTIONS -->
+            <mat-autocomplete #auto="matAutocomplete" class="c-user-create__input--role" [displayWith]="displayFn">
+                <mat-option *ngFor="let user of users$ | async" [value]="user">
+                    {{ user.fullname }}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+
+        <!-- ROLE SELECT -->
+        <mat-form-field appearance="outline">
+            <mat-label>Tipo de acesso</mat-label>
+            <mat-select placeholder="Mode" class="c-user-create__input--role" formControlName="role">
+                <mat-option *ngFor="let role of roles$ | async" [value]="role.id">
+                    {{ role.name }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+
+    <div class="o-modal__btn-wrapper">
+        <button class="c-user-create__cancel-btn o-button o-button__link" type="button" (click)="onClose()">
+            Cancelar
+        </button>
+
+        <button
+            [disabled]="form.invalid"
+            class="c-user-create__confirm-btn o-button o-button__solid"
+            type="button"
+            (click)="onSubmit()"
+        >
+            Confirmar
+        </button>
+    </div>
+</section>

@@ -1,0 +1,140 @@
+<section class="c-new-withdraw">
+    <ng-container *ngIf="!isError; then onNewWithdraw; else onError"></ng-container>
+</section>
+
+<ng-template #onNewWithdraw>
+    <!-- TEMPLATE LOADING -->
+    <div *ngIf="isLoading" class="c-new-withdraw__loading-wrapper">
+        <mat-spinner class="i-spinner" [diameter]="40"></mat-spinner>
+    </div>
+
+    <ng-container *ngIf="!isLoading && data">
+        <!-- TEMPLATE HEADER -->
+        <div class="c-new-withdraw__header">
+            <div class="c-new-withdraw__header--actions">
+                <button mat-icon-button class="c-new-withdraw__header--close-button" (click)="onClose()">
+                    <apollo-icon fill="#008441" svgIcon="interface-times" size="md"> </apollo-icon>
+                </button>
+            </div>
+
+            <div class="c-new-withdraw__header--title">
+                <apollo-icon fill="#008441" svgIcon="money_business-money-withdraw" size="md"></apollo-icon>
+                <h2>Novo saque bancário</h2>
+            </div>
+        </div>
+
+        <!-- TEMPLATE BODY -->
+
+        <div class="c-new-withdraw__body">
+            <div class="c-new-withdraw-upside">
+                <apollo-avatar
+                    size="small"
+                    radius="full"
+                    [src]="
+                        accountWithdraw
+                            ? accountWithdraw?.bank?.img_url || 'assets/icons/bank.svg'
+                            : data?.primary_bank_account?.bank?.img_url || 'assets/icons/bank.svg'
+                    "
+                    alt="Ícone do banco"
+                >
+                </apollo-avatar>
+                <div class="c-new-withdraw-upside__content">
+                    <div class="c-new-withdraw-upside__content--data">
+                        <ng-container *ngIf="accountWithdraw">
+                            <p class="c-new-withdraw__name">
+                                Conta {{ accountWithdraw?.account }}-{{ accountWithdraw?.account_digit }}
+                                <br />
+                                <span class="c-new-withdraw__name--caption">{{ accountWithdraw?.bank?.name }}</span>
+                            </p>
+                        </ng-container>
+
+                        <ng-container *ngIf="!accountWithdraw">
+                            <p class="c-new-withdraw__name">
+                                Conta {{ data?.primary_bank_account?.account }}-{{
+                                    data?.primary_bank_account?.account_digit
+                                }}
+                                <br />
+                                <span class="c-new-withdraw__name--caption">{{
+                                    data?.primary_bank_account?.bank?.name
+                                }}</span>
+                            </p>
+                        </ng-container>
+                    </div>
+
+                    <div class="c-new-withdraw-upside__content--action">
+                        <apollo-button
+                            variant="link"
+                            size="md"
+                            (click)="onChangeAccount()"
+                            (keyup.enter)="onChangeAccount()"
+                            >Trocar</apollo-button
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <hr class="mt-3 mb-4" />
+
+            <div class="c-new-withdraw-lowside">
+                <span class="c-new-withdraw-lowside__balance-available"
+                    >Saldo disponível: <strong>{{ data?.available_for_withdrawal | currency: 'BRL' }}</strong></span
+                >
+                <form
+                    class="c-new-withdraw-lowside__form"
+                    (ngSubmit)="onConfirm(accountWithdraw ? accountWithdraw?.id : data?.primary_bank_account?.id)"
+                    [formGroup]="priceForm"
+                >
+                    <mat-form-field floatLabel="always" appearance="outline">
+                        <mat-label>Valor do saque</mat-label>
+                        <input matInput currencyMask inputmode="numeric" formControlName="price" />
+                        <mat-error validation-message [control]="priceForm.controls.price"></mat-error>
+                    </mat-form-field>
+                </form>
+
+                <div class="c-new-withdraw-lowside__description">
+                    <ng-container *ngIf="data?.last_withdrawal">
+                        <span class="c-new-withdraw-lowside__description--text"
+                            >Seu último saque foi em: {{ data?.last_withdrawal?.date | date: 'dd/MM/yyyy' }} |
+                            {{ data?.last_withdrawal?.status }}</span
+                        >
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEMPLATE FOOTER -->
+        <div class="c-new-withdraw__footer">
+            <apollo-button variant="link" size="md" (click)="onClose()">Cancelar</apollo-button>
+            <apollo-button
+                [disabled]="isLoading || !priceForm.valid"
+                variant="unelevated"
+                size="md"
+                (click)="onConfirm(accountWithdraw ? accountWithdraw?.id : data?.primary_bank_account?.id)"
+                >Confirmar</apollo-button
+            >
+        </div>
+    </ng-container>
+</ng-template>
+
+<!-- TEMPLATE ERROR -->
+<ng-template #onError>
+    <div class="c-new-withdraw__feedback">
+        <div class="c-new-withdraw__feedback--header">
+            <button mat-icon-button class="c-new-withdraw__feedback-header-close-button" (click)="onClose()">
+                <apollo-icon fill="#00ac4a" svgIcon="interface-times" size="md"> </apollo-icon>
+            </button>
+        </div>
+        <div class="c-new-withdraw__feedback--content">
+            <seller-panel-feedback
+                imagePath="/assets/images/feedback-error.svg"
+                title="Opa! Erramos por aqui"
+                description="Tivemos uma falha no sistema e não conseguimos concluir."
+                height="50vh"
+            ></seller-panel-feedback>
+
+            <div class="c-new-withdraw__feedback-content-retry">
+                <apollo-button variant="unelevated" size="md" (click)="onTryAgain()">Tentar novamente</apollo-button>
+            </div>
+        </div>
+    </div>
+</ng-template>

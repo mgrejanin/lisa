@@ -1,0 +1,187 @@
+<section class="c-help">
+    <ops-dash-header></ops-dash-header>
+
+    <h1 class="c-help__h1">Variáveis - Ajuda</h1>
+
+    <div class="c-help__section">
+        <h2 class="c-help__section-title">Introdução e conceitos</h2>
+
+        <div class="c-help__section-content">
+            <p>
+                Todas as variáveis de ambiente são consideradas <strong>common</strong>, isto é, <i>podem</i> ser usadas
+                por mais de uma aplicação.
+            </p>
+
+            <p>Por isso, não é possível ter duas variáveis com o mesmo nome.</p>
+
+            <p>
+                Para resolver esse problema foi introduzido o conceito de
+                <strong>alias</strong>, que permite renomear a variável no momento de sua injeção na pipeline.
+            </p>
+
+            <p>
+                Toda variável deve ser <strong>associada</strong> a um serviço, e é nessa associação que se define o
+                alias.
+            </p>
+
+            <p>A associação deve ser feita em QA e PROD, separadamente.</p>
+
+            <p>
+                Sempre que um serviço for associado ou desassociado, acontecerá um deploy das variáveis de ambiente
+                (todas) daquele serviço.
+            </p>
+
+            <p>Ao atualizar uma variável, também acontecerá o deploy das variáveis de todos os serviços associados.</p>
+
+            <p>
+                O <strong>alias</strong> só deve ser usado se houver a necessidade de renomear uma variável common, caso
+                contrário o próprio nome da common será usado.
+            </p>
+
+            <p>
+                As variáveis de ambiente podem ser do tipo <strong>PLAIN</strong> ou <strong>SECRET</strong>. O tipo
+                <strong>PLAIN</strong> mantém o valor da variável como ela é. O tipo <strong>SECRET</strong> criptografa
+                o valor, sendo ideal para senhas, chaves e tokens. Apenas <strong>DEVOPS</strong> tem permissão para
+                criar, alterar e visualizar esse tipo de variável.
+            </p>
+
+            <p>
+                Sempre que o valor de uma variável é alterado, uma
+                <strong>nova versão</strong> dela é criada, permitindo o rollback se necessário.
+            </p>
+
+            <p>
+                Ao excluir uma variável, não será mais possível o rollback. Mas uma restauração manual ainda é possível,
+                pois ela estará guardada em uma coleção à parte.
+            </p>
+        </div>
+    </div>
+
+    <div class="c-help__section">
+        <h2 class="c-help__section-title">
+            Caso 1 - exemplo de dois serviços que usam uma env de mesmo nome, mas valores diferentes
+        </h2>
+
+        <div class="c-help__section-content">
+            <p>
+                Imagine que o serviço <strong>feed</strong> e <strong>search</strong> têm uma variável de nome
+                <span class="c-help__text-code">NEW_RELIC_APP_NAME</span>.
+            </p>
+
+            <p>
+                Não é possível criar duas variáveis
+                <span class="c-help__text-code">NEW_RELIC_APP_NAME</span>.
+            </p>
+
+            <p>
+                O que você terá de fazer é criar uma variável
+                <span class="c-help__text-code">FEED_NEW_RELIC_APP_NAME</span> e outra
+                <span class="c-help__text-code">SEARCH_NEW_RELIC_APP_NAME</span>.
+            </p>
+
+            <p>
+                E colocará o <strong>alias </strong> <span class="c-help__text-code">NEW_RELIC_APP_NAME</span> na hora
+                de associar cada uma delas ao serviço correspondente.
+            </p>
+
+            <p>
+                Quando o pipeline buscar as variáveis do <strong>feed</strong> ele vai encontrar a
+                <span class="c-help__text-code">FEED_NEW_RELIC_APP_NAME</span> e vai renomeá-la para
+                <span class="c-help__text-code">NEW_RELIC_APP_NAME</span>, como definido no alias.
+            </p>
+        </div>
+
+        <h2 class="c-help__section-title">Caso 2 - exemplo de dois serviços que usam uma env com o mesmo valor</h2>
+
+        <div class="c-help__section-content">
+            <p>
+                Imagine que o <strong>feed</strong> e o <strong>search</strong> precisam da URL do serviço
+                <strong>consumer</strong>.
+            </p>
+
+            <p>Neste caso você não precisa criar duas variáveis, uma para cada serviço.</p>
+
+            <p>
+                Você criará (ou buscará, caso já exista) uma variável de nome
+                <span class="c-help__text-code">CONSUMER_URL</span> e associará a ela o serviço <strong>feed</strong> e
+                <strong>search</strong>.
+            </p>
+
+            <p>
+                Quando o pipeline buscar as variáveis do <strong>feed</strong> ele vai encontrar a
+                <span class="c-help__text-code">CONSUMER_URL</span> e vai injetá-la com este nome. Se houver alias na
+                associação, ele vai renomeá-la para o nome ali definido.
+            </p>
+        </div>
+    </div>
+
+    <div class="c-help__section">
+        <h2 class="c-help__section-title">Buscando e visualizando variáveis</h2>
+
+        <div class="c-help__section-content">
+            <p>1. Digite parte da variável de ambiente e uma lista de resultados será exibida.</p>
+
+            <p><img src="/assets/ops-dash/help/variables_search.png" class="c-help__section-image" /></p>
+            <br />
+            <p>2. Clique no resultado e um painel lateral será exibido mostrando as informações da variável.</p>
+
+            <p><img src="/assets/ops-dash/help/variables_side.png" class="c-help__section-image" /></p>
+        </div>
+    </div>
+
+    <div class="c-help__section">
+        <h2 class="c-help__section-title">Criando variáveis</h2>
+
+        <div class="c-help__section-content">
+            <p>1. Clique em <strong>Criar Variável</strong>.</p>
+
+            <p>2. Digite o nome da chave.</p>
+
+            <p><img src="/assets/ops-dash/help/variables_create.png" class="c-help__section-image" /></p>
+        </div>
+    </div>
+
+    <div class="c-help__section">
+        <h2 class="c-help__section-title">Atualizando uma variável</h2>
+
+        <div class="c-help__section-content">
+            <p>1. Busque a variável em questão e clique nela.</p>
+
+            <p>2. Verifique se o valor selecionado é QA ou PROD.</p>
+
+            <p>3. Escolha o tipo <strong>PLAIN</strong> ou <strong>SECRET</strong>.</p>
+
+            <p>4. Altere o valor e/ou o tipo.</p>
+
+            <p>5. Clique em Atualizar. Uma nova versão deverá ser criada.</p>
+        </div>
+    </div>
+
+    <div class="c-help__section">
+        <h2 class="c-help__section-title">Rollback de uma variável</h2>
+
+        <div class="c-help__section-content">
+            <p>1. Busque a variável em questão e clique nela.</p>
+
+            <p>2. Verifique se o valor selecionado é QA ou PROD.</p>
+
+            <p>3. Vá no seletor de versão e selecione a versão desejada.</p>
+
+            <p>4. Clique em Rollback. Uma nova versão deverá ser criada.</p>
+
+            <p><img src="/assets/ops-dash/help/variables_rollback.png" class="c-help__section-image" /></p>
+        </div>
+    </div>
+
+    <div class="c-help__section">
+        <h2 class="c-help__section-title">Excluindo uma variável</h2>
+
+        <div class="c-help__section-content">
+            <p>1. Busque a variável em questão.</p>
+
+            <p>2. Clique no ícone de Excluir.</p>
+
+            <p><img src="/assets/ops-dash/help/variables_delete.png" class="c-help__section-image" /></p>
+        </div>
+    </div>
+</section>

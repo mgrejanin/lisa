@@ -1,0 +1,66 @@
+<section class="c-auto-withdrawal">
+    <div *ngIf="(isLoading$ | async) === true" class="c-auto-withdrawal__loading-wrapper">
+        <mat-spinner class="i-spinner" [diameter]="40"></mat-spinner>
+    </div>
+
+    <ng-container *ngIf="(isLoading$ | async) === false">
+        <ng-container *ngIf="(isError$ | async) === true; then isError; else isSuccess"></ng-container>
+    </ng-container>
+</section>
+
+<!-- Template success -->
+<ng-template #isSuccess>
+    <div class="c-auto-withdrawal__header">
+        <ng-container *ngIf="checkControl">
+            <div class="c-auto-withdrawal__switch">
+                <mat-slide-toggle
+                    id="auto-withdrawal-switch"
+                    type="checkbox"
+                    (change)="onToggle()"
+                    [formControl]="checkControl"
+                    aria-label="Ativar saque automático"
+                >
+                    <b>Ativar saque automático</b>
+                </mat-slide-toggle>
+            </div>
+        </ng-container>
+        <div class="c-auto-withdrawal__header--description">
+            <span>O saque automático será realizado na sua conta principal.</span>
+        </div>
+    </div>
+
+    <hr class="c-auto-withdrawal__divisor" />
+
+    <div class="c-auto-withdrawal__body">
+        <span class="c-auto-withdrawal__body--description">
+            O saque automático permite que o saldo disponível no PicPay, seja transferido automáticamente para sua conta
+            bancária.
+        </span>
+    </div>
+</ng-template>
+
+<!-- Template error -->
+<ng-template #isError>
+    <div class="c-auto-withdrawal__body">
+        <div class="c-auto-withdrawal__body--content">
+            <img
+                class="m-auto"
+                width="200px"
+                src="/assets/images/error_loading_info.svg"
+                alt="Icone alertando confirmação"
+            />
+
+            <h3>Algo aconteceu e não conseguimos carregar as informações.</h3>
+
+            <button
+                class="c-auto-withdrawal__body--btn-retry o-button o-button__solid"
+                color="primary"
+                mat-button
+                type="button"
+                (click)="onTryAgain()"
+            >
+                Tentar novamente
+            </button>
+        </div>
+    </div>
+</ng-template>

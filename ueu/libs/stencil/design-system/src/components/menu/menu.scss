@@ -1,0 +1,15 @@
+@use '@material/theme';
+@use '@material/list';
+@use '@material/list/mdc-list';
+@use '@material/menu-surface/mdc-menu-surface';
+@use '@material/menu/mdc-menu';
+
+:host {
+    display: block;
+}
+
+apollo-menu {
+    --mdc-theme-primary: var(--apollo-primary);
+    --mdc-theme-surface: var(--apollo-background-z2);
+    --mdc-theme-on-surface: var(--apollo-primary);
+}

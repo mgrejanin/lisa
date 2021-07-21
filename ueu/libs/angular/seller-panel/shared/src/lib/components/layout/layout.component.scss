@@ -1,0 +1,25 @@
+.c-layout {
+    margin-top: -#{theme('spacing.2')} !important;
+
+    &__image {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 60%;
+    }
+    &__box {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 200px;
+        text-align: center;
+        font-size: theme('fontSize.sm');
+        margin-top: theme('spacing.1');
+        color: theme('colors.grayscale.600');
+        background-color: theme('colors.white');
+
+        &-span {
+            font-weight: theme('fontWeight.bold');
+        }
+    }
+}

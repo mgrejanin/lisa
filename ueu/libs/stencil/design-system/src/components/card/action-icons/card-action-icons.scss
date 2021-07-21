@@ -1,0 +1,11 @@
+@use "@material/theme" with (
+    $primary: theme('colors.primary.base'),
+    $on-primary: theme('colors.white')
+);
+@use "@material/theme/custom-properties";
+
+// [data-theme='dark'] {
+apollo-card-action-icons {
+    @include theme.property(color, custom-properties.create(--apollo-primary, theme('colors.primary.base')));
+}
+// }

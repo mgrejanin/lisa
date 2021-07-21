@@ -1,0 +1,3772 @@
+{
+    "version": 2,
+    "cli": {
+        "defaultCollection": "@nrwl/angular",
+        "packageManager": "yarn"
+    },
+    "defaultProject": "seller-panel",
+    "generators": {
+        "@nrwl/angular:application": {
+            "style": "scss",
+            "linter": "eslint",
+            "unitTestRunner": "jest",
+            "e2eTestRunner": "cypress",
+            "strict": false
+        },
+        "@nrwl/angular:library": {
+            "style": "scss",
+            "linter": "eslint",
+            "unitTestRunner": "jest",
+            "strict": false
+        },
+        "@nrwl/angular:component": {
+            "style": "scss"
+        },
+        "@nrwl/react": {
+            "application": {
+                "babel": true
+            }
+        },
+        "@nrwl/next": {
+            "application": {
+                "style": "scss",
+                "linter": "eslint"
+            }
+        },
+        "@nrwl/nest:library": {
+            "controller": true,
+            "service": true
+        }
+    },
+    "projects": {
+        "design-system": {
+            "projectType": "library",
+            "generators": {
+                "@nxext/stencil:component": {
+                    "style": "scss",
+                    "storybook": true
+                }
+            },
+            "root": "libs/stencil/design-system",
+            "sourceRoot": "libs/stencil/design-system/src",
+            "targets": {
+                "prepare": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": [
+                            {
+                                "command": "nx run design-system:build --with-deps"
+                            }
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nxext/stencil:test",
+                    "options": {
+                        "projectType": "library",
+                        "configPath": "libs/stencil/design-system/stencil.config.ts"
+                    }
+                },
+                "e2e": {
+                    "executor": "@nxext/stencil:e2e",
+                    "options": {
+                        "projectType": "library",
+                        "configPath": "libs/stencil/design-system/stencil.config.ts"
+                    }
+                },
+                "build": {
+                    "executor": "@nxext/stencil:build",
+                    "options": {
+                        "projectType": "library",
+                        "configPath": "libs/stencil/design-system/stencil.config.ts",
+                        "outputPath": "dist/libs/stencil/design-system"
+                    }
+                },
+                "publish": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "outputs": [],
+                    "options": {
+                        "command": "nx build design-system && cd ./dist/libs/stencil/design-system && yarn publish"
+                    }
+                },
+                "serve": {
+                    "executor": "@nxext/stencil:build",
+                    "options": {
+                        "projectType": "library",
+                        "configPath": "libs/stencil/design-system/stencil.config.ts",
+                        "serve": true,
+                        "watch": true
+                    }
+                },
+                "storybook": {
+                    "executor": "@nrwl/storybook:storybook",
+                    "options": {
+                        "uiFramework": "@storybook/react",
+                        "port": 4400,
+                        "config": {
+                            "configFolder": "libs/stencil/design-system/.storybook"
+                        },
+                        "staticDir": [
+                            "libs/stencil/design-system/.storybook/statics",
+                            "libs/stencil/design-system/src/statics"
+                        ],
+                        "docsMode": false
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                },
+                "build-storybook": {
+                    "executor": "@nrwl/storybook:build",
+                    "options": {
+                        "uiFramework": "@storybook/react",
+                        "outputPath": "dist/storybook/design-system",
+                        "config": {
+                            "configFolder": "libs/stencil/design-system/.storybook"
+                        },
+                        "staticDir": [
+                            "libs/stencil/design-system/.storybook/statics",
+                            "libs/stencil/design-system/src/statics"
+                        ],
+                        "docsMode": false
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                }
+            }
+        },
+        "design-system-angular": {
+            "projectType": "library",
+            "root": "libs/stencil/design-system/angular",
+            "sourceRoot": "libs/stencil/design-system/angular/src",
+            "prefix": "picpay",
+            "targets": {
+                "publish": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": [
+                            {
+                                "command": "nx build design-system-angular --prod && yarn publish ./dist/libs/angular/design-system-angular"
+                            }
+                        ]
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/stencil/design-system/angular/src/**/*.ts",
+                            "libs/stencil/design-system/angular/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/stencil/design-system/angular"],
+                    "options": {
+                        "jestConfig": "libs/stencil/design-system/angular/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "design-system-react": {
+            "root": "libs/stencil/design-system/react",
+            "sourceRoot": "libs/stencil/design-system/react/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/stencil/design-system/react/**/*.{ts,tsx,js,jsx}"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/stencil/design-system/react"],
+                    "options": {
+                        "jestConfig": "libs/stencil/design-system/react/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "lab-components": {
+            "projectType": "library",
+            "generators": {
+                "@nxext/stencil:component": {
+                    "style": "scss",
+                    "storybook": true
+                }
+            },
+            "root": "libs/stencil/lab-components",
+            "sourceRoot": "libs/stencil/lab-components/src",
+            "targets": {
+                "": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": [
+                            {
+                                "command": "nx run lab-components:build --with-deps"
+                            }
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nxext/stencil:test",
+                    "options": {
+                        "projectType": "library",
+                        "configPath": "libs/stencil/lab-components/stencil.config.ts"
+                    }
+                },
+                "e2e": {
+                    "executor": "@nxext/stencil:e2e",
+                    "options": {
+                        "projectType": "library",
+                        "configPath": "libs/stencil/lab-components/stencil.config.ts"
+                    }
+                },
+                "build": {
+                    "executor": "@nxext/stencil:build",
+                    "options": {
+                        "projectType": "library",
+                        "configPath": "libs/stencil/lab-components/stencil.config.ts",
+                        "outputPath": "dist/libs/stencil/lab-components"
+                    }
+                },
+                "serve": {
+                    "executor": "@nxext/stencil:build",
+                    "options": {
+                        "projectType": "library",
+                        "configPath": "libs/stencil/lab-components/stencil.config.ts",
+                        "serve": true,
+                        "watch": true
+                    }
+                },
+                "storybook": {
+                    "executor": "@nrwl/storybook:storybook",
+                    "options": {
+                        "uiFramework": "@storybook/react",
+                        "port": 4400,
+                        "config": {
+                            "configFolder": "libs/stencil/lab-components/.storybook"
+                        },
+                        "staticDir": [
+                            "libs/stencil/design-system/.storybook/statics",
+                            "libs/stencil/design-system/src/statics",
+                            "libs/stencil/lab-components/.storybook/statics",
+                            "libs/stencil/lab-components/src/statics"
+                        ],
+                        "docsMode": false
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                },
+                "build-storybook": {
+                    "executor": "@nrwl/storybook:build",
+                    "options": {
+                        "uiFramework": "@storybook/react",
+                        "outputPath": "dist/storybook/lab-components",
+                        "config": {
+                            "configFolder": "libs/stencil/lab-components/.storybook"
+                        },
+                        "staticDir": [
+                            "libs/stencil/design-system/.storybook/statics",
+                            "libs/stencil/design-system/src/statics",
+                            "libs/stencil/lab-components/.storybook/statics",
+                            "libs/stencil/lab-components/src/statics"
+                        ],
+                        "docsMode": false
+                    },
+                    "configurations": {
+                        "ci": {
+                            "quiet": true
+                        }
+                    }
+                }
+            }
+        },
+        "lab-components-angular": {
+            "projectType": "library",
+            "root": "libs/stencil/lab-components/angular",
+            "sourceRoot": "libs/stencil/lab-components/angular/src",
+            "prefix": "picpay",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/stencil/lab-components/angular/src/**/*.ts",
+                            "libs/stencil/lab-components/angular/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/stencil/lab-components/angular"],
+                    "options": {
+                        "jestConfig": "libs/stencil/lab-components/angular/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "dev-portal": {
+            "projectType": "application",
+            "root": "apps/angular/dev-portal",
+            "sourceRoot": "apps/angular/dev-portal/src",
+            "prefix": "dev-portal",
+            "targets": {
+                "deploy": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": ["./app-deploy.sh distPath=dist/apps/angular/ appName=dev-portal stage=${STAGE}"],
+                        "parallel": false
+                    }
+                },
+                "build": {
+                    "executor": "@angular-builders/custom-webpack:browser",
+                    "options": {
+                        "customWebpackConfig": {
+                            "path": "apps/angular/dev-portal/webpack.config.ts",
+                            "mergeRules": {
+                                "externals": "replace"
+                            }
+                        },
+                        "allowedCommonJsDependencies": ["highlight.js", "swagger-ui"],
+                        "optimization": false,
+                        "outputPath": "dist/apps/angular/dev-portal",
+                        "index": "apps/angular/dev-portal/src/index.html",
+                        "main": "apps/angular/dev-portal/src/main.ts",
+                        "polyfills": "apps/angular/dev-portal/src/polyfills.ts",
+                        "tsConfig": "apps/angular/dev-portal/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "apps/angular/dev-portal/src/assets",
+                                "output": "./assets/dev-portal"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/ui/components/src/assets",
+                                "output": "./assets/ui"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/stencil/design-system/src/statics/assets/design-system",
+                                "output": "./assets/design-system"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "./libs/angular/dev-portal/assets/src/lib",
+                                "output": "./assets"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/packages/keycloak/src/assets",
+                                "output": "./assets/keycloak"
+                            }
+                        ],
+                        "styles": [
+                            "libs/stencil/design-system/src/styles/apollo.scss",
+                            "libs/angular/dev-portal/assets/src/lib/themes/swagger-ui.scss",
+                            "libs/angular/dev-portal/assets/src/lib/styles/index.scss",
+                            "apps/angular/dev-portal/src/styles.scss",
+                            "libs/ui/styles/src/lib/ui-styles.scss"
+                        ]
+                    },
+                    "configurations": {
+                        "local": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/angular/dev-portal/src/environments/environment.ts",
+                                    "with": "apps/angular/dev-portal/src/environments/environment.local.ts"
+                                }
+                            ]
+                        },
+                        "sandbox": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/angular/dev-portal/src/environments/environment.ts",
+                                    "with": "apps/angular/dev-portal/src/environments/environment.sandbox.ts"
+                                }
+                            ]
+                        },
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/angular/dev-portal/src/environments/environment.ts",
+                                    "with": "apps/angular/dev-portal/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@angular-builders/custom-webpack:dev-server",
+                    "options": {
+                        "browserTarget": "dev-portal:build"
+                    },
+                    "configurations": {
+                        "local": {
+                            "browserTarget": "dev-portal:build:local"
+                        },
+                        "sandbox": {
+                            "browserTarget": "dev-portal:build:sandbox"
+                        },
+                        "production": {
+                            "browserTarget": "dev-portal:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "executor": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "dev-portal:build"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/angular/dev-portal/src/**/*.ts",
+                            "apps/angular/dev-portal/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/angular/dev-portal"],
+                    "options": {
+                        "jestConfig": "apps/angular/dev-portal/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "dev-portal-e2e": {
+            "root": "apps/angular/dev-portal-e2e",
+            "sourceRoot": "apps/angular/dev-portal-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/angular/dev-portal-e2e/cypress.json",
+                        "tsConfig": "apps/angular/dev-portal-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "dev-portal:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "dev-portal:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/angular/dev-portal-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "dev-portal-assets": {
+            "projectType": "library",
+            "root": "libs/angular/dev-portal/assets",
+            "sourceRoot": "libs/angular/dev-portal/assets/src",
+            "prefix": "dev-portal",
+            "targets": {},
+            "generators": {}
+        },
+        "dev-portal-dashboard": {
+            "projectType": "library",
+            "root": "libs/angular/dev-portal/dashboard",
+            "sourceRoot": "libs/angular/dev-portal/dashboard/src",
+            "prefix": "dev-portal",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/dev-portal/dashboard/src/**/*.ts",
+                            "libs/angular/dev-portal/dashboard/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/dev-portal/dashboard"],
+                    "options": {
+                        "jestConfig": "libs/angular/dev-portal/dashboard/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "dev-portal-docs": {
+            "projectType": "library",
+            "root": "libs/angular/dev-portal/docs",
+            "sourceRoot": "libs/angular/dev-portal/docs/src",
+            "prefix": "dev-portal",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/dev-portal/docs/src/**/*.ts",
+                            "libs/angular/dev-portal/docs/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/dev-portal/docs"],
+                    "options": {
+                        "jestConfig": "libs/angular/dev-portal/docs/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "dev-portal-home": {
+            "projectType": "library",
+            "root": "libs/angular/dev-portal/home",
+            "sourceRoot": "libs/angular/dev-portal/home/src",
+            "prefix": "dev-portal",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/dev-portal/home/src/**/*.ts",
+                            "libs/angular/dev-portal/home/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/dev-portal/home"],
+                    "options": {
+                        "jestConfig": "libs/angular/dev-portal/home/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "dev-portal-shared": {
+            "projectType": "library",
+            "root": "libs/angular/dev-portal/shared",
+            "sourceRoot": "libs/angular/dev-portal/shared/src",
+            "prefix": "dev-portal",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/dev-portal/shared/src/**/*.ts",
+                            "libs/angular/dev-portal/shared/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/dev-portal/shared"],
+                    "options": {
+                        "jestConfig": "libs/angular/dev-portal/shared/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "feature-flag": {
+            "projectType": "application",
+            "root": "apps/angular/feature-flag",
+            "sourceRoot": "apps/angular/feature-flag/src",
+            "prefix": "feature-management",
+            "targets": {
+                "deploy": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": [
+                            "nx build feature-flag ${BUILD_ENV_PARAMETER}",
+                            "docker build -f ./apps/angular/feature-flag/Dockerfile . -t feature-flag-front",
+                            "docker image tag feature-flag-front ${REPOSITORY_URI}/feature-flag-front:build-number-${STAGE}-${NX_RUN_GROUP}",
+                            "docker image push ${REPOSITORY_URI}/feature-flag-front:build-number-${STAGE}-${NX_RUN_GROUP}"
+                        ],
+                        "parallel": false
+                    }
+                },
+                "build": {
+                    "executor": "@angular-builders/custom-webpack:browser",
+                    "options": {
+                        "customWebpackConfig": {
+                            "path": "apps/angular/feature-flag/webpack.config.ts",
+                            "mergeRules": {
+                                "externals": "replace"
+                            }
+                        },
+                        "optimization": false,
+                        "outputPath": "dist/apps/angular/feature-flag",
+                        "index": "apps/angular/feature-flag/src/index.html",
+                        "main": "apps/angular/feature-flag/src/main.ts",
+                        "polyfills": "apps/angular/feature-flag/src/polyfills.ts",
+                        "tsConfig": "apps/angular/feature-flag/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "apps/angular/feature-flag/src/assets",
+                                "output": "./assets/feature-flag"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/angular/feature-flag/auth/src/assets",
+                                "output": "./assets/auth"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/ui/components/src/assets",
+                                "output": "./assets/ui"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/stencil/design-system/src/statics/assets/design-system",
+                                "output": "./assets/design-system"
+                            }
+                        ],
+                        "styles": [
+                            "libs/stencil/design-system/src/styles/apollo.scss",
+                            "apps/angular/feature-flag/src/styles.scss",
+                            "libs/ui/styles/src/lib/ui-styles.scss"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/angular/feature-flag/src/environments/environment.ts",
+                                    "with": "apps/angular/feature-flag/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        },
+                        "sandbox": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/angular/feature-flag/src/environments/environment.ts",
+                                    "with": "apps/angular/feature-flag/src/environments/environment.sandbox.ts"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@angular-builders/custom-webpack:dev-server",
+                    "options": {
+                        "browserTarget": "feature-flag:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "feature-flag:build:production"
+                        },
+                        "sandbox": {
+                            "browserTarget": "feature-flag:build:sandbox",
+                            "proxyConfig": "apps/angular/feature-flag/proxy.conf.json"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "executor": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "feature-flag:build"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/angular/feature-flag/src/**/*.ts",
+                            "apps/angular/feature-flag/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/angular/feature-flag"],
+                    "options": {
+                        "jestConfig": "apps/angular/feature-flag/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "feature-flag-e2e": {
+            "root": "apps/angular/feature-flag-e2e",
+            "sourceRoot": "apps/angular/feature-flag-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/angular/feature-flag-e2e/cypress.json",
+                        "tsConfig": "apps/angular/feature-flag-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "feature-flag:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "feature-flag:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/angular/feature-flag-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "feature-flag-features": {
+            "projectType": "library",
+            "root": "libs/angular/feature-flag/features",
+            "sourceRoot": "libs/angular/feature-flag/features/src",
+            "prefix": "feature-flag",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/feature-flag/features/src/**/*.ts",
+                            "libs/angular/feature-flag/features/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/feature-flag/features"],
+                    "options": {
+                        "jestConfig": "libs/angular/feature-flag/features/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "feature-flag-auth": {
+            "projectType": "library",
+            "root": "libs/angular/feature-flag/auth",
+            "sourceRoot": "libs/angular/feature-flag/auth/src",
+            "prefix": "feature-flag",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/feature-flag/auth/src/**/*.ts",
+                            "libs/angular/feature-flag/auth/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/feature-flag/auth"],
+                    "options": {
+                        "jestConfig": "libs/angular/feature-flag/auth/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "feature-flag-access-levels": {
+            "projectType": "library",
+            "root": "libs/angular/feature-flag/access-levels",
+            "sourceRoot": "libs/angular/feature-flag/access-levels/src",
+            "prefix": "feature-flag",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/feature-flag/access-levels/src/**/*.ts",
+                            "libs/angular/feature-flag/access-levels/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/feature-flag/access-levels"],
+                    "options": {
+                        "jestConfig": "libs/angular/feature-flag/access-levels/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "feature-flag-shared": {
+            "projectType": "library",
+            "root": "libs/angular/feature-flag/shared",
+            "sourceRoot": "libs/angular/feature-flag/shared/src",
+            "prefix": "feature-flag",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/feature-flag/shared/src/**/*.ts",
+                            "libs/angular/feature-flag/shared/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/feature-flag/shared"],
+                    "options": {
+                        "jestConfig": "libs/angular/feature-flag/shared/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "finance-dash": {
+            "projectType": "application",
+            "root": "apps/angular/finance-dash",
+            "sourceRoot": "apps/angular/finance-dash/src",
+            "prefix": "finance-dash",
+            "targets": {
+                "deploy": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": ["./app-deploy.sh distPath=dist/apps/angular/ appName=finance-dash stage=${STAGE}"],
+                        "parallel": false
+                    }
+                },
+                "build": {
+                    "executor": "@angular-builders/custom-webpack:browser",
+                    "options": {
+                        "customWebpackConfig": {
+                            "path": "apps/angular/finance-dash/webpack.config.ts",
+                            "mergeRules": {
+                                "externals": "replace"
+                            }
+                        },
+                        "optimization": false,
+                        "outputPath": "dist/apps/angular/finance-dash",
+                        "index": "apps/angular/finance-dash/src/index.html",
+                        "main": "apps/angular/finance-dash/src/main.ts",
+                        "polyfills": "apps/angular/finance-dash/src/polyfills.ts",
+                        "tsConfig": "apps/angular/finance-dash/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "apps/angular/finance-dash/src/assets",
+                                "output": "./assets/finance-dash"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/ui/components/src/assets",
+                                "output": "./assets/ui"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/stencil/design-system/src/statics/assets/design-system",
+                                "output": "./assets/design-system"
+                            }
+                        ],
+                        "styles": [
+                            "libs/stencil/design-system/src/styles/apollo.scss",
+                            "apps/angular/finance-dash/src/styles.scss",
+                            "libs/ui/styles/src/lib/ui-styles.scss"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/angular/finance-dash/src/environments/environment.ts",
+                                    "with": "apps/angular/finance-dash/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@angular-builders/custom-webpack:dev-server",
+                    "options": {
+                        "browserTarget": "finance-dash:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "finance-dash:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "executor": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "finance-dash:build"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/angular/finance-dash/src/**/*.ts",
+                            "apps/angular/finance-dash/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/angular/finance-dash"],
+                    "options": {
+                        "jestConfig": "apps/angular/finance-dash/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "finance-dash-e2e": {
+            "root": "apps/angular/finance-dash-e2e",
+            "sourceRoot": "apps/angular/finance-dash-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/angular/finance-dash-e2e/cypress.json",
+                        "tsConfig": "apps/angular/finance-dash-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "finance-dash:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "finance-dash:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/angular/finance-dash-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "finance-dash-recharges": {
+            "projectType": "library",
+            "root": "libs/angular/finance-dash/recharges",
+            "sourceRoot": "libs/angular/finance-dash/recharges/src",
+            "prefix": "finance-dash",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/finance-dash/recharges/src/**/*.ts",
+                            "libs/angular/finance-dash/recharges/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/finance-dash/recharges"],
+                    "options": {
+                        "jestConfig": "libs/angular/finance-dash/recharges/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "keycloak-demo-e2e": {
+            "root": "apps/angular/keycloak-demo-e2e",
+            "sourceRoot": "apps/angular/keycloak-demo-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/angular/feature-flag-e2e/cypress.json",
+                        "tsConfig": "apps/angular/feature-flag-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "feature-flag:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "feature-flag:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/angular/feature-flag-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "keycloak-demo": {
+            "projectType": "application",
+            "root": "apps/angular/keycloak-demo",
+            "sourceRoot": "apps/angular/keycloak-demo/src",
+            "prefix": "keycloak-demo",
+            "targets": {
+                "build": {
+                    "executor": "@angular-builders/custom-webpack:browser",
+                    "options": {
+                        "customWebpackConfig": {
+                            "path": "apps/angular/keycloak-demo/webpack.config.ts",
+                            "mergeRules": {
+                                "externals": "replace"
+                            }
+                        },
+                        "optimization": false,
+                        "outputPath": "dist/apps/angular/keycloak-demo",
+                        "index": "apps/angular/keycloak-demo/src/index.html",
+                        "main": "apps/angular/keycloak-demo/src/main.ts",
+                        "polyfills": "apps/angular/keycloak-demo/src/polyfills.ts",
+                        "tsConfig": "apps/angular/keycloak-demo/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "apps/angular/keycloak-demo/src/assets",
+                                "output": "./assets/keycloak-demo"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/ui/components/src/assets",
+                                "output": "./assets/ui"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/stencil/design-system/src/statics/assets/design-system",
+                                "output": "./assets/design-system"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/angular/shared/default-screens/src/assets",
+                                "output": "./assets/default-screens"
+                            }
+                        ],
+                        "styles": [
+                            "libs/stencil/design-system/src/styles/apollo.scss",
+                            "apps/angular/keycloak-demo/src/styles.scss",
+                            "libs/ui/styles/src/lib/ui-styles.scss"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/angular/keycloak-demo/src/environments/environment.ts",
+                                    "with": "apps/angular/keycloak-demo/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        },
+                        "sandbox": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/angular/keycloak-demo/src/environments/environment.ts",
+                                    "with": "apps/angular/keycloak-demo/src/environments/environment.sandbox.ts"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@angular-builders/custom-webpack:dev-server",
+                    "options": {
+                        "browserTarget": "keycloak-demo:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "keycloak-demo:build:production"
+                        },
+                        "sandbox": {
+                            "browserTarget": "keycloak-demo:build:sandbox"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "executor": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "keycloak-demo:build"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/angular/keycloak-demo/src/**/*.ts",
+                            "apps/angular/keycloak-demo/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/angular/keycloak-demo"],
+                    "options": {
+                        "jestConfig": "apps/angular/keycloak-demo/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "keycloak-demo-home": {
+            "root": "libs/angular/keycloak-demo/home",
+            "sourceRoot": "libs/angular/keycloak-demo/home/src",
+            "projectType": "library",
+            "generators": {},
+            "prefix": "keycloak-demo",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/keycloak-demo/home/src/**/*.ts",
+                            "libs/angular/keycloak-demo/home/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/keycloak-demo/home"],
+                    "options": {
+                        "jestConfig": "libs/angular/keycloak-demo/home/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "ops-dash": {
+            "projectType": "application",
+            "root": "apps/angular/ops-dash",
+            "sourceRoot": "apps/angular/ops-dash/src",
+            "prefix": "ops-dash",
+            "targets": {
+                "deploy": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": ["./app-deploy.sh distPath=dist/apps/angular/ appName=ops-dash stage=${STAGE}"],
+                        "parallel": false
+                    }
+                },
+                "build": {
+                    "executor": "@angular-builders/custom-webpack:browser",
+                    "options": {
+                        "customWebpackConfig": {
+                            "path": "apps/angular/ops-dash/webpack.config.ts",
+                            "mergeRules": {
+                                "externals": "replace"
+                            }
+                        },
+                        "optimization": false,
+                        "outputPath": "dist/apps/angular/ops-dash",
+                        "index": "apps/angular/ops-dash/src/index.html",
+                        "main": "apps/angular/ops-dash/src/main.ts",
+                        "polyfills": "apps/angular/ops-dash/src/polyfills.ts",
+                        "tsConfig": "apps/angular/ops-dash/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "apps/angular/ops-dash/src/assets",
+                                "output": "./assets/ops-dash"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/ui/components/src/assets",
+                                "output": "./assets/ui"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/stencil/design-system/src/statics/assets/design-system",
+                                "output": "./assets/design-system"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/packages/keycloak/src/assets",
+                                "output": "./assets/keycloak"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/angular/shared/default-screens/src/assets",
+                                "output": "./assets/default-screens"
+                            }
+                        ],
+                        "styles": [
+                            "libs/stencil/design-system/src/styles/apollo.scss",
+                            "apps/angular/ops-dash/src/styles.scss",
+                            "libs/ui/styles/src/lib/ui-styles.scss"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/angular/ops-dash/src/environments/environment.ts",
+                                    "with": "apps/angular/ops-dash/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@angular-builders/custom-webpack:dev-server",
+                    "options": {
+                        "browserTarget": "ops-dash:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "ops-dash:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "executor": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "ops-dash:build"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/angular/ops-dash/src/**/*.ts", "apps/angular/ops-dash/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/angular/ops-dash"],
+                    "options": {
+                        "jestConfig": "apps/angular/ops-dash/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "ops-dash-e2e": {
+            "root": "apps/angular/ops-dash-e2e",
+            "sourceRoot": "apps/angular/ops-dash-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/angular/ops-dash-e2e/cypress.json",
+                        "tsConfig": "apps/angular/ops-dash-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "ops-dash:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "ops-dash:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/angular/ops-dash-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "ops-dash-variables": {
+            "projectType": "library",
+            "root": "libs/angular/ops-dash/variables",
+            "sourceRoot": "libs/angular/ops-dash/variables/src",
+            "prefix": "ops-dash",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/ops-dash/variables/src/**/*.ts",
+                            "libs/angular/ops-dash/variables/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/ops-dash/variables"],
+                    "options": {
+                        "jestConfig": "libs/angular/ops-dash/variables/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "ops-dash-help": {
+            "projectType": "library",
+            "root": "libs/angular/ops-dash/help",
+            "sourceRoot": "libs/angular/ops-dash/help/src",
+            "prefix": "ops-dash",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/ops-dash/help/src/**/*.ts",
+                            "libs/angular/ops-dash/help/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/ops-dash/help"],
+                    "options": {
+                        "jestConfig": "libs/angular/ops-dash/help/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "ops-dash-shared": {
+            "projectType": "library",
+            "root": "libs/angular/ops-dash/shared",
+            "sourceRoot": "libs/angular/ops-dash/shared/src",
+            "prefix": "ops-dash",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/ops-dash/shared/src/**/*.ts",
+                            "libs/angular/ops-dash/shared/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/ops-dash/shared"],
+                    "options": {
+                        "jestConfig": "libs/angular/ops-dash/shared/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "picpay-lab": {
+            "projectType": "application",
+            "root": "apps/angular/picpay-lab",
+            "sourceRoot": "apps/angular/picpay-lab/src",
+            "prefix": "picpay-lab",
+            "targets": {
+                "deploy": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": ["./app-deploy.sh distPath=dist/apps/angular/ appName=picpay-lab stage=${STAGE}"],
+                        "parallel": false
+                    }
+                },
+                "build": {
+                    "executor": "@angular-builders/custom-webpack:browser",
+                    "options": {
+                        "customWebpackConfig": {
+                            "path": "apps/angular/picpay-lab/webpack.config.ts",
+                            "mergeRules": {
+                                "externals": "replace"
+                            }
+                        },
+                        "optimization": false,
+                        "outputPath": "dist/apps/angular/picpay-lab",
+                        "index": "apps/angular/picpay-lab/src/index.html",
+                        "main": "apps/angular/picpay-lab/src/main.ts",
+                        "polyfills": "apps/angular/picpay-lab/src/polyfills.ts",
+                        "tsConfig": "apps/angular/picpay-lab/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "apps/angular/picpay-lab/src/assets",
+                                "output": "./assets/picpay-lab"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/ui/components/src/assets",
+                                "output": "./assets/ui"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/stencil/design-system/src/statics/assets/design-system",
+                                "output": "./assets/design-system"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "./libs/angular/picpay-lab/assets/",
+                                "output": "./assets"
+                            }
+                        ],
+                        "styles": [
+                            "libs/stencil/design-system/src/styles/apollo.scss",
+                            "apps/angular/picpay-lab/src/styles.scss",
+                            "libs/ui/styles/src/lib/ui-styles.scss"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/angular/picpay-lab/src/environments/environment.ts",
+                                    "with": "apps/angular/picpay-lab/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@angular-builders/custom-webpack:dev-server",
+                    "options": {
+                        "browserTarget": "picpay-lab:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "picpay-lab:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "executor": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "picpay-lab:build"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/angular/picpay-lab/src/**/*.ts",
+                            "apps/angular/picpay-lab/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/angular/picpay-lab"],
+                    "options": {
+                        "jestConfig": "apps/angular/picpay-lab/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "picpay-lab-e2e": {
+            "root": "apps/angular/picpay-lab-e2e",
+            "sourceRoot": "apps/angular/picpay-lab-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/angular/picpay-lab-e2e/cypress.json",
+                        "tsConfig": "apps/angular/picpay-lab-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "picpay-lab:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "picpay-lab:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/angular/picpay-lab-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "picpedia": {
+            "projectType": "application",
+            "root": "apps/angular/picpedia",
+            "sourceRoot": "apps/angular/picpedia/src",
+            "prefix": "picpedia",
+            "targets": {
+                "deploy": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": ["./app-deploy.sh distPath=dist/apps/angular/ appName=picpedia stage=${STAGE}"],
+                        "parallel": false
+                    }
+                },
+                "build": {
+                    "executor": "@angular-builders/custom-webpack:browser",
+                    "options": {
+                        "customWebpackConfig": {
+                            "path": "apps/angular/picpedia/webpack.config.ts",
+                            "mergeRules": {
+                                "externals": "replace"
+                            }
+                        },
+                        "optimization": false,
+                        "outputPath": "dist/apps/angular/picpedia",
+                        "index": "apps/angular/picpedia/src/index.html",
+                        "main": "apps/angular/picpedia/src/main.ts",
+                        "polyfills": "apps/angular/picpedia/src/polyfills.ts",
+                        "tsConfig": "apps/angular/picpedia/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "apps/angular/picpedia/src/assets",
+                                "output": "./assets/picpedia"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/ui/components/src/assets",
+                                "output": "./assets/ui"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/stencil/design-system/src/statics/assets/design-system",
+                                "output": "./assets/design-system"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "./libs/angular/picpedia/assets/src/lib",
+                                "output": "./assets/picpedia"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/packages/keycloak/src/assets",
+                                "output": "./assets/keycloak"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/angular/shared/default-screens/src/assets",
+                                "output": "./assets/default-screens"
+                            }
+                        ],
+                        "styles": [
+                            "libs/stencil/design-system/src/styles/apollo.scss",
+                            "apps/angular/picpedia/src/styles.scss",
+                            "libs/ui/styles/src/lib/ui-styles.scss"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/angular/picpedia/src/environments/environment.ts",
+                                    "with": "apps/angular/picpedia/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@angular-builders/custom-webpack:dev-server",
+                    "options": {
+                        "browserTarget": "picpedia:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "picpedia:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "executor": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "picpedia:build"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/angular/picpedia/src/**/*.ts", "apps/angular/picpedia/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/angular/picpedia"],
+                    "options": {
+                        "jestConfig": "apps/angular/picpedia/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "picpedia-e2e": {
+            "root": "apps/angular/picpedia-e2e",
+            "sourceRoot": "apps/angular/picpedia-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/angular/picpedia-e2e/cypress.json",
+                        "tsConfig": "apps/angular/picpedia-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "picpedia:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "picpedia:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/angular/picpedia-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "seller-panel": {
+            "projectType": "application",
+            "root": "apps/angular/seller-panel",
+            "sourceRoot": "apps/angular/seller-panel/src",
+            "prefix": "seller-panel",
+            "targets": {
+                "deploy": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": ["./app-deploy.sh distPath=dist/apps/angular/ appName=seller-panel stage=${STAGE}"],
+                        "parallel": false
+                    }
+                },
+                "build": {
+                    "executor": "@angular-builders/custom-webpack:browser",
+                    "options": {
+                        "customWebpackConfig": {
+                            "path": "apps/angular/seller-panel/webpack.config.ts",
+                            "mergeRules": {
+                                "externals": "replace"
+                            }
+                        },
+                        "optimization": false,
+                        "outputPath": "dist/apps/angular/seller-panel",
+                        "index": "apps/angular/seller-panel/src/index.html",
+                        "main": "apps/angular/seller-panel/src/main.ts",
+                        "polyfills": "apps/angular/seller-panel/src/polyfills.ts",
+                        "tsConfig": "apps/angular/seller-panel/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "apps/angular/seller-panel/src/assets",
+                                "output": "./assets/seller-panel"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/ui/components/src/assets",
+                                "output": "./assets/ui"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "./libs/angular/seller-panel/assets/src",
+                                "output": "./assets"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/stencil/design-system/src/statics/assets/design-system",
+                                "output": "./assets/design-system"
+                            }
+                        ],
+                        "styles": [
+                            "libs/stencil/design-system/src/styles/apollo.scss",
+                            "apps/angular/seller-panel/src/styles.scss",
+                            "libs/ui/styles/src/lib/ui-styles.scss"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "sandbox": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/angular/seller-panel/src/environments/environment.ts",
+                                    "with": "apps/angular/seller-panel/src/environments/environment.sandbox.ts"
+                                }
+                            ]
+                        },
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/angular/seller-panel/src/environments/environment.ts",
+                                    "with": "apps/angular/seller-panel/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@angular-builders/custom-webpack:dev-server",
+                    "options": {
+                        "browserTarget": "seller-panel:build"
+                    },
+                    "configurations": {
+                        "sandbox": {
+                            "browserTarget": "seller-panel:build:sandbox"
+                        },
+                        "production": {
+                            "browserTarget": "seller-panel:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "executor": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "seller-panel:build"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/angular/seller-panel/src/**/*.ts",
+                            "apps/angular/seller-panel/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/angular/seller-panel"],
+                    "options": {
+                        "jestConfig": "apps/angular/seller-panel/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-panel-e2e": {
+            "root": "apps/angular/seller-panel-e2e",
+            "sourceRoot": "apps/angular/seller-panel-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/angular/seller-panel-e2e/cypress.json",
+                        "tsConfig": "apps/angular/seller-panel-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "seller-panel:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "seller-panel:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/angular/seller-panel-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "seller-panel-services": {
+            "projectType": "library",
+            "root": "libs/angular/seller-panel/services",
+            "sourceRoot": "libs/angular/seller-panel/services/src",
+            "prefix": "seller-panel",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-panel/services/src/**/*.ts",
+                            "libs/angular/seller-panel/services/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-panel/services"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-panel/services/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-panel-helpers": {
+            "projectType": "library",
+            "root": "libs/angular/seller-panel/helpers",
+            "sourceRoot": "libs/angular/seller-panel/helpers/src",
+            "prefix": "seller-panel",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-panel/helpers/src/**/*.ts",
+                            "libs/angular/seller-panel/helpers/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-panel/helpers"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-panel/helpers/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-panel-shared": {
+            "projectType": "library",
+            "root": "libs/angular/seller-panel/shared",
+            "sourceRoot": "libs/angular/seller-panel/shared/src",
+            "prefix": "seller-panel",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-panel/shared/src/**/*.ts",
+                            "libs/angular/seller-panel/shared/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-panel/shared"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-panel/shared/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-panel-auth": {
+            "projectType": "library",
+            "root": "libs/angular/seller-panel/auth",
+            "sourceRoot": "libs/angular/seller-panel/auth/src",
+            "prefix": "seller-panel",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-panel/auth/src/**/*.ts",
+                            "libs/angular/seller-panel/auth/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-panel/auth"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-panel/auth/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-panel-assets": {
+            "projectType": "library",
+            "root": "libs/angular/seller-panel/assets",
+            "sourceRoot": "libs/angular/seller-panel/assets/src",
+            "prefix": "seller-panel",
+            "targets": {}
+        },
+        "seller-panel-bank-accounts": {
+            "projectType": "library",
+            "root": "libs/angular/seller-panel/bank-accounts",
+            "sourceRoot": "libs/angular/seller-panel/bank-accounts/src",
+            "prefix": "seller-panel",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-panel/bank-accounts/src/**/*.ts",
+                            "libs/angular/seller-panel/bank-accounts/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-panel/bank-accounts"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-panel/bank-accounts/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-panel-charge": {
+            "projectType": "library",
+            "root": "libs/angular/seller-panel/charge",
+            "sourceRoot": "libs/angular/seller-panel/charge/src",
+            "prefix": "seller-panel",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-panel/charge/src/**/*.ts",
+                            "libs/angular/seller-panel/charge/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-panel/charge"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-panel/charge/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-panel-credentials": {
+            "projectType": "library",
+            "root": "libs/angular/seller-panel/credentials",
+            "sourceRoot": "libs/angular/seller-panel/credentials/src",
+            "prefix": "seller-panel",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-panel/credentials/src/**/*.ts",
+                            "libs/angular/seller-panel/credentials/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-panel/credentials"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-panel/credentials/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-panel-extract": {
+            "projectType": "library",
+            "root": "libs/angular/seller-panel/extract",
+            "sourceRoot": "libs/angular/seller-panel/extract/src",
+            "prefix": "seller-panel",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-panel/extract/src/**/*.ts",
+                            "libs/angular/seller-panel/extract/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-panel/extract"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-panel/extract/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-panel-forgot-password": {
+            "projectType": "library",
+            "root": "libs/angular/seller-panel/forgot-password",
+            "sourceRoot": "libs/angular/seller-panel/forgot-password/src",
+            "prefix": "seller-panel",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-panel/forgot-password/src/**/*.ts",
+                            "libs/angular/seller-panel/forgot-password/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-panel/forgot-password"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-panel/forgot-password/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-panel-home": {
+            "projectType": "library",
+            "root": "libs/angular/seller-panel/home",
+            "sourceRoot": "libs/angular/seller-panel/home/src",
+            "prefix": "seller-panel",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-panel/home/src/**/*.ts",
+                            "libs/angular/seller-panel/home/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-panel/home"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-panel/home/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-panel-integrations": {
+            "projectType": "library",
+            "root": "libs/angular/seller-panel/integrations",
+            "sourceRoot": "libs/angular/seller-panel/integrations/src",
+            "prefix": "seller-panel",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-panel/integrations/src/**/*.ts",
+                            "libs/angular/seller-panel/integrations/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-panel/integrations"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-panel/integrations/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-panel-login": {
+            "projectType": "library",
+            "root": "libs/angular/seller-panel/login",
+            "sourceRoot": "libs/angular/seller-panel/login/src",
+            "prefix": "seller-panel",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-panel/login/src/**/*.ts",
+                            "libs/angular/seller-panel/login/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-panel/login"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-panel/login/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-panel-settings": {
+            "projectType": "library",
+            "root": "libs/angular/seller-panel/settings",
+            "sourceRoot": "libs/angular/seller-panel/settings/src",
+            "prefix": "seller-panel",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-panel/settings/src/**/*.ts",
+                            "libs/angular/seller-panel/settings/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-panel/settings"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-panel/settings/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-panel-shipment": {
+            "projectType": "library",
+            "root": "libs/angular/seller-panel/shipment",
+            "sourceRoot": "libs/angular/seller-panel/shipment/src",
+            "prefix": "seller-panel",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-panel/shipment/src/**/*.ts",
+                            "libs/angular/seller-panel/shipment/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-panel/shipment"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-panel/shipment/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-panel-transactions": {
+            "projectType": "library",
+            "root": "libs/angular/seller-panel/transactions",
+            "sourceRoot": "libs/angular/seller-panel/transactions/src",
+            "prefix": "seller-panel",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-panel/transactions/src/**/*.ts",
+                            "libs/angular/seller-panel/transactions/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-panel/transactions"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-panel/transactions/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-register": {
+            "projectType": "application",
+            "root": "apps/angular/seller-register",
+            "sourceRoot": "apps/angular/seller-register/src",
+            "prefix": "seller-register",
+            "targets": {
+                "build": {
+                    "executor": "@angular-builders/custom-webpack:browser",
+                    "options": {
+                        "customWebpackConfig": {
+                            "path": "apps/angular/seller-register/webpack.config.ts",
+                            "mergeRules": {
+                                "externals": "replace"
+                            }
+                        },
+                        "optimization": false,
+                        "outputPath": "dist/apps/angular/seller-register",
+                        "index": "apps/angular/seller-register/src/index.html",
+                        "main": "apps/angular/seller-register/src/main.ts",
+                        "polyfills": "apps/angular/seller-register/src/polyfills.ts",
+                        "tsConfig": "apps/angular/seller-register/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "apps/angular/seller-register/src/assets",
+                                "output": "./assets/seller-register"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/ui/components/src/assets",
+                                "output": "./assets/ui"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/stencil/design-system/src/statics/assets/design-system",
+                                "output": "./assets/design-system"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "./libs/angular/seller-register/assets/src/lib/assets",
+                                "output": "./assets/seller-register"
+                            }
+                        ],
+                        "styles": [
+                            "libs/stencil/design-system/src/styles/apollo.scss",
+                            "libs/ui/styles/src/lib/ui-styles.scss",
+                            "apps/angular/seller-register/src/styles.scss"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/angular/seller-register/src/environments/environment.ts",
+                                    "with": "apps/angular/seller-register/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@angular-builders/custom-webpack:dev-server",
+                    "options": {
+                        "browserTarget": "seller-register:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "seller-register:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "executor": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "seller-register:build"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/angular/seller-register/src/**/*.ts",
+                            "apps/angular/seller-register/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/angular/seller-register"],
+                    "options": {
+                        "jestConfig": "apps/angular/seller-register/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-register-e2e": {
+            "root": "apps/angular/seller-register-e2e",
+            "sourceRoot": "apps/angular/seller-register-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/angular/seller-register-e2e/cypress.json",
+                        "tsConfig": "apps/angular/seller-register-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "seller-register:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "seller-register:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/angular/seller-register-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "seller-register-assets": {
+            "projectType": "library",
+            "root": "libs/angular/seller-register/assets",
+            "sourceRoot": "libs/angular/seller-register/assets/src",
+            "prefix": "seller-register",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-register/assets/src/**/*.ts",
+                            "libs/angular/seller-register/assets/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-register/assets"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-register/assets/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-register-form": {
+            "projectType": "library",
+            "root": "libs/angular/seller-register/form",
+            "sourceRoot": "libs/angular/seller-register/form/src",
+            "prefix": "seller-register",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-register/form/src/**/*.ts",
+                            "libs/angular/seller-register/form/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-register/form"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-register/form/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-register-shared": {
+            "projectType": "library",
+            "root": "libs/angular/seller-register/shared",
+            "sourceRoot": "libs/angular/seller-register/shared/src",
+            "prefix": "seller-register",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-register/shared/src/**/*.ts",
+                            "libs/angular/seller-register/shared/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-register/shared"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-register/shared/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "seller-register-config": {
+            "projectType": "library",
+            "root": "libs/angular/seller-register/config",
+            "sourceRoot": "libs/angular/seller-register/config/src",
+            "prefix": "seller-register",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/seller-register/config/src/**/*.ts",
+                            "libs/angular/seller-register/config/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/seller-register/config"],
+                    "options": {
+                        "jestConfig": "libs/angular/seller-register/config/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "packages-features-flag": {
+            "root": "libs/packages/features-flag",
+            "sourceRoot": "libs/packages/features-flag/src",
+            "projectType": "library",
+            "targets": {
+                "build": {
+                    "executor": "@nrwl/angular:package",
+                    "options": {
+                        "tsConfig": "libs/packages/features-flag/tsconfig.lib.json",
+                        "project": "libs/packages/features-flag/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/packages/features-flag/tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/packages/features-flag/**/*.ts"]
+                    }
+                },
+                "publish": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": [
+                            {
+                                "command": "nx build packages-feature-flag --prod && yarn publish ./dist/libs/packages/packages-feature-flag"
+                            }
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/packages/features-flag"],
+                    "options": {
+                        "jestConfig": "libs/packages/features-flag/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "packages-keycloak": {
+            "projectType": "library",
+            "root": "libs/packages/keycloak",
+            "sourceRoot": "libs/packages/keycloak/src",
+            "prefix": "picpay",
+            "targets": {
+                "build": {
+                    "executor": "@nrwl/angular:package",
+                    "options": {
+                        "tsConfig": "libs/packages/keycloak/tsconfig.lib.json",
+                        "project": "libs/packages/keycloak/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/packages/keycloak/tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/packages/keycloak/src/**/*.ts",
+                            "libs/packages/keycloak/src/**/*.html"
+                        ]
+                    }
+                },
+                "publish": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": [
+                            {
+                                "command": "nx build packages-keycloak --prod && yarn publish ./dist/libs/packages/packages-keycloak"
+                            }
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/packages/keycloak"],
+                    "options": {
+                        "jestConfig": "libs/packages/keycloak/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "ui-components": {
+            "projectType": "library",
+            "root": "libs/ui/components",
+            "sourceRoot": "libs/ui/components/src",
+            "prefix": "picpay",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/ui/components/src/**/*.ts", "libs/ui/components/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ui/components"],
+                    "options": {
+                        "jestConfig": "libs/ui/components/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "ui-styles": {
+            "projectType": "library",
+            "root": "libs/ui/styles",
+            "sourceRoot": "libs/ui/styles/src",
+            "prefix": "picpay",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/ui/styles/src/**/*.ts", "libs/ui/styles/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ui/styles"],
+                    "options": {
+                        "jestConfig": "libs/ui/styles/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "ui-layouts": {
+            "projectType": "library",
+            "root": "libs/ui/layouts",
+            "sourceRoot": "libs/ui/layouts/src",
+            "prefix": "picpay",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/ui/layouts/src/**/*.ts", "libs/ui/layouts/src/**/*.html"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/ui/layouts"],
+                    "options": {
+                        "jestConfig": "libs/ui/layouts/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "website": {
+            "root": "apps/react/website",
+            "sourceRoot": "apps/react/website",
+            "projectType": "application",
+            "targets": {
+                "build": {
+                    "executor": "@nrwl/next:build",
+                    "outputs": ["{options.outputPath}"],
+                    "options": {
+                        "root": "apps/react/website",
+                        "outputPath": "dist/apps/react/website"
+                    },
+                    "configurations": {
+                        "production": {}
+                    }
+                },
+                "serve": {
+                    "executor": "@nrwl/next:server",
+                    "options": {
+                        "buildTarget": "website:build",
+                        "dev": true
+                    },
+                    "configurations": {
+                        "production": {
+                            "buildTarget": "website:build:production",
+                            "dev": false
+                        }
+                    }
+                },
+                "export": {
+                    "executor": "@nrwl/next:export",
+                    "options": {
+                        "buildTarget": "website:build:production"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/react/website/**/*.{ts,tsx,js,jsx}"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/react/website"],
+                    "options": {
+                        "jestConfig": "apps/react/website/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "website-e2e": {
+            "root": "apps/react/website-e2e",
+            "sourceRoot": "apps/react/website-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/react/website-e2e/cypress.json",
+                        "tsConfig": "apps/react/website-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "website:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "website:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/react/website-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "webview": {
+            "style": "scss",
+            "root": "apps/react/webview",
+            "sourceRoot": "apps/react/webview",
+            "projectType": "application",
+            "targets": {
+                "build": {
+                    "executor": "@nrwl/next:build",
+                    "outputs": ["{options.outputPath}"],
+                    "options": {
+                        "root": "apps/react/webview",
+                        "outputPath": "dist/apps/react/webview",
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "libs/stencil/design-system/src/statics/assets/design-system",
+                                "output": "./assets/design-system"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/react/webviews/cashback-calculator/src/lib/assets",
+                                "output": "./assets/webviews"
+                            }
+                        ]
+                    },
+                    "configurations": {
+                        "production": {}
+                    }
+                },
+                "serve": {
+                    "executor": "@nrwl/next:server",
+                    "options": {
+                        "buildTarget": "webview:build",
+                        "dev": true
+                    },
+                    "configurations": {
+                        "production": {
+                            "buildTarget": "webview:build:production",
+                            "dev": false
+                        }
+                    }
+                },
+                "export": {
+                    "executor": "@nrwl/next:export",
+                    "options": {
+                        "buildTarget": "webview:build:production"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/react/webview/**/*.{ts,tsx,js,jsx}"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/react/webview"],
+                    "options": {
+                        "jestConfig": "apps/react/webview/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "webview-e2e": {
+            "root": "apps/react/webview-e2e",
+            "sourceRoot": "apps/react/webview-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/react/webview-e2e/cypress.json",
+                        "tsConfig": "apps/react/webview-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "webview:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "webview:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/react/webview-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "cashback-calculator": {
+            "root": "libs/react/webviews/cashback-calculator",
+            "sourceRoot": "libs/react/webviews/cashback-calculator/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/react/webviews/cashback-calculator/**/*.{ts,tsx,js,jsx}"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/react/webviews/cashback-calculator"],
+                    "options": {
+                        "jestConfig": "libs/react/webviews/cashback-calculator/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "packages-event-tracking": {
+            "root": "libs/packages/event-tracking",
+            "sourceRoot": "libs/packages/event-tracking/src",
+            "projectType": "library",
+            "targets": {
+                "build": {
+                    "executor": "@nrwl/angular:package",
+                    "options": {
+                        "buildableProjectDepsInPackageJsonType": "peerDependencies",
+                        "tsConfig": "libs/packages/event-tracking/tsconfig.lib.json",
+                        "project": "libs/packages/event-tracking/ng-package.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "tsConfig": "libs/packages/keycloak/tsconfig.lib.prod.json"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/packages/event-tracking/**/*.ts"]
+                    }
+                },
+                "publish": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": [
+                            {
+                                "command": "nx build packages-event-tracking --prod && yarn publish ./dist/libs/packages/packages-event-tracking"
+                            }
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/packages/event-tracking"],
+                    "options": {
+                        "jestConfig": "libs/packages/event-tracking/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "picpay-lab-dashboard": {
+            "projectType": "library",
+            "root": "libs/angular/picpay-lab/dashboard",
+            "sourceRoot": "libs/angular/picpay-lab/dashboard/src",
+            "prefix": "picpay",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/picpay-lab/dashboard/src/**/*.ts",
+                            "libs/angular/picpay-lab/dashboard/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/picpay-lab/dashboard"],
+                    "options": {
+                        "jestConfig": "libs/angular/picpay-lab/dashboard/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "dev-portal-not-found": {
+            "projectType": "library",
+            "root": "libs/angular/dev-portal/not-found",
+            "sourceRoot": "libs/angular/dev-portal/not-found/src",
+            "prefix": "dev-portal",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/dev-portal/not-found/src/**/*.ts",
+                            "libs/angular/dev-portal/not-found/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/dev-portal/not-found"],
+                    "options": {
+                        "jestConfig": "libs/angular/dev-portal/not-found/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "picpedia-shared": {
+            "projectType": "library",
+            "root": "libs/angular/picpedia/shared",
+            "sourceRoot": "libs/angular/picpedia/shared/src",
+            "prefix": "picpedia",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/picpedia/shared/src/**/*.ts",
+                            "libs/angular/picpedia/shared/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/picpedia/shared"],
+                    "options": {
+                        "jestConfig": "libs/angular/picpedia/shared/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "picpedia-home": {
+            "projectType": "library",
+            "root": "libs/angular/picpedia/home",
+            "sourceRoot": "libs/angular/picpedia/home/src",
+            "prefix": "picpedia",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/picpedia/home/src/**/*.ts",
+                            "libs/angular/picpedia/home/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/picpedia/home"],
+                    "options": {
+                        "jestConfig": "libs/angular/picpedia/home/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "picpedia-assets": {
+            "projectType": "library",
+            "root": "libs/angular/picpedia/assets",
+            "sourceRoot": "libs/angular/picpedia/assets/src",
+            "prefix": "picpedia",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/picpedia/assets/src/**/*.ts",
+                            "libs/angular/picpedia/assets/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/picpedia/assets"],
+                    "options": {
+                        "jestConfig": "libs/angular/picpedia/assets/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "packages-stencil-sass": {
+            "root": "libs/packages/stencil-sass",
+            "sourceRoot": "libs/packages/stencil-sass/src",
+            "projectType": "library",
+            "targets": {
+                "prepare": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": [
+                            {
+                                "command": "nx run packages-stencil-sass:build --with-deps"
+                            }
+                        ]
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/packages/stencil-sass/**/*.ts"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/packages/stencil-sass"],
+                    "options": {
+                        "jestConfig": "libs/packages/stencil-sass/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "build": {
+                    "executor": "@nrwl/node:package",
+                    "outputs": ["dist/libs/packages/stencil-sass"],
+                    "options": {
+                        "outputPath": "dist/libs/packages/stencil-sass",
+                        "tsConfig": "libs/packages/stencil-sass/tsconfig.lib.json",
+                        "packageJson": "libs/packages/stencil-sass/package.json",
+                        "main": "libs/packages/stencil-sass/src/index.ts",
+                        "assets": ["libs/packages/stencil-sass/*.md"]
+                    }
+                },
+                "publish": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "outputs": [],
+                    "options": {
+                        "command": "nx build packages-stencil-sass && cd ./dist/libs/packages/stencil-sass && yarn publish"
+                    }
+                }
+            }
+        },
+        "packages-sass-functions": {
+            "root": "libs/packages/sass-functions",
+            "sourceRoot": "libs/packages/sass-functions/src",
+            "projectType": "library",
+            "targets": {
+                "prepare": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": [
+                            {
+                                "command": "nx run packages-sass-functions:build --with-deps"
+                            }
+                        ]
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/packages/sass-functions/**/*.ts"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/packages/sass-functions"],
+                    "options": {
+                        "jestConfig": "libs/packages/sass-functions/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "build": {
+                    "executor": "@nrwl/node:package",
+                    "outputs": ["dist/libs/packages/sass-functions"],
+                    "options": {
+                        "outputPath": "dist/libs/packages/sass-functions",
+                        "tsConfig": "libs/packages/sass-functions/tsconfig.lib.json",
+                        "packageJson": "libs/packages/sass-functions/package.json",
+                        "main": "libs/packages/sass-functions/src/index.ts",
+                        "assets": ["libs/packages/sass-functions/*.md"]
+                    }
+                },
+                "publish": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "outputs": [],
+                    "options": {
+                        "command": "nx build packages-sass-functions && cd ./dist/libs/packages/sass-functions && yarn publish"
+                    }
+                }
+            }
+        },
+        "angular-shared-core-data-access": {
+            "projectType": "library",
+            "root": "libs/angular/shared/core/data-access",
+            "sourceRoot": "libs/angular/shared/core/data-access/src",
+            "prefix": "picpay",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/shared/core/data-access/src/**/*.ts",
+                            "libs/angular/shared/core/data-access/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/shared/core/data-access"],
+                    "options": {
+                        "jestConfig": "libs/angular/shared/core/data-access/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "angular-shared-core-notifications": {
+            "projectType": "library",
+            "root": "libs/angular/shared/core/notifications",
+            "sourceRoot": "libs/angular/shared/core/notifications/src",
+            "prefix": "picpay",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/shared/core/notifications/src/**/*.ts",
+                            "libs/angular/shared/core/notifications/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/shared/core/notifications"],
+                    "options": {
+                        "jestConfig": "libs/angular/shared/core/notifications/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "angular-shared-default-screens": {
+            "projectType": "library",
+            "root": "libs/angular/shared/default-screens",
+            "sourceRoot": "libs/angular/shared/default-screens/src",
+            "prefix": "picpay",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/shared/default-screens/src/**/*.ts",
+                            "libs/angular/shared/default-screens/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/shared/default-screens"],
+                    "options": {
+                        "jestConfig": "libs/angular/shared/default-screens/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "angular-shared-directives": {
+            "projectType": "library",
+            "root": "libs/angular/shared/directives",
+            "sourceRoot": "libs/angular/shared/directives/src",
+            "prefix": "picpay",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/shared/directives/src/**/*.ts",
+                            "libs/angular/shared/directives/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/shared/directives"],
+                    "options": {
+                        "jestConfig": "libs/angular/shared/directives/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "angular-shared-e2e": {
+            "projectType": "library",
+            "root": "libs/angular/shared/e2e",
+            "sourceRoot": "libs/angular/shared/e2e/src",
+            "prefix": "picpay",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/shared/e2e/src/**/*.ts",
+                            "libs/angular/shared/e2e/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/shared/e2e"],
+                    "options": {
+                        "jestConfig": "libs/angular/shared/e2e/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "angular-shared-helpers": {
+            "projectType": "library",
+            "root": "libs/angular/shared/helpers",
+            "sourceRoot": "libs/angular/shared/helpers/src",
+            "prefix": "picpay",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/shared/helpers/src/**/*.ts",
+                            "libs/angular/shared/helpers/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/shared/helpers"],
+                    "options": {
+                        "jestConfig": "libs/angular/shared/helpers/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "angular-shared-pipes": {
+            "projectType": "library",
+            "root": "libs/angular/shared/pipes",
+            "sourceRoot": "libs/angular/shared/pipes/src",
+            "prefix": "picpay",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/shared/pipes/src/**/*.ts",
+                            "libs/angular/shared/pipes/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/shared/pipes"],
+                    "options": {
+                        "jestConfig": "libs/angular/shared/pipes/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "angular-shared-services": {
+            "projectType": "library",
+            "root": "libs/angular/shared/services",
+            "sourceRoot": "libs/angular/shared/services/src",
+            "prefix": "picpay",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/shared/services/src/**/*.ts",
+                            "libs/angular/shared/services/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/shared/services"],
+                    "options": {
+                        "jestConfig": "libs/angular/shared/services/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "angular-shared-track-events": {
+            "projectType": "library",
+            "root": "libs/angular/shared/track-events",
+            "sourceRoot": "libs/angular/shared/track-events/src",
+            "prefix": "picpay",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/shared/track-events/src/**/*.ts",
+                            "libs/angular/shared/track-events/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/shared/track-events"],
+                    "options": {
+                        "jestConfig": "libs/angular/shared/track-events/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "angular-shared-validators": {
+            "projectType": "library",
+            "root": "libs/angular/shared/validators",
+            "sourceRoot": "libs/angular/shared/validators/src",
+            "prefix": "picpay",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/shared/validators/src/**/*.ts",
+                            "libs/angular/shared/validators/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/shared/validators"],
+                    "options": {
+                        "jestConfig": "libs/angular/shared/validators/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "api-picpedia": {
+            "root": "apps/nest/api-picpedia",
+            "sourceRoot": "apps/nest/api-picpedia/src",
+            "projectType": "application",
+            "prefix": "api-picpedia",
+            "targets": {
+                "build": {
+                    "executor": "@nrwl/node:build",
+                    "outputs": ["{options.outputPath}"],
+                    "options": {
+                        "outputPath": "dist/apps/nest/api-picpedia",
+                        "main": "apps/nest/api-picpedia/src/main.ts",
+                        "tsConfig": "apps/nest/api-picpedia/tsconfig.app.json",
+                        "assets": ["apps/nest/api-picpedia/src/assets"],
+                        "envFile": "apps/nest/api-picpedia/.env"
+                    },
+                    "configurations": {
+                        "production": {
+                            "optimization": true,
+                            "extractLicenses": true,
+                            "inspect": false,
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/nest/api-picpedia/.env",
+                                    "with": "apps/nest/api-picpedia/.env.prod"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@nrwl/node:execute",
+                    "options": {
+                        "buildTarget": "api-picpedia:build"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/nest/api-picpedia/**/*.ts"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/nest/api-picpedia"],
+                    "options": {
+                        "jestConfig": "apps/nest/api-picpedia/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "api-picpedia-business-glossary": {
+            "root": "libs/nest/api-picpedia/business-glossary",
+            "sourceRoot": "libs/nest/api-picpedia/business-glossary/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/nest/api-picpedia/business-glossary/**/*.ts"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/nest/api-picpedia/business-glossary"],
+                    "options": {
+                        "jestConfig": "libs/nest/api-picpedia/business-glossary/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "api-picpedia-auth": {
+            "root": "libs/nest/api-picpedia/auth",
+            "sourceRoot": "libs/nest/api-picpedia/auth/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/nest/api-picpedia/auth/**/*.ts"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/nest/api-picpedia/auth"],
+                    "options": {
+                        "jestConfig": "libs/nest/api-picpedia/auth/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "studio": {
+            "projectType": "application",
+            "root": "apps/react/studio",
+            "sourceRoot": "apps/react/studio/src",
+            "targets": {
+                "deploy": {
+                    "executor": "@nrwl/workspace:run-commands",
+                    "options": {
+                        "commands": ["./app-deploy.sh distPath=dist/apps/react/ appName=studio stage=${STAGE}"],
+                        "parallel": false
+                    }
+                },
+                "build": {
+                    "executor": "@nx-plus/docusaurus:browser",
+                    "options": {
+                        "outputPath": "dist/apps/react/studio"
+                    }
+                },
+                "serve": {
+                    "executor": "@nx-plus/docusaurus:dev-server",
+                    "options": {
+                        "port": 4200
+                    }
+                }
+            }
+        },
+        "dev-portal-open-banking": {
+            "projectType": "library",
+            "root": "libs/angular/dev-portal/open-banking",
+            "sourceRoot": "libs/angular/dev-portal/open-banking/src",
+            "prefix": "dev-portal",
+            "targets": {
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/dev-portal/open-banking"],
+                    "options": {
+                        "jestConfig": "libs/angular/dev-portal/open-banking/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/dev-portal/open-banking/src/**/*.ts",
+                            "libs/angular/dev-portal/open-banking/src/**/*.html"
+                        ]
+                    }
+                }
+            }
+        },
+        "api-picpedia-shared": {
+            "root": "libs/nest/api-picpedia/shared",
+            "sourceRoot": "libs/nest/api-picpedia/shared/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/nest/api-picpedia/shared/**/*.ts"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/nest/api-picpedia/shared"],
+                    "options": {
+                        "jestConfig": "libs/nest/api-picpedia/shared/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "growth-dash": {
+            "projectType": "application",
+            "root": "apps/angular/growth-dash",
+            "sourceRoot": "apps/angular/growth-dash/src",
+            "prefix": "growth-dash",
+            "targets": {
+                "build": {
+                    "executor": "@angular-builders/custom-webpack:browser",
+                    "options": {
+                        "customWebpackConfig": {
+                            "path": "apps/angular/growth-dash/webpack.config.ts",
+                            "mergeRules": {
+                                "externals": "replace"
+                            }
+                        },
+                        "optimization": false,
+                        "outputPath": "dist/apps/angular/growth-dash",
+                        "index": "apps/angular/growth-dash/src/index.html",
+                        "main": "apps/angular/growth-dash/src/main.ts",
+                        "polyfills": "apps/angular/growth-dash/src/polyfills.ts",
+                        "tsConfig": "apps/angular/growth-dash/tsconfig.app.json",
+                        "aot": true,
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "apps/angular/growth-dash/src/assets",
+                                "output": "./assets/growth-dash"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/ui/components/src/assets",
+                                "output": "./assets/ui"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/stencil/design-system/src/statics/assets/design-system",
+                                "output": "./assets/design-system"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/packages/keycloak/src/assets",
+                                "output": "./assets/keycloak"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/angular/shared/default-screens/src/assets",
+                                "output": "./assets/default-screens"
+                            }
+                        ],
+                        "styles": [
+                            "libs/stencil/design-system/src/styles/apollo.scss",
+                            "apps/angular/growth-dash/src/styles.scss",
+                            "libs/ui/styles/src/lib/ui-styles.scss"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/angular/growth-dash/src/environments/environment.ts",
+                                    "with": "apps/angular/growth-dash/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@angular-builders/custom-webpack:dev-server",
+                    "options": {
+                        "browserTarget": "growth-dash:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "growth-dash:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "executor": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "growth-dash:build"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/angular/growth-dash/src/**/*.ts",
+                            "apps/angular/growth-dash/src/**/*.html"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/angular/growth-dash"],
+                    "options": {
+                        "jestConfig": "apps/angular/growth-dash/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "growth-dash-e2e": {
+            "root": "apps/angular/growth-dash-e2e",
+            "sourceRoot": "apps/angular/growth-dash-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/angular/growth-dash-e2e/cypress.json",
+                        "tsConfig": "apps/angular/growth-dash-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "growth-dash:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "growth-dash:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["apps/angular/growth-dash-e2e/**/*.{js,ts}"]
+                    }
+                }
+            }
+        },
+        "growth-dash-shared": {
+            "projectType": "library",
+            "root": "libs/angular/growth-dash/shared",
+            "sourceRoot": "libs/angular/growth-dash/shared/src",
+            "prefix": "growth-dash",
+            "targets": {
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/growth-dash/shared"],
+                    "options": {
+                        "jestConfig": "libs/angular/growth-dash/shared/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/growth-dash/shared/src/**/*.ts",
+                            "libs/angular/growth-dash/shared/src/**/*.html"
+                        ]
+                    }
+                }
+            }
+        },
+        "growth-dash-campaigns": {
+            "projectType": "library",
+            "root": "libs/angular/growth-dash/campaigns",
+            "sourceRoot": "libs/angular/growth-dash/campaigns/src",
+            "prefix": "growth-dash",
+            "targets": {
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/angular/growth-dash/campaigns"],
+                    "options": {
+                        "jestConfig": "libs/angular/growth-dash/campaigns/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "libs/angular/growth-dash/campaigns/src/**/*.ts",
+                            "libs/angular/growth-dash/campaigns/src/**/*.html"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,152 @@
+@use "mixins/breakpoint";
+
+@use "@material/theme" with (
+    $primary: theme('colors.primary.light.500'),
+    $on-primary: theme('colors.white')
+);
+
+@use "@material/snackbar/mdc-snackbar";
+@use "@material/snackbar";
+
+@mixin snackbar-emphasis-fill-color($fill-color, $border-color) {
+    @include snackbar.fill-color($fill-color);
+    @include snackbar-surface-border($border-color);
+}
+
+@mixin snackbar-fill-color($fill, $text, $border) {
+    color: $text;
+    background: linear-gradient(180deg, rgba(theme('colors.white'), 0.08) 0%, rgba(theme('colors.white'), 0.08) 100%),
+        $fill;
+    border: theme('borderWidth.light') solid $border;
+}
+
+@mixin snackbar-surface-border($border-color) {
+    .mdc-snackbar__surface {
+        border: 1px solid $border-color;
+    }
+}
+
+apollo-snackbar {
+    --mdc-theme-primary: var(--apollo-primary);
+    --mdc-theme-on-primary: var(--apollo-on-primary);
+    --mdc-theme-secondary: var(--apollo-primary);
+    --mdc-theme-on-secondary: var(--apollo-on-primary);
+
+    .mdc-snackbar {
+        @include snackbar.shape-radius(theme('borderRadius.medium'));
+        @include snackbar.fill-color(var(--apollo-background));
+        @include snackbar.label-ink-color(theme('colors.grayscale.600'));
+        @include snackbar.min-width(272px, breakpoint.min(small));
+        @include snackbar.viewport-margin(theme('spacing.2'));
+
+        @include breakpoint.up(small) {
+            @include snackbar.viewport-margin(theme('spacing.5'));
+        }
+
+        &__surface {
+            @include snackbar-surface-border(theme('colors.grayscale.50'));
+
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+            padding: theme('spacing.half') theme('spacing.1');
+
+            @include breakpoint.up(small) {
+                flex-wrap: nowrap;
+            }
+
+            &__wrap__label {
+                flex-wrap: wrap;
+            }
+
+            &__container {
+                apollo-icon {
+                    user-select: none;
+                    max-width: 40px;
+                    margin: theme('spacing.none') theme('spacing.1');
+                }
+            }
+
+            &__container,
+            .mdc-snackbar__dismiss {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            &__icon {
+                &--info {
+                    color: theme('colors.neutral.600');
+                }
+
+                &--done {
+                    color: theme('colors.primary.600');
+                }
+
+                &--warning {
+                    color: theme('colors.warning.600');
+                }
+
+                &--error {
+                    color: theme('colors.critical.600');
+                }
+            }
+        }
+
+        &__actions {
+            display: flex;
+            flex: 1;
+            justify-content: flex-end;
+
+            .apollo-button__label {
+                font-weight: theme('fontWeight.semibold');
+                white-space: nowrap;
+            }
+        }
+
+        &__label {
+            font-weight: theme('fontWeight.semibold');
+            padding-left: theme('spacing.half');
+        }
+
+        &--emphasis {
+            @include snackbar.label-ink-color(theme('colors.grayscale.100'));
+
+            .mdc-snackbar__surface {
+                @include snackbar-fill-color(
+                    theme('colors.grayscale.900'),
+                    theme('colors.grayscale.100'),
+                    theme('colors.grayscale.700')
+                );
+            }
+        }
+    }
+}
+
+[data-theme='dark'] {
+    .mdc-snackbar {
+        @include snackbar.label-ink-color(theme('colors.grayscale.100'));
+
+        &--not-emphasis {
+            .mdc-snackbar__surface {
+                @include snackbar-fill-color(
+                    theme('colors.grayscale.900'),
+                    theme('colors.grayscale.100'),
+                    theme('colors.grayscale.700')
+                );
+            }
+        }
+
+        &--emphasis {
+            @include snackbar.label-ink-color(theme('colors.grayscale.600'));
+
+            .mdc-snackbar__surface {
+                @include snackbar-fill-color(
+                    theme('colors.white'),
+                    theme('colors.grayscale.600'),
+                    theme('colors.grayscale.100')
+                );
+            }
+        }
+    }
+}

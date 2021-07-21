@@ -1,0 +1,65 @@
+<div class="c-resume-balance-available">
+    <div
+        class="c-current-balance"
+        [ngClass]="{
+            'w-100 rounded-right':
+                ((infoWithdrawal$ | async)?.has_seller_account && (infoWithdrawal$ | async)?.automatic_bank_account) ||
+                !(infoWithdrawal$ | async)?.has_seller_account
+        }"
+    >
+        <!-- Current Balance button -->
+        <div class="c-resume-balance-available__column">
+            <h6>SALDO DISPONÍVEL</h6>
+            <!-- Loading -->
+            <ng-container *ngIf="loading">
+                <div class="c-resume-balance-available__loading">
+                    <seller-panel-loading-spinner
+                        [size]="20"
+                        [stroke]="2"
+                        text="Carregando..."
+                        textAlign="left"
+                    ></seller-panel-loading-spinner>
+                </div>
+            </ng-container>
+
+            <!-- Balance -->
+            <ng-container *ngIf="!loading">
+                <ng-container *ngIf="!error">
+                    <p class="u-text-ellipsis" routerLink="/extrato">{{ balance | currency: 'BRL' }}</p>
+                </ng-container>
+                <ng-container *ngIf="!error && blockedBalance">
+                    <span class="c-resume-balance-available--blocked-balance">
+                        SALDO BLOQUEADO:
+                        <span class="blocked-balance" (click)="onShowblockedBalanceModal()">
+                            {{ blockedBalance | currency: 'BRL' }}
+                        </span>
+                    </span>
+                </ng-container>
+                <ng-container *ngIf="error">
+                    <p class="u-text-ellipsis c-resume-balance-available--error">Erro ao verificar seu saldo...</p>
+                </ng-container>
+            </ng-container>
+            <mat-icon class="arrow-icon cursor-pointer" routerLink="/extrato">keyboard_arrow_right</mat-icon>
+        </div>
+    </div>
+
+    <!-- New withdrawn button -->
+
+    <div
+        class="c-new-withdraw"
+        [class.c-new-withdraw__disabled]="
+            (infoWithdrawal$ | async)?.available_for_withdrawal <= 0 || checkingBankAccount
+        "
+    >
+        <button
+            type="button"
+            class="c-resume-balance-available__column c-resume-balance-available__column--new-withdraw"
+            (click)="onOpenDialog()"
+        >
+            <h6>
+                <mat-icon class="arrow-icon cursor-pointer">local_atm</mat-icon> <br />
+                Novo saque
+            </h6>
+        </button>
+    </div>
+</div>

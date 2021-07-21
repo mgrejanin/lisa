@@ -1,0 +1,150 @@
+@use "mixins/typography";
+@use "mixins/breakpoint";
+
+apollo-card {
+    &:active {
+        outline: 0;
+    }
+    ::ng-deep {
+        .mdc-card {
+            background-color: theme('colors.white');
+            width: 100%;
+            justify-content: space-between;
+        }
+    }
+}
+
+.produtos,
+.app {
+    margin-top: theme('spacing.4');
+}
+
+.produtos {
+    &__title {
+        @include typography.title(large);
+        color: theme('colors.black');
+        position: relative;
+        padding: theme('spacing.2') theme('spacing.none');
+        text-align: center;
+    }
+    &__description {
+        @include typography.body(primary, default);
+        color: theme('colors.grayscale.700');
+        padding: theme('spacing.2') theme('spacing.none');
+        text-align: center;
+    }
+    .cards {
+        .card {
+            background: theme('colors.white');
+            animation: 0.3s ease-in-out both fade-in;
+            padding: theme('spacing.1');
+            cursor: pointer;
+            &__title {
+                @include typography.title(small);
+                color: theme('colors.black');
+            }
+            &__category {
+                @include typography.body(primary, highlight);
+                color: theme('colors.primary.base');
+                padding: theme('spacing.1') theme('spacing.none');
+            }
+            &__content {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-top: theme('spacing.1');
+
+                &__description {
+                    @include typography.body(primary, default);
+                    color: theme('colors.grayscale.600');
+                    text-align: left;
+                    margin: theme('spacing.none');
+                }
+                img {
+                    max-width: 80px;
+                }
+            }
+            @include breakpoint.down(small) {
+                width: 311px;
+            }
+        }
+
+        &.cards-scroll {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            .card {
+                flex: 0 0 auto;
+            }
+        }
+    }
+}
+
+.app {
+    background: theme('colors.grayscale.50');
+    display: flex;
+    place-content: center;
+    min-height: 263px;
+    padding: theme('spacing.4') theme('spacing.none');
+    h3 {
+        @include typography.title(medium);
+        color: theme('colors.black');
+        padding-bottom: theme('spacing.4');
+        span {
+            color: theme('colors.primary.base');
+        }
+    }
+    .panels {
+        display: flex;
+        .panel {
+            display: flex;
+            border-radius: theme('borderRadius.medium');
+            height: auto;
+            min-height: 142px;
+            background: #ccc;
+            padding: theme('spacing.2');
+            position: relative;
+            margin: theme('spacing.2');
+            animation: 0.5s ease-in-out both fade-in;
+
+            &__title {
+                @include typography.body(primary, highlight);
+                color: theme('colors.white');
+                padding-bottom: theme('spacing.1');
+            }
+            &__subtitle {
+                @include typography.body(secondary, default);
+                color: theme('colors.white');
+            }
+            &__icon {
+                color: theme('colors.white');
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                padding: theme('spacing.3') theme('spacing.2') theme('spacing.1');
+            }
+            @include breakpoint.down(small) {
+                & {
+                    position: relative;
+                    width: 100%;
+                    max-width: 100%;
+                    display: flex;
+                }
+                & + .panel {
+                    margin-bottom: theme('spacing.1');
+                }
+            }
+        }
+        @include breakpoint.down(small) {
+            flex-wrap: wrap;
+        }
+    }
+}
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}

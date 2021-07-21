@@ -1,0 +1,23 @@
+.o-menu-dropdown {
+    button {
+        display: flex;
+        align-items: center;
+
+        &:disabled {
+            opacity: theme('opacity.light');
+            user-select: none;
+        }
+
+        span,
+        .mat-icon {
+            color: var(--apollo-primary) !important;
+        }
+
+        .mat-icon {
+            font-size: theme('fontSize.base');
+            width: theme('spacing.2');
+            height: theme('spacing.2');
+            margin-right: theme('spacing.1') !important;
+        }
+    }
+}

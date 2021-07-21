@@ -1,0 +1,35 @@
+import { Meta, Story, Canvas, Source, Description } from '@storybook/addon-docs/blocks';
+import dedent from 'ts-dedent';
+
+import readme from './../../components/markdown/readme.md';
+
+<Meta title="Components/Markdown" />
+
+export const MarkdownText =
+    '<p>Nascemos com o objetivo de <strong>revolucionar </strong> a maneira como as pessoas lidam com dinheiro, construindo experiências simples, democráticas e amigáveis.</p>';
+
+export const Template = props => <lab-markdown {...props} />;
+
+# Button
+
+## Default
+
+<Canvas>
+    <Story
+        name="All Props"
+        args={{
+            text: MarkdownText,
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<lab-markdown text=${MarkdownText}></lab-markdown>`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Description markdown={readme} />

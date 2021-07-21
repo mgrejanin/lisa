@@ -1,0 +1,14 @@
+@import 'libs/ui/styles/src/lib/ui-styles';
+
+body[data-theme='light'] {
+    @include mat-core-theme($app-theme);
+}
+
+body[data-theme='dark'] {
+    @include mat-core-theme($app-dark-theme);
+}
+
+body {
+    background-color: rgb(var(--apollo-background-rgb));
+    color: rgba(var(--apollo-on-background-rgb), 0.86);
+}

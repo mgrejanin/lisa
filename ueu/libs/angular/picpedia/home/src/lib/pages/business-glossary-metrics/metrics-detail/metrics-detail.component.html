@@ -1,0 +1,155 @@
+<picpedia-navbar-header [title]="titleMetricsDetail$ | async"></picpedia-navbar-header>
+
+<section class="c-metrics-detail container-fluid">
+    <apollo-flex justify="center" class="c-metrics-detail__loading" *ngIf="isLoadingMetrics$ | async">
+        <apollo-circular-progress radius="35" stroke="6"></apollo-circular-progress>
+    </apollo-flex>
+
+    <div class="c-metrics-detail__container">
+        <div class="c-metrics-detail__container-menu">
+            <apollo-flex alignItems="center">
+                <picpedia-badge-certification [badgeLabel]="badgeMetricsDetail$ | async">{{
+                    badgeMetricsDetail$ | async
+                }}</picpedia-badge-certification>
+
+                <apollo-icon
+                    svgIcon="objects-favorite"
+                    size="md"
+                    class="c-metrics-detail__menu-icon"
+                ></apollo-icon>
+
+                <apollo-icon
+                    [matMenuTriggerFor]="infoMenuDropdown"
+                    svgIcon="interface-ellipsis-v"
+                    size="md"
+                    class="c-metrics-detail__icon"
+                ></apollo-icon>
+
+                <mat-menu #infoMenuDropdown="matMenu" class="c-metrics-detail__menu-content">
+                    <apollo-flex class="c-metrics-detail__menu-box">
+                        <apollo-icon
+                            svgIcon="interface-edit-alt"
+                            size="md"
+                            class="c-metrics-detail__menu-icon"
+                        ></apollo-icon>
+                        <apollo-text class="c-metrics-detail__menu-text">Editar informações</apollo-text>
+                    </apollo-flex>
+
+                    <apollo-flex class="c-metrics-detail__menu-box">
+                        <apollo-icon
+                            svgIcon="interface-times"
+                            size="md"
+                            class="c-metrics-detail__menu-icon"
+                        ></apollo-icon>
+                        <apollo-text class="c-metrics-detail__menu-text">Histórico</apollo-text>
+                    </apollo-flex>
+
+                    <apollo-flex class="c-metrics-detail__menu-box">
+                        <apollo-icon
+                            svgIcon="communication-comment-alt-lines"
+                            size="md"
+                            class="c-metrics-detail__menu-icon"
+                        ></apollo-icon>
+                        <apollo-text class="c-metrics-detail__menu-text">Incluir comentário</apollo-text>
+                    </apollo-flex>
+                </mat-menu>
+            </apollo-flex>
+        </div>
+
+        <mat-tab-group animationDuration="0ms">
+            <mat-tab label="Detalhes">
+                <apollo-flex spacer>
+                    <apollo-box class="c-metrics-detail__container-box">
+                        <apollo-box class="c-metrics-detail__box">
+                            <apollo-text class="c-metrics-detail__title"> Descrição </apollo-text>
+                            <apollo-text font-size="sm">
+                                {{ descriptionMetricsDetail$ | async }}
+                            </apollo-text>
+                        </apollo-box>
+
+                        <apollo-box class="c-metrics-detail__box">
+                            <apollo-text class="c-metrics-detail__title"> Regra de cálculo </apollo-text>
+                            <apollo-text>
+                                {{ ruleMetricsDetail$ | async }}
+                            </apollo-text>
+                        </apollo-box>
+
+                        <apollo-box class="c-metrics-detail__box">
+                            <apollo-text class="c-metrics-detail__title"> Tags </apollo-text>
+
+                            <apollo-box border="light" border-radius="strong" p="2" border-color="grayscale.lightest">
+                                <apollo-text
+                                    *ngFor="let item of tagsMetricsDetail$ | async"
+                                    class="c-metrics-detail__tag"
+                                >
+                                    {{ item.label }}
+                                </apollo-text>
+                            </apollo-box>
+                        </apollo-box>
+                    </apollo-box>
+
+                    <apollo-box class="c-metrics-detail__container-box-users">
+                        <apollo-box class="c-metrics-detail__box-users">
+                            <apollo-text class="c-metrics-detail__title c-metrics-detail__title--users">
+                                Data steward
+                            </apollo-text>
+                            <apollo-text
+                                *ngFor="let item of stewardMetricsDetail$ | async"
+                                class="c-metrics-detail__text-users"
+                            >
+                                <apollo-flex>
+                                    <apollo-box>
+                                        <img src="{{ item.figure }}" class="c-metrics-detail__figure-users" />
+                                    </apollo-box>
+                                    <apollo-box>
+                                        <apollo-text font-weight="bold">{{ item.name }}</apollo-text>
+                                        <apollo-text class="c-metrics-detail__email-users">{{
+                                            item.email
+                                        }}</apollo-text>
+                                    </apollo-box>
+                                </apollo-flex>
+                            </apollo-text>
+                        </apollo-box>
+
+                        <apollo-box class="c-metrics-detail__box-users">
+                            <apollo-text class="c-metrics-detail__title c-metrics-detail__title--users">
+                                Business owner
+                            </apollo-text>
+                            <apollo-text
+                                *ngFor="let item of ownerMetricsDetail$ | async"
+                                class="c-metrics-detail__text-users"
+                            >
+                                <apollo-flex>
+                                    <apollo-box>
+                                        <img src="{{ item.figure }}" class="c-metrics-detail__figure-users" />
+                                    </apollo-box>
+                                    <apollo-box>
+                                        <apollo-text font-weight="bold">{{ item.name }}</apollo-text>
+                                        <apollo-text class="c-metrics-detail__email-users">{{
+                                            item.email
+                                        }}</apollo-text>
+                                    </apollo-box>
+                                </apollo-flex>
+                            </apollo-text>
+                        </apollo-box>
+
+                        <apollo-box class="c-metrics-detail__box-users">
+                            <apollo-text class="c-metrics-detail__title c-metrics-detail__title--users">
+                                Usuários frequentes
+                            </apollo-text>
+                            <apollo-flex spacer>
+                                <apollo-box *ngFor="let item of usersMetricsDetail$ | async">
+                                    <img src="{{ item.figure }}" class="c-metrics-detail__figure-users" />
+                                </apollo-box>
+                            </apollo-flex>
+                        </apollo-box>
+                    </apollo-box>
+                </apollo-flex>
+            </mat-tab>
+
+            <mat-tab label="Dashboards"></mat-tab>
+            <mat-tab label="Queries"></mat-tab>
+            <mat-tab label="Fonte do dado"></mat-tab>
+        </mat-tab-group>
+    </div>
+</section>

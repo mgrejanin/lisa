@@ -1,0 +1,19 @@
+<div class="modal" role="dialog" aria-labelledby="dialog1Title" aria-describedby="dialog1Desc">
+    <div class="modal__header justify-content-between">
+        <h3 id="dialog1Title" mat-dialog-title class="modal__title">{{ data.title }}</h3>
+        <div class="modal__close-button">
+            <button mat-icon-button aria-label="Fechar" (click)="handleClose()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+        <p id="dialog1Desc">
+            {{ data.description }}
+        </p>
+    </div>
+    <div mat-dialog-content class="modal__content">
+        <figure role="figure" *ngFor="let example of data.examples">
+            <figcaption>{{ example.imageDescription }}</figcaption>
+            <img class="modal__img" [src]="example.imageUrl" alt="Exemplo de uso" />
+        </figure>
+    </div>
+</div>

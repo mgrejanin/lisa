@@ -1,0 +1,51 @@
+@use "mixins/typography";
+@use "mixins/breakpoint";
+
+.c-header {
+    margin-bottom: theme('spacing.2');
+
+    @include breakpoint.up(small) {
+        margin-bottom: theme('spacing.2');
+    }
+
+    &__title {
+        margin-left: theme('spacing.2');
+        font-size: theme('fontSize.lg');
+        font-weight: theme('fontWeight.bold');
+        color: theme('colors.black');
+    }
+
+    &__return {
+        height: 40px;
+        width: 40px;
+        font-size: theme('fontSize.6xl');
+        color: theme('colors.primary.base');
+        display: flex;
+        align-items: center;
+        padding-right: theme('spacing.2');
+        flex-direction: row-reverse;
+        cursor: pointer;
+    }
+
+    &__content {
+        display: flex;
+        align-items: center;
+        margin-bottom: theme('spacing.3');
+
+        @include breakpoint.up(small) {
+            display: none;
+        }
+
+        &--web {
+            display: none;
+
+            @include breakpoint.up(small) {
+                display: block;
+            }
+        }
+    }
+
+    &__progress {
+        max-width: 398px;
+    }
+}

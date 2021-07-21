@@ -1,0 +1,134 @@
+@use "mixins/typography";
+@use "mixins/breakpoint";
+
+@use "@material/dialog";
+
+@include dialog.core-styles;
+
+apollo-modal {
+    .mdc-dialog {
+        @include dialog.shape-radius(theme('borderRadius.strong'));
+        &__surface {
+            width: 628px;
+            .material-icon {
+                user-select: none;
+            }
+        }
+        &__title {
+            position: relative;
+            display: flex;
+            padding: theme('spacing.2');
+            font-weight: theme('fontWeight.extrabold');
+            color: theme('colors.grayscale.600');
+            apollo-icon {
+                font-size: theme('fontSize.6xl');
+            }
+            &__icon {
+                max-width: 50px;
+                margin-right: theme('spacing.1');
+                color: theme('colors.primary.600');
+                &__display {
+                    display: block;
+                }
+            }
+            &__figure {
+                display: none;
+                &__display {
+                    display: none;
+                    img {
+                        max-height: 128px;
+                    }
+                }
+            }
+            &__text {
+                display: flex;
+                align-items: flex-start;
+                justify-content: center;
+                flex-flow: column;
+                padding-right: theme('spacing.6');
+                margin-left: theme('spacing.1');
+
+                h3 {
+                    @include typography.title(medium);
+                }
+                span {
+                    margin-top: theme('spacing.none');
+                    @include typography.body(primary, default);
+                }
+            }
+        }
+        &__close {
+            position: absolute;
+            color: theme('colors.primary.600');
+            right: theme('spacing.1');
+            top: theme('spacing.1');
+        }
+    }
+}
+
+@include breakpoint.down(small) {
+    apollo-modal {
+        .mdc-dialog {
+            &__content {
+                text-align: center;
+                &:empty {
+                    display: none;
+                    padding: theme('spacing.none');
+                }
+            }
+            &__title {
+                flex-flow: column;
+                align-items: center;
+                &::before {
+                    height: theme('spacing.2');
+                }
+
+                &__text {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-flow: column;
+                    text-align: center;
+                    padding: theme('spacing.none');
+
+                    span {
+                        margin-top: theme('spacing.1');
+                    }
+                }
+                &__icon {
+                    margin-right: theme('spacing.none');
+                    margin-bottom: theme('spacing.3');
+                    &__display {
+                        display: none;
+                    }
+                }
+                &__figure {
+                    &__display {
+                        display: block;
+                        margin-bottom: theme('spacing.3');
+                    }
+                }
+            }
+            &__close {
+                display: none;
+            }
+        }
+    }
+}
+
+[data-theme='dark'] {
+    .mdc-dialog {
+        @include dialog.container-fill-color(theme('colors.background.dark.tertiary'));
+        &__content {
+            color: theme('colors.grayscale.200');
+        }
+        &__title {
+            color: theme('colors.grayscale.50');
+            &__text {
+                span {
+                    color: theme('colors.grayscale.200');
+                }
+            }
+        }
+    }
+}

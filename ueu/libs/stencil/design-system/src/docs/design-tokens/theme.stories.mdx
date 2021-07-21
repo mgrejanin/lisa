@@ -1,0 +1,140 @@
+import {
+    Colors,
+    Spacings,
+    BorderRadius,
+    BorderWidth,
+    Headings,
+    Texts,
+    BoxShadow,
+    Opacity,
+    LineHeight,
+    FontWeight,
+} from './../../../.storybook/components';
+
+<Meta title="Design Tokens/Tema" />
+
+# Tema
+
+O tema usado em todo **Apollo Design System** vem da biblioteca de tokens de design do `sass-functions/tokens`, que é uma dependência de pares necessária o **Apollo Design System**.
+<br />
+
+## Colors
+
+O **Apollo Design System** conta com tokens que retornam valores em formato de `CSS Vars` e também em `Hex`.
+
+#### CSS Vars 
+
+`CSS Vars` devem ser utilizados por padrão nas chamadas dos tokens.
+
+```css
+theme('colors.<COLOR>.<TONALIDADE/ALIAS>');
+```
+
+Exemplos de uso
+```javascript
+color: theme('colors.primary.500'); // Valor do token retornado: var(--apollo-primary, #238662)
+border-color: theme('colors.primary.darkest'); // Valor do token retornado: var(--apollo-primary-900, #05271B)
+```
+#### Hex Values
+
+`Hex` devem ser utilizados quando é necessário realizar algum cálculo com a cor, e nesse caso temos os temas de `light` e `dark` para utilização.
+
+```css
+theme('colors.<COLOR>.light.<TONALIDADE/ALIAS>');
+```
+
+Exemplos de uso
+```javascript
+color: theme('colors.primary.light.500'); // Valor do token retornado: #238662
+background: darken(theme('colors.primary.light.200'), 20%); // Valor do token retornado: #9ADBC2
+```
+
+#### Contrast Values
+Todas as cores possuem sua propriedade de `contrast` que indica uma cor base acessível para a cor em utilização.
+
+```css
+theme('colors.<COLOR>.<TONALIDADE/ALIAS>.contrast')
+```
+
+Exemplos de uso
+```javascript
+color: theme('colors.primary.contrast'); // Valor do token retornado: var(--apollo-on-primary, #FFF)
+```
+
+## Colors Palette
+
+<Colors />
+
+## Border radius
+
+```css
+theme('borderRadius.<BORDER_RADIUS>');
+```
+
+<BorderRadius />
+
+## Border width
+
+```css
+theme('borderWidth.<BORDER_WIDTH>');
+```
+
+<BorderWidth />
+
+## Font size
+
+```css
+theme('fontSize.<FONT_SIZE>');
+```
+
+Evite usar `theme('fontSize.<FONT_SIZE>')` diretamente em seus estilos, em vez disso, use os componentes especializados [Heading](?path=/docs/typography-heading--default-story) e [Text](?path=/docs/typography-text--default-story).
+
+### Headings
+
+<Headings />
+
+### Text
+
+<Texts />
+
+## Font weight
+
+```css
+theme('fontWeight.<FONT_WEIGHT>');
+```
+
+<FontWeight />
+
+## Line height
+
+```css
+theme('lineHeight.<LINE_HEIGHT>');
+```
+
+<LineHeight />
+
+## Opacity
+
+```css
+theme('opacity.<OPACITY>');
+```
+
+<Opacity />
+
+## Box shadow
+
+```css
+theme('boxShadow.<BOX_SHADOW>');
+```
+
+<BoxShadow />
+
+## Spacings
+
+Use espaçamentos para `margins` e `paddings`. Não o use para `borders`, `border-radius`, `font-size` ou `line-height`. Em vez disso, use as propriedades do tema dedicado.
+
+```css
+theme('spacing.<SPACING>');
+```
+
+<Spacings />

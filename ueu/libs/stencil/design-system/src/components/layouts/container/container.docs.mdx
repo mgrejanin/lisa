@@ -1,0 +1,26 @@
+import { Story, Status } from './../../../../.storybook/components';
+import { Props } from '@storybook/addon-docs/blocks';
+
+# Container
+
+<Status />
+
+O `apollo-container` é usado ​​para restringir a largura de um conteúdo ao ponto de interrupção atual, mantendo-o fluido.
+
+Por padrão, ele define o `maxW` com base nos pontos de interrupção definido nos tokens, mas você pode personalizar isso passando os valores `maxW` personalizados.
+
+<Story id="layouts-container--base" />
+
+<Props id="layouts-container--base" />
+
+## Fluído
+
+A largura de um container fluído é limitada pelo valor da propriedade `maxW`.
+
+<Story id="layouts-container--fluid" />
+
+## Center Content
+
+Em alguns casos, a largura do conteúdo pode ser menor do que a largura do container, você pode usar o `centerContent` para centralizar o conteúdo.
+
+<Story id="layouts-container--center-content" />

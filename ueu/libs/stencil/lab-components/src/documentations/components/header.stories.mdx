@@ -1,0 +1,47 @@
+import { Meta, Story, Canvas, Source, Description } from '@storybook/addon-docs/blocks';
+import dedent from 'ts-dedent';
+
+import readme from './../../components/header/readme.md';
+
+<Meta title="Components/Header" />
+
+export const headerArgs = {
+    avatar: '',
+    banner: '',
+    pageTitle: 'Insira seu título',
+    isEditing: true,
+};
+
+export const Template = props => (
+    <div style={{ width: 320 }}>
+        <lab-header {...props} page-title={props.pageTitle} is-editing={props.isEditing} />
+    </div>
+);
+
+# Header
+
+## Default
+
+<Canvas>
+    <Story
+        name="All Props"
+        args={headerArgs}
+        parameters={{
+            docs: {
+                source: {
+                    code: dedent`
+                    <lab-header
+                        avatar="${headerArgs.avatar}"
+                        banner="${headerArgs.banner}"
+                        pageTitle="${headerArgs.pageTitle}"
+                        is-editing="${headerArgs.isEditing}"
+                    ></lab-header>`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Description markdown={readme} />

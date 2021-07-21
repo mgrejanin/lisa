@@ -1,0 +1,33 @@
+@use "mixins/typography";
+
+.o-table {
+    background-color: rgb(var(--apollo-background-rgb)) !important;
+
+    &__header-row th {
+        border: none !important;
+    }
+
+    &__row {
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(var(--apollo-primary-rgb), 0.1) !important;
+        }
+    }
+
+    &__title {
+        @include typography.caption(highlight);
+        color: $gray-700;
+        border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.100');
+        padding: 0.75rem 0;
+    }
+
+    &__item {
+        @include typography.body(primary, default);
+        color: $gray-700;
+
+        border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.100');
+
+        padding: 1rem !important;
+    }
+}

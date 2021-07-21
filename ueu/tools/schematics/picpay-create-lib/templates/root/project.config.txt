@@ -1,0 +1,39 @@
+{
+    "angular": {
+        "<%= directory %>-<%= dasherize(libName) %>": {
+            "root": "libs/<%= directory %>/<%= dasherize(libName) %>",
+            "sourceRoot": "libs/<%= directory %>/<%= dasherize(libName) %>/src",
+            "projectType": "library",
+            "schematics": {},
+            "prefix": "<%= prefix %>",
+            "architect": {
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "libs/<%= directory %>/<%= dasherize(libName) %>/tsconfig.lib.json",
+                            "libs/<%= directory %>/<%= dasherize(libName) %>/tsconfig.spec.json"
+                        ],
+                        "exclude": ["**/node_modules/**", "!libs/<%= directory %>/<%= dasherize(libName) %>/**"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "options": {
+                        "jestConfig": "libs/<%= directory %>/<%= dasherize(libName) %>/jest.config.js",
+                        "tsConfig": "libs/<%= directory %>/<%= dasherize(libName) %>/tsconfig.spec.json",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        }
+    },
+    "nx": {
+        "<%= directory %>-<%= dasherize(libName) %>": {
+            "tags": []
+        }
+    },
+    "tsconfig": {
+        "@picpay/<%= directory %>/<%= dasherize(libName) %>": ["libs/<%= directory %>/<%= dasherize(libName) %>/src/index.ts"]
+    }
+}

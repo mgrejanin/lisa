@@ -1,0 +1,8 @@
+<svg width="0" height="0" class="hidden">
+  <symbol viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" id="tools-top-arrow-from-top">
+    <path d="M19 20H5a1 1 0 0 0 0 2h14a1 1 0 1 0 0-2zM8.71 7.71L11 5.41V17a1 1 0 0 0 2 0V5.41l2.29 2.3a1 1 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095l-4-4a1 1 0 0 0-.33-.21 1 1 0 0 0-.76 0 1 1 0 0 0-.33.21l-4 4a1.004 1.004 0 1 0 1.42 1.42z" fill="currentColor"></path>
+  </symbol>
+  <symbol viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" id="tools-top-arrow-to-top">
+    <path d="M12.71 6.29a1 1 0 0 0-.33-.21 1 1 0 0 0-.76 0 1 1 0 0 0-.33.21l-4 4a1.003 1.003 0 1 0 1.42 1.42L11 9.41V21a1 1 0 0 0 2 0V9.41l2.29 2.3a1.002 1.002 0 0 0 1.639-.325 1 1 0 0 0-.219-1.095l-4-4zM19 2H5a1 1 0 0 0 0 2h14a1 1 0 1 0 0-2z" fill="currentColor"></path>
+  </symbol>
+</svg>

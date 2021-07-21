@@ -1,0 +1,191 @@
+// picpay imports
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+@import 'libs/ui/components/src/styles/ui.scss';
+
+@mixin menuAnimation {
+    transition: 225ms ease-in-out;
+}
+
+.c-menu-item {
+    cursor: pointer;
+
+    padding: 0.5rem 0.75rem 0.5rem 1.25rem;
+    margin: 0.5rem 0px;
+
+    position: relative;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+
+    user-select: none;
+
+    outline: 0;
+
+    width: 100%;
+    min-width: 240px;
+
+    &__link {
+        width: 100%;
+        height: 2.5rem;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        opacity: 0;
+
+        cursor: pointer;
+
+        z-index: 1;
+    }
+
+    &__icon {
+        color: ui-get-color-alpha(--apollo-on-background-rgb, 0.42);
+        font-size: 2rem;
+
+        margin-right: 1rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transform: scale(0.8);
+
+        @include menuAnimation();
+
+        opacity: 0.5;
+
+        &--triangle {
+            margin-left: auto;
+            margin-right: 0px;
+
+            font-size: 1.5rem;
+            transition: all 225ms ease-in-out;
+        }
+    }
+
+    &__text {
+        flex: 1;
+
+        @include typography.body(secondary, highlight);
+        color: ui-get-color-alpha(--apollo-on-background-rgb, 0.52);
+        font-weight: 700;
+
+        transition: all 225ms ease-in-out;
+    }
+
+    &__checkbox {
+        display: none;
+
+        &:checked {
+            & ~ .c-menu-item__submenus {
+                max-height: 500px;
+            }
+
+            & ~ .c-menu-item.has-submenu .c-menu-item__icon--triangle {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    &__submenus {
+        max-height: 0px;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        flex-basis: 100%;
+
+        transition: max-height 225ms $cubic-bezier;
+
+        -ms-overflow-style: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        &--item {
+            width: 100%;
+            min-width: 240px;
+
+            @include typography.body(secondary, highlight);
+            color: ui-get-color-alpha(--apollo-on-background-rgb, 0.52);
+            font-size: 0.75rem;
+            font-weight: 600;
+
+            padding: 0.5rem 1rem 0.5rem 4rem;
+
+            outline: 0;
+            cursor: pointer;
+
+            &:hover {
+                color: ui-get-color(--apollo-primary-rgb);
+            }
+
+            &.disabled {
+                pointer-events: none;
+                opacity: 0.2;
+            }
+        }
+    }
+
+    &:before {
+        content: '';
+
+        display: inline-block;
+
+        height: 100%;
+        width: 0px;
+
+        background-color: ui-get-color(--apollo-primary-rgb);
+
+        position: absolute;
+        left: 0px;
+        top: 0px;
+
+        @include menuAnimation();
+    }
+
+    &:hover {
+        .c-menu-item__icon,
+        .c-menu-item__text {
+            color: ui-get-color(--apollo-primary-rgb);
+            opacity: 1;
+        }
+    }
+
+    &.active {
+        .c-menu-item {
+            &__icon {
+                color: ui-get-color(--apollo-primary-rgb);
+                opacity: 1;
+            }
+            &__text {
+                color: ui-get-color-alpha(--apollo-on-background-rgb, 0.86);
+            }
+        }
+
+        &:before {
+            width: 4px;
+        }
+    }
+
+    &__submenu-container.collapsed {
+        .c-menu-item__submenus {
+            max-height: 0;
+        }
+    }
+
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.35;
+    }
+}
+
+.u-hidden {
+    opacity: 0;
+}

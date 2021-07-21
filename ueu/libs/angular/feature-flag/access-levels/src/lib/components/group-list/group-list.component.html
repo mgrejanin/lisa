@@ -1,0 +1,13 @@
+<section class="c-group-container">
+    <ul class="c-group-container__list">
+        <!-- SQUAD CARDS (DYNAMIC) -->
+        <feature-flag-group-list-item
+            *ngFor="let squad of squads"
+            [id]="squad.id"
+            [title]="squad.name"
+            [link]="['/acessos/squad/' + squad.id]"
+            class="c-group-container__list--item c-group-container__list--item-dynamic"
+        >
+        </feature-flag-group-list-item>
+    </ul>
+</section>

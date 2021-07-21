@@ -1,0 +1,94 @@
+* @PicPay/monorepo-admin
+/.hooks/ @PicPay/monorepo-admin
+/.cz-config.js @PicPay/monorepo-admin
+/.czrc @PicPay/monorepo-admin
+/.editorconfig @PicPay/monorepo-admin
+/.eslintrc.json @PicPay/monorepo-admin
+/.gitignore @PicPay/monorepo-admin
+/.npmrc @PicPay/monorepo-admin
+/.prettierignore @PicPay/monorepo-admin
+/.prettierrc @PicPay/monorepo-admin
+/.stylelintignore @PicPay/monorepo-admin
+/.stylelintignore.yaml @PicPay/monorepo-admin
+babel.config.js @PicPay/monorepo-admin
+CHANGELOG.md @PicPay/monorepo-admin
+CODEOWNERS @PicPay/monorepo-admin
+commitlint.config.js @PicPay/monorepo-admin
+decorate-angular-cli.js @PicPay/monorepo-admin
+jest.config.js @PicPay/monorepo-admin
+jest.preset.js @PicPay/monorepo-admin
+migration.md @PicPay/monorepo-admin
+nx.json @PicPay/monorepo-admin
+package-lock.json @PicPay/monorepo-admin
+package.json @PicPay/monorepo-admin
+pull_request_template.md @PicPay/monorepo-admin
+README.md @PicPay/monorepo-admin
+tsconfig.base.json @PicPay/monorepo-admin
+workspace.json @PicPay/monorepo-admin
+
+# DEV PORTAL
+/apps/angular/dev-portal/ @PicPay/dev-portal
+/apps/angular/dev-portal-e2e/ @PicPay/dev-portal
+/libs/angular/dev-portal/ @PicPay/dev-portal
+/apps/react/studio @PicPay/dev-portal
+
+# FEATURE FLAG
+/apps/angular/feature-flag/ @PicPay/feature-dash
+/apps/angular/feature-flag-e2e/ @PicPay/feature-dash
+/libs/angular/feature-flag/ @PicPay/feature-dash
+
+# FINANCE DASH
+/apps/angular/finance-dash/ @PicPay/finance-dash
+/apps/angular/finance-dash-e2e/ @PicPay/finance-dash
+/libs/angular/finance-dash/ @PicPay/finance-dash
+
+# KEYCLOAK-DEMO
+/apps/angular/keycloak-demo/ @PicPay/monorepo-admin
+/apps/angular/keycloak-demo-e2e/ @PicPay/monorepo-admin
+/libs/angular/keycloak-demo/ @PicPay/monorepo-admin
+
+# OPS DASH
+/apps/angular/ops-dash/ @cris-batista
+/apps/angular/ops-dash-e2e/ @cris-batista
+/libs/angular/ops-dash/ @cris-batista
+
+# PICPAY LAB
+/apps/angular/picpay-lab/ @PicPay/picpay-lab
+/apps/angular/picpay-lab-e2e/ @PicPay/picpay-lab
+/libs/angular/picpay-lab/ @PicPay/picpay-lab
+/libs/stencil/lab-componentes/ @PicPay/picpay-lab
+
+# REACT APPS
+/apps/react/ @PicPay/monorepo-admin
+
+# REACT LIBS
+/libs/react/ @PicPay/monorepo-admin
+
+# PICPEDIA
+/apps/angular/picpedia/ @PicPay/picpedia
+/apps/angular/picpedia-e2e/ @PicPay/picpedia
+/libs/angular/picpedia/ @PicPay/picpedia
+
+# SELLER PANEL
+/apps/angular/seller-panel/ @PicPay/seller-dash
+/apps/angular/seller-panel-e2e/ @PicPay/seller-dash
+/libs/angular/seller-panel/ @PicPay/seller-dash
+
+# SELLER REGISTER
+/apps/angular/seller-register/ @PicPay/seller-register
+/apps/angular/seller-register-e2e/ @PicPay/seller-register
+/libs/angular/seller-register/ @PicPay/seller-register
+
+# GROWTH DASH
+/apps/angular/growth-dash/ @PicPay/growth-dash
+/apps/angular/growth-dash-e2e/ @PicPay/growth-dash
+/libs/angular/growth-dash/ @PicPay/growth-dash
+
+# DESIGN SYSTEM
+/libs/stencil/design-system/ @PicPay/design-system
+
+# TOOLS
+/tools/ @PicPay/monorepo-admin
+
+# ANGULAR CORE
+/libs/angular/shared/core/ @PicPay/monorepo-admin

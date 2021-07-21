@@ -1,0 +1,68 @@
+@use "mixins/typography";
+
+.servers {
+    > label {
+        font-size: theme('fontSize.sm');
+        @include text_headline();
+
+        select {
+            margin: theme('spacing.half');
+            min-width: 130px;
+            max-width: 100%;
+            white-space: break-spaces;
+        }
+    }
+
+    h4.message {
+        padding-bottom: theme('spacing.2');
+    }
+
+    table {
+        tr {
+            width: 30em;
+        }
+        td {
+            display: inline-block;
+            max-width: 15em;
+            vertical-align: middle;
+            padding-top: theme('spacing.half');
+            padding-bottom: theme('spacing.half');
+
+            &:first-of-type {
+                padding-right: theme('spacing.1');
+            }
+
+            input {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+    .computed-url {
+        margin: theme('spacing.1') theme('spacing.none');
+
+        code {
+            display: inline-block;
+            padding: theme('spacing.half');
+            font-size: theme('fontSize.sm');
+            margin: theme('spacing.none') theme('spacing.1');
+        }
+    }
+}
+
+.servers-title {
+    font-weight: theme('fontWeight.bold');
+    font-size: theme('fontSize.base');
+    display: flex;
+
+    &::after {
+        content: ':';
+    }
+}
+
+.operation-servers {
+    h4.message {
+        margin-bottom: theme('spacing.1');
+    }
+}

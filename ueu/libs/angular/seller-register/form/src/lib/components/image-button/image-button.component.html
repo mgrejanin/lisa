@@ -1,0 +1,22 @@
+<div class="image-button">
+    <img [src]="imageSource" alt="Foto do estabelecimento" class="image-button__image" />
+    <label for="input" class="image-button__label" *ngIf="imageSource === DEFAULT_IMAGE">
+        <div class="image-button__icon">
+            <span class="image-button__plus"></span>
+            <span class="image-button__plus image-button__plus--rotated"></span>
+        </div>
+        <p class="image-button__text">Inserir foto</p>
+    </label>
+    <input
+        type="file"
+        id="input"
+        #imageInput
+        class="image-button__input"
+        accept=".png, .jpg, .jpeg"
+        (change)="handleImageUpload(imageInput.files[0])"
+        hidden
+    />
+    <label for="input" class="image-button__edit" *ngIf="enableEdit">
+        <apollo-icon fill="#525F66" svgIcon="interface-pen" size="sm"> </apollo-icon>
+    </label>
+</div>

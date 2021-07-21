@@ -1,0 +1,28 @@
+{
+    "extends": ["../../../.eslintrc.json", "plugin:@stencil/recommended", "plugin:prettier/recommended"],
+    "ignorePatterns": ["!src/**/*"],
+    "rules": {
+        "@stencil/decorators-style": [
+            "error",
+            {
+                "prop": "ignore",
+                "state": "inline",
+                "element": "inline",
+                "event": "inline",
+                "method": "multiline",
+                "watch": "multiline",
+                "listen": "multiline"
+            }
+        ],
+        "@stencil/prefer-vdom-listener": "off",
+        "@stencil/dependency-suggestions": "off",
+        "@stencil/own-methods-must-be-private": "off",
+        "prettier/prettier": [
+            "error",
+            {},
+            {
+                "usePrettierrc": true
+            }
+        ]
+    }
+}

@@ -1,0 +1,116 @@
+<section class="c-section">
+    <div class="c-section__headline">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="c-section__title">{{ title }}</h1>
+                <p class="c-section__description">
+                    Também precisamos do endereço residencial da pessoa responsável pela empresa para preparar a
+                    documentação.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <form class="c-section__form" [formGroup]="personalAdressForm" (ngSubmit)="onSubmit()">
+        <fieldset>
+            <div class="row">
+                <div class="col-md-6 c-section__form-field">
+                    <apollo-textfield
+                        #cep
+                        class="c-section__form-input c-section__form-input--cep"
+                        label="CEP"
+                        formControlName="user_address_code"
+                        type="text"
+                        required="true"
+                        helper-text="Ex: 01310-100"
+                        mask="99999-999"
+                        (apolloBlur)="handleCep(cep.value)"
+                    ></apollo-textfield>
+                </div>
+
+                <div class="col-md-8 c-section__form-field">
+                    <apollo-textfield
+                        label="Rua ou avenida"
+                        formControlName="user_address_street"
+                        type="text"
+                        required="true"
+                        helper-text="Ex: Avenida Paulista"
+                    ></apollo-textfield>
+                </div>
+
+                <div class="col-md-4 c-section__form-field">
+                    <apollo-textfield
+                        label="Número"
+                        formControlName="user_address_number"
+                        type="number"
+                        required="true"
+                        helper-text="Ex: 1000"
+                    ></apollo-textfield>
+                </div>
+
+                <div class="col-md-6 c-section__form-field">
+                    <apollo-textfield
+                        label="Complemento"
+                        formControlName="user_address_complement"
+                        type="text"
+                        helper-text="Ex: Bloco A - Ap 123"
+                    ></apollo-textfield>
+                </div>
+
+                <div class="col-md-6 c-section__form-field">
+                    <apollo-textfield
+                        label="Bairro"
+                        formControlName="user_address_neighbourhood"
+                        type="text"
+                        required="true"
+                        helper-text="Ex: Bela Vista"
+                    ></apollo-textfield>
+                </div>
+
+                <div class="col-md-6 c-section__form-field">
+                    <apollo-textfield
+                        label="Cidade"
+                        formControlName="user_address_city"
+                        type="text"
+                        required="true"
+                        helper-text="Ex: São Paulo"
+                    ></apollo-textfield>
+                </div>
+
+                <div class="col-md-6 c-section__form-field">
+                    <apollo-textfield
+                        label="Estado"
+                        formControlName="user_address_state"
+                        type="text"
+                        required="true"
+                        helper-text="Ex: SP"
+                    ></apollo-textfield>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</section>
+
+<footer class="c-footer c-footer--reverse">
+    <apollo-button
+        size="md"
+        type="button"
+        block
+        class="c-footer__button c-footer__button--next"
+        [disabled]="(isLoading$ | async) || personalAdressForm.invalid"
+        [loading]="isLoading$ | async"
+        (click)="onSubmit()"
+    >
+        Continuar
+    </apollo-button>
+    <apollo-button
+        size="md"
+        type="button"
+        block
+        variant="link"
+        class="c-footer__button c-footer__button--previous"
+        [routerLink]="['/form/responsavel']"
+    >
+        Voltar
+    </apollo-button>
+</footer>

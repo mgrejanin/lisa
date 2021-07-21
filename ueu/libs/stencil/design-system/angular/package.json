@@ -1,0 +1,14 @@
+{
+    "name": "@picpay/design-system-angular",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/PicPay/picpay-frontend.git"
+    },
+    "author": "PicPay",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/PicPay/picpay-frontend/issues"
+    },
+    "homepage": "https://github.com/PicPay/picpay-frontend#readme"
+}

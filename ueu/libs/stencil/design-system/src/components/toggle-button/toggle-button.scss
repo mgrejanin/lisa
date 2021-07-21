@@ -1,0 +1,16 @@
+@use "@material/button";
+
+.apollo-toggle-button__block {
+    display: initial;
+}
+
+.apollo-toggle-button__none {
+    display: none;
+}
+
+apollo-toggle-button {
+    .apollo-toggle-button__icon[size='sm'] .mdc-button,
+    .apollo-toggle-button__icon[size='md'] .mdc-button {
+        @include button.horizontal-padding(0);
+    }
+}

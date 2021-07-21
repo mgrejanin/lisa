@@ -1,0 +1,55 @@
+@use "mixins/typography";
+@use "mixins/breakpoint";
+
+.logo {
+    color: theme('colors.grayscale.600');
+    font-size: 14px;
+    white-space: nowrap;
+    a {
+        svg {
+            fill: theme('colors.primary.400');
+            transition: all 0.25s ease-in-out;
+        }
+        span {
+            color: theme('colors.grayscale.600');
+            font-weight: theme('fontWeight.semibold');
+            font-size: theme('fontSize.sm');
+            line-height: theme('lineHeight.xs');
+            letter-spacing: 0.1em;
+        }
+    }
+    &.header {
+        a {
+            svg {
+                height: 24px;
+            }
+            span {
+                &:after {
+                    content: '|';
+                    margin: theme('spacing.1');
+                }
+            }
+        }
+    }
+    &.footer {
+        a {
+            svg {
+                height: 40.61px;
+            }
+            span {
+                border-right: theme('borderWidth.light') solid theme('colors.grayscale.600');
+                padding: theme('spacing.half') theme('spacing.1');
+                margin-right: theme('spacing.1');
+            }
+        }
+    }
+}
+@include breakpoint.down(small) {
+    .logo {
+        margin-left: theme('spacing.2');
+        &.footer {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

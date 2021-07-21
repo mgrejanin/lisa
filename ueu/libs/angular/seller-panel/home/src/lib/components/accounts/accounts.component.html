@@ -1,0 +1,138 @@
+<section class="c-change-account">
+    <ng-container *ngIf="!isError; then accountsList; else onError"></ng-container>
+    <ng-container *ngIf="!isError && !isLoading && data?.length <= 0; then createAccount"></ng-container>
+</section>
+
+<ng-template #accountsList>
+    <!-- TEMPLATE HEADER -->
+    <ng-container *ngIf="!isLoading && data?.length > 0">
+        <div class="c-change-account__header">
+            <div class="c-change-account__header--actions">
+                <button mat-icon-button class="c-change-account__header--back-button" (click)="onBack()">
+                    <apollo-icon fill="#00ac4a" svgIcon="arrows-arrow-left" size="md"> </apollo-icon>
+                </button>
+
+                <button mat-icon-button class="c-change-account__header--close-button" (click)="onClose()">
+                    <apollo-icon fill="#00ac4a" svgIcon="interface-times" size="md"> </apollo-icon>
+                </button>
+            </div>
+
+            <div class="c-change-account__header--title">
+                <h2>Trocar conta bancária</h2>
+            </div>
+        </div>
+    </ng-container>
+
+    <!-- TEMPLATE LOADING -->
+    <div *ngIf="isLoading | async" class="c-change-account__loading-wrapper">
+        <mat-spinner class="i-spinner" [diameter]="40"></mat-spinner>
+    </div>
+
+    <!-- TEMPLATE BODY -->
+    <ng-container *ngIf="!isLoading && data?.length > 0">
+        <div class="c-change-account__body">
+            <ul class="c-change-account__accounts-list">
+                <ng-container *ngFor="let account of data">
+                    <li
+                        tabindex="0"
+                        class="c-change-account__accounts-list--item"
+                        (click)="onSelectAccount(account)"
+                        (keyup.enter)="onSelectAccount(account)"
+                    >
+                        <div class="c-change-account-item-container">
+                            <apollo-avatar
+                                size="small"
+                                radius="full"
+                                [src]="account?.bank?.img_url || 'assets/icons/bank.svg'"
+                                alt="Ícone do banco"
+                            >
+                            </apollo-avatar>
+                            <div class="c-change-account-item-container__content">
+                                <div class="c-change-account-item-container__content--data">
+                                    <p class="c-change-account-item__name">
+                                        Conta {{ account?.account }}-{{ account?.account_digit }} <br />
+                                        <span class="c-change-account-item__name--caption">{{
+                                            account?.bank?.name
+                                        }}</span>
+                                    </p>
+
+                                    <ng-container *ngIf="account?.main">
+                                        <small class="c-change-account-item__badge">Principal</small>
+                                    </ng-container>
+                                </div>
+                                <ng-container
+                                    *ngIf="
+                                        account?.id === selectedAccountId ||
+                                        (account?.main && selectedAccountId === undefined)
+                                    "
+                                >
+                                    <div class="c-change-account-item-container__content--icon-check">
+                                        <apollo-icon fill="#00ac4a" svgIcon="interface-check" size="md"> </apollo-icon>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </li>
+                </ng-container>
+            </ul>
+        </div>
+
+        <!-- TEMPLATE FOOTER -->
+        <div class="c-change-account__footer">
+            <apollo-button variant="link" size="md" (click)="onAddAccount()">
+                <apollo-icon-button
+                    iconPack="interface"
+                    iconOff="interface-plus-circle"
+                    iconOn="interface-plus-circle"
+                ></apollo-icon-button>
+                Adicionar nova conta</apollo-button
+            >
+        </div>
+    </ng-container>
+</ng-template>
+
+<ng-template #onError>
+    <div class="c-change-account__feedback">
+        <div class="c-change-account__feedback--header">
+            <button mat-icon-button class="c-change-account__feedback-header-close-button" (click)="onClose()">
+                <apollo-icon fill="#00ac4a" svgIcon="interface-times" size="md"> </apollo-icon>
+            </button>
+        </div>
+        <div class="c-change-account__feedback--content">
+            <seller-panel-feedback
+                imagePath="/assets/images/feedback-error.svg"
+                title="Opa! Erramos por aqui"
+                description="Tivemos uma falha no sistema e não conseguimos concluir."
+                height="50vh"
+            ></seller-panel-feedback>
+
+            <div class="c-change-account__feedback-content-retry">
+                <apollo-button variant="unelevated" size="md" (click)="onTryAgain()">Tentar novamente</apollo-button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #createAccount>
+    <div class="c-change-account__feedback">
+        <div class="c-change-account__feedback--header">
+            <button mat-icon-button class="c-change-account__feedback-header-close-button" (click)="onClose()">
+                <apollo-icon fill="#00ac4a" svgIcon="interface-times" size="md"> </apollo-icon>
+            </button>
+        </div>
+        <div class="c-change-account__feedback--content">
+            <seller-panel-feedback
+                imagePath="/assets/images/feedback-attention.svg"
+                title="Você não possui conta bancária cadastrada"
+                description="Para realizar o saque é necessário antes cadastrar uma conta bancária"
+                height="50vh"
+            ></seller-panel-feedback>
+
+            <div class="c-change-account__feedback-content-retry">
+                <apollo-button variant="unelevated" size="md" (click)="onAddAccount()"
+                    >Cadastrar conta bancária</apollo-button
+                >
+            </div>
+        </div>
+    </div>
+</ng-template>

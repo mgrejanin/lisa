@@ -1,0 +1,30 @@
+<div class="c-side-menu d-flex flex-column align-items-center">
+    <div *ngFor="let item of items" class="c-side-menu__items d-flex justify-content-center align-items-center">
+        <apollo-tooltip
+            placement="right"
+            [titleText]="item.text"
+            offset="10"
+            size="sm"
+            [description]="item.description"
+        >
+            <div
+                [ngClass]="{
+                    'c-side-menu-item--disabled': disabledOptions,
+                    'c-side-menu-item--active': item.isActive
+                }"
+                class="c-side-menu-item d-flex flex-column justify-content-center align-items-center"
+                (click)="onActiveOrInactiveMenuOption(item)"
+            >
+                <mat-icon
+                    fontSet="material-icons-outlined"
+                    class="c-side-menu-item__icon d-flex justify-content-center align-items-center"
+                >
+                    {{ item.icon }}
+                </mat-icon>
+                <span class="c-side-menu-item__text">
+                    {{ item.text }}
+                </span>
+            </div>
+        </apollo-tooltip>
+    </div>
+</div>

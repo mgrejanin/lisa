@@ -1,0 +1,22 @@
+@use "mixins/breakpoint";
+
+.c-card {
+    &__card {
+        cursor: pointer;
+        margin-right: theme('spacing.4');
+        margin-bottom: theme('spacing.4');
+
+        @include breakpoint.down(xsmall) {
+            width: 100%;
+        }
+    }
+
+    &__card-item {
+        color: theme('colors.success.base');
+        width: 12rem;
+
+        @include breakpoint.down(xsmall) {
+            width: 100%;
+        }
+    }
+}

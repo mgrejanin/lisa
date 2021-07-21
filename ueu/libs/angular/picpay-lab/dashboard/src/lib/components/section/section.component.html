@@ -1,0 +1,41 @@
+<section
+    id="sectionList"
+    #sectionList="cdkDropList"
+    cdkDropListConnectedTo="deviceList"
+    [cdkDropListData]="items"
+    cdkDropListSortingDisabled
+    cdkDropList
+>
+    <div
+        *ngFor="let item of items"
+        class="section"
+        attr.aria-labelledby="sectionTitle{{ item.type }}"
+        attr.aria-describedby="sectionDesc{{ item.type }}"
+    >
+        <p class="section__title" id="sectionTitle{{ item.type }}">{{ item.title }}</p>
+        <p class="section__description" id="sectionDesc{{ item.type }}">{{ item.description }}</p>
+
+        <div class="section__content">
+            <div class="section__content-shadow">
+                <img class="section__image" [src]="item.imageUrl" alt="Componente do tipo {{ item.type }}" />
+            </div>
+            <div cdkDrag class="section__content-draggable">
+                <img class="section__image" [src]="item.imageUrl" alt="Componente do tipo {{ item.type }}" />
+                <div class="section__middle justify-content-center">
+                    <img
+                        class="section__gif"
+                        src="./assets/images/drag.gif"
+                        alt="Animação simulando o drag e drop do componente"
+                    />
+                    <p>Segure e arraste para adicionar</p>
+                </div>
+                <div class="drag-placeholder" *cdkDragPlaceholder>
+                    <apollo-icon svgIcon="interface-plus-circle"></apollo-icon>
+                    <label class="drag-placeholder__label"> Arraste e solte aqui</label>
+                </div>
+            </div>
+        </div>
+
+        <apollo-button block variant="link" (click)="openDialog(item.type)">Exemplo de Uso</apollo-button>
+    </div>
+</section>

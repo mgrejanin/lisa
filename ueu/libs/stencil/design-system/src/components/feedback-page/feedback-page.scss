@@ -1,0 +1,77 @@
+@use "mixins/typography";
+@use "mixins/breakpoint";
+
+.apollo-feedback-page {
+    height: 100%;
+    padding: theme('spacing.3') theme('spacing.2');
+
+    &__container {
+        height: 100%;
+    }
+
+    &__surface {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+
+        @include breakpoint.up(small) {
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+
+        @include breakpoint.up(small) {
+            flex: 0;
+        }
+    }
+
+    &__figure {
+        width: 140px;
+    }
+
+    &__title {
+        padding: theme('spacing.3') 0 theme('spacing.4') 0;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        h3 {
+            @include typography.title(xlarge);
+            color: theme('colors.grayscale.900');
+            text-align: center;
+        }
+
+        span {
+            @include typography.body(primary, default);
+            color: theme('colors.grayscale.600');
+            margin-top: theme('spacing.1');
+            text-align: center;
+        }
+    }
+
+    &__content {
+        width: 100%;
+    }
+}
+
+[data-theme='dark'] {
+    .apollo-feedback-page {
+        &__title {
+            h3 {
+                color: theme('colors.white');
+            }
+            span {
+                color: theme('colors.grayscale.200');
+            }
+        }
+    }
+}

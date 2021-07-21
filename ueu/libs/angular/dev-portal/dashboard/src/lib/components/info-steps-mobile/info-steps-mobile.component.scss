@@ -1,0 +1,23 @@
+@use "mixins/typography";
+
+.c-info-steps {
+    margin: 0 auto;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    &__content {
+        text-align: center;
+
+        &--title {
+            @include typography.title(small);
+            padding-bottom: theme('spacing.3');
+        }
+
+        &--description {
+            padding-bottom: theme('spacing.6');
+        }
+    }
+}

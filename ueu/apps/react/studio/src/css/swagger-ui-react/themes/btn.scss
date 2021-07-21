@@ -1,0 +1,147 @@
+@use "mixins/typography";
+
+.btn {
+    font-size: theme('fontSize.sm');
+    font-weight: theme('fontWeight.bold');
+    padding: theme('spacing.half') theme('spacing.3');
+    color: theme('colors.grayscale.600');
+    border: theme('borderWidth.medium') solid theme('colors.grayscale.600');
+    border-radius: theme('borderRadius.light');
+    background: none;
+    transition: all 0.3s;
+
+    &.btn-sm {
+        font-size: theme('fontSize.xs');
+        padding: theme('spacing.half') theme('spacing.3');
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+        opacity: 0.3;
+    }
+
+    &:hover {
+        box-shadow: 0 0 5px rgba(theme('colors.grayscale.light.50'), 0.3);
+    }
+
+    &.cancel {
+        border-color: theme('colors.critical.600');
+        background-color: theme('colors.grayscale.50');
+        @include text_headline(theme('colors.critical.600'));
+    }
+
+    &.authorize {
+        line-height: 1;
+        display: inline;
+        color: theme('colors.grayscale.200');
+        border-color: theme('colors.grayscale.200');
+        background-color: theme('colors.grayscale.200');
+
+        span {
+            float: left;
+            padding: theme('spacing.half') theme('spacing.2') theme('spacing.none') theme('spacing.none');
+        }
+
+        svg {
+            fill: theme('colors.grayscale.50');
+        }
+    }
+
+    &.execute {
+        background-color: theme('colors.grayscale.50');
+        color: theme('colors.grayscale.50');
+        border-color: theme('colors.grayscale.50');
+    }
+
+    &.try-out__btn {
+        display: none;
+    }
+}
+
+.btn-group {
+    display: flex;
+
+    padding: 30px;
+
+    .btn {
+        flex: 1;
+
+        &:first-child {
+            border-radius: theme('spacing.half') theme('spacing.none') theme('spacing.none') theme('spacing.half');
+        }
+
+        &:last-child {
+            border-radius: theme('spacing.none') theme('spacing.half') theme('spacing.half') theme('spacing.none');
+        }
+    }
+}
+
+.authorization__btn {
+    padding: theme('spacing.none') theme('spacing.half');
+    border: none;
+    background: none;
+    display: none;
+
+    &.locked {
+        opacity: 1;
+    }
+
+    &.unlocked {
+        opacity: 0.4;
+    }
+}
+
+.expand-methods,
+.expand-operation {
+    display: none;
+}
+
+.expand-methods {
+    padding: theme('spacing.none') theme('spacing.half');
+
+    &:hover {
+        svg {
+            fill: theme('colors.grayscale.50');
+        }
+    }
+
+    svg {
+        transition: all 0.3s;
+
+        fill: theme('colors.grayscale.200');
+    }
+}
+
+button {
+    cursor: pointer;
+    outline: none;
+}
+
+.copy-to-clipboard {
+    position: absolute;
+    bottom: theme('spacing.half');
+    right: theme('spacing.12');
+    width: 30px;
+    height: 30px;
+    background: theme('colors.grayscale.500');
+    border-radius: theme('borderRadius.light');
+    border: none;
+
+    button {
+        padding-left: theme('spacing.3');
+        border: theme('borderWidth.none');
+        height: 25px;
+        background: url(../../../../static/img/icons/swagger-ui-react/icon-copy.svg) center center no-repeat;
+    }
+}
+
+.curl-command .copy-to-clipboard {
+    bottom: theme('spacing.half');
+    right: theme('spacing.half');
+    width: 20px;
+    height: 20px;
+    button {
+        padding-left: theme('spacing.2');
+        height: theme('spacing.2');
+    }
+}

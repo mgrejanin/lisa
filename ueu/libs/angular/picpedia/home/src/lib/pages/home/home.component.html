@@ -1,0 +1,71 @@
+<picpedia-navbar-header
+    class="c-home__navbar-header"
+    title="Início"
+    [showReturnButton]="false"
+    [showBreadcrumbs]="false"
+></picpedia-navbar-header>
+
+<section class="c-home container-fluid">
+    <div class="c-home__search">
+        <div class="c-home__search-bar-row row align-items-baseline">
+            <div class="c-home__search-bar-container col-12 col-md-8 col-lg-6">
+                <apollo-textfield
+                    class="c-home__search-bar"
+                    size="md"
+                    label="Pesquisar"
+                    type="search"
+                    no-floating-label
+                    trailing-clear-icon
+                ></apollo-textfield>
+            </div>
+            <div class="c-home__search-actions col-12 col-md-4 col-lg-4">
+                <apollo-button variant="outlined" size="md" class="c-home__search-actions--filter text-right">
+                    <apollo-icon slot="leading-icon" size="sm" label="Filtrar" class="material-icons-outlined">
+                        filter_alt
+                    </apollo-icon>
+                    Filtrar
+                </apollo-button>
+            </div>
+        </div>
+    </div>
+    <div class="c-home__tags">
+        <div *ngIf="(tags$ | async).length >= 0" class="row c-home__tags-container">
+            <div class="col-12 d-flex flex-wrap align-items-baseline">
+                <picpedia-badge
+                    class="c-home__tags--link"
+                    *ngFor="let item of tags$ | async"
+                    [description]="item.tag_name"
+                ></picpedia-badge>
+                <apollo-button
+                    class="c-home_view-all-tags--button"
+                    variant="link"
+                    size="md"
+                    (click)="onViewAllTagsClick()"
+                >
+                    todas as tags
+                </apollo-button>
+            </div>
+        </div>
+    </div>
+    <div class="c-home__bookmarks">
+        <h2 class="c-home__bookmarks--title"><strong>Meus Favoritos</strong></h2>
+
+        <!-- Com favorito encontrado -->
+
+        <!-- Nenhum favorito encontrado -->
+        <div *ngIf="(bookmarks$ | async).length === 0" class="c-home__bookmarks__empty row justify-content-center">
+            <div class="c-home__bookmarks__empty--image col-12 d-flex justify-content-center">
+                <img src="/assets/picpedia/svgs/home-feedback.svg" alt="feedback" />
+            </div>
+            <div class="c-home__bookmarks__empty--title col-12 d-flex justify-content-center align-items-center">
+                <h2 class="my-0"><strong>Nenhum resultado favoritado</strong></h2>
+            </div>
+            <div class="c-home__bookmarks__empty--tip col-12 col-lg-6 col-xl-4 text-center">
+                <span
+                    >Faça uma busca e selecione a estrela para favoritar os resultados que você mais utiliza no dia a
+                    dia deixando-os a um clique de você.</span
+                >
+            </div>
+        </div>
+    </div>
+</section>

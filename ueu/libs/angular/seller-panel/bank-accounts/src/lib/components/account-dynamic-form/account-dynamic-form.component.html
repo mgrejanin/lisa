@@ -1,0 +1,156 @@
+<form #formElement [formGroup]="form" class="c-account-dynamic-form" (ngSubmit)="onConfirmAccount()">
+    <div class="row c-account-dynamic-form__bank-data">
+        <ng-container *ngIf="(account$ | async)?.account_error">
+            <div class="col-md-12">
+                <div class="c-account-dynamic-form__bank-data--error">
+                    <mat-icon class="u-color__danger">error_outline</mat-icon>
+                    <span class="text">{{ (account$ | async)?.account_error }}</span>
+                </div>
+            </div>
+        </ng-container>
+
+        <div class="col-md-12">
+            <div
+                class="c-account-dynamic-form__bank-data--field"
+                tabindex="0"
+                (keyup.space)="showBanksList()"
+                (click)="showBanksList()"
+            >
+                <span>
+                    <img
+                        width="32"
+                        height="32"
+                        [src]="(bank$ | async)?.img_url || 'assets/icons/bank.svg'"
+                        alt="Ícone do banco"
+                    />
+                </span>
+                <p class="u-text-ellipsis">{{ (bank$ | async)?.name | uppercase }}</p>
+                <mat-icon>keyboard_arrow_right</mat-icon>
+            </div>
+            <input matInput readonly hidden formControlName="bank_id" type="text" />
+        </div>
+        <div class="col-md-12">
+            <mat-form-field appearance="outline">
+                <mat-label>Tipo de conta</mat-label>
+                <mat-select formControlName="type" [compareWith]="accountTypeCompare">
+                    <ng-container *ngFor="let type of (bank$ | async)?.form_config?.account_types">
+                        <mat-option [value]="type">
+                            {{ type?.label }}
+                        </mat-option>
+                    </ng-container>
+                </mat-select>
+                <mat-error validation-message [control]="form.controls.type"></mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-md-12" [ngClass]="form.controls.type?.value?.legal_nature ? '' : 'd-none'">
+            <mat-form-field appearance="outline">
+                <mat-label>{{ documentTypeInput === 'PJ' ? 'CNPJ' : 'CPF' }} da conta bancária</mat-label>
+                <input
+                    #cpfCnpj
+                    matInput
+                    type="text"
+                    formControlName="document"
+                    [sellerPanelAutoTab]="agency"
+                    sellerPanelCpfCnpjFormatter
+                    [maxlength]="documentTypeInput === 'PJ' ? 18 : 14"
+                />
+                <mat-icon
+                    matSuffix
+                    class="c-account-dynamic-form__icon i-icon__blue"
+                    [matTooltip]="toolTipLabel"
+                    matTooltipClass="o-tooltip"
+                >
+                    error_outline
+                </mat-icon>
+                <mat-error validation-message [control]="form.controls.document"></mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row c-account-dynamic-form__account-data">
+        <div [ngClass]="bankConfig?.branch_digit_enabled ? 'col-md-8' : 'col-md-12'">
+            <mat-form-field appearance="outline">
+                <mat-label>{{
+                    bankConfig.branch_digit_enabled ? 'Número da agência' : 'Número da agência (sem dígito)'
+                }}</mat-label>
+                <input
+                    #agency
+                    matInput
+                    inputmode="numeric"
+                    formControlName="branch"
+                    sellerPanelAutoTrim
+                    [sellerPanelNumeric]="true"
+                    [maxlength]="bankConfig?.branch_limit ? bankConfig?.branch_limit : 12"
+                    [sellerPanelAutoTab]="bankConfig?.branch_digit_enabled ? agencyDigit : account"
+                />
+                <mat-error validation-message [control]="form.controls.branch"></mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-md-4" [ngClass]="bankConfig?.branch_digit_enabled ? '' : 'd-none'">
+            <mat-form-field appearance="outline">
+                <mat-label>Dígito</mat-label>
+                <input
+                    #agencyDigit
+                    matInput
+                    formControlName="branch_digit"
+                    type="text"
+                    sellerPanelAutoTrim
+                    sellerPanelUppercase
+                    [sellerPanelAutoTab]="account"
+                    [maxlength]="bankConfig?.branch_digit_limit ? bankConfig?.branch_digit_limit : 2"
+                    [sellerPanelNumeric]="bankConfig?.branch_digit_type === 'number'"
+                    [attr.inputmode]="bankConfig?.branch_digit_type === 'number' ? 'numeric' : 'none'"
+                />
+                <mat-error validation-message [control]="form.controls.branch_digit"></mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-md-8">
+            <mat-form-field appearance="outline">
+                <mat-label>Número da conta</mat-label>
+                <input
+                    #account
+                    matInput
+                    formControlName="account"
+                    inputmode="numeric"
+                    sellerPanelAutoTrim
+                    [sellerPanelNumeric]="true"
+                    [sellerPanelAutoTab]="accountInput"
+                    [maxlength]="bankConfig?.account_limit ? bankConfig?.account_limit : 12"
+                />
+                <mat-error validation-message [control]="form.controls.account"></mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-md-4">
+            <mat-form-field appearance="outline">
+                <mat-label>Dígito</mat-label>
+                <input
+                    #accountInput
+                    matInput
+                    formControlName="account_digit"
+                    type="text"
+                    sellerPanelAutoTrim
+                    [sellerPanelNumeric]="bankConfig?.account_digit_type === 'number'"
+                    [attr.inputmode]="bankConfig?.account_digit_type === 'number' ? 'numeric' : 'none'"
+                    [maxlength]="bankConfig?.account_digit_limit ? bankConfig?.account_digit_limit : 2"
+                />
+                <mat-error validation-message [control]="form.controls.account_digit"></mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="c-account-dynamic-form__submit">
+        <ng-container *ngIf="isEdit$ | async; else createModeSubmit">
+            <button
+                mat-button
+                class="o-button o-button__solid w-100"
+                type="submit"
+                [disabled]="form.invalid || !hasDifferenceDataForm"
+            >
+                Alterar conta
+            </button>
+        </ng-container>
+        <ng-template #createModeSubmit>
+            <button mat-button class="o-button o-button__solid w-100" type="submit" [disabled]="form.invalid">
+                Cadastrar conta
+            </button>
+        </ng-template>
+    </div>
+</form>

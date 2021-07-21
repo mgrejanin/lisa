@@ -1,0 +1,161 @@
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-extract-container {
+    @media screen and (max-width: 1000px) {
+        padding-bottom: theme('spacing.16');
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    &__title {
+        line-height: theme('lineHeight.7xl');
+        font-weight: theme('fontWeight.bold');
+        color: theme('colors.grayscale.darkest');
+        margin-bottom: theme('spacing.3');
+    }
+
+    &__loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: theme('spacing.10');
+
+        ::ng-deep {
+            mat-spinner {
+                circle {
+                    stroke: rgba(var(--apollo-primary-rgb), 1);
+                }
+            }
+        }
+    }
+
+    &__table {
+        margin: theme('spacing.6') theme('spacing.none') theme('spacing.10');
+
+        @media screen and (max-width: 1000px) {
+            margin-top: theme('spacing.1');
+        }
+
+        &--load-more {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin: theme('spacing.4') theme('spacing.none') theme('spacing.8');
+
+            button {
+                text-transform: none;
+            }
+        }
+    }
+
+    &__btn-container {
+        ::ng-deep {
+            .mat-button-wrapper {
+                display: flex;
+                flex-flow: nowrap;
+                align-items: center;
+            }
+        }
+
+        &--centered {
+            margin-top: theme('spacing.none');
+            margin-left: theme('spacing.3');
+        }
+
+        &:disabled {
+            opacity: 1;
+        }
+    }
+
+    &__scroll-to {
+        padding: theme('spacing.1') theme('spacing.1');
+        border-radius: 80px;
+        position: fixed;
+        left: 260px;
+        right: 0;
+        margin: theme('spacing.none') auto;
+        max-width: 120px;
+        text-align: center;
+        cursor: pointer;
+        bottom: 20px;
+        outline: none;
+        background: rgb(var(--apollo-primary-rgb)) !important;
+
+        @media (max-width: 1000px) {
+            left: 15px;
+            bottom: 70px;
+        }
+    }
+
+    &__actions {
+        display: flex;
+        width: 100%;
+        outline: none;
+
+        &--buttons {
+            flex-grow: 1;
+            align-items: flex-start;
+            justify-content: flex-end;
+
+            button {
+                margin-left: theme('spacing.4');
+            }
+        }
+    }
+
+    @media screen and (max-width: 1200px) {
+        &__actions {
+            &--custom-height {
+                ::ng-deep {
+                    button {
+                        height: auto;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        padding-bottom: theme('spacing.8');
+
+        &__title {
+            display: none;
+        }
+
+        &__actions {
+            flex-direction: column;
+
+            &--buttons {
+                order: 1;
+                flex-direction: row;
+                align-items: flex-end;
+                margin-bottom: theme('spacing.2');
+
+                button {
+                    margin-left: theme('spacing.none');
+                }
+            }
+
+            &--future-releases {
+                max-width: 100%;
+                order: 2;
+            }
+        }
+    }
+
+    @media screen and (max-width: 414px) {
+        &__actions {
+            &--future-releases {
+                p {
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}

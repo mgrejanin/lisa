@@ -1,0 +1,182 @@
+@use "@material/theme" with (
+    $primary: theme('colors.primary.light.500'),
+    $secondary: theme('colors.primary.light.500'),
+);
+
+@use "@material/floating-label/mdc-floating-label";
+@use "@material/notched-outline/mdc-notched-outline";
+@use "@material/line-ripple/mdc-line-ripple";
+@use "@material/textfield/helper-text";
+@use "@material/select/icon";
+
+@use "@material/select" with (
+    $height: 52px,
+    $density-config: (
+        height: (
+            default: 52px,
+            maximum: 52px,
+            minimum: 36px,
+        ),
+    )
+);
+
+$densities: (-4, -3, -2, -1);
+
+@include select.core-styles();
+@include helper-text.helper-text-core-styles;
+
+.mdc-select {
+    width: 100%;
+
+    @include select.label-color(rgba(theme('colors.black'), theme.text-emphasis(medium)));
+    @include select.disabled-label-color(rgba(theme('colors.black'), 0.2));
+    @include select.disabled-outline-color(rgba(theme('colors.black'), 0.2));
+
+    &.mdc-select--focused:not(.mdc-select--disabled) .mdc-floating-label.mdc-floating-label--float-above {
+        color: rgba(var(--apollo-primary-rgb), theme.text-emphasis(high));
+    }
+
+    &.mdc-select--filled {
+        @include select.container-fill-color(rgba(0, 0, 0, 0.08));
+        @include select.disabled-container-fill-color(rgba(0, 0, 0, 0));
+    }
+
+    &.mdc-select--invalid.mdc-select--focused:not(.mdc-select--disabled) .mdc-notched-outline {
+        @include select.outline-color(theme('colors.critical.light.500'));
+        .mdc-notched-outline__notch {
+            .mdc-floating-label.mdc-floating-label--float-above {
+                color: rgba(theme('colors.critical.light.500'), theme.text-emphasis(high));
+            }
+        }
+    }
+
+    & + .mdc-select-helper-line {
+        padding-right: theme('spacing.2');
+        padding-left: theme('spacing.2');
+        color: rgba(0, 0, 0, 0.6);
+    }
+
+    &.mdc-select--invalid {
+        @include select.label-color(rgba(0, 0, 0, theme.text-emphasis(medium)));
+        @include select.outline-color(theme('colors.critical.light.500'));
+        @include select.dropdown-icon-color(theme('colors.critical.light.500'));
+        @include helper-text.helper-text-color(
+            rgba(theme('colors.critical.light.500'), theme.text-emphasis(high))
+        );
+    }
+}
+
+@each $density in $densities {
+    .mdc-select {
+        &.mdc-select--dense-#{$density} {
+            &.mdc-select--outlined {
+                @include select.outlined-density($density);
+
+                &.mdc-select--with-leading-icon {
+                    @include select.outlined-with-leading-icon-density($density);
+                    @include icon.size(24px);
+                    .mdc-notched-outline .mdc-notched-outline__notch {
+                        padding-right: theme('spacing.none');
+
+                        .mdc-floating-label {
+                            left: 36px;
+                            display: flex;
+                            &.mdc-floating-label--float-above {
+                                left: 32px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+[data-theme='dark'] {
+    .mdc-select {
+        /**
+          * label-color
+          */
+        @include select.label-color(rgba(255, 255, 255, theme.text-emphasis(high)));
+        @include select.disabled-label-color(rgba(255, 255, 255, theme.text-emphasis(disabled)));
+        @include select.dropdown-icon-color(rgba(255, 255, 255, theme.text-emphasis(high)));
+
+        // /**
+        //   * ink-color
+        //   */
+        @include select.ink-color(rgba(255, 255, 255, theme.text-emphasis(high)));
+        @include select.disabled-ink-color(rgba(255, 255, 255, theme.text-emphasis(disabled)));
+
+        // /**
+        //   * helper-text-color
+        //   */
+        @include helper-text.helper-text-color(rgba(255, 255, 255, theme.text-emphasis(high)));
+        @include helper-text.disabled-helper-text-color(rgba(255, 255, 255, theme.text-emphasis(disabled)));
+
+        &.mdc-select--filled {
+            /**
+            * fill-color
+            */
+            @include select.container-fill-color(
+                rgba(theme('colors.background.dark.tertiary'), theme.text-emphasis(high))
+            );
+            @include select.disabled-container-fill-color(
+                rgba(theme('colors.background.dark.tertiary'), theme.text-emphasis(disabled))
+            );
+
+            /**
+            * bottom-line-color
+            */
+            @include select.bottom-line-color(rgba(255, 255, 255, theme.text-emphasis(high)));
+            @include select.disabled-bottom-line-color(rgba(255, 255, 255, theme.text-emphasis(disabled)));
+
+            &.mdc-select--focused:not(.mdc-select--disabled) .mdc-floating-label.mdc-floating-label--float-above {
+                color: rgba(var(--apollo-primary-rgb), theme.text-emphasis(high));
+            }
+        }
+
+        &.mdc-select--outlined {
+            /**
+            * focused-outline-color
+            */
+            @include select.outline-color(rgba(255, 255, 255, theme.text-emphasis(medium)));
+            @include select.hover-outline-color(rgba(255, 255, 255, theme.text-emphasis(high)));
+            @include select.focused-outline-color(primary);
+            @include select.disabled-outline-color(rgba(255, 255, 255, theme.text-emphasis(disabled)));
+
+            /**
+            * outline-shape-radius
+            */
+            @include select.outline-shape-radius(theme('borderRadius.medium'));
+        }
+
+        &.mdc-select--focused:not(.mdc-select--disabled) .mdc-notched-outline {
+            .mdc-notched-outline__notch {
+                .mdc-floating-label.mdc-floating-label--float-above {
+                    color: rgba(var(--apollo-primary-rgb), theme.text-emphasis(high));
+                }
+            }
+        }
+
+        &.mdc-select--focused {
+            @include select.dropdown-icon-color(primary);
+        }
+
+        &.mdc-select--invalid.mdc-select--focused:not(.mdc-select--disabled) .mdc-notched-outline {
+            .mdc-notched-outline__notch {
+                .mdc-floating-label.mdc-floating-label--float-above {
+                    color: rgba(theme('colors.critical.light.500'), theme.text-emphasis(high));
+                }
+            }
+        }
+
+        &.mdc-select--invalid {
+            @include select.outline-color(theme('colors.critical.light.500'));
+            @include select.hover-outline-color(theme('colors.critical.light.500'));
+            @include select.focused-outline-color(rgba(theme('colors.critical.light.500'), 1));
+            @include helper-text.helper-text-color(
+                rgba(theme('colors.critical.light.500'), theme.text-emphasis(high))
+            );
+        }
+    }
+}

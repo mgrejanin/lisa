@@ -1,0 +1,44 @@
+@use "@material/theme";
+
+@use "@material/list";
+
+:host {
+    display: block;
+}
+
+apollo-list-item {
+    @include list.item-primary-text-ink-color(
+        rgba(theme('colors.background.dark.secondary'), theme.text-emphasis(high))
+    );
+    @include list.item-secondary-text-ink-color(
+        rgba(theme('colors.background.dark.secondary'), theme.text-emphasis(medium))
+    );
+    @include list.item-disabled-text-color(theme('colors.background.dark.secondary'));
+    .mdc-list-item__text {
+        padding-right: theme('spacing.3');
+        apollo-icon {
+            margin-right: theme('spacing.2');
+        }
+    }
+    .mdc-list-item__graphic {
+        justify-content: end;
+    }
+}
+
+[data-theme='dark'] {
+    apollo-list-item {
+        @include list.item-primary-text-ink-color(
+            rgba(theme('colors.background.light.secondary'), theme.text-emphasis(high))
+        );
+        @include list.item-secondary-text-ink-color(
+            rgba(theme('colors.background.light.secondary'), theme.text-emphasis(medium))
+        );
+        @include list.item-disabled-text-color(theme('colors.background.light.secondary'));
+        @include list.item-graphic-ink-color(
+            rgba(theme('colors.background.light.secondary'), theme.text-emphasis(medium))
+        );
+        @include list.item-meta-ink-color(
+            rgba(theme('colors.background.light.secondary'), theme.text-emphasis(medium))
+        );
+    }
+}

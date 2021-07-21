@@ -1,0 +1,6 @@
+/**
+  * O arquivo abaixo já importa todos as vars, mixins, functions e etc do PicPay, Bootstrap e Angular Material.
+  * Dentro dos arquivos dessa pasta não podem ter nenhum output de CSS, ou seja, podemos ter somente vars, mixins e functions.
+  * É esse arquivo que deve ser importado em todo o projeto para que possamos usar todas as features do ui-styles
+  */
+@import 'variables/index';

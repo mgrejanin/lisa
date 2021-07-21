@@ -1,0 +1,78 @@
+@use "mixins/breakpoint";
+
+.c-side-menu {
+    height: calc(100vh - 4.5rem);
+    width: theme('spacing.16');
+
+    background-color: var(--apollo-background);
+    border-right: theme('borderWidth.light') solid theme('colors.grayscale.light');
+
+    padding: theme('spacing.3') theme('spacing.none') theme('spacing.none') theme('spacing.none');
+
+    &__items {
+        margin-bottom: theme('spacing.5');
+
+        &:first-child {
+            margin-top: theme('spacing.5');
+        }
+    }
+
+    &-item {
+        position: relative;
+
+        width: theme('spacing.16');
+        height: theme('spacing.10');
+        cursor: pointer;
+        color: theme('colors.grayscale.700');
+        transition: all 0.4s ease-in-out;
+
+        &__icon {
+            font-size: theme('spacing.4');
+
+            margin-bottom: theme('spacing.1');
+        }
+
+        &__text {
+            font-weight: theme('fontWeight.bold');
+            text-align: center;
+            word-spacing: theme('spacing.16');
+
+            @include breakpoint.down(small) {
+                display: none;
+            }
+        }
+
+        &--active {
+            > * {
+                color: theme('colors.primary.600');
+            }
+
+            ::before {
+                content: '';
+                height: 100%;
+                width: theme('borderWidth.strong');
+                position: absolute;
+                bottom: theme('borderWidth.light');
+                left: theme('borderWidth.none');
+                background: theme('colors.primary.600');
+            }
+        }
+        &--disabled {
+            pointer-events: none;
+            opacity: theme('opacity.light');
+        }
+
+        @include breakpoint.down(small) {
+            width: theme('spacing.8');
+        }
+
+        &:hover {
+            overflow: hidden;
+            background-color: rgba(theme('colors.primary.light.600'), 0.1);
+        }
+    }
+
+    @include breakpoint.down(small) {
+        width: theme('spacing.8');
+    }
+}

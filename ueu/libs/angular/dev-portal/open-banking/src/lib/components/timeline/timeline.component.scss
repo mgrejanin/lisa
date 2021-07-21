@@ -1,0 +1,47 @@
+@use "mixins/breakpoint";
+
+.timeline {
+    background-color: rgba(#9ac3ca, 0.25);
+    padding: theme('spacing.4') theme('spacing.none');
+    height: 285px;
+
+    @include breakpoint.down(small) {
+        height: 472px;
+        padding: theme('spacing.7') theme('spacing.none');
+    }
+
+    &__fase {
+        height: 100%;
+    }
+
+    &__line {
+        width: 440px;
+        padding: theme('spacing.none');
+
+        @include breakpoint.down(small) {
+            width: 330px;
+        }
+        @include breakpoint.down(xsmall) {
+            width: 90%;
+        }
+    }
+    &__image {
+        max-width: 100%;
+    }
+
+    &__text-container {
+        margin: 0 auto;
+        padding: theme('spacing.none');
+    }
+
+    &__text-description {
+        padding-right: theme('spacing.6');
+        max-width: 850px;
+
+        @include breakpoint.down(small) {
+            margin: theme('spacing.5') theme('spacing.2') theme('spacing.none');
+            width: auto;
+            padding: theme('spacing.none');
+        }
+    }
+}

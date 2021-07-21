@@ -1,0 +1,116 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-transactions {
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+        font-size: theme('fontSize.5xl');
+        font-weight: theme('fontWeight.bold');
+        line-height: theme('lineHeight.7xl');
+    }
+
+    &__actions {
+        display: flex;
+        width: 100%;
+
+        &--search {
+            justify-content: flex-start;
+            max-width: 400px;
+
+            ::ng-deep .mat-form-field-wrapper {
+                padding: theme('spacing.none');
+            }
+        }
+
+        &--buttons {
+            align-items: center;
+            justify-content: flex-end;
+
+            button {
+                margin-left: theme('spacing.4');
+            }
+        }
+    }
+
+    &__load-more {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin: theme('spacing.1') theme('spacing.none');
+
+        button {
+            text-transform: none;
+        }
+    }
+
+    &__loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: theme('spacing.9');
+    }
+
+    &__mat-tab {
+        ::ng-deep {
+            &.mat-tab-header {
+                border: theme('spacing.none');
+                font-weight: theme('fontWeight.bold');
+            }
+
+            .mat-tab-links {
+                margin: theme('spacing.none') auto;
+                width: 100%;
+                max-width: 1140px;
+
+                a,
+                a:hover {
+                    color: theme('colors.primary');
+                }
+            }
+
+            .mat-ink-bar {
+                height: 4px;
+                background-color: theme('colors.primary');
+            }
+
+            .mat-tab-list {
+                border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.50');
+            }
+
+            .mat-tab-link {
+                padding: theme('spacing.none') theme('spacing.1');
+                min-width: 90px;
+            }
+
+            .mat-tab-label {
+                color: theme('colors.primary');
+                opacity: theme('opacity.full');
+                font-weight: theme('fontWeight.semibold');
+            }
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        &__title {
+            display: none;
+        }
+
+        &__actions {
+            &--search {
+                max-width: 100%;
+            }
+
+            &--buttons {
+                width: auto;
+                button {
+                    min-width: auto;
+                    padding: theme('spacing.none');
+                    margin-left: theme('spacing.3');
+                }
+            }
+        }
+    }
+}

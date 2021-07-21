@@ -1,0 +1,6 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-extract {
+    overflow-x: hidden;
+}

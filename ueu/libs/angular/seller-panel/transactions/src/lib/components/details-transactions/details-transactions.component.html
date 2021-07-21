@@ -1,0 +1,93 @@
+<div class="c-detail-transaction">
+    <div class="c-detail-transaction__header">
+        <img class="c-detail-transaction__header--image" [src]="currentTransaction?.image" />
+        <p class="c-detail-transaction__header--username">@{{ currentTransaction?.details.username }}</p>
+        <div
+            class="c-detail-transaction__header--status"
+            [ngClass]="{
+                'u-bg-color__success': currentTransaction?.status_id === 'check_circle_outline',
+                'u-bg-color__danger': currentTransaction?.status_id === 'error_outline',
+                'u-bg-color__info': currentTransaction?.status_id === 'reply',
+                'u-bg-color__warning': currentTransaction?.status_id === 'access_time'
+            }"
+        >
+            <mat-icon>{{ currentTransaction?.status_id }}</mat-icon>
+            <span
+                ><b>{{ currentTransaction?.status }}</b></span
+            >
+        </div>
+    </div>
+    <div class="c-detail-transaction__body">
+        <div class="c-detail-transaction__body--section">
+            <div class="c-detail-transaction__body--field">
+                <label>Data e hora</label>
+                <p>{{ currentTransaction?.transaction_date | date: 'dd/MM/yyyy - HH:mm' }}</p>
+            </div>
+            <div class="c-detail-transaction__body--field">
+                <label>ID da transação</label>
+                <p>{{ currentTransaction?.details.id_transaction }}</p>
+            </div>
+        </div>
+        <ng-container *ngIf="!this.currentTransaction?.store_details; else store_details">
+            <div class="c-detail-transaction__body--section" *ngIf="!this.currentTransaction?.checkout">
+                <div class="c-detail-transaction__body--field">
+                    <label>Loja</label>
+                    <p>{{ currentTransaction?.details?.seller }}</p>
+                </div>
+                <div class="c-detail-transaction__body--field">
+                    <label>CNPJ</label>
+                    <p>{{ currentTransaction?.details?.cpf_cnpj }}</p>
+                </div>
+                <div class="c-detail-transaction__body--field">
+                    <label>OPERADOR</label>
+                    <p>{{ currentTransaction?.details?.operator }}</p>
+                </div>
+            </div>
+        </ng-container>
+        <ng-template #store_details>
+            <div class="c-detail-transaction__body--section">
+                <div *ngIf="currentTransaction?.store_details.store_name" class="c-detail-transaction__body--field">
+                    <label>Loja</label>
+                    <p>{{ currentTransaction?.store_details.store_name }}</p>
+                </div>
+                <div class="c-detail-transaction__body--field">
+                    <label>CNPJ</label>
+                    <p>{{ currentTransaction?.details?.cpf_cnpj }}</p>
+                </div>
+                <ng-container *ngIf="currentTransaction?.store_details.product_description">
+                    <div class="c-detail-transaction__body--field">
+                        <label>Descrição do produto</label>
+                        <p class="u-text-ellipsis">{{ currentTransaction?.store_details.product_description }}</p>
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="currentTransaction?.store_details.picpay_nsu">
+                    <div class="c-detail-transaction__body--field">
+                        <label>NSU</label>
+                        <p>{{ currentTransaction?.store_details.picpay_nsu }}</p>
+                    </div>
+                </ng-container>
+            </div>
+        </ng-template>
+        <div class="c-detail-transaction__body--section">
+            <div class="c-detail-transaction__body--field">
+                <label>Valor</label>
+                <p>
+                    <b>{{ currentTransaction?.price | currency: 'BRL':'symbol':'1.2-2' }}</b>
+                </p>
+            </div>
+            <div class="c-detail-transaction__body--field">
+                <ng-container
+                    *ngIf="currentTransaction?.status === 'Completada' || currentTransaction?.status === 'Aprovada'"
+                >
+                    <button
+                        color="primary"
+                        class="c-detail-transaction__body--btn-cancel o-button o-button__link"
+                        (click)="onCancelTransaction()"
+                    >
+                        Cancelar transação
+                    </button>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+</div>

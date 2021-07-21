@@ -1,0 +1,9 @@
+:host {
+    display: block;
+}
+
+.lab-input {
+    &--editing {
+        pointer-events: none;
+    }
+}

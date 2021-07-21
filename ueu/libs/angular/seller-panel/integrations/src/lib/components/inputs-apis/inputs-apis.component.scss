@@ -1,0 +1,42 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-inputs-apis {
+    padding-top: theme('spacing.4');
+    background: rgb(var(--apollo-background-rgb));
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    overflow: hidden;
+
+    &--title {
+        @include typography.title(medium);
+        line-height: theme('lineHeight.lg');
+        color: rgba(var(--apollo-on-background-rgb), 0.86);
+        margin: theme('spacing.none');
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+    }
+
+    &--field {
+        max-width: 900px;
+        margin: theme('spacing.2') theme('spacing.none');
+        pointer-events: none;
+        touch-action: none;
+        apollo-textfield-icon {
+            pointer-events: auto;
+            touch-action: auto;
+        }
+    }
+
+    ::ng-deep {
+        .mdc {
+            &-text-field__input {
+                padding: theme('spacing.3');
+            }
+        }
+    }
+}

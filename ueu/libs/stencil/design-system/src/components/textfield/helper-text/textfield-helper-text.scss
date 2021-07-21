@@ -1,0 +1,19 @@
+@use "@material/textfield/helper-text";
+
+@include helper-text.helper-text-core-styles;
+
+textfield-helper-text {
+    display: flex !important;
+    padding-top: theme('spacing.half');
+
+    .helper-text--validation-icon {
+        display: flex;
+        align-self: center;
+        font-size: theme('fontSize.base') !important;
+        margin-right: theme('spacing.half');
+    }
+
+    .apollo-icon--svg {
+        margin-right: theme('spacing.half');
+    }
+}

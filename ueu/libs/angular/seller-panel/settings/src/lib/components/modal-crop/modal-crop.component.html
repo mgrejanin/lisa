@@ -1,0 +1,10 @@
+<div class="c-modal-crop" #wrapper>
+    <img-cropper #cropper [image]="imageData" [settings]="cropperSettings"></img-cropper>
+    <div class="c-modal-crop__buttons">
+        <mat-icon class="check" matTooltip="Aceitar imagem" (click)="saveImage()"> check_circle </mat-icon>
+
+        <div class="c-modal-crop__buttons--divider"></div>
+
+        <mat-icon class="cancel" matTooltip="Descartar imagem" (click)="dialogRef.close()"> cancel </mat-icon>
+    </div>
+</div>

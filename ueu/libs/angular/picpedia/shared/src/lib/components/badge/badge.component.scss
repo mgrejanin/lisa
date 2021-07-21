@@ -1,0 +1,9 @@
+.c-badge {
+    &__container {
+        background-color: theme('colors.white');
+        border-radius: theme('borderRadius.pill');
+        width: fit-content;
+        border: theme('borderWidth.light') solid theme('colors.grayscale.100');
+        box-shadow: theme('boxShadow.light');
+    }
+}

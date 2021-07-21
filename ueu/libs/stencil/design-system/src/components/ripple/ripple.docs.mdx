@@ -1,0 +1,28 @@
+import { Story, Status } from './../../../.storybook/components';
+import { Props } from '@storybook/addon-docs/blocks';
+
+# Ripple
+
+<Status />
+
+O componente `apollo-ripple` adiciona o efeito de interação de ondulação do [Material Design](https://material.io/develop/web/supporting/ripple). Este componente pode ser adicionado a qualquer componente.
+
+<Story id="components-ripple--base" />
+
+<Props id="components-ripple--base" />
+
+## Round
+
+O componente `apollo-ripple` adiciona o efeito de interação de ondulação do [Material Design](https://material.io/develop/web/supporting/ripple). Este componente pode ser adicionado a qualquer componente.
+
+<Story id="components-ripple--round" />
+
+## Events
+
+| Event         | Description     | Type               |
+| ------------- | --------------- | ------------------ |
+| `apolloClick` | Evento de keyUp | `CustomEvent<any>` |
+
+### Orientações:
+
+Para ter acesso ao valor do evento emitido deve ser usada a propriedade `detail` do objeto `CustomEvent` que é emitido nos métodos.

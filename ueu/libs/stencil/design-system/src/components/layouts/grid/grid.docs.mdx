@@ -1,0 +1,28 @@
+import { Story, Status } from './../../../../.storybook/components';
+import { Props } from '@storybook/addon-docs/blocks';
+
+# Grid
+
+<Status />
+
+O `apollo-grid` é um componente usado para layouts de grade. O `apollo-grid` está com `display: grid`.
+
+Aqui está um exemplo de uso de `templateColumns` e aplicando um `gap` ou espaço entre os itens da grade.
+
+<Story id="layouts-grid--base" />
+
+<Props id="layouts-grid--base" />
+
+## Spanning columns
+
+Em alguns layouts, você pode precisar de certos itens de grade para abranger uma quantidade específica de colunas ou linhas em vez de uma distribuição uniforme.
+
+Para conseguir isso, você precisa passar o `colSpan` ao componente `apollo-grid-item` para se estender pelas colunas e também passar o `rowSpan` ao componente `apollo-grid-item` para se estender pelas linhas. Você também precisa especificar o `templateColumn` e `templateRows`.
+
+<Story id="layouts-grid--spanning-columns" />
+
+## Starting and ending lines
+
+Passe as propriedades `colStart` e o `colEnd` para o componente `apollo-grid-item` para fazer um elemento começar ou terminar na posição da grade.
+
+<Story id="layouts-grid--starting-ending" />

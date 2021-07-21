@@ -1,0 +1,17 @@
+{
+    "fileServerFolder": ".",
+    "fixturesFolder": "./src/fixtures",
+    "integrationFolder": "./src/integration",
+    "modifyObstructiveCode": false,
+    "pluginsFile": "./src/plugins/index",
+    "supportFile": "./src/support/index.ts",
+    "video": true,
+    "videosFolder": "../../../dist/cypress/apps/angular/feature-flag-e2e/videos",
+    "screenshotsFolder": "../../../dist/cypress/apps/angular/feature-flag-e2e/screenshots",
+    "chromeWebSecurity": false,
+    "testFiles": "**/*.{feature,features}",
+    "viewportWidth": 1440,
+    "viewportHeight": 900,
+    "responseTimeout": 60000,
+    "pageLoadTimeout": 60000
+}

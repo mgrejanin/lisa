@@ -1,0 +1,8 @@
+.c-layout {
+    &__title {
+        font-size: theme('fontSize.3xl');
+        font-weight: 800;
+        margin-bottom: theme('spacing.none');
+        margin-left: theme('spacing.2');
+    }
+}

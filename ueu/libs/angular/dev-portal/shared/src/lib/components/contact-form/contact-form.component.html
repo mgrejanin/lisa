@@ -1,0 +1,171 @@
+<div class="contact-form-wrapper">
+    <div class="feedback" *ngIf="formSent; else formNotSent">
+        <ng-container *ngIf="formSentSuccess; else formSentError">
+            <header class="feedback__header">
+                <img class="feedback__header--image" src="./assets/dev-portal/images/success.png" />
+            </header>
+            <div class="feedback__content">
+                <h3 class="feedback__content--title">Nós recebemos os seus dados e entraremos em contato em breve!</h3>
+                <p class="feedback__content--disclaimer">
+                    Você irá receber em breve um e-mail confirmando esse contato e nossa equipe entrará em contato o
+                    mais rápido possivel por e-mail ou telefone para te ajudar!
+                </p>
+            </div>
+            <div class="feedback__actions">
+                <apollo-button
+                    id="btn_contact_close_form_success"
+                    (click)="onCancel('BOTAO_CONTATO_SUCESSO', 'SUCESSO_FORMULARIO_CONTATO')"
+                    href=""
+                    size="sm"
+                    >Ok, Entendi</apollo-button
+                >
+            </div>
+        </ng-container>
+        <ng-template #formSentError>
+            <header class="feedback__header">
+                <img class="feedback__header--image" src="./assets/dev-portal/images/error.png" />
+            </header>
+            <div class="feedback__content">
+                <h3 class="feedback__content--title">Algo deu errado!</h3>
+                <p class="feedback__content--disclaimer">
+                    Tivemos um problema para enviar os seus dados para nossa equipe. Por favor, volte e envie o
+                    formulário novamente para que possamos entrar em contato o mais rápido possível
+                </p>
+            </div>
+            <div class="feedback__actions">
+                <apollo-button id="btn_contact_close_form_try_again" (click)="onReset()" href="" size="sm"
+                    >Tentar Novamente</apollo-button
+                >
+                <apollo-button
+                    id="btn_contact_close_form_error"
+                    (click)="onCancel('BOTAO_ERRO_FECHAR_JANELA_CONTATO', 'ERRO_FORMULARIO_CONTATO')"
+                    href=""
+                    variant="link"
+                    size="sm"
+                    >fechar janela</apollo-button
+                >
+            </div>
+        </ng-template>
+    </div>
+    <ng-template #formNotSent>
+        <div class="contact-form">
+            <header class="contact-form__header">
+                <div class="contact-form__header--button_container"></div>
+                <div class="contact-form__header--title_container">
+                    <h2 class="contact-form__header--title">
+                        {{ data.user ? 'Habilitar um projeto' : 'Solicite contato' }}
+                    </h2>
+                </div>
+                <div class="contact-form__header--button_container">
+                    <a
+                        (click)="onCancel('BOTAO_FECHAR_CONTATO', 'FORMULARIO_CONTATO')"
+                        class="contact-form__header--button_close"
+                        >X</a
+                    >
+                </div>
+            </header>
+            <h3 class="contact-form__disclaimer">Preencha o formulário e nossa equipe entrará em contato em breve</h3>
+            <form class="contact-form__form" [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
+                <ng-container *ngIf="!data.user">
+                    <apollo-textfield
+                        name="name"
+                        idElement="name"
+                        formControlName="name"
+                        label="Nome"
+                        size="md"
+                        maxLength="100"
+                        required
+                        type="text"
+                    ></apollo-textfield>
+                    <apollo-textfield
+                        name="email"
+                        idElement="email"
+                        formControlName="email"
+                        label="Email comercial"
+                        size="md"
+                        maxLength="150"
+                        type="email"
+                        required
+                        class="contact-form__form--text-input"
+                    ></apollo-textfield>
+                </ng-container>
+                <apollo-textfield
+                    name="phone"
+                    idElement="phone"
+                    formControlName="phone"
+                    label="Telefone comercial"
+                    size="md"
+                    maxLength="15"
+                    type="tel"
+                    required
+                    autocomplete="off"
+                    class="contact-form__form--text-input"
+                ></apollo-textfield>
+                <div class="contact-form__form--select-container" *ngIf="tags$ | async as tags">
+                    <select
+                        name="tag"
+                        id="tag"
+                        formControlName="tag"
+                        required
+                        class="contact-form__form--select-input"
+                        [class.error]="submitted && formRef.tag && formRef.tag.errors"
+                    >
+                        <option disabled selected></option>
+                        <option *ngFor="let item of tags[data.slug]; let i = index" value="{{ item.tag }}">
+                            {{ item.subject }}
+                        </option>
+                    </select>
+                    <label class="contact-form__form--select-label" for="tag">Assunto *</label>
+                    <apollo-icon size="sm" class="material-icon contact-form__form--arrow"
+                        >keyboard_arrow_down</apollo-icon
+                    >
+                    <div *ngIf="submitted && formRef.tag.errors" class="contact-form__form--error">
+                        <span *ngIf="formRef.tag.errors.required">Este campo é requerido!</span>
+                    </div>
+                </div>
+                <apollo-textfield
+                    name="body"
+                    idElement="body"
+                    formControlName="body"
+                    label="Mensagem"
+                    size="md"
+                    maxLength="200"
+                    required
+                    type="text"
+                    autocomplete="off"
+                    class="contact-form__form--text-input textarea"
+                ></apollo-textfield>
+                <div
+                    class="contact-form__form--checkbox-field"
+                    [class.error]="submitted && formRef.terms && !formRef.terms.value"
+                >
+                    <apollo-checkbox name="terms" id="terms" formControlName="terms">
+                        <label class="contact-form__form--checkbox-label">
+                            Eu li e aceito os
+                            <a href="https://picpay.com/site/privacidade" target="_blank">termos de privacidade</a>
+                        </label>
+                    </apollo-checkbox>
+                </div>
+                <div class="contact-form__form--action-container">
+                    <apollo-button
+                        id="btn_contact_form_close"
+                        (click)="onCancel('BOTAO_CANCELAR_CONTATO', 'FORMULARIO_CONTATO')"
+                        href=""
+                        variant="link"
+                        size="sm"
+                        >Cancelar</apollo-button
+                    >
+                    <apollo-button
+                        id="btn_contact_form_submit"
+                        type="submit"
+                        href=""
+                        size="sm"
+                        [class.hidden]="isFormLoading"
+                        >Solicitar contato</apollo-button
+                    >
+                    <apollo-circular-progress *ngIf="isFormLoading" class="loading"></apollo-circular-progress>
+                </div>
+            </form>
+        </div>
+    </ng-template>
+</div>

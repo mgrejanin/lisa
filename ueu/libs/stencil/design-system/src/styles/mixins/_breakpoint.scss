@@ -1,0 +1,121 @@
+$grid: (
+    xsmall: 0px,
+    small: 600px,
+    medium: 1024px,
+    large: 1440px,
+    xlarge: 1920px,
+) !default;
+
+@function next($name, $breakpoints: $grid, $breakpoint-names: map-keys($breakpoints)) {
+    $n: index($breakpoint-names, $name);
+    @if not $n {
+        @error "breakpoint `#{$name}` not found in `#{$breakpoints}`";
+    }
+    @return if($n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
+}
+
+@function min($name, $breakpoints: $grid) {
+    $min: map-get($breakpoints, $name);
+    @return if($min != 0, $min, null);
+}
+
+@function max($name, $breakpoints: $grid) {
+    $next: next($name, $breakpoints);
+    @return if($next, min($next, $breakpoints) - 0.02, null);
+}
+
+@function infix($name, $breakpoints: $grid) {
+    @return if(min($name, $breakpoints) == null, '', '-#{$name}');
+}
+
+@mixin up($name, $breakpoints: $grid) {
+    $min: min($name, $breakpoints);
+    @if $min {
+        @media (min-width: $min) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
+
+@mixin down($name, $breakpoints: $grid) {
+    $max: max($name, $breakpoints);
+    @if $max {
+        @media (max-width: $max) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
+
+@mixin between($lower, $upper, $breakpoints: $grid) {
+    $min: min($lower, $breakpoints);
+    $max: max($upper, $breakpoints);
+
+    @if $min != null and $max != null {
+        @media (min-width: $min) and (max-width: $max) {
+            @content;
+        }
+    } @else if $max == null {
+        @include up($lower, $breakpoints) {
+            @content;
+        }
+    } @else if $min == null {
+        @include down($upper, $breakpoints) {
+            @content;
+        }
+    }
+}
+
+// Media between the breakpoint's minimum and maximum widths.
+// No minimum for the smallest breakpoint, and no maximum for the largest one.
+// Makes the @content apply only to the given breakpoint, not viewports any wider or narrower.
+@mixin media-breakpoint-only($name, $breakpoints: $grid) {
+    $min: breakpoint-min($name, $breakpoints);
+    $max: breakpoint-max($name, $breakpoints);
+
+    @if $min != null and $max != null {
+        @media (min-width: $min) and (max-width: $max) {
+            @content;
+        }
+    } @else if $max == null {
+        @include media-breakpoint-up($name, $breakpoints) {
+            @content;
+        }
+    } @else if $min == null {
+        @include media-breakpoint-down($name, $breakpoints) {
+            @content;
+        }
+    }
+}
+
+@mixin each() {
+    $grid-map: (
+        xsm: 'xsmall',
+        sm: 'small',
+        md: 'medium',
+        lg: 'large',
+    );
+
+    @each $name, $breakpoint in $grid-map {
+        @if $breakpoint == 'xsmall' {
+            @content ('');
+        }
+        @include up($breakpoint) {
+            @content ($name);
+        }
+    }
+}
+
+@function create-responsive-classname($name, $breakpoint) {
+    @return if($breakpoint == '', 'apollo-#{$name}', '#{$breakpoint}\\:apollo-#{$name}');
+}
+
+@mixin responsive-classname($name) {
+    @include each using ($breakpoint) {
+        $classname: create-responsive-classname($name, $breakpoint);
+        @content ($classname, $breakpoint);
+    }
+}

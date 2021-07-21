@@ -1,0 +1,69 @@
+.device {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    width: 22.5rem;
+    height: calc(100vh - 16.875rem);
+    min-height: 37.5rem;
+    max-height: 51.75rem;
+    overflow: hidden;
+
+    flex-direction: column;
+    padding-bottom: 1.25rem;
+    background-color: theme('colors.white');
+    border-radius: theme('spacing.5');
+    box-shadow: 0 0 0 0.4rem theme('colors.grayscale.700'), 0 0 0 0.4rem theme('colors.grayscale.700'),
+        0 0 0 0.6rem theme('colors.grayscale.700');
+
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+    }
+
+    // frontal camera/speaker frame
+    &:before {
+        top: theme('spacing.none');
+        width: 56%;
+        height: theme('spacing.2');
+        background-color: theme('colors.grayscale.700');
+        border-radius: 0 0 3.1rem 3.1rem;
+    }
+
+    // home button indicator
+    &:after {
+        bottom: 0.4rem;
+        width: 8.75rem;
+        height: 0.3rem;
+        background-color: theme('colors.grayscale.700');
+        border-radius: 0.6rem;
+    }
+
+    &__fixed-content {
+        overflow: hidden;
+    }
+
+    &__scroll-content {
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        flex: 1;
+        padding: 0 theme('spacing.2');
+
+        ::ng-deep {
+            & > * {
+                display: block;
+                margin-bottom: theme('spacing.1');
+            }
+        }
+
+        &-btn {
+            display: flex;
+            justify-content: center;
+            margin-top: theme('spacing.8');
+        }
+    }
+}

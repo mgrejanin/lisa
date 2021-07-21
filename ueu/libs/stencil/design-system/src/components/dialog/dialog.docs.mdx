@@ -1,0 +1,64 @@
+import { Story, Status } from './../../../.storybook/components';
+import { Props } from '@storybook/addon-docs/blocks';
+
+# Dialog
+
+<Status />
+
+<Story id="components-dialog--base" />
+
+<Props id="components-dialog--base" />
+
+## Events
+
+| Event                | Description                                            | Type                      |
+| -------------------- | ------------------------------------------------------ | ------------------------- |
+| `cancelButtonClick`  | Evento disparado quando o botão de cancel for clicado  | `CustomEvent<MouseEvent>` |
+| `confirmButtonClick` | Evento disparado quando o botão de confirm for clicado | `CustomEvent<MouseEvent>` |
+
+### Orientações:
+
+Para ter acesso ao valor do evento emitido deve ser usada a propriedade `detail` do objeto `CustomEvent` que é emitido nos métodos.
+
+## Methods
+
+### `close() => Promise<void>`
+
+API para fechar o dialog
+
+#### Returns
+
+Type: `Promise<void>`
+
+### `open() => Promise<void>`
+
+API para abrir o dialog
+
+#### Returns
+
+Type: `Promise<void>`
+
+### Orientações para angular:
+
+Para utilizar os métodos do componente utilize o @ViewChild() conforme exemplo a seguir:
+
+Html:
+
+```html
+<apollo-button (onClick)="open()">Show dialog</apollo-button>
+<apollo-dialog>
+    <p>Insira seu conteúdo aqui</p>
+</apollo-dialog>
+```
+
+Ts:
+
+```javascript
+@ViewChild('dialog') dialog: ApolloDialog;
+
+//...
+
+open() {
+    this.dialog.open();
+}
+```

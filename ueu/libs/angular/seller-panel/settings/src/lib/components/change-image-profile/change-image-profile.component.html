@@ -1,0 +1,47 @@
+<section class="c-change-image-profile">
+    <div class="c-change-image-profile__header">
+        <h2 class="c-change-image-profile__header--title">Alterar Imagem</h2>
+        <button class="c-change-image-profile__header--close-btn" type="button" (click)="onCloseChangeImageModal()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="c-change-image-profile__body">
+        <input
+            hidden
+            type="file"
+            #fileInput
+            tabindex="-1"
+            accept="image/x-png,image/jpeg"
+            (click)="fileInput.value = null"
+            (change)="onChangeImageProfile($event.target.files)"
+        />
+        <img class="c-change-image-profile__body--image" [src]="avatarUrl" alt="Image profile" />
+        <button mat-button color="secondary" type="button" class="o-button" (click)="fileInput.click()">
+            Procurar imagem
+        </button>
+        <p class="c-change-image-profile__body--caption">
+            Sua imagem de perfil é o primeiro contato que alguém terá com o seu negócio no PicPay. Por isso, escolha uma
+            imagem que o represente bem.
+        </p>
+    </div>
+    <div class="c-change-image-profile__footer">
+        <button
+            mat-flat-button
+            color="primary"
+            class="c-change-image-profile__footer--btn-cancel o-button o-button__link"
+            type="button"
+            (click)="onCloseChangeImageModal()"
+        >
+            Cancelar
+        </button>
+        <button
+            mat-button
+            color="primary"
+            class="c-change-image-profile__footer--btn-confirm o-button o-button__solid"
+            type="button"
+            (click)="onApplyNewImageProfile()"
+        >
+            Aplicar
+        </button>
+    </div>
+</section>

@@ -1,0 +1,63 @@
+<div class="c-onboarding">
+    <button mat-icon-button class="c-onboarding__close-btn" (click)="onClose()">
+        <mat-icon class="i-icon" fontSet="material-icons-outlined">close</mat-icon>
+    </button>
+    <div class="c-onboarding__header">
+        <h2 class="c-onboarding__header--title">Olá! Temos novidades por aqui</h2>
+        <p class="c-onboarding__header--description">Esse é seu novo Painel de Vendas, em versão Beta.</p>
+    </div>
+    <div class="c-onboarding__body">
+        <p>
+            Nessa versão Beta, você encontra as mesmas funções do seu antigo Painel Lojista, mas com um visual mais
+            fácil de usar e gerenciar:
+        </p>
+        <div class="c-onboarding__body--section">
+            <mat-icon class="i-icon" fontSet="material-icons-outlined">home</mat-icon>
+            <p>Na área Início, confira as últimas transações, seu saldo, lançamentos futuros e saques</p>
+        </div>
+        <div class="c-onboarding__body--section">
+            <mat-icon class="i-icon" fontSet="material-icons-outlined">local_atm</mat-icon>
+            <p>Acompanhe as Transações e o Extrato, clicando no menu, que agora fica do lado esquerdo da tela</p>
+        </div>
+        <ng-container *ngIf="(userType$ | async)?.type === 'biz'">
+            <div class="c-onboarding__body--section">
+                <mat-icon class="i-icon" fontSet="material-icons-outlined">account_balance_wallet</mat-icon>
+                <p>Na área Cobrar, use o QR Code ou envie o link de pagamento para receber dos seus clientes</p>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="(userType$ | async)?.type === 'ecommerce'">
+            <div class="c-onboarding__body--section">
+                <mat-icon class="i-icon" fontSet="material-icons-outlined">share</mat-icon>
+                <p>
+                    Para gerar tokens de comunicação que permitem a integração da loja virtual com o PicPay E-commerce,
+                    acesse o menu Integrações
+                </p>
+            </div>
+        </ng-container>
+        <div class="c-onboarding__body--question">
+            <h5>Por que versão Beta?</h5>
+            <p>
+                Isso significa que estamos na fase de testes do novo Painel de Vendas, e ao usar, você nos ajuda a
+                melhorar ainda mais as funções dele.
+            </p>
+        </div>
+        <div class="c-onboarding__body--question">
+            <h5>Tem alguma dúvida?</h5>
+            <p>
+                Clique no ícone <mat-icon class="i-icon" fontSet="material-icons-outlined">help</mat-icon>, no topo do
+                painel e ao lado do nome da sua empresa, e conheça nossa Central de Ajuda.
+            </p>
+        </div>
+    </div>
+    <div class="c-onboarding__footer">
+        <button
+            class="c-onboarding__footer--btn-confirm o-button o-button__solid"
+            color="primary"
+            mat-button
+            type="button"
+            (click)="onClose()"
+        >
+            Explorar o Painel de Vendas
+        </button>
+    </div>
+</div>

@@ -1,0 +1,58 @@
+<section class="c-section">
+    <div class="c-section__body">
+        <div class="row">
+            <div class="c-section__body-description col-md-6">
+                <h1 class="c-section__title c-section__title--pro">O PicPay Pro é ideal para o seu negócio</h1>
+
+                <p class="c-section__body-paragraph c-section__body-paragraph--intro">
+                    A conta PicPay Empresas é exclusiva para empresas que possuem CNPJ. Por isso, sugerimos que você
+                    baixe o app PicPay e crie um perfil Pro para receber seus pagamentos.
+                </p>
+                <p class="c-section__body-paragraph">
+                    Com ele, você recebe pagamentos pelo celular, sem pagar aluguel ou mensalidade.
+                </p>
+
+                <div class="c-section__body-buttons">
+                    <a [href]="androidApp" target="_blank">
+                        <img
+                            src="assets/seller-register/images/googleplay.svg"
+                            alt="Disponível no Google Play"
+                            class="c-section__body-button c-section__body-button--android"
+                        />
+                    </a>
+                    <a [href]="iosApp" target="_blank">
+                        <img
+                            src="assets/seller-register/images/appstore.svg"
+                            alt="Baixar na App Store"
+                            class="c-section__body-button c-section__body-button--ios"
+                        />
+                    </a>
+                </div>
+            </div>
+
+            <div class="c-section__body-illustration col-md-6">
+                <img
+                    width="100%"
+                    src="assets/seller-register/images/pro.svg"
+                    alt="Uma ilustração de um celular com um ícone de adicionar ao lado"
+                />
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="c-footer c-footer--reverse">
+    <apollo-button type="button" block class="c-footer__button c-footer__button--download" [href]="appUrl">
+        Baixar o app PicPay
+    </apollo-button>
+    <apollo-button
+        size="md"
+        type="button"
+        block
+        variant="link"
+        class="c-footer__button c-footer__button--previous"
+        [routerLink]="['/form/empresa']"
+    >
+        Voltar
+    </apollo-button>
+</footer>

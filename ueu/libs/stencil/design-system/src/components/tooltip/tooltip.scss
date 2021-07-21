@@ -1,0 +1,109 @@
+@use "mixins/typography";
+
+.tooltip {
+    &__container {
+        border-radius: 12px;
+        display: inline-block;
+        position: relative;
+    }
+
+    &__content {
+        background: theme('colors.black');
+        border-radius: 12px;
+        box-shadow: theme('boxShadow.medium');
+
+        color: theme('colors.grayscale.50');
+        font-size: theme('fontSize.base');
+
+        padding: theme('spacing.2');
+        position: absolute;
+
+        transition-delay: 0.5s;
+        z-index: 1;
+
+        &--hidden {
+            visibility: hidden;
+        }
+        &--sm {
+            min-width: 180px;
+            width: auto;
+        }
+        &--md {
+            min-width: 225px;
+            width: auto;
+        }
+        &--lg {
+            min-width: 300px;
+            width: auto;
+        }
+    }
+
+    &__arrow,
+    &__arrow::before {
+        height: 1rem;
+        width: 1rem;
+        border-radius: theme('borderRadius.light');
+        position: absolute;
+    }
+
+    &__arrow {
+        &--bottom,
+        &--bottom-start,
+        &--bottom-end {
+            top: -5px;
+        }
+
+        &--left,
+        &--left-start,
+        &--left-end {
+            right: -5px;
+        }
+
+        &--right,
+        &--right-start,
+        &--right-end {
+            left: -5px;
+        }
+
+        &--top,
+        &--top-start,
+        &--top-end {
+            bottom: -5px;
+        }
+
+        &::before {
+            background: theme('colors.black');
+            content: '';
+            transform: rotate(45deg);
+        }
+    }
+
+    &__title {
+        color: theme('colors.grayscale.50');
+
+        font-size: theme('fontSize.base');
+        font-weight: theme('fontWeight.bold');
+    }
+
+    &__link {
+        margin-left: auto;
+        margin-top: theme('spacing.1');
+    }
+}
+
+[data-theme='dark'] {
+    .tooltip {
+        &__content {
+            background: theme('colors.white');
+            color: theme('colors.grayscale.900');
+        }
+        &__arrow {
+            &::before {
+                background: theme('colors.white');
+            }
+        }
+        &__title {
+            color: theme('colors.grayscale.900');
+        }
+    }
+}

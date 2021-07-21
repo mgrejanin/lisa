@@ -1,0 +1,125 @@
+<ng-container
+    *ngIf="{
+        isMobile: isMobile$ | async,
+        isLoading: isLoading$ | async,
+        products: products$ | async,
+        panels: panels$ | async
+    } as store"
+>
+    <dev-portal-header></dev-portal-header>
+
+    <dev-portal-banner
+        backgroundColor="#1a1a1a"
+        backgroundImage="./assets/images/portaldev.png"
+        [col_image]="5"
+        [col_content]="5"
+        [height]="!store.isMobile ? '420px' : '375px'"
+    >
+        <div banner-image>
+            <img alt="Portal do Desenvolvedor" src="./assets/images/portaldev.png" />
+        </div>
+        <div banner-content>
+            <h1>
+                Crie experiências<br />
+                com o PicPay
+            </h1>
+            <p>Construa o mercado de pagamentos com a gente. É fácil e rápido integrar com nossas soluções.</p>
+        </div>
+    </dev-portal-banner>
+
+    <section class="produtos">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-md-12">
+                    <h2 class="produtos__title">
+                        Faça parte do movimento que está revolucionando o mercado de pagamentos no Brasil.
+                    </h2>
+                    <p class="produtos__description">
+                        Nossas APIs estão disponíveis para você oferecer experiências personalizadas e únicas.
+                    </p>
+                    <ng-container *ngIf="store.products; else loading">
+                        <div [ngClass]="{ 'row cards': true, 'cards-scroll': store.isMobile }">
+                            <apollo-card
+                                class="col-md-6 col-12 card"
+                                *ngFor="let product of store.products"
+                                [routerLink]="['/docs/' + product.slug]"
+                                [id]="'card_' + product.slug"
+                                (click)="eventTracking('card', product.slug)"
+                            >
+                                <apollo-card-content>
+                                    <h3 class="card__title">{{ product.name }}</h3>
+                                    <span class="card__category">{{ product.category }}</span>
+                                    <div class="card__content">
+                                        <div>
+                                            <p class="card__description">{{ product.description }}</p>
+                                        </div>
+                                        <div>
+                                            <img
+                                                [alt]="'Icone do Produto ' + product.name"
+                                                [src]="'./assets/icons/' + product.slug + '.png'"
+                                            />
+                                        </div>
+                                    </div>
+                                </apollo-card-content>
+                                <apollo-card-actions>
+                                    <apollo-card-action-buttons>
+                                        <apollo-button
+                                            variant="link"
+                                            [id]="'btn_card_' + product.slug"
+                                            [routerLink]="['/docs/' + product.slug]"
+                                            [title]="'Saiba mais detalhes sobre o produto' + product.name"
+                                            (click)="eventTracking('card', product.slug)"
+                                            >mais detalhes</apollo-button
+                                        >
+                                    </apollo-card-action-buttons>
+                                </apollo-card-actions>
+                            </apollo-card>
+                        </div>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="app">
+        <div class="container">
+            <div class="row h-100 justify-content-center align-items-center">
+                <div class="col-lg-5 col-md-12">
+                    <h3>
+                        Comprar, vender e pagar nunca mais será igual.
+                        <span>Reivente-se com o PicPay!</span>
+                    </h3>
+                </div>
+                <ng-container *ngIf="store.panels; else loading">
+                    <div class="col-lg-5 col-md-12 panels">
+                        <div
+                            class="panel"
+                            [ngStyle]="{ 'background-color': colorPanel[panel.name] }"
+                            *ngFor="let panel of store.panels; let i = index"
+                        >
+                            <a
+                                [id]="'btn_panel_' + panel.name.split(' ').join('_') | lowercase"
+                                [href]="panel.url"
+                                [attr.title]="'Acessar ' + panel.name"
+                                target="_blank"
+                                (click)="eventTracking('redirecionamento', convertToSlug(panel.name))"
+                            >
+                                <div class="panel__title">{{ panel.name | uppercase }}</div>
+                                <div class="panel__subtitle">{{ panel.description }}</div>
+                                <apollo-icon class="panel__icon material-icon">arrow_forward</apollo-icon>
+                            </a>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </section>
+
+    <dev-portal-footer></dev-portal-footer>
+</ng-container>
+
+<ng-template #loading>
+    <div class="loading">
+        <apollo-circular-progress></apollo-circular-progress>
+    </div>
+</ng-template>

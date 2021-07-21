@@ -1,0 +1,10 @@
+@use "@material/theme";
+@use "@material/list";
+
+:host {
+    display: block;
+}
+
+apollo-list-divider {
+    @include list.divider-color(var(--apollo-background-z3));
+}

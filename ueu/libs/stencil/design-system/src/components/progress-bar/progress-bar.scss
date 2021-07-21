@@ -1,0 +1,36 @@
+@use "mixins/breakpoint";
+
+.apollo-progress-bar {
+    &__container {
+        display: flex;
+        align-items: center;
+    }
+
+    &__percentage {
+        margin-right: theme('spacing.1');
+        color: theme('colors.grayscale.base');
+        font-size: theme('fontSize.sm');
+        line-height: theme('lineHeight.sm');
+    }
+
+    &__bar {
+        width: 100%;
+        height: 8px;
+        border-radius: theme('borderRadius.strong');
+        background-color: var(--apollo-background-z2);
+        overflow: hidden;
+
+        @include breakpoint.up(small) {
+            height: 16px;
+        }
+    }
+
+    &__fill {
+        min-width: 14px;
+        max-width: 100%;
+        height: 100%;
+        border-radius: theme('borderRadius.strong');
+        background-color: theme('colors.primary.500');
+        transition: width 0.3s linear;
+    }
+}

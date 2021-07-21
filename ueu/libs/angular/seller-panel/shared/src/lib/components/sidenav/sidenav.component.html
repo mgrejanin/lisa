@@ -1,0 +1,28 @@
+<mat-sidenav-container class="c-sidenav" [class.active]="opened$ | async">
+    <mat-sidenav
+        #sidenav
+        class="c-sidenav__container"
+        position="end"
+        [mode]="(opened$ | async) ? 'side' : 'over'"
+        [opened]="opened$ | async"
+        [disableClose]="true"
+        (closed)="onClosed()"
+    >
+        <div class="c-sidenav__container--header">
+            <ng-container *ngIf="showCloseButton">
+                <button
+                    mat-icon-button
+                    class="c-sidenav__container--close-btn o-button o-button__link"
+                    color="primary"
+                    aria-label="Fechar detalhes de transação"
+                    (click)="sidenav.close()"
+                >
+                    <mat-icon>close</mat-icon>
+                </button>
+            </ng-container>
+        </div>
+        <div class="c-sidenav__container--body">
+            <ng-content></ng-content>
+        </div>
+    </mat-sidenav>
+</mat-sidenav-container>

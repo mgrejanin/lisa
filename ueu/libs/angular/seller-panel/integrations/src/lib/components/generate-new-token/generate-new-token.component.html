@@ -1,0 +1,20 @@
+<section class="c-generate-new-token">
+    <div class="c-generate-new-token__header">
+        <h2 class="c-generate-new-token__header--title">Gerar novos tokens</h2>
+        <button mat-icon-button class="c-generate-new-token__header--btn-close" type="button" (click)="onClose()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="c-generate-new-token__body">
+        <img class="c-generate-new-token__body--image" src="/assets/images/email.svg" alt="Image email" />
+        <h2 class="c-generate-new-token__body--title">Ei, fique atento</h2>
+        <p class="c-generate-new-token__body--description">
+            Se você gerar novos tokens, os antigos não <br />
+            funcionarão mais, deseja prosseguir assim mesmo?
+        </p>
+    </div>
+    <div class="c-generate-new-token__footer">
+        <apollo-button variant="link" (click)="onClose()">Cancelar</apollo-button>
+        <apollo-button variant="unelevated" (click)="onGenerateNewToken()">Gerar novos tokens</apollo-button>
+    </div>
+</section>

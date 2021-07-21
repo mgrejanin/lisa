@@ -1,0 +1,85 @@
+<footer class="container" *ngIf="{ isMobile: isMobile$ | async, products: products$ | async } as store">
+    <div class="row justify-content-between">
+        <div class="col-md-4">
+            <dev-portal-logo [spotlogo]="'footer'"></dev-portal-logo>
+        </div>
+        <div class="col-md-4 content">
+            <ng-container
+                [ngTemplateOutlet]="institucional"
+                [ngTemplateOutletContext]="{ $implicit: store }"
+            ></ng-container>
+        </div>
+        <div class="col-md-4 content">
+            <ng-container [ngTemplateOutlet]="produtos" [ngTemplateOutletContext]="{ $implicit: store }"></ng-container>
+        </div>
+    </div>
+</footer>
+
+<ng-template #institucional let-store>
+    <ng-container
+        [ngTemplateOutlet]="btnAccordion"
+        [ngTemplateOutletContext]="{ $implicit: 'institucional', store: store }"
+    ></ng-container>
+    <ul *ngIf="!store.isMobile || toggleMobile.institucional">
+        <li *ngFor="let item of menu">
+            <ng-container *ngIf="!item.external; else externalLink">
+                <a
+                    [id]="item.id"
+                    [routerLink]="item.url"
+                    [attr.title]="item.name"
+                    (click)="eventTracking('footer', 'studio')"
+                    >{{ item.name }}</a
+                >
+            </ng-container>
+            <ng-template #externalLink>
+                <a
+                    [id]="item.id"
+                    [href]="item.url"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    [attr.title]="item.name"
+                    (click)="eventTracking('footer', item.name)"
+                    >{{ item.name }}</a
+                >
+            </ng-template>
+        </li>
+    </ul>
+</ng-template>
+
+<ng-template #produtos let-store>
+    <ng-container
+        [ngTemplateOutlet]="btnAccordion"
+        [ngTemplateOutletContext]="{ $implicit: 'produtos', store: store }"
+    ></ng-container>
+    <ng-container *ngIf="store.products; else loading">
+        <ul *ngIf="!store.isMobile || toggleMobile.produtos">
+            <li *ngFor="let product of store.products">
+                <a
+                    [id]="'btn_footer_' + product.slug"
+                    [routerLink]="'/docs/' + product.slug"
+                    (click)="eventTracking('footer', product.slug)"
+                >
+                    {{ product.name }}
+                </a>
+            </li>
+        </ul>
+    </ng-container>
+</ng-template>
+
+<ng-template #btnAccordion let-item let-store="store">
+    <div
+        class="accordion"
+        (click)="toggleMobile[item] = !toggleMobile[item]"
+        *ngIf="store.isMobile"
+        [attr.aria-expanded]="toggleMobile[item]"
+    >
+        <span>{{ item | titlecase }}</span>
+        <button><span>Ver mais</span><apollo-icon class="material-icon">keyboard_arrow_right</apollo-icon></button>
+    </div>
+</ng-template>
+
+<ng-template #loading>
+    <div class="loading">
+        <apollo-circular-progress></apollo-circular-progress>
+    </div>
+</ng-template>

@@ -1,0 +1,19 @@
+<section class="c-access-levels">
+    <!-- HEADER -->
+    <feature-flag-features-header [showReturnBtn]="true"></feature-flag-features-header>
+
+    <!-- CONTENT -->
+    <section class="c-access-levels__content container o-page">
+        <!-- TITLE -->
+        <h1 class="c-access-levels__title">Gestão de Acessos</h1>
+
+        <!-- TOP ACTION -->
+        <section class="c-access-levels__action-bar">
+            <!-- SEARCH -->
+            <feature-flag-search (updateFilter)="updateFilter($event)"></feature-flag-search>
+        </section>
+
+        <!--SQUADS-->
+        <feature-flag-group-list [squads]="filteredSquads$ | async"></feature-flag-group-list>
+    </section>
+</section>

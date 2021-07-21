@@ -1,0 +1,71 @@
+@use "mixins/typography";
+
+.c-recharges {
+    height: 100%;
+
+    &__container-title {
+        display: flex;
+        padding-left: theme('spacing.4');
+    }
+
+    &__h1 {
+        @include typography.title(large);
+        color: theme('colors.grayscale.700');
+        margin-bottom: theme('spacing.2');
+    }
+
+    &__action-bar {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        padding-right: theme('spacing.2');
+
+        &--buttons {
+            margin-left: theme('spacing.2');
+        }
+    }
+
+    &__tabs {
+        width: 100%;
+
+        ::ng-deep {
+            .mat-tab-header,
+            .mat-tab-list {
+                flex-grow: 0;
+            }
+            .mat-tab-body-wrapper {
+                min-height: calc(100vh - 282px);
+            }
+            .mat-tab-header {
+                height: 64px;
+                padding: theme('spacing.none') theme('spacing.4');
+                margin-bottom: theme('spacing.3');
+            }
+            .mat-tab-body {
+                padding: theme('spacing.none') theme('spacing.4');
+
+                .mat-tab-body-content {
+                    overflow: initial;
+                }
+            }
+            .mat-tab-label,
+            .mat-tab-link {
+                height: 64px;
+                min-width: auto;
+                padding: theme('spacing.none');
+                opacity: theme('opacity.full');
+                color: theme('colors.grayscale.300');
+                margin-right: theme('spacing.7');
+                font-size: theme('fontSize.base');
+                font-weight: theme('fontWeight.semibold');
+
+                &.mat-tab-label-active {
+                    color: theme('colors.primary.400');
+                    border-bottom: theme('colors.primary.400') theme('borderWidth.medium') solid;
+                    border-radius: theme('borderRadius.light') theme('borderRadius.light') theme('borderRadius.none')
+                        theme('borderRadius.none');
+                }
+            }
+        }
+    }
+}

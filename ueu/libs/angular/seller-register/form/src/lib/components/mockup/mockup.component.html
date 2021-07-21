@@ -1,0 +1,29 @@
+<div class="c-mockup">
+    <div class="c-mockup__container">
+        <div class="c-mockup__map">
+            <img
+                [src]="businessAvatar || defaultAvatar"
+                alt="Foto do estabelecimento no mapa"
+                class="c-mockup__marker"
+            />
+        </div>
+        <figure class="c-mockup__business">
+            <img
+                [src]="businessAvatar || defaultAvatar"
+                alt="Foto do estabelecimento"
+                class="c-mockup__business-avatar"
+            />
+            <figcaption class="c-mockup__business-info">
+                <p class="c-mockup__business-text c-mockup__business-text--title">{{ businessName || defaultName }}</p>
+                <p class="c-mockup__business-text c-mockup__business-text--address">
+                    {{ businessAddress || defaultAddress }}
+                </p>
+                <p class="c-mockup__business-text c-mockup__business-text--distance">
+                    Local
+                    <img src="assets/seller-register/icons/pin.svg" alt="Ícone de localização" aria-hidden="true" />
+                    8m
+                </p>
+            </figcaption>
+        </figure>
+    </div>
+</div>

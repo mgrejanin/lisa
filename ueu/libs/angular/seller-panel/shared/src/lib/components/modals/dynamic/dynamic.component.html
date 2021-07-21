@@ -1,0 +1,18 @@
+<section class="c-dynamic-modal o-modal">
+    <h2 class="o-modal__title" mat-dialog-title>{{ data.title }}</h2>
+    <mat-icon color="primary" (click)="onClose()" aria-hidden="false" class="o-modal__close-btn" aria-label="Fechar"
+        >close</mat-icon
+    >
+    <div mat-dialog-content>
+        <ng-container *ngComponentOutlet="data.component"></ng-container>
+    </div>
+
+    <div mat-dialog-actions class="o-modal__actions" *ngIf="data.actions.visible">
+        <mat-divider class="o-modal--divider"></mat-divider>
+
+        <button mat-button class="o-button o-button__link" (click)="onClose()">Cancelar</button>
+        <button mat-button class="o-button o-button__solid" [mat-dialog-close]="true" cdkFocusInitial>
+            {{ data.actions.labelAction || 'Enviar' }}
+        </button>
+    </div>
+</section>

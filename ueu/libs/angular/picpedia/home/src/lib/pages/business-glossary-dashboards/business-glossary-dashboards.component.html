@@ -1,0 +1,13 @@
+<picpedia-navbar-header [title]="titleDashboards"></picpedia-navbar-header>
+
+<section class="c-glossary-dashboards container-fluid">
+    <apollo-flex justify="center" class="c-glossary-dashboards__loading" *ngIf="isLoadingDashboards$ | async">
+        <apollo-circular-progress radius="35" stroke="6"></apollo-circular-progress>
+    </apollo-flex>
+
+    <div class="c-glossary-dashboards__container">
+        <div *ngFor="let item of dashboards$ | async">
+            <picpedia-cards [title]="item.data_domain | titlecase" [icon]="iconDashboards" [routerLink]="item.data_domain"></picpedia-cards>
+        </div>
+    </div>
+</section>

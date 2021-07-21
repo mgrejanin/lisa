@@ -1,0 +1,29 @@
+.c-description {
+    &--strong {
+        font-weight: 600;
+    }
+
+    &--title {
+        font-size: 12px;
+
+        @media (max-width: 340px) {
+            font-size: 10px;
+        }
+    }
+
+    &--percentage {
+        font-size: 27px;
+
+        @media (max-width: 340px) {
+            font-size: 21px;
+        }
+    }
+
+    &--text {
+        font-size: 13px;
+
+        @media (max-width: 340px) {
+            font-size: 11px;
+        }
+    }
+}

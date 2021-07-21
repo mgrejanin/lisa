@@ -1,0 +1,21 @@
+{
+    "name": "@picpay/keycloak",
+    "version": "1.1.2",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/PicPay/picpay-frontend.git"
+    },
+    "author": "PicPay",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/PicPay/picpay-frontend/issues"
+    },
+    "homepage": "https://github.com/PicPay/picpay-frontend#readme",
+    "dependencies": {
+        "tslib": "^2.0.0"
+    },
+    "peerDependencies": {
+        "keycloak-js": "11.0.2",
+        "keycloak-angular": "8.0.1"
+    }
+}

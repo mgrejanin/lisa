@@ -1,0 +1,127 @@
+import { Meta, Canvas, Source, Description } from '@storybook/addon-docs/blocks';
+import dedent from 'ts-dedent';
+import { Story } from './../../../.storybook/components';
+
+import readme from './../../components/icon-button/readme.md';
+
+<Meta
+    title="Components/Icon Button"
+    parameters={{
+        previewTabs: {
+            canvas: { hidden: false },
+        },
+    }}
+/>
+
+export const Template = props => (
+    <apollo-icon-button
+        {...props}
+        label-on={props.labelOn}
+        label-off={props.labelOff}
+        icon-on={props.iconOn}
+        icon-off={props.iconOff}
+        icon-pack={props.iconPack}
+    />
+);
+
+# Icon Button
+
+## Default
+
+<Canvas>
+    <Story
+        name="All Props"
+        args={{
+            disabled: false,
+            checked: false,
+            invalid: false,
+            pid: '',
+            labelOn: 'Visível',
+            labelOff: 'Invisível',
+            size: 'sm',
+            icon: 'arrows-arrow-down-right',
+            iconOn: 'arrows-arrow-down-right',
+            iconOff: 'arrows-arrow-down-left',
+            iconPack: 'arrows',
+            color: '',
+        }}
+        argTypes={{
+            size: {
+                control: { type: 'select', options: ['sm', 'md'] },
+            },
+            labelOn: {
+                name: 'label-on',
+            },
+            labelOff: {
+                name: 'label-off',
+            },
+            iconOn: {
+                name: 'icon-on',
+            },
+            iconOff: {
+                name: 'icon-off',
+            },
+            iconPack: {
+                name: 'icon-pack',
+            },
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: dedent`
+                        <apollo-icon-button 
+                            icon-on="arrows-arrow-down-right" 
+                            icon-off="arrows-arrow-down-left" 
+                            size="sm"
+                        ></apollo-icon-button>`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+## Invalid
+
+<Canvas>
+    <Story
+        name="Invalid"
+        args={{
+            invalid: true,
+            icon: 'share',
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<apollo-icon-button invalid></apollo-icon-button>`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+## Disabled
+
+<Canvas>
+    <Story
+        name="Disabled"
+        args={{
+            disabled: true,
+            icon: 'share',
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<apollo-icon-button disabled></apollo-icon-button>`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Description markdown={readme} />

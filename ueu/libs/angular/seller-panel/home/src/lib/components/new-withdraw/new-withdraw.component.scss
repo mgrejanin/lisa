@@ -1,0 +1,119 @@
+@use "mixins/typography";
+
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-new-withdraw {
+    position: relative;
+    // STYLE HEADER
+    &__header {
+        padding: theme('spacing.1') theme('spacing.1') theme('spacing.3');
+
+        &--actions {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+        }
+
+        &--title {
+            display: flex;
+            flex-direction: row;
+            text-align: left;
+            margin: theme('spacing.none');
+            padding: theme('spacing.none') theme('spacing.3');
+            h2 {
+                @include typography.title(medium);
+                padding-left: theme('spacing.3');
+            }
+        }
+    }
+
+    // STYLE BODY
+    &__body {
+        padding: theme('spacing.2');
+        .c-new-withdraw-upside {
+            display: flex;
+            flex-direction: row;
+            flex: 1;
+
+            &__content {
+                display: flex;
+                flex-wrap: wrap;
+                flex: 1;
+                justify-content: space-between;
+                margin-left: theme('spacing.2');
+
+                &--data {
+                    display: flex;
+                }
+
+                .c-new-withdraw {
+                    &__name {
+                        font-size: 14px;
+                        font-weight: theme('fontWeight.semibold');
+                        line-height: theme('lineHeight.sm');
+                        margin: theme('spacing.none');
+                        color: rgb(var(--apollo-on-background-rgb));
+
+                        &--caption {
+                            font-size: 12px;
+                            font-weight: theme('fontWeight.normal');
+                            line-height: theme('lineHeight.xs');
+                            text-transform: uppercase;
+                        }
+                    }
+                }
+            }
+        }
+
+        .c-new-withdraw-lowside {
+            &__form {
+                margin-top: theme('spacing.2');
+            }
+
+            &__description {
+                padding: theme('spacing.1') theme('spacing.none');
+                position: relative;
+                top: 16px;
+                &--text {
+                    font-size: 14px;
+                    color: theme('colors.grayscale.base');
+                }
+            }
+        }
+    }
+
+    // STYLE FOOTER
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+        padding: theme('spacing.2') theme('spacing.3');
+        border-top: 1px solid rgba(var(--apollo-on-background-rgb), 0.1);
+    }
+
+    &__feedback {
+        position: relative;
+        padding: theme('spacing.none') theme('spacing.5');
+
+        &--header {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+        }
+
+        .c-new-withdraw__feedback-content-retry {
+            position: relative;
+            text-align: center;
+            bottom: 30px;
+        }
+    }
+
+    &__loading-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        margin: theme('spacing.5') theme('spacing.none');
+        min-width: 350px;
+    }
+}

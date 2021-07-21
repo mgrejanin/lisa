@@ -1,0 +1,116 @@
+@use "mixins/typography";
+@use "mixins/breakpoint";
+
+apollo-button.btn-white {
+    --mdc-theme-primary: #{theme('colors.white')};
+    --mdc-theme-on-primary: #{theme('colors.black')};
+    apollo-icon.panel__icon {
+        vertical-align: text-top;
+    }
+}
+
+.api-content {
+    &__link {
+        color: theme('colors.primary.base');
+        text-decoration: underline;
+    }
+    &__image {
+        margin: theme('spacing.2') theme('spacing.none');
+    }
+    &__subtitle {
+        @include typography.title(medium);
+        color: theme('colors.grayscale.900');
+        margin: theme('spacing.4') theme('spacing.none') theme('spacing.3');
+    }
+    .info-api {
+        padding-bottom: theme('spacing.3');
+        border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.light');
+    }
+    .code {
+        font-size: theme('fontSize.sm');
+        color: theme('colors.primary.base');
+        background: theme('colors.primary.lightest');
+        border-radius: theme('borderRadius.light');
+        padding: theme('spacing.half') theme('spacing.1');
+    }
+    &__title {
+        margin: theme('spacing.8') theme('spacing.none') theme('spacing.3');
+        font-size: theme('fontSize.5xl');
+        font-weight: theme('fontWeight.extrabold');
+        color: theme('colors.grayscale.900');
+    }
+    &__text {
+        color: theme('colors.grayscale.700');
+        margin-bottom: theme('spacing.3');
+    }
+    &__image {
+        padding: 0 60px;
+        padding-top: 30px;
+        background: theme('colors.grayscale.50');
+        &-width {
+            width: 100%;
+        }
+    }
+    &__table {
+        &-content {
+            width: 100%;
+            overflow-x: auto;
+            margin-bottom: theme('spacing.2');
+            .style-table {
+                margin: auto;
+                border-top: theme('borderWidth.strong') solid theme('colors.primary.base');
+                box-shadow: theme('boxShadow.light');
+                border-collapse: separate !important;
+                border-spacing: theme('borderWidth.none');
+                border-radius: theme('borderRadius.light');
+            }
+            &-row {
+                text-align: center;
+                &:nth-child(even) {
+                    background-color: theme('colors.grayscale.50');
+                }
+                &:not(:last-child) {
+                    border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.300');
+                }
+            }
+            &-title {
+                text-transform: uppercase;
+                border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.300');
+                &:first-child {
+                    border-top-left-radius: theme('borderRadius.medium') !important;
+                }
+                &:last-child {
+                    border-top-right-radius: theme('borderRadius.medium') !important;
+                }
+            }
+            &-data {
+                color: theme('colors.primary.base');
+                font-weight: theme('fontWeight.bold');
+                border-bottom: theme('borderWidth.light') solid theme('colors.grayscale.300');
+            }
+            &-title,
+            &-data {
+                padding: theme('spacing.1') theme('spacing.8');
+                &:not(:first-child) {
+                    border-left: theme('borderWidth.light') solid theme('colors.grayscale.300');
+                }
+            }
+        }
+    }
+}
+
+@include breakpoint.down(small) {
+    .table-responsive {
+        width: 100%;
+        .api-content {
+            &__table {
+                &-content {
+                    &-title,
+                    &-data {
+                        padding: theme('spacing.1') theme('spacing.none');
+                    }
+                }
+            }
+        }
+    }
+}

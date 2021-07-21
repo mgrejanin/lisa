@@ -1,0 +1,10 @@
+<aside class="sidepanel" [ngClass]="{ sidepanel__right: side === 'right' }">
+    <div class="sidepanel__close">
+        <apollo-icon-button (click)="handleClick($event)" [icon]="icon" size="sm" color="#00AC4A"></apollo-icon-button>
+    </div>
+    <h4 class="sidepanel__title">{{ title }}</h4>
+    <p class="sidepanel__description">{{ description }}</p>
+    <div class="sidepanel__content">
+        <ng-content></ng-content>
+    </div>
+</aside>

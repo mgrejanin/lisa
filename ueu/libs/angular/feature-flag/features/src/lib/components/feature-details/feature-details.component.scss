@@ -1,0 +1,139 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-feature-details {
+    width: 23rem;
+    height: 100%;
+
+    padding: 4.5rem 0px;
+
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+
+    position: relative;
+
+    background-color: theme('colors.background.base');
+
+    @include media-breakpoint-down(sm) {
+        width: 100vw;
+    }
+
+    &__close-btn,
+    &__edit-btn,
+    &__delete-btn {
+        position: absolute;
+
+        color: theme('colors.primary.base') !important;
+    }
+
+    &__close-btn {
+        left: 1rem;
+        top: 1rem;
+    }
+
+    &__edit-btn {
+        right: calc(2rem + 24px);
+        top: 1rem;
+    }
+
+    &__delete-btn {
+        right: 1rem;
+        top: 1rem;
+    }
+
+    &__info-wrapper {
+        padding: 0 2rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    &__title,
+    &__description {
+        text-align: center;
+        line-break: anywhere;
+    }
+
+    &__title {
+        @include typography.title(medium);
+
+        margin-bottom: 0.5rem;
+    }
+
+    &__description {
+        @include typography.body(primary, small);
+
+        margin-bottom: 1rem;
+    }
+
+    &__type {
+        margin-bottom: 2rem;
+    }
+
+    &__tabs {
+        width: 100%;
+    }
+
+    &__tab-content {
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+
+        padding: 1.5rem 2.5rem;
+
+        width: 100%;
+
+        &--key {
+            @include typography.body(primary, bold);
+            font-size: 0.75rem;
+
+            text-transform: uppercase;
+        }
+
+        &--value {
+            @include typography.body(primary, medium);
+
+            margin-bottom: 1.5rem;
+
+            &::first-letter {
+                text-transform: uppercase;
+            }
+        }
+
+        &--lowercase {
+            &::first-letter {
+                text-transform: unset;
+            }
+        }
+
+        &-json {
+            margin-bottom: 1.5rem;
+
+            &.opened {
+                margin-bottom: unset;
+            }
+
+            &--value {
+                margin-bottom: unset;
+            }
+
+            &--icon {
+                transition: all 225ms ease-in-out;
+                cursor: pointer;
+
+                &.collapse {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+
+    &__segmentation {
+        width: 100%;
+    }
+}

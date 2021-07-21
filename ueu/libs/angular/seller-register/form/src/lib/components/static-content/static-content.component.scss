@@ -1,0 +1,29 @@
+@use "mixins/breakpoint";
+
+:host {
+    width: 100%;
+}
+
+.static-content {
+    &__title {
+        &--responsive {
+            display: none;
+
+            @include breakpoint.up(small) {
+                display: block;
+            }
+        }
+    }
+
+    &__paragraph {
+        margin-top: theme('spacing.4');
+    }
+
+    &__illustration {
+        margin-top: theme('spacing.3');
+
+        @include breakpoint.up(medium) {
+            margin-top: theme('spacing.none');
+        }
+    }
+}

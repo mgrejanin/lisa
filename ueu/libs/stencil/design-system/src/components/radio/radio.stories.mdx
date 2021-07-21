@@ -1,0 +1,115 @@
+import { Meta, Story, Canvas, Source, Description } from '@storybook/addon-docs/blocks';
+import dedent from 'ts-dedent';
+
+import readme from './../../components/radio/readme.md';
+
+<Meta
+    title="Components/Radio"
+    parameters={{
+        actions: {
+            handles: ['apolloChange', 'apolloBlur'],
+        },
+        previewTabs: {
+            canvas: { hidden: false },
+        },
+    }}
+/>
+
+export const Template = props => (
+    <>
+        <apollo-radio
+            {...props}
+            checked={props.checked ? 'true' : undefined}
+            inline={props.inline ? 'true' : undefined}
+            disabled={props.disabled ? 'true' : undefined}
+            invalid={props.invalid ? 'true' : undefined}
+            nowrap={props.nowrap ? 'true' : undefined}
+            name="radio"
+            label="Radio 1"
+        />
+        <apollo-radio
+            {...props}
+            checked={props.checked ? 'true' : undefined}
+            inline={props.inline ? 'true' : undefined}
+            disabled={props.disabled ? 'true' : undefined}
+            invalid={props.invalid ? 'true' : undefined}
+            nowrap={props.nowrap ? 'true' : undefined}
+            name="radio"
+            label="Radio 2"
+        />
+    </>
+);
+
+# Radio
+
+## Default
+
+<Canvas>
+    <Story
+        name="All Props"
+        args={{
+            position: 'after',
+            checked: true,
+            inline: false,
+            disabled: false,
+            invalid: false,
+            nowrap: false,
+        }}
+        argTypes={{
+            position: {
+                control: { type: 'select', options: ['after', 'before'] },
+            },
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<apollo-radio label="PicPay Lovers" />`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+## Checked
+
+<Canvas>
+    <Story
+        name="Checked"
+        args={{
+            checked: true,
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<apollo-radio label="PicPay Lovers" checked />`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+## Invalid
+
+<Canvas>
+    <Story
+        name="Invalid"
+        args={{
+            invalid: true,
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<apollo-radio label="PicPay Lovers" invalid />`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Description markdown={readme} />

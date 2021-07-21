@@ -1,0 +1,40 @@
+<div class="c-info-steps" *ngIf="step$ | async as step">
+    <div class="container">
+        <ng-container [ngSwitch]="step">
+            <div *ngSwitchCase="1" class="c-info-steps__content">
+                <img
+                    src="./assets/icons/step-start-project.svg"
+                    alt="Começar um novo projeto"
+                    title="Começar um novo projeto"
+                />
+                <h3 class="c-info-steps__content--title">Começar um novo projeto</h3>
+                <p class="c-info-steps__content--description">
+                    Você ainda não tem nenhum projeto criado, comece agora mesmo a criar experiências com Picpay.
+                </p>
+                <apollo-button size="md" block (click)="setStep(2)"> Continuar </apollo-button>
+            </div>
+            <div *ngSwitchCase="2" class="c-info-steps__content">
+                <img src="./assets/icons/step-information.svg" alt="O que é um projeto?" title="O que é um projeto?" />
+                <h3 class="c-info-steps__content--title">O que é um projeto?</h3>
+                <p class="c-info-steps__content--description">
+                    Um projeto pode representar sua empresa ou campanha. Você pode criar vários projetos e ligar nossos
+                    produtos conforme sua necessidade.
+                </p>
+                <apollo-button size="md" block (click)="setStep(3)"> Continuar </apollo-button>
+            </div>
+            <div *ngSwitchCase="3" class="c-info-steps__content">
+                <img
+                    src="./assets/icons/step-register.svg"
+                    alt="Porque preencher essas informações?"
+                    title="Porque preencher essas informações?"
+                />
+                <h3 class="c-info-steps__content--title">Porque preencher essas informações?</h3>
+                <p class="c-info-steps__content--description">
+                    Essas informações irão ajudar a identificar o seu projeto em meio a todos os projetos que podem ser
+                    criados.
+                </p>
+                <apollo-button size="md" block> Começar um novo projeto </apollo-button>
+            </div>
+        </ng-container>
+    </div>
+</div>

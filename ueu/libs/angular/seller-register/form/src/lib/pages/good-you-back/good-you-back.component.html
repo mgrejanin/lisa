@@ -1,0 +1,32 @@
+<section class="c-section c-section--no-margin">
+    <div class="c-section__body">
+        <seller-register-static-content
+            title="Que bom ter você de volta, {{ nameSeller$ | async | firstName }}!"
+            firstParagraph="Continue seu cadastro de onde parou."
+            illustration="assets/seller-register/images/good-you-back.svg"
+            illustrationAlt="Uma ilustração de uma mão escrevendo em uma folha de papel na cor verde"
+        ></seller-register-static-content>
+    </div>
+</section>
+
+<footer class="c-footer c-footer--reverse">
+    <apollo-button
+        size="md"
+        type="button"
+        block
+        class="c-footer__button c-footer__button--next"
+        (click)="continueRegistration()"
+    >
+        Continuar cadastro
+    </apollo-button>
+    <apollo-button
+        size="md"
+        type="button"
+        block
+        variant="link"
+        class="c-footer__button c-footer__button--reset"
+        (click)="resetSellerRegister()"
+    >
+        Iniciar novo cadastro
+    </apollo-button>
+</footer>

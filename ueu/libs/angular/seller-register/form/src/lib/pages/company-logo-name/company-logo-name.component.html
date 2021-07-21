@@ -1,0 +1,80 @@
+<section class="c-section">
+    <div class="c-section__headline">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 class="c-section__title">{{ title }}</h1>
+                <p class="c-section__description">
+                    Escolha como as pessoas vão ver sua empresa no PicPay. O nome e a foto que você escolher, vão
+                    aparecer no Perfil.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <form class="c-section__form" [formGroup]="companyDataForm" (ngSubmit)="onSubmit()">
+        <fieldset>
+            <div class="row">
+                <div class="col-md-6 c-section__form-figure">
+                    <seller-register-image-button
+                        class="c-section__form-figure-item c-section__form-figure-item--logo"
+                        (selectedImageEvent)="onFileSelect($event)"
+                        (errorEvent)="onFileSelectError($event)"
+                    ></seller-register-image-button>
+                    <apollo-feedback-card
+                        label="A imagem deve ter o formato JPG ou PNG, com tamanho máximo de 1MB. Ela não é obrigatória, mas ajuda sua empresa a se destacar!"
+                        emphasis="false"
+                        stacked="false"
+                        type="warning"
+                        class="c-section__form-figure-item c-section__form-figure-item--disclaimer"
+                    ></apollo-feedback-card>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 c-section__form-field">
+                    <apollo-textfield
+                        label="Nome da sua empresa"
+                        formControlName="company_display"
+                        type="text"
+                        required="true"
+                        helper-text="Ex: PicPay Serviços S.A."
+                    ></apollo-textfield>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+    <div class="c-section__card">
+        <p class="c-section__card-paragraph">Confira como seu cliente verá sua empresa no aplicativo PicPay</p>
+        <apollo-flex alignItems="center" justify="center">
+            <seller-register-mockup
+                [businessAvatar]="businessAvatar"
+                [businessName]="formFields.company_display.value"
+                [businessAddress]="fullAddressSeller$ | async"
+            ></seller-register-mockup>
+        </apollo-flex>
+    </div>
+</section>
+
+<footer class="c-footer c-footer--reverse">
+    <apollo-button
+        size="md"
+        type="button"
+        block
+        class="c-footer__button c-footer__button--next"
+        [disabled]="(isLoading$ | async) || companyDataForm.invalid"
+        [loading]="isLoading$ | async"
+        (click)="onSubmit()"
+    >
+        Continuar
+    </apollo-button>
+    <apollo-button
+        size="md"
+        type="button"
+        block
+        variant="link"
+        class="c-footer__button c-footer__button--previous"
+        [routerLink]="['/form/senha']"
+    >
+        Voltar
+    </apollo-button>
+</footer>

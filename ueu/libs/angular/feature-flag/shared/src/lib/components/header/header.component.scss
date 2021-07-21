@@ -1,0 +1,12 @@
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-header {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row-reverse;
+
+    padding: 1rem;
+}

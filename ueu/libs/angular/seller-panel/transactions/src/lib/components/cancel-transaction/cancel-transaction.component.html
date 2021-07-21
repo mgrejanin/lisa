@@ -1,0 +1,42 @@
+<div class="c-container-dialog-cancel">
+    <div class="c-dialog-header">
+        <span class="c-dialog-header--label" mat-dialog-title>Cancelar transação</span>
+    </div>
+    <div class="c-dialog-content" mat-dialog-content>
+        <div class="c-dialog-content__description">
+            <span class="c-dialog-content__description--name">{{ data?.consumer }}</span>
+            <span class="c-dialog-content__description--price">{{ data?.price | currency: 'BRL' }}</span>
+            <span class="c-dialog-content__description--date">{{
+                data?.transaction_date?.date | date: 'dd.MM - HH:mm'
+            }}</span>
+        </div>
+        <form class="c-dialog-content__form o-filter" (ngSubmit)="cancelTransaction()" [formGroup]="this.cancelForm">
+            <mat-form-field floatLabel="always" appearance="outline">
+                <mat-label class="o-filte__label">Digite sua senha</mat-label>
+                <input class="o-filte__input" matInput formControlName="password" type="password" />
+            </mat-form-field>
+        </form>
+    </div>
+    <div class="c-dialog-content__actions" mat-dialog-actions>
+        <div class="c-dialog-buttons">
+            <button
+                class="c-dialog-buttons__cancel-transaction"
+                [class.o-button--solid]="this.cancelForm.valid"
+                [class.o-button--disabled]="!this.cancelForm.valid"
+                mat-button
+                (click)="cancelTransaction()"
+            >
+                <!-- Loader -->
+                <span class="c-dialog-buttons__cancel-transaction--spinner" *ngIf="this.isLoading">
+                    <mat-spinner [diameter]="20"></mat-spinner>
+                </span>
+                <!-- Label -->
+                <span class="c-dialog-buttons__cancel-transaction--label" *ngIf="!this.isLoading">Confirmar</span>
+            </button>
+            <div class="c-dialog-buttons--divisor"></div>
+            <button class="c-dialog-buttons__closed o-button--outline" mat-button (click)="onClose()">
+                <span class="c-dialog-buttons__cancel-transaction--label">Cancelar</span>
+            </button>
+        </div>
+    </div>
+</div>

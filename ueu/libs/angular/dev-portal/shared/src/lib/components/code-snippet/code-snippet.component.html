@@ -1,0 +1,54 @@
+<div class="code-snippet">
+    <div class="container">
+        <div class="code-snippet__tabs">
+            <div class="tab-item">
+                <div class="tab-title" role="tablist" *ngIf="infoCodes.length > 1">
+                    <div
+                        *ngFor="let item of infoCodes; index as i"
+                        (click)="selectTab(i)"
+                        class="title-item"
+                        [class.active]="item.active"
+                        aria-selected="true"
+                    >
+                        <p>{{ item.platform }}</p>
+                    </div>
+                </div>
+                <div *ngFor="let item of infoCodes" class="tab-content" [hidden]="!item.active">
+                    <ng-container>
+                        <ng-container *ngTemplateOutlet="tabContent; context: { $implicit: item }"></ng-container>
+                    </ng-container>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #tabContent let-item>
+        <div class="container">
+            <div class="code-snippet__type">
+                <div class="type-code">
+                    <p>{{ item.type }}</p>
+                </div>
+                <apollo-button
+                    variant="link"
+                    size="sm"
+                    class="copy-paste"
+                    role="button"
+                    (click)="copyToClipboard(item)"
+                >
+                    <apollo-icon class="icon material-icon">file_copy</apollo-icon>
+                </apollo-button>
+            </div>
+            <div class="code-snippet__code">
+                <pre><code class="microlight" [highlight]="item.code" [languages]="[item.language]" [lineNumbers]="true">{{ item.code }}</code></pre>
+            </div>
+        </div>
+    </ng-template>
+</div>
+
+<apollo-snackbar
+    #snackbarSuccessClipboard
+    label="Copiado com sucesso!"
+    type="done"
+    position="baseline"
+    show-dismiss-button
+></apollo-snackbar>

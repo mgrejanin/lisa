@@ -1,0 +1,57 @@
+html {
+    box-sizing: border-box;
+    -ms-overflow-style: scrollbar;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    color: $dark;
+}
+
+.col,
+[class*='col-'] {
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.mat-form-field-infix {
+    width: 100% !important;
+}
+
+button:focus {
+    outline: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.mat-error {
+    font-size: 0.7rem;
+}
+
+.mat-form-field-label-wrapper,
+.mat-error {
+    user-select: none;
+}
+
+.user-select-none {
+    user-select: none;
+}
+
+.mat-card {
+    width: 100%;
+    border-radius: 3px;
+}

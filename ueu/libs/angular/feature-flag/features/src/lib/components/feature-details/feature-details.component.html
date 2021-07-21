@@ -1,0 +1,113 @@
+<section class="c-feature-details">
+    <button mat-icon-button aria-label="Fechar" class="c-feature-details__close-btn" (click)="onClose()">
+        <mat-icon>close</mat-icon>
+    </button>
+
+    <button
+        *featureFlagIfRoles="canShow"
+        mat-icon-button
+        aria-label="editar"
+        class="c-feature-details__edit-btn"
+        (click)="onEdit(feature)"
+    >
+        <mat-icon>edit</mat-icon>
+    </button>
+
+    <button
+        *featureFlagIfRoles="canShow"
+        mat-icon-button
+        aria-label="Fechar"
+        class="c-feature-details__delete-btn"
+        (click)="onDelete(feature.id)"
+    >
+        <mat-icon>delete</mat-icon>
+    </button>
+
+    <ng-container *ngIf="feature; else loading">
+        <section class="c-feature-details__info-wrapper">
+            <h1 class="c-feature-details__title">{{ feature.name }}</h1>
+            <p class="c-feature-details__description">{{ feature.description }}</p>
+            <span class="c-feature-details__type o-chip">{{ getTypeName(feature.type) }}</span>
+        </section>
+
+        <mat-tab-group class="c-feature-details__tabs" mat-align-tabs="center">
+            <!-- DETAILS -->
+            <mat-tab label="Detalhes">
+                <section class="c-feature-details__tab-content">
+                    <!-- ID -->
+                    <span class="c-feature-details__tab-content--key"> ID </span>
+
+                    <span class="c-feature-details__tab-content--value c-feature-details__tab-content--lowercase">
+                        {{ feature.id }}
+                    </span>
+
+                    <!-- VALUE -->
+                    <ng-container *ngIf="feature.type !== featureTypes.JSON; else json">
+                        <apollo-flex direction="column" class="c-feature-details__tab-content-default-value">
+                            <span class="c-feature-details__tab-content--key"> VALOR PADRÃO </span>
+
+                            <span
+                                class="c-feature-details__tab-content--value c-feature-details__tab-content--lowercase"
+                            >
+                                {{ feature.value }}
+                            </span>
+                        </apollo-flex>
+                    </ng-container>
+
+                    <!-- APPLICATION -->
+                    <span class="c-feature-details__tab-content--key"> APLICAÇÃO DE DESTINO </span>
+
+                    <span class="c-feature-details__tab-content--value">
+                        {{ feature.application.name }}
+                    </span>
+
+                    <!-- SQUAD -->
+                    <span class="c-feature-details__tab-content--key"> SQUAD RESPONSÁVEL </span>
+
+                    <span class="c-feature-details__tab-content--value">
+                        {{ feature.squad.name }}
+                    </span>
+
+                    <feature-flag-features-feature-segmentation
+                        class="c-feature-details__segmentation"
+                        *ngFor="let segmentation of feature.conditions"
+                        [segmentation]="segmentation"
+                        [featureType]="feature.type"
+                    >
+                    </feature-flag-features-feature-segmentation>
+                </section>
+            </mat-tab>
+
+            <!-- LOG -->
+            <mat-tab label="Histórico">
+                <section class="c-feature-details__tab-content">
+                    <feature-flag-features-feature-log class="c-feature-details__log" [commits]="commits">
+                    </feature-flag-features-feature-log>
+                </section>
+            </mat-tab>
+        </mat-tab-group>
+    </ng-container>
+
+    <ng-template #loading> loading </ng-template>
+
+    <ng-template #json>
+        <apollo-box class="c-feature-details__tab-content-json" [ngClass]="{ opened: isCollapsed }">
+            <apollo-text class="c-feature-details__tab-content--key">
+                VALOR PADRÃO
+                <apollo-icon
+                    svg-icon="arrows-angle-down-b"
+                    class="c-feature-details__tab-content-json--icon"
+                    [ngClass]="{ collapse: isCollapsed }"
+                    (click)="onCollapse()"
+                ></apollo-icon>
+            </apollo-text>
+            <apollo-collapse [collapsed]="isCollapsed">
+                <apollo-box slot="body">
+                    <pre class="c-feature-details__tab-content--value c-feature-details__tab-content-json--value">
+                        {{ feature.value | parse | json }}
+                    </pre>
+                </apollo-box>
+            </apollo-collapse>
+        </apollo-box>
+    </ng-template>
+</section>

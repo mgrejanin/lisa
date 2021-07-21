@@ -1,0 +1,12 @@
+{
+    "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+    "dest": "../../../dist/libs/packages/packages-keycloak",
+    "assets": ["src/assets/silent-check-sso.html"],
+    "lib": {
+        "entryFile": "src/index.ts",
+        "umdModuleIds": {
+            "keycloak-js": "11.0.2",
+            "keycloak-angular": "8.0.1"
+        }
+    }
+}

@@ -1,0 +1,45 @@
+import { Meta, Story, Canvas, Source, Description } from '@storybook/addon-docs/blocks';
+import dedent from 'ts-dedent';
+
+import readme from './../../components/title/readme.md';
+
+<Meta title="Components/Title" />
+
+export const titleText = 'PicPay Lovers';
+export const typeText = 'title';
+
+export const Template = props => <lab-title {...props} is-editing={props.isEditing ? 'true' : undefined} />;
+
+# Title
+
+## Default
+
+<Canvas>
+    <Story
+        name="All Props"
+        args={{
+            isEditing: false,
+            text: titleText,
+            type: typeText,
+        }}
+        argTypes={{
+            type: {
+                control: { type: 'select', options: ['title', 'subtitle'] },
+            },
+            isEditing: {
+                name: 'is-editing',
+            },
+        }}
+        parameters={{
+            docs: {
+                source: {
+                    code: `<lab-title text="${titleText}" type="${typeText}"></lab-title>`,
+                },
+            },
+        }}
+    >
+        {Template.bind({})}
+    </Story>
+</Canvas>
+
+<Description markdown={readme} />

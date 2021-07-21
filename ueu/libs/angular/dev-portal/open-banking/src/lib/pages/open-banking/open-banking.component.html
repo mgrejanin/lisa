@@ -1,0 +1,197 @@
+<dev-portal-header></dev-portal-header>
+<ng-container *ngIf="{ isMobile: isMobile$ | async } as store">
+    <dev-portal-banner
+        backgroundColor="business"
+        backgroundImage="./assets/images/ilustracao-menina.png"
+        [col_image]="5"
+        [col_content]="7"
+        [height]="!store.isMobile ? '315px' : '360px'"
+        [reverse]="true"
+    >
+        <div banner-image class="page__banner">
+            <img alt="Portal do Desenvolvedor" src="./assets/images/open-banking/ilustracao-menina.png" />
+        </div>
+        <div banner-content>
+            <h1>Open Banking</h1>
+            <div class="page__description">
+                <span>
+                    É uma forma revolucionária de reunir toda sua vida financeira em um só lugar.
+                    <br />
+                    E não tem lugar melhor pra fazer isso do que na maior carteira digital do país. <br />
+                    <b>Vem com a gente!</b>
+                </span>
+            </div>
+        </div>
+    </dev-portal-banner>
+    <apollo-flex wrap="true" justify="space-between" align-items="center" class="page__container page__section-product">
+        <apollo-heading color="grayscale.900" size="md">Como vai funcionar?</apollo-heading>
+        <apollo-flex direction="row" justify="space-between" align-items="center" class="page__items">
+            <apollo-box class="page__item">
+                <apollo-flex justify="center" align-items="center" class="page__icon">
+                    <apollo-icon color="white" svg-icon="objects-crosshairs"></apollo-icon>
+                </apollo-flex>
+                <apollo-box mt="3" color="grayscale.900">
+                    <p class="page__product-title">Seu dinheiro em apenas um lugar</p>
+                    <p>
+                        Envie Pix, pague amigos, boletos e faça diversas transações usando o saldo de qualquer conta
+                        bancária dentro do PicPay.
+                    </p>
+                </apollo-box>
+            </apollo-box>
+            <apollo-box class="page__item">
+                <apollo-flex justify="center" align-items="center" class="page__icon">
+                    <apollo-icon color="white" svg-icon="money_business-money-stack"></apollo-icon>
+                </apollo-flex>
+                <apollo-box mt="3" color="grayscale.900">
+                    <p class="page__product-title">Uma loja de crédito só pra você</p>
+                    <p>
+                        Encaminhe, visualize e gerencie propostas de crédito, contrate serviços e mais dentro do nosso
+                        marketplace. Tudo com a facilidade do PicPay que você já conhece.
+                    </p>
+                </apollo-box>
+            </apollo-box>
+            <apollo-box class="page__item">
+                <apollo-flex justify="center" align-items="center" class="page__icon">
+                    <apollo-icon color="white" svg-icon="money_business-invoice"></apollo-icon>
+                </apollo-flex>
+                <apollo-box mt="3" color="grayscale.900">
+                    <p class="page__product-title">Sua gestão financeira organizada</p>
+                    <p>
+                        Organize seus dados financeiros, centralize gastos, categorize compras e crie metas pra suas
+                        finanças. Gerencie sua vida financeira na palma da sua mão.
+                    </p>
+                </apollo-box>
+            </apollo-box>
+        </apollo-flex>
+    </apollo-flex>
+    <dev-portal-timeline></dev-portal-timeline>
+    <apollo-box mt="10" mb="14" class="page__group">
+        <apollo-box class="page__container">
+            <apollo-flex align-items="flex-end" justify="space-between" class="page__section page__section--reverse">
+                <apollo-box mb="2" class="col-md-6">
+                    <apollo-heading size="md" color="grayscale.900">Vantagens do Open Banking</apollo-heading>
+                    <apollo-box mt="2" color="grayscale.900">
+                        <p>
+                            Quem se integrar com nossas APIs vai poder levar o PicPay para o seu negócio com segurança e
+                            praticidade. Esse novo modelo foi pensado para dar mais autonomia ao consumidor, através do
+                            compartilhamento de dados financeiros pelos clientes entre as instituições financeiras
+                            participantes.
+                        </p>
+                    </apollo-box>
+                </apollo-box>
+                <apollo-box class="col-md-4">
+                    <img
+                        src="./assets/images/open-banking/vencedora.png"
+                        alt="Segurança"
+                        class="page__image"
+                        loading="lazy"
+                    />
+                </apollo-box>
+            </apollo-flex>
+            <apollo-flex
+                align-items="flex-end"
+                justify="space-between"
+                class="page__section page__section--fluid"
+                wrap="true"
+            >
+                <apollo-box mb="2" class="col-md-4">
+                    <img
+                        src="./assets/images/open-banking/seguranca.png"
+                        alt="Segurança"
+                        class="page__image"
+                        loading="lazy"
+                    />
+                </apollo-box>
+                <apollo-box class="col-md-8">
+                    <apollo-heading size="md" color="grayscale.900">Segurança</apollo-heading>
+                    <apollo-box mt="2" color="grayscale.900">
+                        <p>
+                            Toda a comunicação via API será criptografada seguindo os padrões impostos pelo Banco
+                            Central. Além disso, na construção das nossas APIs, o PicPay está sempre adequado ao
+                            certificado digital ICP-Brasil. Isso significa que toda integração é autenticada de ponta a
+                            ponta, garantindo segurança reforçada aos nossos usuários.
+                        </p>
+                    </apollo-box>
+                </apollo-box>
+            </apollo-flex>
+        </apollo-box>
+    </apollo-box>
+    <apollo-box class="page__api">
+        <apollo-flex direction="row" justify="space-between" wrap="true" align-items="center" class="page__container">
+            <apollo-box
+                color="white"
+                [ngClass]="{ 'page__api-text': true, 'col-md-6': !store.isMobile, 'col-md-12': store.isMobile }"
+            >
+                <apollo-heading size="md" color="white">APIs do Open Banking</apollo-heading>
+                <apollo-box mt="2">
+                    <p>
+                        Cada banco, empresa, fintech ou operadora terá suas APIs públicas. Isso possibilita criar um
+                        ecossistema seguro e escalável de troca de dados das operações financeiras do mercado brasileiro
+                        entre instituições participantes do Open Banking. Nenhuma instituição terá acesso aos dados de
+                        um cliente sem que ele antes permita esse compartilhamento (exceto pelos dados não sensíveis,
+                        como nome e data de nascimento, por exemplo).
+                    </p>
+                    <p>Para conhecer as APIs de Open Banking do Picpay, acesse a nossa página de documentações.</p>
+                </apollo-box>
+                <apollo-button
+                    picpayTrackClick
+                    eventName="Button Clicked"
+                    [eventPayload]="{
+                        button_name: 'BTN_OPEN_DOC',
+                        page_name: 'STUDIO_OPEN_BANKING',
+                        context: 'OPEN_BANKING'
+                    }"
+                    (click)="handleRedirect()"
+                    class="page__btn-doc"
+                >
+                    Consultar documentação</apollo-button
+                >
+            </apollo-box>
+            <apollo-box *ngIf="!store.isMobile" class="page__code col-md-5">
+                <img
+                    src="./assets/images/open-banking/live-editor.png"
+                    alt="Apis open banking"
+                    width="500"
+                    loading="lazy"
+                />
+            </apollo-box>
+        </apollo-flex>
+    </apollo-box>
+    <apollo-box class="page__contact-container">
+        <apollo-flex wrap="true" justify="space-between" align-items="center" class="page__contact">
+            <apollo-box class="col-md-4">
+                <img
+                    src="./assets/images/open-banking/whatsapp.png"
+                    alt="Entre em contato"
+                    class="page__image"
+                    loading="lazy"
+                />
+            </apollo-box>
+            <apollo-box direction="row" align-items="center" class="page__text col-md-8">
+                <apollo-heading size="md" color="grayscale.900">Dúvidas sobre Open Banking?</apollo-heading>
+                <apollo-box mt="3" color="grayscale.900">
+                    <span>
+                        Caso você queira saber mais sobre as APIs, integrações, vantagens e como funcionará o Open
+                        Banking no PicPay, acesse a nossa
+                        <a
+                            picpayTrackClick
+                            eventName="Link Clicked"
+                            [eventPayload]="{
+                                button_name: 'BTN_OPEN_FAQ',
+                                page_name: 'STUDIO_OPEN_BANKING',
+                                context: 'OPEN_BANKING'
+                            }"
+                            title="Central de Ajuda - FAQ"
+                            href="https://ajudaempresas.picpay.com/hc/pt-br/categories/360004972752-PicPay-Studio-"
+                            class="page__link"
+                            target="_blank"
+                        >
+                            <b> Central de Ajuda. </b>
+                        </a>
+                    </span>
+                </apollo-box>
+            </apollo-box>
+        </apollo-flex>
+    </apollo-box>
+</ng-container>
+<dev-portal-footer></dev-portal-footer>

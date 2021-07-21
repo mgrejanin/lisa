@@ -1,0 +1,94 @@
+@use "@material/theme" with (
+    $primary: theme('colors.primary.light.500'),
+    $secondary: theme('colors.primary.light.500'),
+);
+@use "@material/switch";
+@use "@material/form-field";
+
+@include switch.core-styles;
+@include form-field.core-styles;
+
+apollo-switch-toggle {
+    user-select: none;
+    display: flex;
+    align-items: center;
+
+    --mdc-theme-primary: var(--apollo-primary);
+    --mdc-theme-on-primary: var(--apollo-on-primary);
+    --mdc-theme-secondary: var(--apollo-primary);
+    --mdc-theme-on-secondary: var(--apollo-on-primary);
+
+    label {
+        margin-bottom: 0rem;
+        position: relative;
+        font-size: 1rem;
+        color: rgba(var(--apollo-on-background-rgb), 0.87);
+    }
+
+    & > label {
+        padding: 0 theme('spacing.2') 0 0;
+    }
+
+    .mdc-switch + label {
+        padding: 0 0 0 theme('spacing.2');
+    }
+
+    .mdc-switch {
+        @include switch.toggled-off-track-color(theme('colors.grayscale.800'));
+        @include switch.toggled-off-thumb-color(#fff);
+        @include switch.toggled-off-ripple-color(transparent);
+        @include switch.toggled-on-track-color(theme('colors.primary.base'));
+        @include switch.toggled-on-thumb-color(#fff);
+        @include switch.toggled-on-ripple-color(transparent);
+
+        .mdc-switch__thumb-underlay {
+            top: 2px;
+            left: 2px;
+            height: 27px;
+            width: 27px;
+
+            .mdc-switch__thumb {
+                width: 27px;
+                height: 27px;
+                box-shadow: none;
+                border-width: theme('borderWidth.light');
+                border-color: rgba(theme('colors.grayscale.light.900'), 0.1);
+            }
+        }
+
+        .mdc-switch__track {
+            width: 51px;
+            height: 31px;
+            border-radius: theme('borderRadius.pill');
+            opacity: theme('opacity.medium');
+        }
+    }
+
+    .mdc-switch--checked {
+        .mdc-switch__track {
+            opacity: theme('opacity.full');
+        }
+
+        .mdc-switch__thumb {
+            border: none;
+        }
+    }
+}
+
+/**
+  * POSITION
+**/
+
+apollo-switch-toggle {
+    &[position='before'] {
+        .mdc-switch + label {
+            padding: 0 theme('spacing.2') 0 0;
+        }
+    }
+}
+
+[data-theme='dark'] {
+    .mdc-switch {
+        @include switch.toggled-off-track-color(theme('colors.grayscale.500'));
+    }
+}

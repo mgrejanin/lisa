@@ -1,0 +1,91 @@
+@use 'mixins/typography';
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-change-plan {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    text-align: center;
+    background-color: rgb(var(--apollo-background-rgb));
+    color: rgba(var(--apollo-on-background-rgb), 0.86);
+    border-radius: theme('spacing.2');
+    padding: theme('spacing.2') 0;
+    height: 100%;
+    max-height: 100%;
+
+    h2 {
+        @include typography.title(medium);
+        margin-top: theme('spacing.2');
+        margin-bottom: theme('spacing.4');
+    }
+
+    p {
+        @include typography.body(primary, default);
+        margin: 0;
+    }
+
+    &__header {
+        &--title {
+            @include typography.title(medium);
+            margin-bottom: theme('spacing.2');
+        }
+
+        &--close-btn {
+            position: absolute;
+            top: theme('spacing.2');
+            right: theme('spacing.1');
+
+            background: transparent;
+            border: none;
+            line-height: 0;
+
+            mat-icon {
+                color: var(--apollo-primary);
+            }
+        }
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        padding: theme('spacing.4') theme('spacing.2');
+    }
+
+    &__new-plan {
+        padding: theme('spacing.4') theme('spacing.3');
+        border: 1px solid rgba(var(--apollo-on-background-rgb), 0.1);
+        border-radius: theme('spacing.1');
+        text-align: center;
+
+        h2 {
+            @include typography.title(medium);
+            color: var(--apollo-primary);
+            margin-top: theme('spacing.1');
+        }
+
+        p {
+            @include typography.body(primary, default);
+        }
+    }
+
+    &__footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        padding: theme('spacing.3') theme('spacing.3') theme('spacing.1');
+        border-top: 1px solid rgba(var(--apollo-on-background-rgb), 0.2);
+
+        &--btn-confirm {
+            border-radius: theme('spacing.3');
+            background-color: var(--apollo-primary) !important;
+        }
+
+        &--btn-cancel {
+            color: rgba(var(--apollo-primary-rgb)) !important;
+            background: transparent !important;
+        }
+    }
+}

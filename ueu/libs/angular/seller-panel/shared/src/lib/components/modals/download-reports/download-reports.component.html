@@ -1,0 +1,106 @@
+<div class="c-download-reports">
+    <div class="c-download-reports__header">
+        <h2 class="c-download-reports__header--title">Exportar relatório</h2>
+        <button mat-icon-button class="c-download-reports__header--close-button" (click)="onClose()">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div class="c-download-reports__body">
+        <form [formGroup]="form">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 c-download-reports__body--toggle-format">
+                        <label>formato do relatório</label>
+                        <mat-button-toggle-group formControlName="format">
+                            <mat-button-toggle class="o-button-toggle" value="PDF">Arquivo PDF</mat-button-toggle>
+                            <mat-button-toggle class="o-button-toggle" value="CSV">Planilha CSV</mat-button-toggle>
+                        </mat-button-toggle-group>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>de</label>
+                        <mat-form-field appearance="outline">
+                            <input
+                                matInput
+                                formControlName="dateFrom"
+                                [matDatepicker]="dateFrom"
+                                [max]="dateMax"
+                                (click)="dateFrom.open()"
+                                readonly
+                            />
+                            <mat-datepicker-toggle matSuffix [for]="dateFrom"></mat-datepicker-toggle>
+                            <mat-datepicker
+                                #dateFrom
+                                [touchUi]="(isHandset$ | async) ? 'true' : 'false'"
+                                disabled="false"
+                            ></mat-datepicker>
+                            <mat-error validation-message [control]="form.get('dateFrom')"></mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <label>até</label>
+                        <mat-form-field appearance="outline">
+                            <input
+                                matInput
+                                formControlName="dateTo"
+                                [matDatepicker]="dateTo"
+                                [max]="dateMax"
+                                (click)="dateTo.open()"
+                                readonly
+                            />
+                            <mat-datepicker-toggle matSuffix [for]="dateTo"></mat-datepicker-toggle>
+                            <mat-datepicker
+                                #dateTo
+                                [touchUi]="(isHandset$ | async) ? 'true' : 'false'"
+                                disabled="false"
+                            ></mat-datepicker>
+                            <mat-error validation-message [control]="form.get('dateTo')"></mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-10" [hidden]="isHide">
+                        <div class="c-send-email">
+                            <label class="c-send-email--description"
+                                >Informe o endereço de e-mail para envio do relatório:</label
+                            >
+                            <mat-form-field appearance="outline">
+                                <mat-label>E-mail</mat-label>
+                                <input matInput type="email" formControlName="email" />
+                                <mat-error validation-message [control]="form.controls.email"></mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="c-download-reports__warning" [hidden]="!isHide">
+            <apollo-feedback-card
+                [label]="
+                    'Estamos com indisponibilidade temporária para baixar o relatório. O arquivo será enviado ao endereço de e-mail ' +
+                    organizationEmail
+                "
+                type="warning"
+                stacked="true"
+            ></apollo-feedback-card>
+        </div>
+    </div>
+    <div class="c-download-reports__footer">
+        <button
+            mat-flat-button
+            class="c-download-reports__footer--btn-email o-button o-button__link"
+            (click)="isHide ? onToggleEmail() : onClose()"
+        >
+            {{ isHide ? 'Enviar para outro e-mail' : 'Cancelar' }}
+        </button>
+        <button
+            mat-flat-button
+            class="c-download-reports__footer--btn-email o-button o-button__solid"
+            (click)="onSendToEmail()"
+            [disabled]="!form.valid"
+        >
+            <span class="material-icons mr-2">mail_outline</span>Enviar relatório
+        </button>
+    </div>
+</div>

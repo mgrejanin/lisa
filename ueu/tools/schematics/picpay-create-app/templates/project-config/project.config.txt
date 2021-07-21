@@ -1,0 +1,127 @@
+{
+    "angular": {
+        "<%= dasherize(appName) %>": {
+            "projectType": "application",
+            "schematics": {
+                "@nrwl/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "root": "apps/<%= dasherize(appName) %>",
+            "sourceRoot": "apps/<%= dasherize(appName) %>/src",
+            "prefix": "picpay",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/apps/<%= dasherize(appName) %>",
+                        "index": "apps/<%= dasherize(appName) %>/src/index.html",
+                        "main": "apps/<%= dasherize(appName) %>/src/main.ts",
+                        "polyfills": "apps/<%= dasherize(appName) %>/src/polyfills.ts",
+                        "tsConfig": "apps/<%= dasherize(appName) %>/tsconfig.app.json",
+                        "aot": true,
+                        "stylePreprocessorOptions": {
+                            "includePaths": ["node_modules", "libs/stencil/design-system/helpers/src/lib/styles"]
+                        },
+                        "assets": [
+                            {
+                                "glob": "**/*",
+                                "input": "apps/<%= dasherize(appName) %>/src/assets",
+                                "output": "./assets/<%= dasherize(appName) %>"
+                            },
+                            <% if(sso) { %>{
+                                "glob": "**/*",
+                                "input": "libs/angular/shared/core/keycloak/src/assets",
+                                "output": "./assets/keycloak"
+                            }, <% } %>
+                            {
+                                "glob": "**/*",
+                                "input": "libs/ui/components/src/assets",
+                                "output": "./assets/ui"
+                            },
+                            {
+                                "glob": "**/*",
+                                "input": "libs/design-system/web-components/src/assets/design-system",
+                                "output": "./assets/design-system"
+                            }
+                        ],
+                        "styles": [
+                            "libs/stencil/design-system/src/styles/apollo.scss",
+                            "apps/<%= dasherize(appName) %>/src/styles.scss"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/<%= dasherize(appName) %>/src/environments/environment.ts",
+                                    "with": "apps/<%= dasherize(appName) %>/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "<%= dasherize(appName) %>:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "<%= dasherize(appName) %>:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "<%= dasherize(appName) %>:build"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": ["apps/<%= dasherize(appName) %>/tsconfig.app.json", "apps/<%= dasherize(appName) %>/tsconfig.spec.json"],
+                        "exclude": ["**/node_modules/**", "!apps/<%= dasherize(appName) %>/**"]
+                    }
+                },
+                "test": {
+                    "builder": "@nrwl/jest:jest",
+                    "options": {
+                        "jestConfig": "apps/<%= dasherize(appName) %>/jest.config.js",
+                        "tsConfig": "apps/<%= dasherize(appName) %>/tsconfig.spec.json",
+                        "passWithNoTests": true,
+                        "setupFile": "apps/<%= dasherize(appName) %>/src/test-setup.ts"
+                    }
+                }
+            }
+        }
+    },
+    "nx": {
+        "<%= dasherize(appName) %>": {
+            "tags": ["scope:<%= dasherize(appName) %>", "type:app"]
+        }
+    },
+    "tsconfig": {}
+}

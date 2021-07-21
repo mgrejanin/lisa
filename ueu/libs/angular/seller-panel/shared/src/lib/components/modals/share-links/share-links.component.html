@@ -1,0 +1,35 @@
+<div class="c-charge-value-links-modal">
+    <div class="c-charge-value-links-modal__header">
+        <h2 class="c-charge-value-links-modal__header--title">{{ data?.title }}</h2>
+    </div>
+    <div class="c-charge-value-links-modal__body">
+        <ng-container *ngIf="data?.contentToCopy">
+            <button
+                mat-button
+                class="c-charge-value-links-modal__body--item o-button o-button__link"
+                [cdkCopyToClipboard]="data?.contentToCopy"
+                (cdkCopyToClipboardCopied)="onCopyLinkCallback($event)"
+                (click)="onClose()"
+            >
+                <mat-icon>content_copy</mat-icon>
+                Copiar link
+            </button>
+        </ng-container>
+
+        <ng-container *ngIf="data?.links">
+            <ng-container *ngFor="let item of data?.links">
+                <a
+                    mat-button
+                    class="c-charge-value-links-modal__body--item o-button o-button__link"
+                    [href]="item.href()"
+                    target="_blank"
+                    rel="noopener external"
+                    (click)="onClose()"
+                >
+                    <mat-icon [svgIcon]="item.icon"></mat-icon>
+                    {{ item.label }}
+                </a>
+            </ng-container>
+        </ng-container>
+    </div>
+</div>

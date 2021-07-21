@@ -1,0 +1,59 @@
+@use "mixins/typography";
+@use "mixins/breakpoint";
+
+.c-navbar-header {
+    padding: theme('spacing.2') theme('spacing.5');
+
+    &__actions-row {
+        &__container-left,
+        &__container-right {
+            display: flex;
+            align-items: center;
+            padding: theme('spacing.none');
+            margin-left: auto;
+        }
+
+        &__container-left {
+            justify-content: start;
+            margin-bottom: theme('spacing.2');
+        }
+
+        &__container-right {
+            justify-content: flex-end;
+        }
+    }
+
+    &__title {
+        @include typography.title(large);
+        margin: theme('spacing.4') theme('spacing.none') theme('spacing.2');
+    }
+
+    &__return-button {
+        display: flex;
+        align-items: center;
+    }
+
+    &__container-breadcrumb {
+        display: flex;
+    }
+
+    &__breadcrumb {
+        display: flex;
+
+        @include breakpoint.down(xsmall) {
+            display: block;
+        }
+    }
+
+    &__breadcrumb-separator {
+        line-height: theme('spacing.7');
+
+        @include breakpoint.down(xsmall) {
+            display: none;
+        }
+    }
+
+    &__breadcrumb-active {
+        padding: theme('spacing.2');
+    }
+}

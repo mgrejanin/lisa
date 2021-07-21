@@ -1,0 +1,13 @@
+{
+    "name": "design-system",
+    "version": "1",
+    "main": "../../../dist/libs/stencil/design-system/dist/index.js",
+    "module": "../../../dist/libs/stencil/design-system/dist/index.mjs",
+    "es2015": "../../../dist/libs/stencil/design-system/dist/esm/index.mjs",
+    "es2017": "../../../dist/libs/stencil/design-system/dist/esm/index.mjs",
+    "types": "../../../dist/libs/stencil/design-system/dist/types/index.d.ts",
+    "collection": "../../../dist/libs/stencil/design-system/dist/collection/collection-manifest.json",
+    "collection:main": "../../../dist/libs/stencil/design-system/dist/collection/index.js",
+    "unpkg": "../../../dist/libs/stencil/design-system/dist/design-system/design-system.js",
+    "files": ["../../../dist/libs/stencil/design-system/dist/", "../../../dist/libs/stencil/design-system/loader/"]
+}

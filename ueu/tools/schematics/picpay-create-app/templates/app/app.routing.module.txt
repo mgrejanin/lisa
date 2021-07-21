@@ -1,0 +1,28 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+<% if(!isDashboard) { %>import { AppComponent } from './app.component';<% } %>
+
+<% if(isDashboard) { %>// layouts
+import { LayoutDefaultComponent, LayoutsModule } from '@picpay/ui/layouts';<% } %>
+
+const routes: Routes = [
+    <% if(!sso && !isDashboard) { %>{ 
+        path: 'home', component: AppComponent 
+    },<% } %>
+    <% if(isDashboard) { %>{
+        path: 'home',
+        component: LayoutDefaultComponent,
+    },<% } %>
+    <% if(sso) { %>{
+        path: 'error',
+        <% if(isDashboard) { %>component: LayoutDefaultComponent,<% } %>
+        loadChildren: () => import('@picpay/angular/shared/default-screens').then(module => module.SharedDefaultScreensModule),
+    },<% } %>
+    { path: '**', redirectTo: 'home', pathMatch: 'full' }
+];
+
+@NgModule({
+    imports: [<% if(isDashboard) { %>LayoutsModule, <% } %>RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload'<% if(sso && isFullyAuthenticated) { %>, initialNavigation: false<% } %> })],
+    exports: [RouterModule],
+})
+export class AppRoutingModule {}

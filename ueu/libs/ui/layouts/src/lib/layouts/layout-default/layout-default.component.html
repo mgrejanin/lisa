@@ -1,0 +1,29 @@
+<section class="c-default-layout c-default-layout__desktop">
+    <!-- DESKTOP MENU -->
+    <aside class="c-default-layout__desktop-menu d-md-flex">
+        <picpay-side-menu
+            [logo]="logo$ | async"
+            [title]="title$ | async"
+            [items]="items$ | async"
+            [isOpen]="isOpen$ | async"
+            [keepOpen]="keepOpen$ | async"
+            (toggleKeepMenuOpen)="toggleKeepMenuOpen($event)"
+            (toggleIsMenuOpen)="toggleIsMenuOpen($event)"
+            class="c-default-layout__side-menu"
+        >
+            <ng-content slot="logo-wrap" select="[slot=logo-wrap]"></ng-content>
+            <ng-content slot="side-menu-wrap" select="[slot=menu-wrap]"></ng-content>
+        </picpay-side-menu>
+    </aside>
+
+    <!-- CONTENT -->
+    <div class="c-default-layout__content vw-100" [ngClass]="{ 'fixed-menu': keepOpen$ | async }">
+        <router-outlet></router-outlet>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <picpay-mobile-fixed-menu
+        [items]="mobileItems$ | async"
+        class="c-default-layout__mobile-menu d-md-none"
+    ></picpay-mobile-fixed-menu>
+</section>

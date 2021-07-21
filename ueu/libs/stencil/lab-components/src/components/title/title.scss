@@ -1,0 +1,19 @@
+.lab-title {
+    &--editing {
+        pointer-events: none;
+    }
+
+    &--default {
+        font-size: theme('fontSize.3xl');
+        font-weight: theme('fontWeight.extrabold');
+        line-height: theme('lineHeight.xs');
+        color: theme('colors.grayscale.700');
+    }
+
+    &--subtitle {
+        font-size: theme('fontSize.base');
+        font-weight: theme('fontWeight.bold');
+        line-height: theme('lineHeight.6xl');
+        color: theme('colors.grayscale.700');
+    }
+}

@@ -1,0 +1,66 @@
+<seller-panel-header (logout)="onLogout()"></seller-panel-header>
+<section class="c-integrations o-page">
+    <h2 class="c-integrations--title">Configurar integração</h2>
+    <p class="c-integrations--text">
+        Para garantir integridade e segurança das informações durante a comunicação entre o seu site e o PicPay, é
+        necessário a utilização de tokens.
+    </p>
+
+    <apollo-button [disabled]="loading" size="sm" (click)="onGenerateTokens()">
+        {{ haveTokens ? 'Gerar novos tokens' : 'Gerar tokens' }}
+    </apollo-button>
+
+    <mat-divider class="c-integrations--divider"></mat-divider>
+
+    <div class="c-integrations__tokens" *ngIf="haveTokens" [@simpleFadeAnimation]="'in'">
+        <p class="c-integrations--text mt-0">Informe que tipo de integração com PicPay você usa em seu site:</p>
+
+        <mat-tab-group
+            animationDuration="300ms"
+            disableRipple
+            color="primary"
+            (selectedTabChange)="onTabChanged($event)"
+        >
+            <mat-tab label="Uso a API pública">
+                <seller-panel-picpay-inputs-apis
+                    [tokens]="inputTokens.public"
+                    title="Seus tokens de comunicação via API:"
+                ></seller-panel-picpay-inputs-apis>
+
+                <p class="c-integrations--text">
+                    Por segurança, evite deixar o código exposto. <br />Para mais informações:
+                    <a
+                        class="c-integrations--api-link"
+                        href="https://studio.picpay.com/docs/e-commerce"
+                        target="_blank"
+                        rel="noopener external"
+                        >Veja a documentação da API</a
+                    >
+                </p>
+            </mat-tab>
+            <mat-tab label="Sou cliente Vtex">
+                <seller-panel-picpay-inputs-apis
+                    [tokens]="inputTokens.vtex"
+                    title="Seus tokens de comunicação via Vtex:"
+                ></seller-panel-picpay-inputs-apis>
+
+                <p class="c-integrations--text c-integrations--no-margin">
+                    Copie e cole os respectivos códigos nos campos Application Key e Application Token <br />
+                    ao configurar uma nova afiliação na Vtex.
+                    <a
+                        class="c-integrations--api-link"
+                        href="https://studio.picpay.com/docs/e-commerce"
+                        target="_blank"
+                        rel="noopener external"
+                        >Saiba como configurar o PicPay na Vtex</a
+                    >
+                </p>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+    <ng-container *ngIf="loading">
+        <div class="c-integrations__loading">
+            <apollo-circular-progress></apollo-circular-progress>
+        </div>
+    </ng-container>
+</section>

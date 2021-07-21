@@ -1,0 +1,20 @@
+@use 'theming' as *;
+
+body[data-theme='light'] {
+    @include mat-core-theme($app-theme);
+    @include mat-button-theme($app-theme);
+    @include mat-tabs-theme($app-theme);
+    @include mat-menu-theme($app-theme);
+}
+
+body[data-theme='dark'] {
+    @include mat-core-theme($app-dark-theme);
+    @include mat-button-theme($app-dark-theme);
+    @include mat-tabs-theme($app-dark-theme);
+    @include mat-menu-theme($app-dark-theme);
+}
+
+body {
+    background-color: rgb(var(--apollo-background-rgb));
+    color: rgba(var(--apollo-on-background-rgb), 0.86);
+}

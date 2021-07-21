@@ -1,0 +1,107 @@
+@use "mixins/typography";
+@import 'libs/ui/styles/src/lib/theming';
+
+.c-variables {
+    padding: 0 1rem 3rem 2rem;
+    height: 100%;
+    width: 86%;
+    position: fixed;
+
+    @media screen and (max-width: 1400px) {
+        width: 80%;
+    }
+
+    @media screen and (max-width: 770px) {
+        width: 100%;
+    }
+
+    @include media-breakpoint-only(md) {
+        width: 75%;
+    }
+
+    &__container-title {
+        display: flex;
+    }
+
+    &__h1 {
+        @include typography.title(large);
+        color: theme('colors.grayscale.darkest');
+        margin-bottom: theme('spacing.2');
+    }
+
+    &__icon-search {
+        margin-top: 0.4rem;
+    }
+
+    &__input {
+        width: 25rem;
+    }
+
+    &__table {
+        width: 97%;
+    }
+
+    &__title {
+        text-transform: uppercase;
+    }
+
+    &__row {
+        cursor: pointer;
+    }
+
+    &__item-key {
+        word-break: break-all;
+        padding-right: 1rem;
+    }
+
+    &__icon-delete {
+        display: flex;
+    }
+
+    &__column-icon {
+        width: 1%;
+    }
+
+    &__button-create {
+        float: right;
+        margin-right: 2rem;
+    }
+
+    &__icon-close {
+        color: theme('colors.success.dark');
+        font-size: theme('fontSize.6xl');
+        cursor: pointer;
+    }
+
+    &__loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 80%;
+        width: 100%;
+    }
+
+    &__filter {
+        display: flex;
+    }
+
+    &__options-filter {
+        margin-left: theme('spacing.2');
+    }
+
+    ::ng-deep {
+        .mat-drawer-end {
+            width: 35%;
+            padding: 1.5rem 0.2rem 2rem 1.5rem;
+            box-shadow: 0px -22px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .mat-drawer-container {
+            height: 100%;
+        }
+
+        .mat-form-field-label {
+            margin-top: 0.1rem;
+        }
+    }
+}

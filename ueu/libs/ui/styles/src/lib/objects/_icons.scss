@@ -1,0 +1,15 @@
+.i-icon {
+    color: rgba(var(--apollo-primary-rgb)) !important;
+
+    &__blue {
+        color: #43828c !important;
+    }
+}
+
+.i-spinner {
+    stroke: rgba(var(--apollo-primary-rgb)) !important;
+
+    &__white {
+        stroke: var(--apollo-background) !important;
+    }
+}

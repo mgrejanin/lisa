@@ -1,0 +1,27 @@
+.simple-header {
+    display: flex;
+    align-items: center;
+    padding: theme('spacing.none') theme('spacing.2');
+    box-shadow: theme('boxShadow.medium');
+
+    &--is-editing {
+        pointer-events: none;
+    }
+
+    &__back-button {
+        display: flex;
+        margin-right: theme('spacing.3');
+
+        .mdc-icon-button__icon {
+            display: flex;
+        }
+    }
+
+    &__title {
+        flex: 1;
+        color: theme('colors.grayscale.700');
+        font-weight: theme('fontWeight.extrabold');
+        overflow: hidden;
+        word-break: break-word;
+    }
+}

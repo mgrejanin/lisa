@@ -1,0 +1,62 @@
+// BOOTSTRAP
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+$blue: #00afee !default;
+$indigo: #6610f2 !default;
+$purple: #6f42c1 !default;
+$pink: #e83e8c !default;
+$red: #ff5075 !default;
+$orange: #fd7e14 !default;
+$yellow: #fbca42 !default;
+$green: #00ac4a !default;
+$teal: #20c997 !default;
+$cyan: #17a2b8 !default;
+$white: #fff !default;
+$gray: #777 !default;
+$gray-dark: #2a2a2a !default;
+$primary: theme('colors.primary.light.500') !default;
+$secondary: theme('colors.primary.light.500') !default;
+$success: theme('colors.success.light.500') !default;
+$info: theme('colors.neutral.light.500') !default;
+$warning: theme('colors.warning.light.500') !default;
+$danger: theme('colors.critical.light.500') !default;
+$light: #f8f9fa !default;
+$dark: $gray-dark !default;
+
+$theme-colors: () !default;
+
+$theme-colors: map-merge(
+    (
+        'primary': $primary,
+        'secondary': $secondary,
+        'success': $success,
+        'info': $info,
+        'warning': $warning,
+        'danger': $danger,
+        'light': $light,
+        'dark': $dark,
+    ),
+    $theme-colors
+);
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px,
+) !default;
+
+$container-max-widths: (
+    sm: 540px,
+    md: 720px,
+    lg: 960px,
+    xl: 1140px,
+) !default;
+
+$cubic-bezier: cubic-bezier(0.4, 0, 0.2, 1);
+
+$stagger-delay: 50;

@@ -1,0 +1,77 @@
+<table class="c-table-transactions o-table" mat-table [dataSource]="listTransactions">
+    <!-- Consumer column -->
+    <ng-container matColumnDef="consumer">
+        <th class="o-table__title" mat-header-cell *matHeaderCellDef>COMPRADOR</th>
+        <td class="o-table__item c-table-transactions__consumer u-text-ellipsis" mat-cell *matCellDef="let element">
+            <img [src]="element?.image" alt="Foto de perfil do comprador" />
+            <span>{{ element?.consumer }}</span>
+        </td>
+    </ng-container>
+
+    <!-- Date column -->
+    <ng-container matColumnDef="date">
+        <th class="o-table__title" mat-header-cell *matHeaderCellDef>DATA</th>
+        <td class="o-table__item c-table-transactions__date u-text-ellipsis" mat-cell *matCellDef="let element">
+            {{ element?.transaction_date | date: 'dd.MM - HH:mm' }}
+        </td>
+    </ng-container>
+
+    <!-- ID column -->
+    <ng-container matColumnDef="id">
+        <th class="o-table__title" mat-header-cell *matHeaderCellDef>ID</th>
+        <td class="o-table__item c-table-transactions__id" mat-cell *matCellDef="let element">
+            {{ element?.id }}
+        </td>
+    </ng-container>
+
+    <!-- Unity column -->
+    <ng-container matColumnDef="unity">
+        <th class="o-table__title" mat-header-cell *matHeaderCellDef>UNIDADES</th>
+        <td class="o-table__item c-table-transactions__unity u-text-ellipsis" mat-cell *matCellDef="let element">
+            {{ element?.seller }}
+        </td>
+    </ng-container>
+
+    <!-- Status column -->
+    <ng-container matColumnDef="status">
+        <th class="o-table__title" mat-header-cell *matHeaderCellDef>STATUS</th>
+        <td class="o-table__item c-table-transactions__status" mat-cell *matCellDef="let element">
+            <div class="c-table-transactions__status--wrapper">
+                <mat-icon
+                    [ngClass]="{
+                        'u-color__success': element?.status_id === 'check_circle_outline',
+                        'u-color__danger': element?.status_id === 'error_outline',
+                        'u-color__info': element?.status_id === 'reply',
+                        'u-color__warning': element?.status_id === 'access_time'
+                    }"
+                >
+                    {{ element?.status_id }}
+                </mat-icon>
+                <span>{{ element?.status }}</span>
+            </div>
+        </td>
+    </ng-container>
+
+    <!-- Price column -->
+    <ng-container matColumnDef="price">
+        <th class="o-table__title" mat-header-cell *matHeaderCellDef>VALOR</th>
+        <td class="o-table__item c-table-transactions__price" mat-cell *matCellDef="let element">
+            {{ element?.price | currency: 'BRL' }}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="icon">
+        <th class="o-table__title" mat-header-cell *matHeaderCellDef></th>
+        <td class="o-table__item c-table-transactions__icon" mat-cell *matCellDef="let element">
+            <mat-icon mat-button>more_vert</mat-icon>
+        </td>
+    </ng-container>
+
+    <tr class="o-table__header-row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr class="o-table__row" (click)="onOpenSidenav(row)" mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<seller-panel-sidenav-details>
+    <!-- Details transaction Sidenav -->
+    <seller-panel-details-transactions [currentTransaction]="detailTransaction"></seller-panel-details-transactions>
+</seller-panel-sidenav-details>
